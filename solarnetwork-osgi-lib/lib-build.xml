@@ -1,0 +1,225 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:bh="antlib:net.solarnetwork.bh.ant">
+
+	<path id="compile.path"/>
+	
+	<property name="dir.target" value="${basedir}/../solarnetwork-osgi-lib"/>
+	<property name="dir.bundles" value="${basedir}/../solarnetwork-osgi-lib/bundles"/>
+	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
+	<property name="dir.input" value="${basedir}"/>
+	<property name="dir.source" value="${dir.input}/src"/>
+	<property name="dir.resources" value="${dir.input}"/>
+	<property name="dir.build" value="${basedir}/build/ant"/>
+	<property name="dir.deps" value="${dir.build}/deps"/>
+	<property name="dir.compile" value="${dir.build}/classes"/>
+	<property name="dir.dist" value="${basedir}/target"/>
+	<property name="dir.meta-inf" value="${dir.resources}/META-INF"/>
+	<property name="dir.jar.classes.dest" value=""/>
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="true" />
+	<property name="compile.nowarn" value="true" />
+	
+	<condition property="no.classes">
+		<resourcecount when="equal" count="0">
+			<fileset dir="${dir.input}" includes="**/*.java"/>
+		</resourcecount>
+	</condition>
+
+	<condition property="classes">
+		<resourcecount when="greater" count="0">
+			<fileset dir="${dir.input}" includes="**/*.java"/>
+		</resourcecount>
+	</condition>
+
+	<tstamp>
+		<format property="bundle.build.time" pattern="yyyy-MM-dd HH:mm" />
+	</tstamp>
+	
+	<target name="ivy-init">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant"
+			classpath="${dir.target}/lib/ivy-2.2.0.jar"/>
+	</target>
+	
+	<target name="lib-init" depends="ivy-init" unless="no.classes">
+		<ivy:settings file="${ivy.settings}"/>
+	</target>
+	
+	<target name="lib-resolve" depends="lib-init" unless="no.classes">
+		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
+		<ivy:resolve file="${basedir}/ivy.xml"/>
+	</target>
+
+	<target name="lib-install-bundles" depends="lib-resolve" unless="no.classes">
+		<mkdir dir="${dir.bundles}"/>
+		<!-- Copy the dependencies to dir.bundles -->
+		<ivy:retrieve type="jar" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
+	</target>
+	
+	<target name="clean" description="Remove generated artifacts">
+		<delete dir="${dir.build}"/>
+		<delete dir="${dir.dist}"/>
+	</target>
+	
+	<target name="compile.deps" if="bundle.deps">
+		<subant target="jar-dep">
+			<property name="dir.deps" value="${dir.build}/deps"/>
+			<dirset refid="bundle.deps"/>
+		</subant>
+	</target>
+	
+	<target name="compile" depends="read.manifest,compile.deps,lib-resolve" if="classes">
+		<echo message="[====&gt; Compiling ${bundle.name} &lt;====]"/>
+		<ivy:cachepath pathid="lib.path"/>
+		<mkdir dir="${dir.deps}"/>
+		<path id="compile.path.combined">
+			<!-- Bundle script provides compile.path path -->
+			<path refid="compile.path"/>
+			<path refid="lib.path"/>
+			<fileset dir="${dir.deps}" includes="*.jar"/>
+		</path>
+		<mkdir dir="${dir.compile}"/>
+		<javac srcdir="${dir.source}"
+			includeantruntime="false"
+			destdir="${dir.compile}"
+			debug="${compile.debug}" 
+			deprecation="${compile.deprecation}" 
+			optimize="${compile.optimize}" 
+			nowarn="${compile.nowarn}"
+			target="1.6"
+			source="1.6">
+			<classpath refid="compile.path.combined" />
+		</javac>
+	</target>
+	
+	<target name="bh.init">
+		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
+					uri="antlib:net.solarnetwork.bh.ant"
+					classpath="${dir.target}/lib/bh-1.0.jar"/>
+	</target>
+	
+	<target name="read.manifest" depends="bh.init">
+		<bh:manifestreader manifest="${dir.meta-inf}/MANIFEST.MF"/>
+		<property name="bundle.name" value="${Bundle-SymbolicName}"/>
+		<property name="bundle.version" value="${Bundle-Version}"/>
+		<property name="bundle.jar.name" value="${bundle.name}-${bundle.version}.jar"/>
+	</target>
+	
+	<target name="jar.dep.check" depends="read.manifest">
+		<condition property="dep-exists">
+			<resourceexists>
+				<file file="${dir.deps}/${bundle.jar.name}"/>
+			</resourceexists>
+		</condition>
+		<!--echo>
+			!!!
+			Checking for: ${dir.deps}/${bundle.jar.name}
+			Result: ${dep-exists}
+			!!!
+		</echo-->
+	</target>
+	
+	<target name="jar.dep.prepare" depends="clean,jar,jar.dep"/>
+	
+	<target name="jar.dep.conditionally" unless="dep-exists">
+		<antcall target="jar.dep.prepare"/>
+		<!--echo>
+			!!!
+			Copying to dir.deps ${dir.deps}
+			Source = dir.dist ${dir.dist}
+			Result: ${dep-exists}
+			!!!
+		</echo-->
+		<copy todir="${dir.deps}">
+			<fileset dir="${dir.dist}" includes="*.jar"/>
+		</copy>
+	</target>
+
+	<target name="jar-dep" depends="jar.dep.check,jar.dep.conditionally"/>
+		
+	<!-- Copy internal JAR resource to dest dir, for compiling dependant projects -->
+	<target name="jar.dep" if="no.classes">
+		<copy todir="${dir.dist}">
+			<fileset dir="${basedir}" includes="*.jar"/>
+		</copy>
+	</target>
+	
+	<target name="resource-prep" description="Prepare WAB files">
+		<!-- copy and filter about.jsp file -->
+		<mkdir dir="${dir.build}/rsrs"/>
+		<copy todir="${dir.build}/rsrs" overwrite="yes">
+			<fileset dir="${dir.resources}">
+				<include name="WEB-INF/jsp/about.jsp"/>
+			</fileset>
+			<filterset>
+				<filter token="APP_NAME" value="${Bundle-Name}" />
+				<filter token="BUILD_VERSION" value="${bundle.version}" />
+				<filter token="BUILD_DATE" value="${bundle.build.time}" />
+			</filterset>
+		</copy>
+	</target>
+	
+	<target name="jar" depends="compile,resource-prep,jar.classes,jar.no.classes"
+		description="Create bundle jar"/>
+
+	<target name="clean-jar" depends="clean,jar"
+		description="Clean, then create bundle jar"/>
+
+	<patternset id="web.files">
+		<include name="css/**"/>
+		<include name="images/**"/>
+		<include name="img/**"/>
+		<include name="js/**"/>
+		<include name="js-lib/**"/>
+		<include name="style/**"/>
+		<include name="WEB-INF/**"/>
+		<exclude name="WEB-INF/classes/**"/>
+		<exclude name="WEB-INF/packtag.user.properties"/>
+		<exclude name="WEB-INF/jsp/about.jsp"/>
+	</patternset>
+	
+	<target name="jar.classes" if="classes">
+		<mkdir dir="${dir.dist}"/>
+		<jar destfile="${dir.dist}/${bundle.jar.name}" 
+			manifest="${dir.meta-inf}/MANIFEST.MF">
+			<zipfileset dir="${dir.compile}" includes="**" 
+				prefix="${dir.jar.classes.dest}"/>
+			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java" 
+				prefix="${dir.jar.classes.dest}"/>
+			<fileset dir="${dir.resources}">
+				<include name="META-INF/**"/>
+				<exclude name="META-INF/MANIFEST.MF"/>
+				<patternset refid="web.files"/>
+			</fileset>
+			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
+	<target name="jar.no.classes" if="no.classes">
+		<mkdir dir="${dir.dist}"/>
+		<jar destfile="${dir.dist}/${bundle.jar.name}" 
+			manifest="${dir.meta-inf}/MANIFEST.MF">
+			<fileset dir="${basedir}">
+				<include name="*.jar"/>
+				<include name="conf/**"/>
+				<exclude name="*-sources.jar"/>
+				<exclude name="*-src.jar"/>
+			</fileset>
+			<fileset dir="${dir.resources}">
+				<include name="META-INF/**"/>
+				<include name="lib/**"/>
+				<exclude name="META-INF/MANIFEST.MF"/>
+				<patternset refid="web.files"/>
+			</fileset>
+			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
+	<target name="deploy" depends="jar,lib-install-bundles" description="Copy bundle JAR to target">
+		<copy todir="${dir.bundles}" failonerror="no">
+			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
+			<fileset dir="${dir.deps}" includes="*.jar"/>
+		</copy>
+	</target>
+
+</project>
