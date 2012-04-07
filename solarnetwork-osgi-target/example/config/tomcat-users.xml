@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>
+  <role rolename="AUTHENTICATED_USER"/>
+  <role rolename="USER_ADMIN"/>
+  <user username="test" password="test" roles="AUTHENTICATED_USER,USER_ADMIN"/>
+</tomcat-users>
