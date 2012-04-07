@@ -1,0 +1,28 @@
+<project basedir=".">
+
+	<macrodef name="bundle-iterate">
+		<attribute name="target"/>
+		<sequential>
+			<subant target="@{target}">
+				<fileset refid="bundle.build.xml"/>
+			</subant>
+		</sequential>
+	</macrodef>
+
+	<fileset id="bundle.build.xml" dir="${basedir}/.." includes="*/build.xml">
+		<scriptselector language="javascript">
+			self.setSelected( new java.io.File(file.getParentFile(), "META-INF").exists() )
+		</scriptselector>
+	</fileset>
+	
+	<target name="jar" description="Create bundle jars">
+		<echo message="${toString:test.set}"/>
+		<bundle-iterate target="jar"/>
+	</target>
+	
+	<target name="clean" description="Clean all bundle build files">
+		<echo message="${toString:test.set}"/>
+		<bundle-iterate target="clean"/>
+	</target>
+	
+</project>
