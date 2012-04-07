@@ -1,0 +1,34 @@
+<Server port="8005" shutdown="SHUTDOWN">
+	<Service name="Catalina">
+		<Connector port="8080"/>
+		
+		<!-- For SolarIn development, configure SSL with the key/trust stores
+			 properly configured, and make sure the Host/@name value is set
+			 to a host name that matches your SSL server certificate name.
+			 
+		<Connector port="8843" protocol="HTTP/1.1" SSLEnabled="true"
+			maxThreads="150" scheme="https" secure="true" sslProtocol="TLS"
+			keyAlias="central"
+			keystoreFile="configurations/security/dev/keystore.jks"
+			keystorePass="dev123"
+			truststoreFile="configurations/security/dev/keystore.jks"
+			truststorePass="dev123" clientAuth="true"/>
+		-->
+		
+		<Engine name="Catalina" defaultHost="localhost">
+			<Host name="localhost" unpackWARs="false" autoDeploy="false"
+				liveDeploy="false" deployOnStartup="false" xmlValidation="false"
+				xmlNamespaceAware="false">
+				<Realm className="net.solarnetwork.common.web.catalina.OsgiDataSourceRealm"
+					dataSourceName="(db=central)" 
+					digest="SHA-256"
+					userTable="solardras.dras_user" 
+					userNameCol="username"
+					userCredCol="passwd" 
+					userRoleTable="solardras.dras_auth_roles"
+					roleNameCol="rolename" />
+				<Valve className="org.apache.catalina.authenticator.SingleSignOn"/>
+			</Host>
+		</Engine>
+	</Service>
+</Server>
