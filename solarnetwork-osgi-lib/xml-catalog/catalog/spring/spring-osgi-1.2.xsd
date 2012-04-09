@@ -10,7 +10,8 @@
         version="1.2">
 
 	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+    <xsd:import namespace="http://www.springframework.org/schema/beans"
+    	schemaLocation="http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"/>
     <xsd:import namespace="http://www.springframework.org/schema/tool"/>
 
     <xsd:annotation>
