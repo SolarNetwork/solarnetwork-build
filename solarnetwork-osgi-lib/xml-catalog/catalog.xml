@@ -8,7 +8,7 @@
 		systemIdStartString="http://www.oasis-open.org/committees/entity/release/1.0/"
 		rewritePrefix="catalog/"/>
 
-	<public publicId="-//OASIS/DTD Entity Resolution XML Catalog V1.0//EN" 
+	<system systemId="-//OASIS/DTD Entity Resolution XML Catalog V1.0//EN" 
 		uri="catalog/catalog.dtd"/>
 
 	<!-- Ibatis SqlMap support -->
@@ -17,10 +17,10 @@
 		systemIdStartString="http://ibatis.apache.org/dtd/"
 		rewritePrefix="catalog/"/>
 
-	<public publicId="-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+	<system systemId="-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
 		uri="catalog/sql-map-2.dtd"/>
 
-	<public publicId="-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
+	<system systemId="-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
 		uri="catalog/sql-map-config-2.dtd"/>
 		
 	<!-- Tiles support -->
@@ -29,7 +29,7 @@
 		systemIdStartString="http://tiles.apache.org/dtds/"
 		rewritePrefix="catalog/"/>
 
-	<public publicId="-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	<system systemId="-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
 		uri="catalog/tiles-config_2_0.dtd"/>
 	
 	<nextCatalog catalog="catalog/jee/catalog.xml"/>
