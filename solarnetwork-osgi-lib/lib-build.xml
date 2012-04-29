@@ -21,13 +21,19 @@
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
-			<fileset dir="${dir.input}" includes="**/*.java"/>
+			<fileset dir="${dir.input}">
+				<include name="**/*.java"/>
+				<include name="src/**/*.*"/>
+			</fileset>
 		</resourcecount>
 	</condition>
 
 	<condition property="classes">
 		<resourcecount when="greater" count="0">
-			<fileset dir="${dir.input}" includes="**/*.java"/>
+			<fileset dir="${dir.input}">
+				<include name="**/*.java"/>
+				<include name="src/**/*.*"/>
+			</fileset>
 		</resourcecount>
 	</condition>
 
