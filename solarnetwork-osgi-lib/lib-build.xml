@@ -2,8 +2,9 @@
 
 	<path id="compile.path"/>
 	
-	<property name="dir.target" value="${basedir}/../solarnetwork-osgi-lib"/>
-	<property name="dir.bundles" value="${basedir}/../solarnetwork-osgi-lib/bundles"/>
+	<property name="dir.osgi.base" value="${basedir}/../solarnetwork-osgi-lib"/>
+	<property name="dir.target" value="${dir.osgi.base}"/>
+	<property name="dir.bundles" value="${dir.osgi.base}/bundles"/>
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
 	<property name="dir.input" value="${basedir}"/>
 	<property name="dir.source" value="${dir.input}/src"/>
