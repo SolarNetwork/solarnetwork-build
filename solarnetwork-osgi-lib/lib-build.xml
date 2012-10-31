@@ -187,6 +187,7 @@
 	
 	<target name="jar.classes" if="classes">
 		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
 			manifest="${dir.meta-inf}/MANIFEST.MF">
 			<zipfileset dir="${dir.compile}" includes="**" 
@@ -205,6 +206,7 @@
 	
 	<target name="jar.no.classes" if="no.classes">
 		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
 			manifest="${dir.meta-inf}/MANIFEST.MF">
 			<fileset dir="${basedir}">
