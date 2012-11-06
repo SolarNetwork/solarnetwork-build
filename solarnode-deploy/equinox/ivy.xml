@@ -15,6 +15,17 @@
 		<dependency org="commons-codec" name="commons-codec" rev="1.6" >
     		<artifact name="commons-codec" type="jar" />
 		</dependency>
+		<dependency org="commons-io" name="commons-io" rev="2.4" >
+    		<artifact name="commons-io" type="jar" />
+		</dependency>
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.2.2" >
+    		<artifact name="commons-fileupload" type="jar" />
+		</dependency>
+		
+		<!-- CSV -->
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.0.0-beta-1" >
+			<artifact name="super-csv" type="jar" />
+		</dependency>
 		
 		<!-- JDBC connection pool -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29">
