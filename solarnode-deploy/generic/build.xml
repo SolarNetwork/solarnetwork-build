@@ -16,8 +16,10 @@
 	<property name="dir.dist" value="${basedir}/target/main"/>
 	<property name="dir.dist.core" value="${basedir}/target/core"/>
 	<property name="dir.bundles" value="${basedir}/platform"/>
-	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
-	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
+	
+	<property name="dir.src.base" value="${basedir}/../../.."/>
+	<property name="dir.target" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
+	<property name="dir.platform" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-target"/>
 
 	<property name="dir.build" value="build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
@@ -27,7 +29,7 @@
 	
 	<import file="${dir.target}/lib-build.xml"/>
 
-	<fileset id="bundle.build.xml" dir="${basedir}/../.." includes="*/build.xml">
+	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
 		<scriptselector language="javascript">
 			var result = (project.getProperty("bundles").search("\\b" 
 				+file.getParentFile().getName().replace(".","\\.") +"(\\s|,|$)") !== -1);
