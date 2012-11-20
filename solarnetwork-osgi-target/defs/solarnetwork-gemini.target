@@ -150,6 +150,6 @@
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 <launcherArgs>
-<vmArgs>-Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Dosgi.java.profile=file:config/java6-server.profile -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true</vmArgs>
+<vmArgs>-Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Dosgi.java.profile=file:config/java6-server.profile -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml</vmArgs>
 </launcherArgs>
 </target>
