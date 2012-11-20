@@ -43,6 +43,9 @@
 	<system systemId="http://java.sun.com/xml/ns/javaee/javaee_web_services_client_1_2.xsd"
 		uri="javaee_web_services_client_1_2.xsd"/>
 		
+	<system systemId="http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+		uri="web-jsptaglibrary_2_1.xsd"/>
+		
 	<uri name="http://java.sun.com/xml/ns/javaee" uri=""/>
 
 	<!-- Other -->
