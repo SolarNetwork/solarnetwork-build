@@ -20,6 +20,9 @@
 		systemIdStartString="http://www.springframework.org/schema/mvc/"
 		rewritePrefix=""/>
 	<rewriteSystem 
+		systemIdStartString="http://www.springframework.org/schema/security/"
+		rewritePrefix=""/>
+	<rewriteSystem 
 		systemIdStartString="http://www.springframework.org/schema/tool/"
 		rewritePrefix=""/>
 	<rewriteSystem 
@@ -44,6 +47,7 @@
 	<uri name="http://www.springframework.org/schema/jee" uri=""/>
 	<uri name="http://www.springframework.org/schema/lang" uri=""/>
 	<uri name="http://www.springframework.org/schema/mvc" uri=""/>
+	<uri name="http://www.springframework.org/schema/security" uri=""/>
 	<uri name="http://www.springframework.org/schema/tool" uri=""/>
 	<uri name="http://www.springframework.org/schema/tx" uri=""/>
 	<uri name="http://www.springframework.org/schema/util" uri=""/>
@@ -105,6 +109,9 @@
 
 	<system systemId="http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
 		uri="spring-mvc-3.1.xsd"/>
+		
+	<system systemId="http://www.springframework.org/schema/security/spring-security-3.1.xsd"
+		uri="spring-security-3.1.xsd"/>
 
 	<system systemId="http://www.springframework.org/schema/tool/spring-tool-3.1.xsd"
 		uri="spring-tool-3.1.xsd"/>
