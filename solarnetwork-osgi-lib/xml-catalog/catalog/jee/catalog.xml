@@ -3,9 +3,9 @@
 
 	<!-- J2EE 4 -->
 
-	<rewriteSystem 
+	<!--rewriteSystem 
 		systemIdStartString="http://java.sun.com/xml/ns/j2ee/"
-		rewritePrefix=""/>
+		rewritePrefix=""/-->
 
 	<system systemId="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 		uri="web-app_2_4.xsd"/>
@@ -20,16 +20,16 @@
 		systemId="http://www.ibm.com/webservices/xsd/j2ee_web_services_client_1_1.xsd"
 		uri="j2ee_web_services_client_1_1.xsd"/>
 
-	<uri name="http://www.ibm.com/webservices/xsd/j2ee_web_services_client_1_1.xsd"
+	<!--uri name="http://www.ibm.com/webservices/xsd/j2ee_web_services_client_1_1.xsd"
 		uri="j2ee_web_services_client_1_1.xsd"/>
 
-	<uri name="http://java.sun.com/xml/ns/j2ee" uri=""/>
+	<uri name="http://java.sun.com/xml/ns/j2ee" uri=""/-->
 
 	<!-- J2EE 5 -->
 
-	<rewriteSystem 
+	<!--rewriteSystem 
 		systemIdStartString="http://java.sun.com/xml/ns/javaee/"
-		rewritePrefix=""/>
+		rewritePrefix=""/-->
 
 	<system systemId="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		uri="web-app_2_5.xsd"/>
@@ -46,7 +46,7 @@
 	<system systemId="http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
 		uri="web-jsptaglibrary_2_1.xsd"/>
 		
-	<uri name="http://java.sun.com/xml/ns/javaee" uri=""/>
+	<!--uri name="http://java.sun.com/xml/ns/javaee" uri=""/-->
 
 	<!-- Other -->
 
