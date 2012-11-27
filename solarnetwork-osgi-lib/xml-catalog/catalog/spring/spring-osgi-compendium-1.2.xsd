@@ -101,14 +101,6 @@
 	                    		]]></xsd:documentation>
 	                    	</xsd:annotation>
 	                	</xsd:element>
-	                	<xsd:element maxOccurs="1" minOccurs="0"
-							name="service-properties" type="beans:mapType">
-							<xsd:annotation>
-								<xsd:documentation><![CDATA[
-    Defines the service properties.
-                    		]]></xsd:documentation>
-							</xsd:annotation>
-						</xsd:element>
 		            	<!-- the bean definition template -->
 	                    <xsd:any namespace="##other" minOccurs="1" maxOccurs="1" processContents="skip">
 	   				       	<xsd:annotation>
