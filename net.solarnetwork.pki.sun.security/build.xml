@@ -1,0 +1,10 @@
+<project basedir=".">
+	
+	<!-- NOTE: this project exsits only to give Eclipse PDE compiler access to the internal
+	     Sun security packages used in other bundles. It won't compile in PDE, but it is 
+	     compiled via Ant and then added to the PDE target runtime. -->
+
+	<property name="dir.osgi.base" value="${basedir}/../../solarnetwork-build/solarnetwork-osgi-lib"/>
+	<import file="${dir.osgi.base}/lib-build.xml"/>
+	
+</project>
