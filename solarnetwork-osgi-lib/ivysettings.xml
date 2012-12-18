@@ -9,6 +9,7 @@
 	<property name="spring-repo.url" value="http://repository.springsource.com/ivy/bundles"/>
 	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<property name="spring-archive.url" value="http://repository.atlassian.com/maven2"/>
+	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/groups/public"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
 		<filesystem name="local">
@@ -19,6 +20,9 @@
 			<ivy pattern="${ivy.shared.default.root}/${ivy.shared.default.ivy.pattern}" />
 			<artifact pattern="${ivy.shared.default.root}/${ivy.shared.default.artifact.pattern}" />
 		</filesystem>
+		
+		<ibiblio name="jboss" m2compatible="true" root="${jboss-archive.url}"
+    		pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
 		
 		<url name="spring-ebr-release">
 			<ivy pattern="${spring-repo.url}/release/${spring-repo.pattern}" />
@@ -36,6 +40,7 @@
 		
 		<chain name="main" dual="true">
 			<resolver ref="shared"/>
+			<resolver ref="jboss"/>
 			<resolver ref="spring-ebr-release"/>
 			<resolver ref="spring-ebr-external"/>
 			<resolver ref="spring-archive"/>
