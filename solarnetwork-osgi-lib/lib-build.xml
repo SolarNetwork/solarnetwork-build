@@ -77,7 +77,7 @@
 	
 	<target name="compile" depends="read.manifest,compile.deps,lib-resolve" if="classes">
 		<echo message="[====&gt; Compiling ${bundle.name} &lt;====]"/>
-		<ivy:cachepath pathid="lib.path"/>
+		<ivy:cachepath pathid="lib.path" conf="compile"/>
 		<mkdir dir="${dir.deps}"/>
 		<path id="compile.path.combined">
 			<!-- Bundle script provides compile.path path -->
@@ -85,6 +85,10 @@
 			<path refid="lib.path"/>
 			<fileset dir="${dir.deps}" includes="*.jar"/>
 		</path>
+		<!-- For debugging classpath:
+		<property name="path" refid="lib.path"/>
+		<echo>{=== Compile path: ${path} ===}</echo>
+		-->
 		<mkdir dir="${dir.compile}"/>
 		<javac srcdir="${dir.source}"
 			includeantruntime="false"
