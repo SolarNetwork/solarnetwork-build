@@ -54,13 +54,13 @@
 	
 	<target name="lib-resolve" depends="lib-init" unless="no.classes">
 		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
-		<ivy:resolve file="${basedir}/ivy.xml"/>
+		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle"/>
 	</target>
 
 	<target name="lib-install-bundles" depends="lib-resolve" unless="no.classes">
 		<mkdir dir="${dir.bundles}"/>
 		<!-- Copy the dependencies to dir.bundles -->
-		<ivy:retrieve type="jar" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
 	</target>
 	
 	<target name="clean" description="Remove generated artifacts">
@@ -77,7 +77,7 @@
 	
 	<target name="compile" depends="read.manifest,compile.deps,lib-resolve" if="classes">
 		<echo message="[====&gt; Compiling ${bundle.name} &lt;====]"/>
-		<ivy:cachepath pathid="lib.path" conf="compile"/>
+		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
 		<mkdir dir="${dir.deps}"/>
 		<path id="compile.path.combined">
 			<!-- Bundle script provides compile.path path -->
