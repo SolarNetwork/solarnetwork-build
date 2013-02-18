@@ -42,7 +42,7 @@
 	
 	<patternset id="core.bundles">
 		<include name="net.solarnetwork.common-*"/>
-		<include name="net.solarnetwork.node.core-*"/>
+		<include name="net.solarnetwork.node-*"/>
 		<include name="net.solarnetwork.node.dao.jdbc-*"/>
 		<include name="net.solarnetwork.node.setup-*"/>
 		<include name="net.solarnetwork.org.*"/>
