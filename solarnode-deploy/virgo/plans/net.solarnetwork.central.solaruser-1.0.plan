@@ -5,6 +5,7 @@
         xsi:schemaLocation="http://www.springsource.org/schema/dm-server/plan 
                             http://www.springsource.org/schema/dm-server/plan/springsource-dm-server-plan.xsd">
 
+	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.4,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.biz.dao" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.web" version="[1.0,2.0)"/>
