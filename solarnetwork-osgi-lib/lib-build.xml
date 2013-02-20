@@ -13,6 +13,7 @@
 	<property name="dir.deps" value="${dir.build}/deps"/>
 	<property name="dir.compile" value="${dir.build}/classes"/>
 	<property name="dir.dist" value="${basedir}/target"/>
+	<property name="dir.provided" value="${dir.build}/provided"/>
 	<property name="dir.meta-inf" value="${dir.resources}/META-INF"/>
 	<property name="dir.jar.classes.dest" value=""/>
 	<property name="compile.debug" value="true" />
@@ -71,6 +72,7 @@
 	<target name="compile.deps" if="bundle.deps">
 		<subant target="jar-dep">
 			<property name="dir.deps" value="${dir.build}/deps"/>
+			<property name="dir.provided" value="${dir.build}/provided"/>
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
@@ -79,11 +81,13 @@
 		<echo message="[====&gt; Compiling ${bundle.name} &lt;====]"/>
 		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
 		<mkdir dir="${dir.deps}"/>
+		<mkdir dir="${dir.provided}"/>
 		<path id="compile.path.combined">
 			<!-- Bundle script provides compile.path path -->
 			<path refid="compile.path"/>
 			<path refid="lib.path"/>
 			<fileset dir="${dir.deps}" includes="*.jar"/>
+			<fileset dir="${dir.provided}" includes="*.jar"/>
 		</path>
 		<!-- For debugging classpath:
 		<property name="path" refid="lib.path"/>
@@ -150,7 +154,8 @@
 		
 	<!-- Copy internal JAR resource to dest dir, for compiling dependant projects -->
 	<target name="jar.dep" if="no.classes">
-		<copy todir="${dir.dist}">
+		<mkdir dir="${dir.provided}"/>
+		<copy todir="${dir.provided}">
 			<fileset dir="${basedir}" includes="*.jar"/>
 		</copy>
 	</target>
