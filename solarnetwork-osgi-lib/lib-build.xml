@@ -69,14 +69,14 @@
 		<delete dir="${dir.dist}"/>
 	</target>
 	
-	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
-		depends="clean">
-		<delete dir="${dir.build}"/>
-		<delete dir="${dir.dist}"/>
+	<target name="clean.deps" if="bundle.deps">
 		<subant target="clean">
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
+	
+	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
+		depends="clean,clean.deps"/>
 	
 	<target name="compile.deps" if="bundle.deps">
 		<subant target="jar-dep">
