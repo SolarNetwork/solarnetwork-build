@@ -77,7 +77,7 @@
 	</target>
 	
 	<target name="clean-jar" description="Clean bundle jars">
-		<bundle-iterate target="clean"/>
+		<bundle-iterate target="clean-full"/>
 	</target>
 
 	<target name="external-jars" depends="ivy-init">
