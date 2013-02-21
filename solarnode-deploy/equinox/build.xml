@@ -82,6 +82,7 @@
 			</fileset-->
 			<fileset dir="${dir.generic.conf}">
 				<include name="**"/>
+				<exclude name="tls/README.txt"/>
 			</fileset>
 		</copy>
 		<copy todir="${dir.assemble}/app/core">

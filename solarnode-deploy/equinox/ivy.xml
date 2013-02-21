@@ -109,5 +109,14 @@
 		
 		<!-- Quartz scheduler -->
 		<dependency org="com.opensymphony.quartz" name="com.springsource.org.quartz" rev="1.6.2" />
+
+		<!-- PKI -->
+		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" >
+    		<artifact name="bcprov-jdk15on" type="jar"/>
+    	</dependency>
+    	<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" >
+    		<artifact name="bcpkix-jdk15on" type="jar"/>
+    	</dependency>
+    	
 	</dependencies>
 </ivy-module>
