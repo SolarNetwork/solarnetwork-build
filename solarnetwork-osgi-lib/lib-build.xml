@@ -214,6 +214,7 @@
 				prefix="${dir.jar.classes.dest}"/>
 			<fileset dir="${dir.resources}">
 				<include name="META-INF/**"/>
+				<include name="OSGI-INF/**"/>
 				<include name="lib/**"/>
 				<exclude name="META-INF/MANIFEST.MF"/>
 				<patternset refid="web.files"/>
@@ -235,6 +236,7 @@
 			</fileset>
 			<fileset dir="${dir.resources}">
 				<include name="META-INF/**"/>
+				<include name="OSGI-INF/**"/>
 				<include name="lib/**"/>
 				<exclude name="META-INF/MANIFEST.MF"/>
 				<patternset refid="web.files"/>
