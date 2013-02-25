@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+	<system
+		systemId="http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd"
+		uri="http://www.osgi.org/xmlns/blueprint/v1.0.0"/>
+
+	<system
+		systemId="http://www.eclipse.org/gemini/blueprint/schema/blueprint/gemini-blueprint.xsd"
+		uri="gemini-blueprint.xsd"/>
+
+	<system
+		systemId="http://www.eclipse.org/gemini/blueprint/schema/blueprint-compendium/gemini-blueprint-compendium.xsd"
+		uri="gemini-blueprint-compendium.xsd"/>
+
+</catalog>
