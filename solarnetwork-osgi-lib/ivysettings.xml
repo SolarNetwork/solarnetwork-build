@@ -10,6 +10,7 @@
 	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<property name="spring-archive.url" value="http://repository.atlassian.com/maven2"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/groups/public"/>
+	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
 		<filesystem name="local">
@@ -35,6 +36,8 @@
 		</url>
 		
 		<ibiblio name="spring-archive" m2compatible="true" root="${spring-archive.url}"/>
+		
+		<ibiblio name="gemini" m2compatible="true" root="${gemini-archive.url}"/>
 		
 		<ibiblio name="public" m2compatible="true"/>
 		

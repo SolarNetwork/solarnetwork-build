@@ -31,5 +31,6 @@
 	
 	<nextCatalog catalog="catalog/jee/catalog.xml"/>
 	<nextCatalog catalog="catalog/spring/catalog.xml"/>
+	<nextCatalog catalog="catalog/gemini/catalog.xml"/>
 	
 </catalog>
