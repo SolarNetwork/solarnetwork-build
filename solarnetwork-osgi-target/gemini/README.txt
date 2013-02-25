@@ -1,1 +1,0 @@
-For more information about Gemini Web, please refer to http://wiki.eclipse.org/Gemini/Web.
