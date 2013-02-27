@@ -3,8 +3,7 @@
 		<Connector port="8080"/>		
 		<Engine name="Catalina" defaultHost="localhost">
 			<Host name="localhost" appBase="var/webapps" createDirs="false" 
-				unpackWARs="false" autoDeploy="false"
-				liveDeploy="false" deployOnStartup="false" xmlValidation="false"/>
+				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
 		</Engine>
 	</Service>
 </Server>
