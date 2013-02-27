@@ -11,6 +11,9 @@
 	<property name="spring-archive.url" value="http://repository.atlassian.com/maven2"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/groups/public"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
+	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
+	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
+	<property name="virgo-ivy.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
 		<filesystem name="local">
@@ -39,6 +42,13 @@
 		
 		<ibiblio name="gemini" m2compatible="true" root="${gemini-archive.url}"/>
 		
+		<ibiblio name="virgo" m2compatible="true" root="${virgo-archive.url}"/>
+		
+		<url name="virgo-ivy">
+			<ivy pattern="${virgo-ivy.url}/bundles/release/${virgo-ivy.pattern}" />
+			<artifact pattern="${virgo-ivy.url}/bundles/release/${virgo-ivy.pattern}" />
+		</url>
+		
 		<ibiblio name="public" m2compatible="true"/>
 		
 		<chain name="main" dual="true">
@@ -47,6 +57,9 @@
 			<resolver ref="spring-ebr-release"/>
 			<resolver ref="spring-ebr-external"/>
 			<resolver ref="spring-archive"/>
+			<resolver ref="gemini"/>
+			<resolver ref="virgo"/>
+			<resolver ref="virgo-ivy"/>
 			<resolver ref="public"/>
 		</chain>
 		<chain name="default" returnFirst="true" checkmodified="true">

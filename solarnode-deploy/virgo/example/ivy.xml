@@ -180,9 +180,9 @@
 		</dependency>
 		
 		<!-- URL Rewrite -->
-		<dependency org="org.tuckey" name="com.springsource.org.tuckey.web.filters.urlrewrite" rev="3.1.0" conf="runtime">
-			<exclude name="com.springsource.org.apache.commons.logging"/>
-			<exclude name="com.springsource.org.apache.log4j"/>
+		<dependency org="org.tuckey" name="urlrewritefilter" rev="4.0.4" conf="runtime">
+			<!--exclude name="com.springsource.org.apache.commons.logging"/>
+			<exclude name="com.springsource.org.apache.log4j"/-->
 		</dependency>
 			
 	</dependencies>
