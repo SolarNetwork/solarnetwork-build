@@ -10,6 +10,7 @@ org.osgi.framework.system.packages = \
  javax.activity,\
  javax.annotation,\
  javax.annotation;version="1.0.0",\
+ javax.annotation;version="1.1.0",\
  javax.annotation.processing,\
  javax.crypto,\
  javax.crypto.interfaces,\
@@ -149,7 +150,12 @@ org.osgi.framework.system.packages = \
  javax.xml.ws.soap;version="2.1.1",\
  javax.xml.ws.spi,\
  javax.xml.ws.spi;version="2.1.1",\
+ javax.xml.ws.wsaddressing;version="2.1.1",\
  javax.xml.xpath,\
+ org.eclipse.virgo.kernel.equinox.extensions,\
+ org.eclipse.virgo.kernel.equinox.extensions;version="3.6.0",\
+ org.eclipse.virgo.kernel.equinox.extensions.hooks,\
+ org.eclipse.virgo.kernel.equinox.extensions.hooks;version="3.6.0",\
  org.ietf.jgss,\
  org.omg.CORBA,\
  org.omg.CORBA_2_3,\
@@ -193,8 +199,7 @@ org.osgi.framework.system.packages = \
  org.xml.sax.ext,\
  org.xml.sax.helpers
 org.osgi.framework.bootdelegation = \
- org.eclipse.virgo.osgi.extensions.*,\
- org.eclipse.virgo.osgi.launcher.*,\
+ org.eclipse.virgo.nano.authentication,\
  com.sun.*,\
  javax.xml.*,\
  org.apache.xerces.jaxp.*,\
@@ -204,8 +209,9 @@ org.osgi.framework.bootdelegation = \
 org.osgi.framework.executionenvironment = \
  OSGi/Minimum-1.0,\
  OSGi/Minimum-1.1,\
+ J2SE-1.2,\
  J2SE-1.3,\
  J2SE-1.4,\
  J2SE-1.5,\
  JavaSE-1.6
-osgi.java.profile.name = Virgo-Kernel-Java6
+osgi.java.profile.name = Virgo-Java6
