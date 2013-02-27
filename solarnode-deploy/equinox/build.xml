@@ -2,6 +2,18 @@
 
 	<property file="${basedir}/build.properties"/>
 
+	<property name="bundle.startlevel.1" value="net.solarnetwork.common.pidfile"/>
+	<property name="bundle.startlevel.3" value="net.solarnetwork.common.pidfile"/>
+	<property name="bundle.nostart">
+		slf4j-log4j,
+		net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config,
+		org.apache.catalina.ha,
+		org.apache.catalina.tribes,
+		org.apache.coyote,
+		org.apache.jasper,
+		org.apache.tomcat.util
+	</property>
+	
 	<property name="log.file" value="/dev/shm/solar/log/solarnode.log"/>
 	<property name="dir.runtime.lib" value="../lib"/>
 	<property name="dir.base" value="base"/>
@@ -10,6 +22,7 @@
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
 	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
 	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
+	
 	<import file="${dir.target}/lib-build.xml"/>
 	
 	<patternset id="base.node.app.core">
@@ -37,8 +50,9 @@
 	<target name="assemble-prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
-		<mkdir dir="${dir.assemble}/app/core"/>
+		<mkdir dir="${dir.assemble}/app/base"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
+		<mkdir dir="${dir.assemble}/conf"/>
 		<mkdir dir="${dir.assemble}/var"/>
 	</target>
 	
@@ -58,16 +72,67 @@
 		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
-			<fileset dir="${dir.build}/jars" includes="*.jar"/>
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
 		</copy>
-		<copy todir="${dir.assemble}/app/boot" flatten="yes">
+		<copy todir="${dir.assemble}/app">
+			<fileset dir="${dir.build}/jars" includes="org.eclipse.osgi-*"/>
+		</copy>
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
-				<include name="*"/>
+				<include name="**"/>
 			</fileset>
+			<filterset>
+				<filter token="LOGFILE" value="${log.file}"/>
+			</filterset>
 		</copy>
 	</target>
 	
-	<target name="app-gemini-web" depends="ivy-init,assemble-prepare">
+	<target name="equinox-config">
+		<fileset id="app.boot.files" dir="${dir.assemble}/app" includes="boot/*"/>
+		<equinox-config-generate 
+			filesetId="app.boot.files" 
+			bundleStartLevelId="bundle.startlevel.1"
+			defaultStartLevel="2"
+			matchStartLevel="1"
+			property="equinox.bundles.boot"/>
+		<echo>Got config ${equinox.bundles.boot}</echo>
+		
+		<dirset id="app.boot.dirs" dir="${dir.assemble}/app" includes="boot/*"/>
+		<equinox-config-generate 
+			filesetId="app.boot.dirs" 
+			bundleStartLevelId="bundle.startlevel.1"
+			defaultStartLevel=""
+			matchStartLevel=""
+			property="equinox.bundledirs.boot"/>
+		<echo>Got config ${equinox.bundledirs.boot}</echo>
+		
+		<fileset id="app.core.files" dir="${dir.assemble}/app" includes="core/*"/>
+		<equinox-config-generate 
+			filesetId="app.core.files" 
+			bundleStartLevelId="bundle.startlevel.3"
+			defaultStartLevel="4"
+			matchStartLevel="3"
+			property="equinox.bundles.core"/>
+		<echo>Got config ${equinox.bundles.core}</echo>
+		
+		<dirset id="app.core.dirs" dir="${dir.assemble}/app" includes="core/*"/>
+		<equinox-config-generate 
+			filesetId="app.core.dirs" 
+			bundleStartLevelId="bundle.startlevel.3"
+			defaultStartLevel=""
+			matchStartLevel=""
+			property="equinox.bundledirs.core"/>
+		<echo>Got config ${equinox.bundledirs.core}</echo>
+		
+		<copy todir="${dir.assemble}/conf" filtering="yes" overwrite="yes">
+			<fileset file="config.ini"/>
+			<filterset>
+				<filter token="OSGI_BUNDLES" value="${equinox.bundles.boot},${equinox.bundledirs.boot},${equinox.bundles.core},${equinox.bundledirs.core}"/>
+			</filterset>
+		</copy>
+	</target>
+	
+	<!--target name="app-gemini-web" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${basedir}/ivy.xml" conf="gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
@@ -77,11 +142,11 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
-	</target>
+	</target-->
 	
 	<target name="app-core" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="core"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="core,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
@@ -92,11 +157,8 @@
 		<copy todir="${dir.assemble}/app/core" filtering="no">
 			<fileset dir="${dir.runtime.lib}/app-core" includes="**/*.jar"/>
 		</copy>
-		<copy todir="${dir.assemble}/app/core" filtering="yes">
+		<copy todir="${dir.assemble}/app/core">
 			<fileset dir="${dir.runtime.lib}/app-core" includes="**" excludes="**/*.jar"/>
-			<filterset>
-				<filter token="LOGFILE" value="${log.file}"/>
-			</filterset>
 		</copy>
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
@@ -104,7 +166,7 @@
 			resource="../app/core/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 	</target>
 	
-	<target name="assemble" depends="assemble-base,app-boot,app-gemini-web,app-core"
+	<target name="assemble" depends="assemble-base,app-boot,app-core,equinox-config"
 		description="Assemble a base node directory structure"/>
 	
 	<target name="archive" depends="assemble"
@@ -119,5 +181,70 @@
 			</tarfileset>
 		</tar>
 	</target>
+	
+	<macrodef name="equinox-config-generate">
+		<attribute name="filesetId"/>
+		<attribute name="bundleStartLevelId"/>
+		<attribute name="defaultStartLevel"/>
+		<attribute name="matchStartLevel"/>
+		<attribute name="property"/> <!-- the property name to set -->
+		<sequential>
+			<script language="javascript"><![CDATA[
+			// create startLevel1 object from bundle.startlevel.1 property
+			var startLevel1 = {};
+			var i, key, split;
+			if ( "@{bundleStartLevelId}".length > 0 ) {
+				split = String(self.getProject().getProperty("@{bundleStartLevelId}"))
+					.split(/\s*,\s*/);
+				for ( i = 0; i < split.length; i++ ) {
+					key = split[i].replace(/\s+/g, '');
+					startLevel1[key] = 1;
+				}
+			}
+			var noStart = {};
+			split = String(self.getProject().getProperty("bundle.nostart")).split(/\s*,\s*/);
+			for ( i = 0; i < split.length; i++ ) {
+				key = split[i].replace(/\s+/g, '');
+				noStart[key] = 1;
+			}
+			
+			var fileSet = self.getProject().getReference("@{filesetId}");
+			var iterator = fileSet.iterator();
+			var resource, fileName;
+			var config = "";
+			var startLevel, val;
+			while ( iterator.hasNext() ) {
+				resource = iterator.next();
+				fileName = resource.getFile().getName();
+				if ( config.length > 0 ) {
+					config += ",";
+				}
+					
+				startLevel = "@{defaultStartLevel}";
+				for ( val in startLevel1 ) {
+					if ( fileName.indexOf(val) == 0 ) {
+						startLevel = "@{matchStartLevel}";
+						break;
+					}
+				}
+			
+				if ( startLevel.length > 0 ) {
+					for ( val in noStart ) {
+						if ( fileName.indexOf(val) == 0 ) {
+							startLevel = '';
+							break;
+						}
+					}
+				}
+				if ( startLevel.length > 0 ) {
+					startLevel = "@" +startLevel +"\\:start";
+				}
+			
+				config += resource.getName() +startLevel;
+			}
+			self.getProject().setProperty("@{property}", config);
+			]]></script>
+		</sequential>
+	</macrodef>
 	
 </project>
