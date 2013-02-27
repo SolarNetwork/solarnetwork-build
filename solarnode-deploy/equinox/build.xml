@@ -4,12 +4,7 @@
 
 	<property name="log.file" value="/dev/shm/solar/log/solarnode.log"/>
 	<property name="dir.runtime.lib" value="../lib"/>
-	<property name="equinox.lib" value="${dir.runtime.lib}/org.eclipse.osgi_3.6.2.R36x_v20110210.jar"/>
-	<property name="dir.equinox.conf" value="gemini1"/>
-	<property name="gemini.release" value="1.1.1.RELEASE"/>
-	<property name="gemini.lib" value="${dir.runtime.lib}/gemini-web-${gemini.release}.zip"/>
-	<property name="dir.generic.conf" value="conf"/>
-	<property name="dir.core.conf" value="core"/>
+	<property name="dir.base" value="base"/>
 	
 	<property name="dir.build" value="build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
@@ -47,26 +42,24 @@
 		<mkdir dir="${dir.assemble}/var"/>
 	</target>
 	
-	<target name="app-main" depends="ivy-init, assemble-prepare">
-		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime"/>
-		<delete dir="${dir.build}/jars" failonerror="no"/>
-		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
-		<mkdir dir="${dir.assemble}/app/core"/>
-		<copy todir="${dir.assemble}/app/core" flatten="yes">
-			<fileset dir="${dir.build}/jars">
-				<patternset refid="base.node.app.core"/>
-			</fileset>
-			<fileset dir="${dir.platform}">
-				<patternset refid="spring.osgi"/>
-				<patternset refid="virgo.support"/>
+	<target name="assemble-base" depends="assemble-prepare">
+		<copy todir="${dir.assemble}" flatten="no">
+			<fileset dir="${dir.base}" includes="**">
+				<exclude name="**/README.txt"/>
 			</fileset>
 		</copy>
 	</target>
 	
-	<target name="app-boot" depends="assemble-prepare">
+	<target name="app-boot" depends="ivy-init,assemble-prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="boot"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
+		<copy todir="${dir.assemble}/app/boot" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
+		</copy>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
 				<include name="*"/>
@@ -74,74 +67,55 @@
 		</copy>
 	</target>
 	
-	<target name="app-conf" depends="assemble-prepare">
-		<mkdir dir="${dir.assemble}/conf"/>
-		<copy todir="${dir.assemble}/conf" flatten="no">
-			<!--fileset dir="${dir.equinox.conf}">
-				<include name="**"/>
-			</fileset-->
-			<fileset dir="${dir.generic.conf}">
-				<include name="**"/>
-				<exclude name="tls/README.txt"/>
-			</fileset>
-		</copy>
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.core.conf}" includes="**"/>
+	<target name="app-gemini-web" depends="ivy-init,assemble-prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="gemini"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
+		<copy todir="${dir.assemble}/app/core" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
 	</target>
 	
-	<target name="app-logging" depends="assemble-prepare">
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.runtime.lib}" 
-				includes="org.springframework.osgi.log4j.config/**"/>
+	<target name="app-core" depends="ivy-init,assemble-prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="core"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
+		<copy todir="${dir.assemble}/app/core" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
+		</copy>
+		<copy todir="${dir.assemble}/app/core" filtering="no">
+			<fileset dir="${dir.runtime.lib}/app-core" includes="**/*.jar"/>
+		</copy>
+		<copy todir="${dir.assemble}/app/core" filtering="yes">
+			<fileset dir="${dir.runtime.lib}/app-core" includes="**" excludes="**/*.jar"/>
 			<filterset>
 				<filter token="LOGFILE" value="${log.file}"/>
 			</filterset>
 		</copy>
-	</target>
-
-	<target name="app-tomcat" depends="assemble-prepare">
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.runtime.lib}" 
-				includes="org.eclipse.gemini.web.tomcat.config/**"/>
-		</copy>
-	</target>
-
-	<target name="app-core" depends="assemble-prepare">
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.runtime.lib}/app-core" includes="**"/>
-		</copy>
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
+		<symlink 
+			link="${dir.assemble}/conf/log4j.properties" 
+			resource="../app/core/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 	</target>
 	
-	<patternset id="gemini.jars">
-		<include name="*.jar"/>
-		<include name="dep/*.jar"/>
-		<exclude name="**/*slf4j*"/>
-		<exclude name="**/*springframework*"/>
-		<exclude name="**/*logging*"/>
-	</patternset>
-
-	<target name="gemini" depends="assemble-prepare">
-		<unzip src="${gemini.lib}" dest="${dir.build}/gemini"/>
-		<copy todir="${dir.assemble}/app/core" flatten="yes">
-			<fileset dir="${dir.build}/gemini/gemini-web-${gemini.release}">
-				<patternset refid="gemini.jars"/>
-			</fileset>
-		</copy>
-	</target>
-	
-	<target name="equinox" depends="assemble-prepare">
-		<copy todir="${dir.assemble}/app" file="${equinox.lib}"/>
-	</target>
-	
-	<target name="assemble" depends="app-boot,app-main,app-conf,app-logging,app-tomcat,app-core,equinox,gemini"
+	<target name="assemble" depends="assemble-base,app-boot,app-gemini-web,app-core"
 		description="Assemble a base node directory structure"/>
 	
 	<target name="archive" depends="assemble"
 		description="Assemble and then package a base node archive">
-		<tar destfile="${dir.build}/base-equinox-node.tgz" compression="gzip">
+		<tar destfile="${dir.build}/base-equinox-node.tgz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${dir.assemble}">
 				<include name="**"/>
+				<exclude name="bin/*.sh"/>
+			</tarfileset>
+			<tarfileset dir="${dir.assemble}" mode="755">
+				<include name="bin/*.sh"/>
 			</tarfileset>
 		</tar>
 	</target>
