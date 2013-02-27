@@ -50,7 +50,6 @@
 	<target name="assemble-prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
-		<mkdir dir="${dir.assemble}/app/base"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
 		<mkdir dir="${dir.assemble}/conf"/>
 		<mkdir dir="${dir.assemble}/var"/>
