@@ -64,6 +64,7 @@
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
 		<copy todir="${dir.assemble}">
 			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
 	</target>
 
