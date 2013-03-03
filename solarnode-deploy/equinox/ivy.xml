@@ -15,6 +15,7 @@
 		</dependency>
 		<dependency org="org.apache.felix" name="org.apache.felix.fileinstall" rev="3.1.10" conf="boot">
     		<artifact name="org.apache.felix.fileinstall" type="jar" />
+    		<exclude org="org.osgi"/>
 		</dependency>
 		<dependency org="org.apache.felix" name="org.apache.felix.gogo.command" rev="0.10.0" conf="boot">
     		<artifact name="org.apache.felix.gogo.command" type="jar" />
@@ -35,9 +36,11 @@
 		</dependency>
 		<dependency org="org.osgi" name="org.osgi.compendium" rev="4.2.0" conf="boot">
     		<artifact name="org.osgi.compendium" type="jar" />
+    		<exclude module="org.osgi.core"/>
 		</dependency>
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="boot">
 			<artifact name="org.osgi.enterprise" type="jar"/>
+    		<exclude module="org.osgi.core"/>
 		</dependency>
 		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.blueprint.core" rev="1.0.2.RELEASE" conf="boot">
 			<exclude org="org.springframework"/>
