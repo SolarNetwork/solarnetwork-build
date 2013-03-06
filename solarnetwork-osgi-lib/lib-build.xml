@@ -162,7 +162,7 @@
 	<target name="jar-dep" depends="jar.dep.check,jar.dep.conditionally"/>
 		
 	<!-- Copy internal JAR resource to dest dir, for compiling dependant projects -->
-	<target name="jar.dep" if="no.classes">
+	<target name="jar.dep">
 		<mkdir dir="${dir.provided}"/>
 		<copy todir="${dir.provided}">
 			<fileset dir="${basedir}" includes="*.jar"/>
