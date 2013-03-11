@@ -24,7 +24,6 @@
 <plugin id="org.apache.felix.gogo.command"/>
 <plugin id="org.springframework.test.source"/>
 <plugin id="org.eclipse.virgo.util.math"/>
-<plugin id="com.springsource.org.jboss.el"/>
 <plugin id="org.eclipse.osgi"/>
 <plugin id="org.eclipse.gemini.blueprint.core.source"/>
 <plugin id="org.springframework.context"/>
