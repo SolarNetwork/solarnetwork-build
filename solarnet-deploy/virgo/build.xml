@@ -47,8 +47,8 @@
 	
 	<fileset id="plan.set" dir="${dir.src.plans}" includes="*">
 		<scriptselector language="javascript">
-			var result = (project.getProperty("plans").search("\\b" 
-				+file.getName().replace(".","\\.") +"(\\s|,|$)") !== -1);
+			var regexp = "\\b" +file.getName().replace(".","\\.") +"\\b";
+			var result = (project.getProperty("plans").search(regexp) !== -1);
 			if ( result ) {
 				java.lang.System.out.println("Including plan " +file.getName());
 			}
