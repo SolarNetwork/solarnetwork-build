@@ -126,4 +126,13 @@
 		
 	</target>
 
+	<target name="archive" depends="assemble"
+		description="Assemble and then package a SolarNet Virgo bundle archive">
+		<tar destfile="${dir.build}/net-virgo-bundles.tgz" compression="gzip" longfile="gnu">
+			<tarfileset dir="${dir.assemble}">
+				<include name="**"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
 </project>
