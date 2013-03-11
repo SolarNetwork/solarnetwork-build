@@ -36,8 +36,8 @@
 
 	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
 		<scriptselector language="javascript">
-			var result = (project.getProperty("bundles").search("\\b" 
-				+file.getParentFile().getName().replace(".","\\.") +"(\\s|,|$)") !== -1);
+			var regexp = "\\b" +file.getParentFile().getName().replace(".","\\.") +"\\b";
+			var result = (project.getProperty("bundles").search(regexp) !== -1);
 			if ( result ) {
 				java.lang.System.out.println("Including bundle " +file.getParentFile().getName());
 			}
