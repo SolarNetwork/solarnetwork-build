@@ -29,7 +29,7 @@
 		
 		<!-- CSV -->
     	<dependency org="org.apache.commons" name="com.springsource.org.apache.commons.csv" rev="1.0.0.BUILD-20080106" />
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.0.0-beta-1" >
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.0.1" >
 			<artifact name="super-csv" type="jar" />
 		</dependency>
 		
