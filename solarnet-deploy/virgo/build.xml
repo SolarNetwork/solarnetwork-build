@@ -1,16 +1,5 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
 
-	<macrodef name="bundle-iterate">
-		<attribute name="target"/>
-		<sequential>
-			<subant target="@{target}">
-				<property name="dir.dist" value="${dir.dist}"/>
-				<property name="dir.bundles" value="${dir.bundles}"/>
-				<fileset refid="bundle.build.xml"/>
-			</subant>
-		</sequential>
-	</macrodef>
-
 	<property file="${basedir}/build.properties"/>
 	
 	<!-- Use build.properties to define the following comma-delimited lists: -->
@@ -38,6 +27,12 @@
 			</subant>
 		</sequential>
 	</macrodef>
+	
+	<patternset id="webflow.files.pat">
+		<include name="spring/org.springframework.binding-*.jar"/>
+		<include name="spring/org.springframework.js-*.jar"/>
+		<include name="spring/org.springframework.webflow-*.jar"/>
+	</patternset>
 
 	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
 		<scriptselector language="javascript">
@@ -86,17 +81,27 @@
 	</target>
 	
 	<target name="plans" if="plans">
-		<copy todir="${dir.dist}">
+		<copy todir="${dir.assemble}">
 			<fileset refid="plan.set"/>
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="jar,external-jars,plans" description="Assemble jars">
+	<target name="platform-files">
+		<!-- Copy hand-tuned WebFlow -->
+		<copy todir="${dir.assemble}" flatten="yes">
+			<fileset dir="${dir.platform}">
+				<patternset refid="webflow.files.pat"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="assemble" depends="jar,external-jars,plans,platform-files" description="Assemble jars">
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
 		<copy todir="${dir.assemble}">
 			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
+		
 	</target>
 
 </project>
