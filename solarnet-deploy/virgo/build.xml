@@ -15,13 +15,16 @@
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
 	<property name="dir.bundles" value="${dir.build}/bundles"/>
 	
+	<property name="dir.virgo.repo" value="${dir.assemble}/repository/usr"/>
+	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
+	
 	<import file="${dir.target}/lib-build.xml"/>
 
 	<macrodef name="bundle-iterate">
 		<attribute name="target"/>
 		<sequential>
 			<subant target="@{target}">
-				<property name="dir.dist" value="${dir.assemble}"/>
+				<property name="dir.dist" value="${dir.bundles}"/>
 				<property name="dir.bundles" value="${dir.bundles}"/>
 				<fileset refid="bundle.build.xml"/>
 			</subant>
@@ -56,6 +59,17 @@
 		</scriptselector>
 	</fileset>
 	
+	<fileset id="plan.pickup.set" dir="${dir.src.plans}" includes="*">
+		<scriptselector language="javascript">
+			var regexp = "\\b" +file.getName().replace(".","\\.") +"\\b";
+			var result = (project.getProperty("plans-pickup").search(regexp) !== -1);
+			if ( result ) {
+				java.lang.System.out.println("Including pickup plan " +file.getName());
+			}
+			self.setSelected(result);
+		</scriptselector>
+	</fileset>
+	
 	<target name="clean" description="Remove generated build files">
 		<delete dir="${dir.build}" failonerror="no"/>
 	</target>
@@ -63,6 +77,8 @@
 	<target name="prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.bundles}"/>
+		<mkdir dir="${dir.virgo.repo}"/>
+		<mkdir dir="${dir.virgo.pickup}"/>
 	</target>
 	
 	<target name="jar" description="Create bundle jars" depends="prepare">
@@ -80,24 +96,30 @@
 		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 	</target>
 	
-	<target name="plans" if="plans">
-		<copy todir="${dir.assemble}">
+	<target name="plans" if="plans" depends="prepare">
+		<copy todir="${dir.virgo.repo}">
 			<fileset refid="plan.set"/>
+		</copy>
+	</target>
+	
+	<target name="plans-pickup" if="plans-pickup" depends="prepare">
+		<copy todir="${dir.virgo.pickup}">
+			<fileset refid="plan.pickup.set"/>
 		</copy>
 	</target>
 	
 	<target name="platform-files">
 		<!-- Copy hand-tuned WebFlow -->
-		<copy todir="${dir.assemble}" flatten="yes">
+		<copy todir="${dir.virgo.repo}" flatten="yes">
 			<fileset dir="${dir.platform}">
 				<patternset refid="webflow.files.pat"/>
 			</fileset>
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="jar,external-jars,plans,platform-files" description="Assemble jars">
+	<target name="assemble" depends="jar,external-jars,plans,plans-pickup,platform-files" description="Assemble jars">
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
-		<copy todir="${dir.assemble}">
+		<copy todir="${dir.virgo.repo}">
 			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
