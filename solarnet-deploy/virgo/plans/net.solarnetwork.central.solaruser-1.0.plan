@@ -6,6 +6,7 @@
 			http://www.eclipse.org/virgo/schema/plan
 			http://www.eclipse.org/virgo/schema/plan/eclipse-virgo-plan.xsd">
 
+	<!--artifact type="plan" name="net.solarnetwork.central.env" version="[1.0,2.0)"/-->
 	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.4,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.biz.dao" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.0,2.0)"/>
