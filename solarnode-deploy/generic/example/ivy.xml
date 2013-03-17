@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->runtime(default)">
+		 <dependency org="org.apache.commons" name="com.springsource.org.apache.commons.csv" 
+		 	rev="1.0.0.BUILD-20080106" />
+		<dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.5">
+			<artifact name="jackson-core-asl" type="jar" />
+		</dependency>
+		<dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.5">
+    		<artifact name="jackson-mapper-asl" type="jar" />
+		</dependency>
+	</dependencies>
+</ivy-module>
