@@ -74,11 +74,13 @@ EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
 APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE}"
-JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR}"
+JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR} -XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass"
+# NOTE: for Java 6, these flags added "-XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass" per
+# https://bugs.eclipse.org/bugs/show_bug.cgi?id=359535
 #JVM_ARGS="-Dcom.sun.management.jmxremote"
 #JVM_ARGS="Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=y"
 
-START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE}"
+START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
 START_SLEEP=8
 STOP_TRIES=5
 
