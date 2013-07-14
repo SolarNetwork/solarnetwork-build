@@ -86,7 +86,7 @@ JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR}"
 #JVM_ARGS="-Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=n"
 
 START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
-START_SLEEP=8
+START_SLEEP=14
 STOP_TRIES=5
 
 # function to create directory if doesn't already exist
