@@ -61,7 +61,7 @@
 
 JAVA_HOME=/usr
 SOLARNODE_HOME=/home/solar
-RAM_DIR=/dev/shm/solar
+RAM_DIR=/run/shm/solar
 RUNAS=solar
 
 TMP_DIR=${RAM_DIR}/tmp
@@ -74,11 +74,16 @@ EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
 APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE}"
-JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR} -XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass"
-# NOTE: for Java 6, these flags added "-XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass" per
-# https://bugs.eclipse.org/bugs/show_bug.cgi?id=359535
+JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR}"
+
+# NOTE: for Java 6, these flags add these flags per https://bugs.eclipse.org/bugs/show_bug.cgi?id=359535
+# JVM_ARGS="-XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass"
+
+# Note: for JMX support, add these flags:
 #JVM_ARGS="-Dcom.sun.management.jmxremote"
-#JVM_ARGS="Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=y"
+
+# NOTE: for debugging support, add these flags:
+#JVM_ARGS="-Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=n"
 
 START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
 START_SLEEP=8
