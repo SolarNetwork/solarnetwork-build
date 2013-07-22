@@ -2,7 +2,7 @@
 	<Service name="Catalina">
 		<Connector port="8080"/>		
 		<Engine name="Catalina" defaultHost="localhost">
-			<Host name="localhost" appBase="var/webapps" createDirs="false" 
+			<Host name="localhost" appBase="var" createDirs="false" 
 				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
 		</Engine>
 	</Service>
