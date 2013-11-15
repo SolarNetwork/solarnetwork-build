@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
 
-	<public publicId="http://www.springframework.org/schema/beans"
+	<!--public publicId="http://www.springframework.org/schema/beans"
 		uri="spring-beans-3.1.xsd"/>
 	<public publicId="http://www.springframework.org/schema/tool"
 		uri="spring-tool-3.1.xsd"/>
-	<!--uri name="http://www.springframework.org/schema/aop" uri=""/>
+	<uri name="http://www.springframework.org/schema/aop" uri=""/>
 	<uri name="http://www.springframework.org/schema/context" uri=""/>
 	<uri name="http://www.springframework.org/schema/jee" uri=""/>
 	<uri name="http://www.springframework.org/schema/lang" uri=""/>
