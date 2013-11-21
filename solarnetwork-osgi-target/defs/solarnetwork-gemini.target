@@ -59,7 +59,6 @@
 <plugin id="org.springframework.context.support"/>
 <plugin id="org.springframework.security.acls"/>
 <plugin id="org.apache.juli.extras"/>
-<plugin id="com.springsource.org.codehaus.jackson.source"/>
 <plugin id="javax.validation.api"/>
 <plugin id="com.springsource.org.junit"/>
 <plugin id="org.springframework.security.web"/>
@@ -114,7 +113,6 @@
 <plugin id="org.springframework.expression"/>
 <plugin id="slf4j.api"/>
 <plugin id="com.springsource.org.apache.commons.csv"/>
-<plugin id="com.springsource.org.codehaus.jackson.mapper.source"/>
 <plugin id="org.springframework.context"/>
 <plugin id="javax.xml.soap"/>
 <plugin id="org.eclipse.virgo.util.osgi"/>
