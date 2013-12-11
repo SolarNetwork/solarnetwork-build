@@ -78,11 +78,17 @@
 		</copy>
 		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
-				<include name="**"/>
+				<include name="**/*.properties"/>
 			</fileset>
 			<filterset>
 				<filter token="LOGFILE" value="${log.file}"/>
 			</filterset>
+		</copy>
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="no">
+			<fileset dir="${dir.runtime.lib}/app-boot">
+				<include name="**"/>
+				<exclude name="**/*.properties"/>
+			</fileset>
 		</copy>
 	</target>
 	
