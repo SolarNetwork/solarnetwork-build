@@ -46,7 +46,7 @@
 	<target name="ivy-init">
 		<taskdef resource="org/apache/ivy/ant/antlib.xml"
 			uri="antlib:org.apache.ivy.ant"
-			classpath="${dir.target}/lib/ivy-2.2.0.jar"/>
+			classpath="${dir.target}/lib/ivy-2.3.0.jar"/>
 	</target>
 	
 	<target name="lib-init" depends="ivy-init" unless="no.classes">
