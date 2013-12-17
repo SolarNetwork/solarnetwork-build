@@ -14,6 +14,23 @@
 	
 	<import file="${dir.target}/lib-build.xml"/>
 
+	<!-- Note: this is a MUCH slower version of bundle-iterate, but does not run out of RAM -->
+	<macrodef name="bundle-apply">
+		<attribute name="target"/>
+		<sequential>
+			<apply executable="ant"
+					parallel="false"
+					failonerror="yes">
+				<arg value="-Ddir.dist=${dir.assemble}"/>
+				<arg value="-Ddir.bundles=${dir.bundles}"/>
+				<arg value="-f"/>
+				<srcfile/>
+				<arg value="@{target}"/>
+				<fileset refid="bundle.build.xml"/>
+			</apply>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="bundle-iterate">
 		<attribute name="target"/>
 		<sequential>
@@ -46,7 +63,9 @@
 	</target>
 	
 	<target name="jar" description="Create bundle jars" depends="prepare">
-		<bundle-iterate target="deploy"/>
+		<!-- NOTE: we don't use bundle-iterate here, even though it's must faster, because it runs out of memory too easily
+		           due to problems with Ivy classloading and Ant -->
+		<bundle-apply target="deploy"/>
 	</target>
 	
 	<target name="clean-jar" description="Clean bundle jars">
