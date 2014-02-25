@@ -31,6 +31,23 @@
 		</sequential>
 	</macrodef>
 	
+	<!-- Note: this is a MUCH slower version of bundle-iterate, but does not run out of RAM -->
+	<macrodef name="bundle-apply">
+		<attribute name="target"/>
+		<sequential>
+			<apply executable="ant"
+					parallel="false"
+					failonerror="yes">
+				<arg value="-Ddir.dist=${dir.assemble}"/>
+				<arg value="-Ddir.bundles=${dir.bundles}"/>
+				<arg value="-f"/>
+				<srcfile/>
+				<arg value="@{target}"/>
+				<fileset refid="bundle.build.xml"/>
+			</apply>
+		</sequential>
+	</macrodef>
+
 	<patternset id="webflow.files.pat">
 		<include name="spring/org.springframework.binding-*.jar"/>
 		<include name="spring/org.springframework.js-*.jar"/>
@@ -82,7 +99,7 @@
 	</target>
 	
 	<target name="jar" description="Create bundle jars" depends="prepare">
-		<bundle-iterate target="deploy"/>
+		<bundle-apply target="deploy"/>
 	</target>
 	
 	<target name="clean-jar" description="Clean bundle jars">
