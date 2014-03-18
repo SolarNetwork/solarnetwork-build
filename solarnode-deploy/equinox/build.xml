@@ -68,7 +68,7 @@
 		<ivy:resolve file="${basedir}/ivy.xml" conf="boot"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
@@ -154,7 +154,7 @@
 		<ivy:resolve file="${basedir}/ivy.xml" conf="core,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
