@@ -110,7 +110,7 @@
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime"/>
 		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 	</target>
 	
 	<target name="plans" if="plans" depends="prepare">
