@@ -8,8 +8,8 @@
 	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
 	<property name="spring-repo.url" value="http://repository.springsource.com/ivy/bundles"/>
 	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
-	<property name="spring-archive.url" value="http://repository.atlassian.com/maven2"/>
-	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/groups/public"/>
+	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
+	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
 	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
 	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
