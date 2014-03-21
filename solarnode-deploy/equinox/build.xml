@@ -137,18 +137,6 @@
 		</copy>
 	</target>
 	
-	<!--target name="app-gemini-web" depends="ivy-init,assemble-prepare">
-		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="gemini"/>
-		<delete dir="${dir.build}/jars" failonerror="no"/>
-		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
-		<mkdir dir="${dir.assemble}/app/core"/>
-		<copy todir="${dir.assemble}/app/core" flatten="yes">
-			<fileset dir="${dir.build}/jars" includes="*.jar"/>
-		</copy>
-	</target-->
-	
 	<target name="app-core" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${basedir}/ivy.xml" conf="core,gemini"/>
@@ -169,6 +157,19 @@
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
 			resource="../app/core/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
+	</target>
+	
+	<target name="app-foo" depends="ivy-init,assemble-prepare">
+		<mkdir dir="${dir.assemble}/app/foo"/>
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="foo"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/foo"/>
+		<copy todir="${dir.assemble}/app/foo" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
+		</copy>
 	</target>
 	
 	<target name="assemble" depends="assemble-base,app-boot,app-core,equinox-config"
