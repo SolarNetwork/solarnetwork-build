@@ -14,6 +14,8 @@
 	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
 	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
 	<property name="virgo-ivy.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+	<property name="solarnetwork-archive.url" value="http://localhost:8080/repository/solarnetwork-stage"/>
+	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
 		<filesystem name="local">
@@ -51,8 +53,18 @@
 		
 		<ibiblio name="public" m2compatible="true"/>
 		
+		<ibiblio name="solarnetwork" m2compatible="true"
+			root="${solarnetwork-archive.url}"
+			pattern="${solarnetwork-archive.pattern}"/>
+			
+		<url name="solarnetwork-publish" m2compatible="true">
+			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
+			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
+		</url>
+		
 		<chain name="main" dual="true">
 			<resolver ref="shared"/>
+			<resolver ref="solarnetwork"/>
 			<resolver ref="jboss"/>
 			<resolver ref="spring-ebr-release"/>
 			<resolver ref="spring-ebr-external"/>
