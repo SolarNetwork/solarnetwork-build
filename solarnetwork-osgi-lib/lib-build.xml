@@ -24,8 +24,6 @@
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
 	
-	<property name="ivy.pom.groupId" value="net.solarnetwork"/>
-	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
 			<fileset dir="${dir.input}">
@@ -92,7 +90,6 @@
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>
 		<ivy:publish resolver="solarnetwork-publish" 
-			organisation="${ivy.pom.groupId}"
 			module="${bundle.name}"
 			revision="${bundle.version}"
 			overwrite="true"
