@@ -14,7 +14,7 @@
 	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
 	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
 	<property name="virgo-ivy.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
-	<property name="solarnetwork-archive.url" value="http://localhost:8080/repository/solarnetwork-stage"/>
+	<property name="solarnetwork-archive.url" value="${solarnetwork.archive.url}"/>
 	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">

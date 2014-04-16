@@ -64,7 +64,7 @@
 		<ivy:settings file="${ivy.settings}">
 			<credentials
 				host="${publish.host}" 
-				realm="Repository Archiva Managed solarnetwork-stage Repository"
+				realm="${publish.realm}"
           		username="${publish.username}"
           		passwd="${publish.password}" />
 		</ivy:settings>
