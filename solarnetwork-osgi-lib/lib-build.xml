@@ -23,6 +23,8 @@
 	<property name="compile.deprecation" value="false" />
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
+	<property name="solarnetwork.archive.url" 
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
