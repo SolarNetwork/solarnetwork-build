@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	This settings file limits to resolving just from a local Ivy cache or the SolarNetwork repo,
+	for better performance when resolving SolarNetwork artifact version ranges.
+-->
+<ivysettings>
+	<property name="solarnetwork-archive.url" value="${solarnetwork.archive.url}"/>
+	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+	<settings defaultResolver="solarnetwork"/>
+	<resolvers default="default">
+		<ibiblio name="solarnetwork" m2compatible="true"
+			root="${solarnetwork-archive.url}"
+			pattern="${solarnetwork-archive.pattern}"/>
+	</resolvers>
+</ivysettings>
