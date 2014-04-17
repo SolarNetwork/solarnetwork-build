@@ -313,11 +313,4 @@
 		</jar>
 	</target>
 	
-	<target name="deploy" depends="jar,lib-install-bundles" description="Copy bundle JAR to target">
-		<copy todir="${dir.bundles}" failonerror="no">
-			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
-			<fileset dir="${dir.deps}" includes="*.jar"/>
-		</copy>
-	</target>
-
 </project>
