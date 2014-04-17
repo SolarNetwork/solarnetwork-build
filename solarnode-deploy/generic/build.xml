@@ -3,55 +3,22 @@
 	<property file="${basedir}/build.properties"/>
 	
 	<property name="dir.src.base" value="${basedir}/../../.."/>
-	<property name="dir.target" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
-	<property name="dir.platform" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-target"/>
-
+	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.build" value="${basedir}/build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
-	<property name="dir.bundles" value="${dir.build}/bundles"/>
+	<property name="dir.jars" value="${dir.build}/jars"/>
 	
-	<property name="bundles" value="net.solarnetwork.node.core"/>
-	
-	<import file="${dir.target}/lib-build.xml"/>
+	<property name="ivy.settings" value="${dir.build.lib}/ivysettings-solarnetwork.xml"/>
+	<property name="ivy.resolve.refresh" value="false"/>
+	<property name="ivy.cache.ttl.default" value="1d"/>
+	<property name="solarnetwork.archive.url" 
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 
-	<!-- Note: this is a MUCH slower version of bundle-iterate, but does not run out of RAM -->
-	<macrodef name="bundle-apply">
-		<attribute name="target"/>
-		<sequential>
-			<apply executable="ant"
-					parallel="false"
-					failonerror="yes">
-				<arg value="-Ddir.dist=${dir.assemble}"/>
-				<arg value="-Ddir.bundles=${dir.bundles}"/>
-				<arg value="-f"/>
-				<srcfile/>
-				<arg value="@{target}"/>
-				<fileset refid="bundle.build.xml"/>
-			</apply>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="bundle-iterate">
-		<attribute name="target"/>
-		<sequential>
-			<subant target="@{target}">
-				<property name="dir.dist" value="${dir.assemble}"/>
-				<property name="dir.bundles" value="${dir.bundles}"/>
-				<fileset refid="bundle.build.xml"/>
-			</subant>
-		</sequential>
-	</macrodef>
-
-	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
-		<scriptselector language="javascript">
-			var result = (project.getProperty("bundles").search("\\b" 
-				+file.getParentFile().getName().replace(".","\\.") +"(\\s|,|$)") !== -1);
-			if ( result ) {
-				java.lang.System.out.println("Including bundle " +file.getParentFile().getName());
-			}
-			self.setSelected(result);
-		</scriptselector>
-	</fileset>
+	<target name="ivy-init">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant"
+			classpath="${dir.build.lib}/lib/ivy-2.3.0.jar"/>
+	</target>
 	
 	<target name="clean" description="Remove generated build files">
 		<delete dir="${dir.build}" failonerror="no"/>
@@ -59,24 +26,13 @@
 	
 	<target name="prepare">
 		<mkdir dir="${dir.assemble}"/>
-		<mkdir dir="${dir.bundles}"/>
+		<mkdir dir="${dir.jars}"/>
 	</target>
 	
-	<target name="jar" description="Create bundle jars" depends="prepare">
-		<!-- NOTE: we don't use bundle-iterate here, even though it's must faster, because it runs out of memory too easily
-		           due to problems with Ivy classloading and Ant -->
-		<bundle-apply target="deploy"/>
-	</target>
-	
-	<target name="clean-jar" description="Clean bundle jars">
-		<bundle-iterate target="clean-full"/>
-	</target>
-
-	<target name="external-jars" depends="ivy-init">
+	<target name="jars" depends="ivy-init,prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime"/>
-		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime" refresh="${ivy.resolve.refresh}"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.jars}/[artifact]-[revision].[ext]"/>
 	</target>
 	
 	<patternset id="assemble.base.pat">
@@ -87,21 +43,16 @@
 		<include name="net.solarnetwork.node.setup-*"/>
 	</patternset>
 	
-	<target name="assemble" depends="jar,external-jars" description="Assemble jars">
-		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
+	<target name="assemble" depends="jars" description="Assemble jars">
 		<mkdir dir="${dir.assemble}/app/base"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
-		<copy todir="${dir.assemble}">
-			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>
-			<fileset dir="${dir.build}/jars" includes="*.jar"/>
-		</copy>
 		<move todir="${dir.assemble}/app/base">
-			<fileset dir="${dir.assemble}">
+			<fileset dir="${dir.jars}">
 				<patternset refid="assemble.base.pat"/>
 			</fileset>
 		</move>
 		<move todir="${dir.assemble}/app/main">
-			<fileset dir="${dir.assemble}" includes="*.jar"/>
+			<fileset dir="${dir.jars}" includes="*.jar"/>
 		</move>
 	</target>
 
