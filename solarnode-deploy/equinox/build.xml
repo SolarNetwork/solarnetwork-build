@@ -1,4 +1,4 @@
-<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
 
 	<property file="${basedir}/build.properties"/>
 
@@ -61,6 +61,7 @@
 				<exclude name="**/README.txt"/>
 			</fileset>
 		</copy>
+		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
 	</target>
 	
 	<target name="app-boot" depends="ivy-init,assemble-prepare">
@@ -175,8 +176,22 @@
 	<target name="assemble" depends="assemble-base,app-boot,app-core,equinox-config"
 		description="Assemble a base node directory structure"/>
 	
-	<target name="archive" depends="assemble"
-		description="Assemble and then package a base node archive">
+	<!-- Attempt to use native tar, to honor symlinks -->
+	<target name="archive.native" depends="assemble">
+		<exec executable="tar" failonerror="no" resultproperty="archive.native.failed">
+			<arg value="-czf"/>
+			<arg value="${dir.build}/base-equinox-node.tgz"/>
+			<arg value="-C"/>
+			<arg value="${dir.assemble}"/>
+			<arg value="app"/>
+			<arg value="bin"/>
+			<arg value="conf"/>
+			<arg value="var"/>
+		</exec>
+	</target>
+	
+	<!-- Fall back to tar Ant task if native tar failed -->
+	<target name="archive.ant" depends="assemble" if:true="${archive.native.failed}">
 		<tar destfile="${dir.build}/base-equinox-node.tgz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${dir.assemble}">
 				<include name="**"/>
@@ -187,6 +202,9 @@
 			</tarfileset>
 		</tar>
 	</target>
+	
+	<target name="archive" depends="assemble,archive.native,archive.ant"
+		description="Assemble and then package a base node archive"/>
 	
 	<macrodef name="equinox-config-generate">
 		<attribute name="filesetId"/>
