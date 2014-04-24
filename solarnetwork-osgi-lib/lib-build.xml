@@ -25,6 +25,8 @@
 	<property name="compile.nowarn" value="true" />
 	<property name="solarnetwork.archive.url" 
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+	<property name="publish.dest" value="solarnetwork"/>
+	<property name="publish.ivy" value="true"/>
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
@@ -91,13 +93,13 @@
 			<mapping conf="compile" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>
-		<ivy:publish resolver="solarnetwork-publish" 
+		<ivy:publish resolver="${publish.dest}" 
 			module="${bundle.name}"
 			revision="${bundle.version}"
 			overwrite="true"
 			status="release"
 			forcedeliver="false"
-			publishivy="false"
+			publishivy="${publish.ivy}"
 			artifactspattern="${dir.dist}/[artifact]-[revision].[ext]"/>
 	</target>
 
