@@ -36,11 +36,13 @@
 	</target>
 	
 	<patternset id="assemble.base.pat">
+		<!--
 		<include name="net.solarnetwork.common*"/>
 		<include name="net.solarnetwork.external*"/>
 		<include name="net.solarnetwork.node-*"/>
 		<include name="net.solarnetwork.node.dao.jdbc-*"/>
 		<include name="net.solarnetwork.node.setup-*"/>
+		-->
 	</patternset>
 	
 	<target name="assemble" depends="jars" description="Assemble jars">
