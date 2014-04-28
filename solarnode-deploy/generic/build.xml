@@ -35,24 +35,8 @@
 		<ivy:retrieve type="jar,bundle" pattern="${dir.jars}/[artifact]-[revision].[ext]"/>
 	</target>
 	
-	<patternset id="assemble.base.pat">
-		<!--
-		<include name="net.solarnetwork.common*"/>
-		<include name="net.solarnetwork.external*"/>
-		<include name="net.solarnetwork.node-*"/>
-		<include name="net.solarnetwork.node.dao.jdbc-*"/>
-		<include name="net.solarnetwork.node.setup-*"/>
-		-->
-	</patternset>
-	
 	<target name="assemble" depends="jars" description="Assemble jars">
-		<mkdir dir="${dir.assemble}/app/base"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
-		<move todir="${dir.assemble}/app/base">
-			<fileset dir="${dir.jars}">
-				<patternset refid="assemble.base.pat"/>
-			</fileset>
-		</move>
 		<move todir="${dir.assemble}/app/main">
 			<fileset dir="${dir.jars}" includes="*.jar"/>
 		</move>
