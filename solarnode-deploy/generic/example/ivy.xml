@@ -18,14 +18,7 @@
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
-	
-		<!-- 
-		Add additional SolarNode bundles you want to deploy here, e.g. (and note the .power.dao.jdbc bundle):
 		
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.power.dao.jdbc" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.power.sma.yasdi4j" rev="latest.release"/>
-		-->
-	
 		<!-- SolarNode basic support (this needed for most any deployment) -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
@@ -35,9 +28,17 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.xml" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.obr" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
+		
+		<!-- For standard deployments, include the .setup and .bulkxmlwebpost bundles -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkxmlwebpost" rev="latest.release"/>
-
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
+		
+		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
+		-->
+		
 		<!-- 
 		Use OS-provided RXTX. Remove this to include the SolarNetwork RXTX bundle.
 		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
@@ -55,6 +56,8 @@
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.derby"/>
+		<exclude org="org.apache.felix"/>
+		<exclude org="org.apache.taglibs"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.bouncycastle"/>
 		<exclude org="org.codehaus.jackson"/>

@@ -10,11 +10,11 @@
 	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);foo->default(runtime)">
 	
 		<!-- Bootstrap -->
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="1.0.0" conf="boot">
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="latest.release" conf="boot">
 			<exclude org="org.osgi"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="1.1.0" conf="boot">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="latest.release" conf="boot">
 			<exclude org="org.eclipse.gemini"/>
 			<exclude org="org.osgi"/>
 			<exclude org="org.springframework"/>
@@ -56,12 +56,12 @@
 		</dependency>
 		
 		<!-- SolarNetwork Core -->
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.8.0.SN01" conf="core"/>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="1.2.0" conf="core">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release" conf="core"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release" conf="core">
 			<exclude module="derby"/>
 			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="6.1.26.SN01" conf="core"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release" conf="core"/>
 	
 		<!-- Gemini Web -->
 		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.1.RELEASE"
@@ -205,7 +205,12 @@
 		</dependency>
 
 		<!-- Extra Servlet -->
-		<dependency org="javax.servlet" name="com.springsource.javax.servlet.jsp.jstl" rev="1.2.0.v20110728"  conf="core"/>
+		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="core"/>
+		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.1" conf="core"/>
+		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="core">
+			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
+		</dependency>
+		<!--dependency org="javax.servlet" name="com.springsource.javax.servlet.jsp.jstl" rev="1.2.0.v20110728"  conf="core"/-->
 		
 		<!-- Apache Tiles -->
 		<dependency org="org.apache.tiles" name="tiles-el" rev="2.2.2" conf="core">
@@ -246,12 +251,40 @@
 		<!-- PKI -->
 		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="core"/>
     	<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" conf="core"/>
-    			
+    	
+    	<!-- OBR -->
+		<dependency org="org.apache.felix" name="org.osgi.service.obr" rev="1.0.2" conf="core">
+			<exclude name="org.osgi.core"/>
+		</dependency>
+    	<dependency org="org.apache.felix" name="org.apache.felix.bundlerepository" rev="1.6.6" conf="core">
+    		<exclude name="org.osgi.core"/>
+    	</dependency>
+    	
+    	<!-- Rules -->
+		<!--dependency org="org.drools" name="drools-examples" rev="5.6.0.Final" /-->
+		<dependency org="org.drools" name="drools-core" rev="6.0.1.Final" conf="foo"/>
+		<dependency org="org.drools" name="drools-compiler" rev="6.0.1.Final" conf="foo">
+    		<exclude name="xmlpull"/>
+    		<exclude name="xpp3_min"/>
+    		<exclude name="antlr-runtime"/>
+    		<exclude name="stringtemplate"/>
+    		<exclude name="xstream"/>
+    		<exclude name="ecj"/><!-- Gemini Web provides JDT -->
+    		<exclude name="slf4j-api"/>
+		</dependency>
+		<dependency org="org.antlr" name="com.springsource.org.antlr.runtime" rev="3.1.3" conf="foo"/>
+		<dependency org="org.xmlpull" name="com.springsource.org.xmlpull" rev="1.1.4.c" conf="foo"/>
+		<dependency org="xpp3" name="com.springsource.xpp3" rev="1.1.3.4_O" conf="foo"/>
+		<dependency org="com.thoughtworks.xstream" name="com.springsource.com.thoughtworks.xstream" rev="1.4.1" conf="foo"/>
+		<dependency org="org.glassfish.hk2.external" name="javax.inject" rev="2.2.0" conf="foo"/>
+		
 		<!-- Global excludes -->
+		<exclude org="org.easymock"/>
 		<exclude module="aopalliance"/>
 		<exclude module="commons-logging"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
+		<exclude module="com.springsource.javax.activation"/>
 		
 	</dependencies>
 </ivy-module>
