@@ -33,7 +33,7 @@
 		
 		<!-- For standard deployments, include the .setup and .bulkxmlwebpost bundles -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkxmlwebpost" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
 		
 		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
