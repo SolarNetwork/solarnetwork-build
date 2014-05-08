@@ -240,6 +240,8 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 			}
 			if ( !tmpFile.renameTo(metadataFile) ) {
 				log.warn("Unable to move temporary OBR metadata file to {}", metadataFile);
+			} else if ( log.isInfoEnabled() ) {
+				log.info("Created OBR metadata {}", metadataFile);
 			}
 		} catch ( IOException e ) {
 			log.error("Error writing OBR metadata file {}", metadataFile, e);
