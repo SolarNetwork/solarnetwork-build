@@ -223,7 +223,7 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 	@Override
 	public void completeScan() {
 		log.debug("Completed scan of repository {}", repoId);
-		if ( !metadataFile.exists() || foundMostRecentModifiedDate <= obrRepositoryLastModifiedDate ) {
+		if ( metadataFile.exists() && foundMostRecentModifiedDate <= obrRepositoryLastModifiedDate ) {
 			log.info("OBR metadata unchanged.");
 			return;
 		}
