@@ -1,0 +1,66 @@
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
+
+	<property file="${basedir}/build.properties"/>
+
+	<property name="app.name" value="archiva-obr-plugin"/>
+	<property name="app.version" value="0.1.0"/>
+	
+	<property name="dir.build" value="${basedir}/build/ant"/>
+	<property name="dir.build.lib" value="${basedir}/../solarnetwork-osgi-lib"/>
+	<property name="dir.dist" value="${basedir}/target"/>
+	
+	<property name="dir.source" value="src"/>
+	<property name="dir.compile" value="${dir.build}/classes"/>
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="true" />
+	<property name="compile.nowarn" value="true" />
+	
+	<property name="ivy.resolve.refresh" value="false"/>
+	<property name="ivy.cache.ttl.default" value="1d"/>
+
+	<target name="ivy-init">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant"
+			classpath="${dir.build.lib}/lib/ivy-2.3.0.jar"/>
+	</target>
+	
+	<target name="clean" description="Remove generated build files">
+		<delete dir="${dir.build}" failonerror="no"/>
+	</target>
+	
+	<target name="prepare">
+		<mkdir dir="${dir.build}"/>
+	</target>
+	
+	<target name="compile" depends="prepare,ivy-init">
+		<ivy:resolve file="${basedir}/ivy.xml" conf="compile" refresh="${ivy.resolve.refresh}"/>
+		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
+		<!-- For debugging classpath:
+		<property name="path" refid="lib.path"/>
+		<echo>{=== Compile path: ${path} ===}</echo>
+		-->
+		<mkdir dir="${dir.compile}"/>
+		<javac srcdir="${dir.source}"
+			includeantruntime="false"
+			destdir="${dir.compile}"
+			debug="${compile.debug}" 
+			deprecation="${compile.deprecation}" 
+			optimize="${compile.optimize}" 
+			nowarn="${compile.nowarn}"
+			target="1.6"
+			source="1.6">
+			<classpath refid="lib.path" />
+		</javac>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
+		<jar destfile="${dir.dist}/${app.name}-${app.version}.jar">
+			<zipfileset dir="${dir.compile}" includes="**" prefix=""/>
+			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java" prefix=""/>
+		</jar>
+	</target>
+	
+</project>
