@@ -167,10 +167,10 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 			try {
 				reader = new FileReader(metadataFile);
 				Repository existingRepo = dataModelHelper.readRepository(reader);
-				if ( existingRepo != null ) {
-					obrRepositoryLastModifiedDate = existingRepo.getLastModified();
-				}
 				if ( executeOnEntireRepo == false ) {
+					if ( existingRepo != null ) {
+						obrRepositoryLastModifiedDate = existingRepo.getLastModified();
+					}
 					obrRepository = (RepositoryImpl) existingRepo;
 				}
 			} catch ( Exception e ) {
