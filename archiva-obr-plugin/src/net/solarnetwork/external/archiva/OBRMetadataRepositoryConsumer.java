@@ -148,7 +148,8 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 	public void beginScan(ManagedRepository repository, Date whenGathered, boolean executeOnEntireRepo)
 			throws ConsumerException {
 		repoId = repository.getId();
-		log.debug("Beginning scan on repository {} on {}", repoId, whenGathered);
+		log.info("Beginning scan on repository {} on {}; all = {}", repoId, whenGathered,
+				executeOnEntireRepo);
 		loadProperties();
 		archivaRepositoryLocation = repository.getLocation();
 		basePath = (props.containsKey("obr.base") ? props.getProperty("obr.base")
@@ -170,6 +171,8 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 				if ( executeOnEntireRepo == false ) {
 					if ( existingRepo != null ) {
 						obrRepositoryLastModifiedDate = existingRepo.getLastModified();
+						log.info("OBR metadata last generated at {}", new Date(
+								obrRepositoryLastModifiedDate));
 					}
 					obrRepository = (RepositoryImpl) existingRepo;
 				}
