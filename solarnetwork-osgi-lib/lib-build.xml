@@ -3,6 +3,9 @@
 	<path id="compile.path"/>
 	
 	<property name="dir.osgi.base" value="${basedir}/../solarnetwork-osgi-lib"/>
+
+	<property file="${dir.osgi.base}/build.properties"/>
+	
 	<property name="dir.target" value="${dir.osgi.base}"/>
 	<property name="dir.bundles" value="${dir.osgi.base}/bundles"/>
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
@@ -20,12 +23,24 @@
 	<property name="compile.deprecation" value="false" />
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
+	<property name="solarnetwork.archive.url" 
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+	<property name="publish.dest" value="solarnetwork"/>
+	<property name="publish.ivy" value="true"/>
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
 			<fileset dir="${dir.input}">
 				<include name="**/*.java"/>
 				<include name="src/**/*.*"/>
+			</fileset>
+		</resourcecount>
+	</condition>
+
+	<condition property="no.ivy">
+		<resourcecount when="equal" count="0">
+			<fileset dir="${dir.input}">
+				<include name="ivy.xml"/>
 			</fileset>
 		</resourcecount>
 	</condition>
@@ -49,13 +64,19 @@
 			classpath="${dir.target}/lib/ivy-2.3.0.jar"/>
 	</target>
 	
-	<target name="lib-init" depends="ivy-init" unless="no.classes">
-		<ivy:settings file="${ivy.settings}"/>
+	<target name="lib-init" depends="ivy-init" unless="no.ivy">
+		<ivy:settings file="${ivy.settings}">
+			<credentials
+				host="${publish.host}" 
+				realm="${publish.realm}"
+          		username="${publish.username}"
+          		passwd="${publish.password}" />
+		</ivy:settings>
 	</target>
 	
-	<target name="lib-resolve" depends="lib-init" unless="no.classes">
+	<target name="lib-resolve" depends="lib-init,read.manifest" unless="no.ivy">
 		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
-		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle"/>
+		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle" revision="${bundle.version}"/>
 	</target>
 
 	<target name="lib-install-bundles" depends="lib-resolve" unless="no.classes">
@@ -63,7 +84,25 @@
 		<!-- Copy the dependencies to dir.bundles -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
 	</target>
-	
+
+	<target name="publish" depends="lib-resolve,jar,src-jar" description="Publish to artifact repository">
+		<ivy:makepom ivyfile="${basedir}/ivy.xml" 
+				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom" 
+				conf="compile,runtime,sources"
+				artifactPackaging="bundle">
+			<mapping conf="compile" scope="compile"/>
+			<mapping conf="runtime" scope="runtime"/>
+		</ivy:makepom>
+		<ivy:publish resolver="${publish.dest}" 
+			module="${bundle.name}"
+			revision="${bundle.version}"
+			overwrite="true"
+			status="release"
+			forcedeliver="false"
+			publishivy="${publish.ivy}"
+			artifactspattern="${dir.dist}/[artifact]-[revision].[ext]"/>
+	</target>
+
 	<target name="clean" description="Remove generated artifacts">
 		<delete dir="${dir.build}"/>
 		<delete dir="${dir.dist}"/>
@@ -127,6 +166,9 @@
 		<property name="bundle.name" value="${Bundle-SymbolicName}"/>
 		<property name="bundle.version" value="${Bundle-Version}"/>
 		<property name="bundle.jar.name" value="${bundle.name}-${bundle.version}.jar"/>
+		<property name="src.jar.name" value="${bundle.name}-${bundle.version}-sources.jar"/>
+		<property name="ivy.pom.artifactId" value="${bundle.name}"/>
+		<property name="ivy.pom.version" value="${bundle.version}"/>
 	</target>
 	
 	<target name="jar.dep.check" depends="read.manifest">
@@ -245,11 +287,32 @@
 		</jar>
 	</target>
 	
-	<target name="deploy" depends="jar,lib-install-bundles" description="Copy bundle JAR to target">
-		<copy todir="${dir.bundles}" failonerror="no">
-			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
-			<fileset dir="${dir.deps}" includes="*.jar"/>
-		</copy>
-	</target>
+	<target name="src-jar" depends="src-jar.classes"
+		description="Create source bundle jar"/>
 
+	<target name="src-jar.classes" if="classes" depends="read.manifest">
+		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building JAR ${dir.dist}/${src.jar.name} &lt;====]"/>
+		<manifest file="${dir.build}/src-manifest.mf">
+			<attribute name="Bundle-ManifestVersion" value="2"/>
+			<attribute name="Bundle-SymbolicName" value="${bundle.name}.source"/>
+			<attribute name="Eclipse-SourceBundle" value='${bundle.name};version="${bundle.version}";roots:="."'/>
+			<attribute name="Bundle-Version" value="${bundle.version}"/>
+			<attribute name="Bundle-Name" value="${bundle.name} Source"/>
+		</manifest>
+		<jar destfile="${dir.dist}/${src.jar.name}" 
+			manifest="${dir.build}/src-manifest.mf">
+			<zipfileset dir="${dir.source}" includes="**" 
+				prefix="${dir.jar.classes.dest}"/>
+			<fileset dir="${dir.resources}">
+				<include name="META-INF/**"/>
+				<include name="OSGI-INF/**"/>
+				<include name="lib/**"/>
+				<exclude name="META-INF/MANIFEST.MF"/>
+				<patternset refid="web.files"/>
+			</fileset>
+			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
 </project>

@@ -74,7 +74,7 @@ EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
 APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE}"
-JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR}"
+JVM_ARGS="-Xmx64m -Djava.io.tmpdir=${TMP_DIR}"
 
 # NOTE: for Java 6, these flags add these flags per https://bugs.eclipse.org/bugs/show_bug.cgi?id=359535
 # JVM_ARGS="-XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass"
@@ -84,6 +84,11 @@ JVM_ARGS="-Xmx48m -Djava.io.tmpdir=${TMP_DIR}"
 
 # NOTE: for debugging support, add these flags:
 #JVM_ARGS="-Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=n"
+
+# NOTE: this supports Debian JNI, such as RXTX
+if [ -d /usr/lib/jni ]; then
+	JVM_ARGS="${JVM_ARGS} -Djava.library.path=/usr/lib/jni"
+fi
 
 START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
 START_SLEEP=14
