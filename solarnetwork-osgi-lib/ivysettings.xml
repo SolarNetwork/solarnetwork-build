@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivysettings>
-	<property name="ivy.shared.default.root"             value="${ivy.default.ivy.user.dir}/shared" override="false"/>
-	<property name="ivy.shared.default.ivy.pattern"      value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
-	<property name="ivy.shared.default.artifact.pattern" value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
-	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
-	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
-	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[type]s/[artifact].[ext]" override="false"/>
 	<property name="spring-repo.url" value="http://repository.springsource.com/ivy/bundles"/>
 	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
@@ -14,17 +8,18 @@
 	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
 	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
 	<property name="virgo-ivy.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+	<property name="solarnetwork-archive.url" value="${solarnetwork.archive.url}"/>
+	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
+	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
+	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
 		<filesystem name="local">
 			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
 			<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
 		</filesystem>
-		<filesystem name="shared">
-			<ivy pattern="${ivy.shared.default.root}/${ivy.shared.default.ivy.pattern}" />
-			<artifact pattern="${ivy.shared.default.root}/${ivy.shared.default.artifact.pattern}" />
-		</filesystem>
-		
+
 		<ibiblio name="jboss" m2compatible="true" root="${jboss-archive.url}"
     		pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
 		
@@ -51,8 +46,13 @@
 		
 		<ibiblio name="public" m2compatible="true"/>
 		
-		<chain name="main" dual="true">
-			<resolver ref="shared"/>
+		<url name="solarnetwork" m2compatible="true">
+			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
+			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
+		</url>
+		
+		<chain name="main" returnFirst="true">
+			<resolver ref="solarnetwork"/>
 			<resolver ref="jboss"/>
 			<resolver ref="spring-ebr-release"/>
 			<resolver ref="spring-ebr-external"/>
