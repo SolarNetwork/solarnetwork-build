@@ -21,18 +21,19 @@
 		
 		<!-- SolarNode basic support (this needed for most any deployment) -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby.ext" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.location.ws" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.dao.jdbc" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.xml" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.json" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.obr" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
 		
 		<!-- For standard deployments, include the .setup and .bulkxmlwebpost bundles -->
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkxmlwebpost" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
 		
 		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
