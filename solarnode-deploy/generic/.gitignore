@@ -2,5 +2,5 @@
 /ivy.xml
 /platform
 /target
-/node-bundles*
+/*node-bundles*
 /build
