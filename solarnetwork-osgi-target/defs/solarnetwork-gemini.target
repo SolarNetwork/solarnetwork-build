@@ -138,14 +138,14 @@
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
 <plugin id="org.slf4j.osgi-over-slf4j"/>
-<plugin id="org.springframework.binding" version="2.3.2.RELEASE"/>
-<plugin id="org.springframework.js" version="2.3.2.RELEASE_SN01"/>
-<plugin id="org.springframework.security.acls" version="3.1.4.RELEASE"/>
-<plugin id="org.springframework.security.config" version="3.1.4.RELEASE"/>
-<plugin id="org.springframework.security.core" version="3.1.4.RELEASE"/>
-<plugin id="org.springframework.security.taglibs" version="3.1.4.RELEASE"/>
-<plugin id="org.springframework.security.web" version="3.1.4.RELEASE"/>
-<plugin id="org.springframework.webflow" version="2.3.2.RELEASE_SN01"/>
+<plugin id="org.springframework.binding"/>
+<plugin id="org.springframework.js"/>
+<plugin id="org.springframework.security.acls"/>
+<plugin id="org.springframework.security.config"/>
+<plugin id="org.springframework.security.core"/>
+<plugin id="org.springframework.security.taglibs"/>
+<plugin id="org.springframework.security.web"/>
+<plugin id="org.springframework.webflow"/>
 <plugin id="osgi.cmpn"/>
 <plugin id="osgi.enterprise"/>
 <plugin id="slf4j.api"/>
