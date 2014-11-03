@@ -3,22 +3,24 @@
 	<property file="${basedir}/build.properties"/>
 	
 	<!-- Use build.properties to define the following comma-delimited lists: -->
-	<property name="bundles" value="net.solarnetwork.central.common"/>
 	<property name="plans" value=""/>
 	
 	<property name="dir.src.base" value="${basedir}/../../.."/>
 	<property name="dir.src.plans" value="${basedir}/plans"/>
-	<property name="dir.target" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
-	<property name="dir.platform" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-target"/>
 
 	<property name="dir.build" value="${basedir}/build"/>
+	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
 	<property name="dir.bundles" value="${dir.build}/bundles"/>
 	
 	<property name="dir.virgo.repo" value="${dir.assemble}/repository/usr"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
-	
-	<import file="${dir.target}/lib-build.xml"/>
+
+	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
+	<property name="ivy.resolve.refresh" value="false"/>
+	<property name="ivy.cache.ttl.default" value="1d"/>
+	<property name="solarnetwork.archive.url" 
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 
 	<macrodef name="bundle-iterate">
 		<attribute name="target"/>
@@ -47,12 +49,6 @@
 			</apply>
 		</sequential>
 	</macrodef>
-
-	<patternset id="webflow.files.pat">
-		<include name="spring/org.springframework.binding-*.jar"/>
-		<include name="spring/org.springframework.js-*.jar"/>
-		<include name="spring/org.springframework.webflow-*.jar"/>
-	</patternset>
 
 	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
 		<scriptselector language="javascript">
@@ -86,6 +82,12 @@
 			self.setSelected(result);
 		</scriptselector>
 	</fileset>
+	
+	<target name="ivy-init">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant"
+			classpath="${dir.build.lib}/lib/ivy-2.3.0.jar"/>
+	</target>
 	
 	<target name="clean" description="Remove generated build files">
 		<delete dir="${dir.build}" failonerror="no"/>
@@ -125,16 +127,7 @@
 		</copy>
 	</target>
 	
-	<target name="platform-files">
-		<!-- Copy hand-tuned WebFlow -->
-		<copy todir="${dir.virgo.repo}" flatten="yes">
-			<fileset dir="${dir.platform}">
-				<patternset refid="webflow.files.pat"/>
-			</fileset>
-		</copy>
-	</target>
-	
-	<target name="assemble" depends="jar,external-jars,plans,plans-pickup,platform-files" description="Assemble jars">
+	<target name="assemble" depends="jar,external-jars,plans,plans-pickup" description="Assemble jars">
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
 		<copy todir="${dir.virgo.repo}">
 			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>

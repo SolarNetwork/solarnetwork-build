@@ -5,43 +5,31 @@
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 		<conf name="foo" visibility="private" description="Internal testing"/>
 	</configurations>
-	<dependencies defaultconfmapping="runtime->runtime(default);foo->runtime(default)">
+	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
 		<!-- Apache Commons -->
-		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.8.3" conf="runtime">
-			<artifact name="commons-beanutils" type="jar" />
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="runtime">
 			<exclude name="commons-logging"/>
 		</dependency>
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="runtime">
-			<artifact name="commons-collections" type="jar" />
 			<exclude name="commons-logging"/>
 		</dependency>
-    	<dependency org="commons-codec" name="commons-codec" rev="1.7" conf="runtime">
-    		<artifact name="commons-codec" type="jar"/>
+    	<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="runtime">
 			<exclude name="commons-logging"/>
     	</dependency>
 		<dependency org="commons-io" name="commons-io" rev="2.4" conf="runtime">
-    		<artifact name="commons-io" type="jar" />
 			<exclude name="commons-logging"/>
 		</dependency>
-		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.2.2" conf="runtime">
-    		<artifact name="commons-fileupload" type="jar" />
-			<exclude name="commons-logging"/>
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.1" conf="runtime">
+			<exclude org="commons-io"/>
+			<exclude org="commons-logging"/>
 		</dependency>
 		
 		<!-- CSV -->
-    	<dependency org="org.apache.commons" name="com.springsource.org.apache.commons.csv" rev="1.0.0.BUILD-20080106" 
-    			conf="runtime"/>
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.0.1" conf="runtime">
-			<artifact name="super-csv" type="jar" />
-		</dependency>
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="runtime"/>
 		
 		<!-- JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="runtime">
-			<artifact name="jackson-core" type="jar" />
-		</dependency>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="runtime">
-			<artifact name="jackson-databind" type="jar" />
-		</dependency>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="runtime"/>
 		
 		<!-- JDBC -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29" conf="runtime">
@@ -53,25 +41,25 @@
 		<dependency org="org.apache.ibatis" name="com.springsource.com.ibatis" rev="2.3.4.726" conf="runtime"/>
 		
 		<!-- Spring Security -->
-		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.3.RELEASE" conf="runtime">
+		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.4.RELEASE" conf="runtime">
     		<artifact name="spring-security-config" type="jar" />
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.3.RELEASE" conf="runtime">
+		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.4.RELEASE" conf="runtime">
     		<artifact name="spring-security-core" type="jar" />
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.3.RELEASE" conf="runtime">
+		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.4.RELEASE" conf="runtime">
     		<artifact name="spring-security-web" type="jar" />
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.3.RELEASE" conf="runtime">
+		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.4.RELEASE" conf="runtime">
     		<artifact name="spring-security-taglibs" type="jar" />
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
@@ -115,8 +103,20 @@
 		</dependency>
 		
 		<!-- JodaTime -->
-		<dependency org="joda-time" name="joda-time" rev="2.1" conf="runtime">
-    		<artifact name="joda-time" type="jar" />
+		<dependency org="joda-time" name="joda-time" rev="2.4" conf="runtime"/>
+		
+		<!-- Ehcache -->
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.0" conf="runtime"/>
+		
+		<!-- JSR-303 javax.validation -->
+		<dependency org="javax.validation" name="validation-api" rev="1.1.0.Final" conf="runtime">
+			<artifact name="validation-api" type="jar" />
+		</dependency>
+		<dependency org="org.hibernate" name="hibernate-validator" rev="5.0.1.Final" conf="runtime">
+			<artifact name="hibernate-validator" type="jar" />
+		</dependency>
+		<dependency org="com.fasterxml" name="classmate" rev="1.0.0" conf="runtime">
+			<artifact name="classmate" type="jar" />
 		</dependency>
 		
 	</dependencies>
