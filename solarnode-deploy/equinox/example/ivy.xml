@@ -190,7 +190,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="3.2.11.RELEASE_1">
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="3.2.11.RELEASE_1_SN01">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
