@@ -36,12 +36,12 @@
 		</dependency>
 		
 		<!-- JSON -->
-		<dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.5" conf="runtime">
-			<artifact name="jackson-core-asl" type="jar" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="runtime">
+			<artifact name="jackson-core" type="jar" />
 		</dependency>
-		<dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.5" conf="runtime">
-    		<artifact name="jackson-mapper-asl" type="jar" />
-		</dependency>	
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="runtime">
+			<artifact name="jackson-databind" type="jar" />
+		</dependency>
 		
 		<!-- JDBC -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29" conf="runtime">
