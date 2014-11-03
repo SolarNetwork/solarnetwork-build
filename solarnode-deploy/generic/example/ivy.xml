@@ -51,6 +51,7 @@
 		<exclude artifact="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
 		<exclude artifact="net.solarnetwork.external.org.mortbay.jetty"/>
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
+		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.opensymphony.quartz"/>
 		<exclude org="javax.el"/>
 		<exclude org="javax.servlet"/>
