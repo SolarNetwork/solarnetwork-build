@@ -7,27 +7,19 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
 		<!-- Apache Commons -->
-		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="runtime">
-			<exclude name="commons-logging"/>
-		</dependency>
-		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="runtime">
-			<exclude name="commons-logging"/>
-		</dependency>
-    	<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="runtime">
-			<exclude name="commons-logging"/>
-    	</dependency>
-		<dependency org="commons-io" name="commons-io" rev="2.4" conf="runtime">
-			<exclude name="commons-logging"/>
-		</dependency>
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="runtime"/>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="runtime"/>
+    	<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="runtime"/>
+		<dependency org="commons-io" name="commons-io" rev="2.4" conf="runtime"/>
 		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.1" conf="runtime">
 			<exclude org="commons-io"/>
-			<exclude org="commons-logging"/>
 		</dependency>
 		
 		<!-- CSV -->
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="runtime"/>
 		
 		<!-- JSON -->
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.4.3" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="runtime"/>
 		
@@ -41,31 +33,16 @@
 		<dependency org="org.apache.ibatis" name="com.springsource.com.ibatis" rev="2.3.4.726" conf="runtime"/>
 		
 		<!-- Spring Security -->
-		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.4.RELEASE" conf="runtime">
-    		<artifact name="spring-security-config" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude org="org.springframework"/>
-		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.4.RELEASE" conf="runtime">
-    		<artifact name="spring-security-core" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude org="org.springframework"/>
-		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.4.RELEASE" conf="runtime">
-    		<artifact name="spring-security-web" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude org="org.springframework"/>
-		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.4.RELEASE" conf="runtime">
-    		<artifact name="spring-security-taglibs" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude org="org.springframework"/>
-		</dependency>
-
+		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.4.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.4.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.4.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.4.RELEASE" conf="runtime"/>
+		
+		<!--  Spring WebFlow -->
+		<dependency org="org.springframework.webflow" name="spring-binding" rev="2.3.2.RELEASE" />
+		<dependency org="net.solarnetwork.external" name="org.springframework.js" rev="2.3.2.RELEASE_SN01" />
+		<dependency org="net.solarnetwork.external" name="org.springframework.webflow" rev="2.3.2.RELEASE_SN01" />
+		
 		<!--  OSGi -->
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="runtime">
     		<artifact name="org.osgi.enterprise" type="jar" />
@@ -73,33 +50,16 @@
 		
 		<!-- Apache Tiles -->
 		<dependency org="org.apache.tiles" name="tiles-el" rev="2.2.2" conf="runtime">
-    		<artifact name="tiles-el" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="slf4j-api"/>
-			<exclude name="jcl-over-slf4j"/>
 			<exclude module="commons-beanutils"/>
 		</dependency>
 		<dependency org="org.apache.tiles" name="tiles-jsp" rev="2.2.2" conf="runtime">
-    		<artifact name="tiles-jsp" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="slf4j-api"/>
-			<exclude name="jcl-over-slf4j"/>
 			<exclude module="commons-beanutils"/>
 		</dependency>
 		<dependency org="org.apache.tiles" name="tiles-servlet" rev="2.2.2" conf="runtime">
-    		<artifact name="tiles-servlet" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="slf4j-api"/>
-			<exclude name="jcl-over-slf4j"/>
 			<exclude module="commons-beanutils"/>
 		</dependency>
 		<dependency org="org.apache.tiles" name="tiles-servlet-wildcard" rev="2.2.2" conf="runtime">
-			<artifact name="tiles-servlet-wildcard" type="jar" />
-    		<exclude name="aopalliance"/>
-			<exclude name="slf4j-api"/>
-			<exclude name="jcl-over-slf4j"/>
 			<exclude module="commons-beanutils"/>
-			<exclude org="org.springframework"/>
 		</dependency>
 		
 		<!-- JodaTime -->
@@ -108,16 +68,49 @@
 		<!-- Ehcache -->
 		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.0" conf="runtime"/>
 		
+		<!-- Quartz Scheduler -->
+		<dependency org="com.opensymphony.quartz" name="com.springsource.org.quartz" rev="1.6.2" />
+		
 		<!-- JSR-303 javax.validation -->
-		<dependency org="javax.validation" name="validation-api" rev="1.1.0.Final" conf="runtime">
-			<artifact name="validation-api" type="jar" />
+		<dependency org="javax.validation" name="validation-api" rev="1.1.0.Final" conf="runtime"/>
+		<dependency org="org.hibernate" name="hibernate-validator" rev="5.0.1.Final" conf="runtime"/>
+		<dependency org="com.fasterxml" name="classmate" rev="1.0.0" conf="runtime"/>
+		
+		<!-- HTTP Client -->
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.3.5">
+			<exclude module="httpclient"/>
+			<exclude module="httpclient-cache"/>
+			<exclude module="httpcore"/>
+			<exclude module="httpmime"/>
 		</dependency>
-		<dependency org="org.hibernate" name="hibernate-validator" rev="5.0.1.Final" conf="runtime">
-			<artifact name="hibernate-validator" type="jar" />
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.3.3">
+			<exclude module="httpcore"/>
+			<exclude module="httpcore-nio"/>
 		</dependency>
-		<dependency org="com.fasterxml" name="classmate" rev="1.0.0" conf="runtime">
-			<artifact name="classmate" type="jar" />
-		</dependency>
+		
+		<!-- SN Externals -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.8.0.SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.taglibs.response" rev="1.0.1" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.joda.jsptags" rev="1.1.1" conf="runtime"/>
+    	<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="6.1.26.SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql" rev="1.1.0" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql.jdbc4" rev="9.3.1102.SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.tuckey.urlrewritefilter" rev="4.0.4.SN01" conf="runtime"/>
+		
+		<!-- SN Core -->
+		
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="1.0.0" conf="runtime"/>
+
+		<!-- Global excludes -->
+		<exclude org="org.easymock"/>
+		<exclude org="org.springframework"/>
+		<exclude module="aopalliance"/>
+		<exclude module="commons-logging"/>
+		<exclude module="com.springsource.org.apache.commons.collections"/>
+		<exclude module="com.springsource.org.apache.commons.logging"/>
+		<exclude module="com.springsource.javax.activation"/>
+		<exclude module="slf4j-api"/>
+		<exclude module="jcl-over-slf4j"/>
 		
 	</dependencies>
 </ivy-module>

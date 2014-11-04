@@ -11,55 +11,18 @@
 	<property name="dir.build" value="${basedir}/build"/>
 	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
-	<property name="dir.bundles" value="${dir.build}/bundles"/>
 	
 	<property name="dir.virgo.repo" value="${dir.assemble}/repository/usr"/>
+	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/ext"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
 
+	<property name="ivy.xml" value="${dir.build.lib}/ivy.xml"/>
+	<property name="ivy.conf" value="runtime"/>
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
 	<property name="ivy.cache.ttl.default" value="1d"/>
 	<property name="solarnetwork.archive.url" 
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
-
-	<macrodef name="bundle-iterate">
-		<attribute name="target"/>
-		<sequential>
-			<subant target="@{target}">
-				<property name="dir.dist" value="${dir.bundles}"/>
-				<property name="dir.bundles" value="${dir.bundles}"/>
-				<fileset refid="bundle.build.xml"/>
-			</subant>
-		</sequential>
-	</macrodef>
-	
-	<!-- Note: this is a MUCH slower version of bundle-iterate, but does not run out of RAM -->
-	<macrodef name="bundle-apply">
-		<attribute name="target"/>
-		<sequential>
-			<apply executable="ant"
-					parallel="false"
-					failonerror="yes">
-				<arg value="-Ddir.dist=${dir.assemble}"/>
-				<arg value="-Ddir.bundles=${dir.bundles}"/>
-				<arg value="-f"/>
-				<srcfile/>
-				<arg value="@{target}"/>
-				<fileset refid="bundle.build.xml"/>
-			</apply>
-		</sequential>
-	</macrodef>
-
-	<fileset id="bundle.build.xml" dir="${dir.src.base}" includes="solarnetwork-*/*/build.xml">
-		<scriptselector language="javascript">
-			var regexp = "\\b" +file.getParentFile().getName().replace(".","\\.") +"\\b";
-			var result = (project.getProperty("bundles").search(regexp) !== -1);
-			if ( result ) {
-				java.lang.System.out.println("Including bundle " +file.getParentFile().getName());
-			}
-			self.setSelected(result);
-		</scriptselector>
-	</fileset>
 	
 	<fileset id="plan.set" dir="${dir.src.plans}" includes="*">
 		<scriptselector language="javascript">
@@ -95,28 +58,20 @@
 	
 	<target name="prepare">
 		<mkdir dir="${dir.assemble}"/>
-		<mkdir dir="${dir.bundles}"/>
 		<mkdir dir="${dir.virgo.repo}"/>
+		<mkdir dir="${dir.virgo.repo.plans}"/>
 		<mkdir dir="${dir.virgo.pickup}"/>
 	</target>
 	
-	<target name="jar" description="Create bundle jars" depends="prepare">
-		<bundle-apply target="deploy"/>
-	</target>
-	
-	<target name="clean-jar" description="Clean bundle jars">
-		<bundle-iterate target="clean-full"/>
-	</target>
-
 	<target name="external-jars" depends="ivy-init">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime"/>
+		<ivy:resolve file="${ivy.xml}" conf="${ivy.conf}"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 	</target>
 	
 	<target name="plans" if="plans" depends="prepare">
-		<copy todir="${dir.virgo.repo}">
+		<copy todir="${dir.virgo.repo.plans}">
 			<fileset refid="plan.set"/>
 		</copy>
 	</target>
@@ -127,10 +82,9 @@
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="jar,external-jars,plans,plans-pickup" description="Assemble jars">
+	<target name="assemble" depends="external-jars,plans,plans-pickup" description="Assemble jars">
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
 		<copy todir="${dir.virgo.repo}">
-			<fileset dir="${dir.bundles}" includes="net.solarnetwork.*"/>
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
 		
