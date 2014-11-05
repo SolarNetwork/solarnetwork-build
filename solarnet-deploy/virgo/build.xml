@@ -16,7 +16,7 @@
 	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/ext"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
 
-	<property name="ivy.xml" value="${dir.build.lib}/ivy.xml"/>
+	<property name="ivy.xml" value="ivy.xml"/>
 	<property name="ivy.conf" value="runtime"/>
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
