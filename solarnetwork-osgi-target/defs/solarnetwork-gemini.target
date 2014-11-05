@@ -39,7 +39,7 @@
 <plugin id="com.springsource.org.apache.xml.resolver"/>
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
-<plugin id="com.springsource.org.aspectj.weaver" version="1.7.2.RELEASE"/>
+<plugin id="com.springsource.org.aspectj.weaver"/>
 <plugin id="com.springsource.org.junit"/>
 <plugin id="com.springsource.org.quartz"/>
 <plugin id="com.springsource.org.quartz.source"/>
@@ -98,7 +98,9 @@
 <plugin id="org.apache.servicemix.bundles.spring-test"/>
 <plugin id="org.apache.servicemix.bundles.spring-tx"/>
 <plugin id="org.apache.servicemix.bundles.spring-web"/>
+<plugin id="org.apache.servicemix.bundles.spring-web.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc"/>
+<plugin id="org.apache.servicemix.bundles.spring-webmvc.source"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
 <plugin id="org.apache.taglibs.taglibs-standard-spec"/>
 <plugin id="org.apache.tiles-template"/>
@@ -126,14 +128,14 @@
 <plugin id="org.eclipse.gemini.web.tomcat"/>
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
 <plugin id="org.eclipse.osgi"/>
-<plugin id="org.eclipse.virgo.medic" version="3.6.3.RELEASE"/>
+<plugin id="org.eclipse.virgo.medic"/>
 <plugin id="org.eclipse.virgo.util.common" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.io" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.math" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.osgi" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.parser.manifest" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.web.dm" version="3.6.3.RELEASE"/>
+<plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
 <plugin id="org.jboss.netty"/>
