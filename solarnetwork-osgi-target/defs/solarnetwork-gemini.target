@@ -139,6 +139,10 @@
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
 <plugin id="org.jboss.netty"/>
+<plugin id="org.mybatis.mybatis"/>
+<plugin id="org.mybatis.mybatis-spring"/>
+<plugin id="org.mybatis.mybatis-spring.source"/>
+<plugin id="org.mybatis.mybatis.source"/>
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
 <plugin id="org.slf4j.osgi-over-slf4j"/>
