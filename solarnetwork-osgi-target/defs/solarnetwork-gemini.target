@@ -89,6 +89,7 @@
 <plugin id="org.apache.servicemix.bundles.spring-beans.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-context"/>
 <plugin id="org.apache.servicemix.bundles.spring-context-support"/>
+<plugin id="org.apache.servicemix.bundles.spring-context.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-core"/>
 <plugin id="org.apache.servicemix.bundles.spring-core.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-expression"/>
@@ -128,6 +129,7 @@
 <plugin id="org.eclipse.gemini.web.tomcat"/>
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
 <plugin id="org.eclipse.osgi"/>
+<plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
 <plugin id="org.eclipse.virgo.util.common" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.io" version="3.6.3.RELEASE"/>
