@@ -94,6 +94,7 @@
 <plugin id="org.apache.servicemix.bundles.spring-core.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-expression"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc"/>
+<plugin id="org.apache.servicemix.bundles.spring-jdbc.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-test"/>
