@@ -12,7 +12,8 @@
 		org.apache.catalina.tribes,
 		org.apache.coyote,
 		org.apache.jasper,
-		org.apache.tomcat.util
+		org.apache.tomcat.util,
+		org.apache.tomcat.websocket
 	</property>
 	
 	<property name="log.file" value="/dev/shm/solar/log/solarnode.log"/>
