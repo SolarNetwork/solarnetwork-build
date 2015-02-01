@@ -120,3 +120,21 @@ if [ ! -e ~/git/solarnetwork-node/net.solarnetwork.node.test/environment/local/l
 	cp ~/git/solarnetwork-node/net.solarnetwork.node.test/environment/example/* \
 		~/git/solarnetwork-node/net.solarnetwork.node.test/environment/local/
 fi
+
+psql -d solarnetwork -U solarnet -c 'select count(*) from solarnet.sn_node' >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo 'Creating solarnet database tables...'
+	cd ~/git/solarnetwork-central/net.solarnetwork.central.datum/defs/sql/postgres
+	# for some reason, plv8 often chokes on the inline comments, so strip them out
+	sed -e '/^\/\*/d' -e '/^ \*/d' postgres-init-plv8.sql |psql -d solarnetwork -U solarnet
+	psql -d solarnetwork -U solarnet -f postgres-init.sql
+fi
+
+psql -d solarnet_unittest -U solarnet_test -c 'select count(*) from solarnet.sn_node' >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+	echo 'Creating solarnet_unittest database tables...'
+	cd ~/git/solarnetwork-central/net.solarnetwork.central.datum/defs/sql/postgres
+	# for some reason, plv8 often chokes on the inline comments, so strip them out
+	sed -e '/^\/\*/d' -e '/^ \*/d' postgres-init-plv8.sql |psql -d solarnet_unittest -U solarnet_test
+	psql -d solarnet_unittest -U solarnet_test -f postgres-init.sql
+fi
