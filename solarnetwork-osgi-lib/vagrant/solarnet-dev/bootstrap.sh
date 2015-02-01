@@ -2,7 +2,14 @@
 
 sudo apt-get update
 sudo apt-get install -y xorg fluxbox
-sudo apt-get install -y postgresql-9.3-plv8 git git-flow openjdk-7-jdk
+sudo apt-get install -y postgresql-9.3-plv8 git git-flow openjdk-7-jdk librxtx-java
+
+if [ -e /usr/share/java/RXTXcomm.jar -a -d /usr/lib/jvm/java-7-openjdk-i386/jre/lib/ext \
+		-a ! -e /usr/lib/jvm/java-7-openjdk-i386/jre/lib/ext/RXTXcomm.jar ]; then
+	echo 'Linking RXTX JAR to JRE...'
+	sudo ln -s /usr/share/java/RXTXcomm.jar \
+		/usr/lib/jvm/java-7-openjdk-i386/jre/lib/ext/RXTXcomm.jar
+fi
 
 # Add the solardev user if it doesn't already exist, password solardev
 getent passwd solardev >/dev/null
