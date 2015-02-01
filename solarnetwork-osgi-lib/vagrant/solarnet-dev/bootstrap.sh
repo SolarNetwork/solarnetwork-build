@@ -1,9 +1,9 @@
 #!/bin/sh
 
-#sudo apt-get update
-#sudo apt-get install -y xorg fluxbox
-#sudo apt-get install -y postgresql-9.3-plv8 git git-flow openjdk-7-jdk
-#sudo apt-get install -y --no-install-recommends eclipse eclipse-egit
+sudo apt-get update
+sudo apt-get install -y xorg fluxbox
+sudo apt-get install -y postgresql-9.3-plv8 git git-flow openjdk-7-jdk
+sudo apt-get install -y --no-install-recommends eclipse eclipse-egit
 
 # Add the solardev user if it doesn't already exist, password solardev
 getent passwd solardev >/dev/null
