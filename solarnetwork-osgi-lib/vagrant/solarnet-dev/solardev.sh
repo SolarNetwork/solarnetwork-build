@@ -21,14 +21,25 @@ fi
 # Setup Eclipse
 eclipseDownload=/var/tmp/eclipse.tgz
 eclipseDownloadMD5=7385aaff4872800153ebc90d8c92e707
-if [ ! -e "$eclipseDownload" -o `md5sum $eclipseDownload |cut -d' ' -f1` != "$eclipseDownloadMD5" ]; then
-	echo 'Downloading Eclipse Luna...'
-	wget -c -O $eclipseDownload http://mirrors.ibiblio.org/eclipse/technology/epp/downloads/release/luna/SR1a/eclipse-jee-luna-SR1a-linux-gtk.tar.gz
+eclipseDownloadHash=
+if [ -e "$eclipseDownload" ]; then
+	eclipseDownloadHash=`md5sum $eclipseDownload |cut -d' ' -f1`
 fi
-
+if [ "$eclipseDownloadHash" != "$eclipseDownloadMD5" ]; then
+	echo 'Downloading Eclipse Luna...'
+	#wget -c -O $eclipseDownload -nv http://mirrors.ibiblio.org/eclipse/technology/epp/downloads/release/luna/SR1a/eclipse-jee-luna-SR1a-linux-gtk.tar.gz
+	curl -C - -s -S -o $eclipseDownload http://mirrors.ibiblio.org/eclipse/technology/epp/downloads/release/luna/SR1a/eclipse-jee-luna-SR1a-linux-gtk.tar.gz
+fi
+if [ -e "$eclipseDownload" ]; then
+	eclipseDownloadHash=`md5sum $eclipseDownload |cut -d' ' -f1`
+fi
 if [ ! -d ~/eclipse -a -e "$eclipseDownload" ]; then
-	echo "Installing Eclipse Luna..."
-	tar -C ~/ -xzf "$eclipseDownload"
+	if [ "$eclipseDownloadHash" = "$eclipseDownloadMD5" ]; then
+		echo "Installing Eclipse Luna..."
+		tar -C ~/ -xzf "$eclipseDownload"
+	else
+		echo 'Eclipse Luna not completely downloaded, cannot install.'
+	fi
 fi
 
 # Install EGit
