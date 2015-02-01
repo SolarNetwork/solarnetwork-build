@@ -24,8 +24,6 @@
 <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
 <plugin id="com.fasterxml.jackson.datatype.jackson-datatype-joda"/>
 <plugin id="com.google.guava"/>
-<plugin id="com.springsource.com.ibatis"/>
-<plugin id="com.springsource.com.ibatis.source"/>
 <plugin id="com.springsource.javax.activation"/>
 <plugin id="com.springsource.net.sf.ehcache"/>
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
