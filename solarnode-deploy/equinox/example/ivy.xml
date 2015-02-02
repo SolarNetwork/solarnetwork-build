@@ -60,7 +60,6 @@
 		
 		<!-- SolarNetwork Core -->
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release" conf="core"/>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag.cachefix" rev="latest.release" conf="core"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release" conf="core">
 			<exclude module="derby"/>
 			<exclude org="org.osgi"/>
