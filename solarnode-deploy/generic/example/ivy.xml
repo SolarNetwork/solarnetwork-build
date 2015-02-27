@@ -20,7 +20,10 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 		
 		<!-- SolarNode basic support (this needed for most any deployment) -->
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby.ext" rev="latest.release"/>
@@ -48,6 +51,7 @@
 
 		<!-- Global excludes provided by the base system -->
 		<exclude artifact="net.solarnetwork.external.net.sf.packtag"/>
+		<exclude artifact="net.solarnetwork.external.net.sf.packtag.cachefix"/>
 		<exclude artifact="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
 		<exclude artifact="net.solarnetwork.external.org.mortbay.jetty"/>
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
