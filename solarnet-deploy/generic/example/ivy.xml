@@ -7,12 +7,14 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 		
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release"/>
 
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common" rev="latest.release"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.dao.ibatis" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.dao.jdbc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.dao.mybatis" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail.javamail" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.security" rev="latest.release"/>
@@ -23,7 +25,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.agg" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.aop" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.ibatis" rev="latest.release"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release"/>
 
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz.dao" rev="latest.release"/>
@@ -32,7 +34,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.aop" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.biz.dao" rev="latest.release"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.dao.ibatis" rev="latest.release"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.dao.mybatis" rev="latest.release"/>
 
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.aop" rev="latest.release"/>
@@ -44,9 +46,19 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.aop" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.biz.dao" rev="latest.release"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.ibatis" rev="latest.release"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.mybatis" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release"/>
+
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.viz.web" rev="latest.release"/>
+		
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.taglibs.response" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.joda.jsptags" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql.jdbc4" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.tuckey.urlrewritefilter" rev="latest.release"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
@@ -58,19 +70,21 @@
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.ehcache"/>
 		<exclude org="net.sf.supercsv"/>
-		<exclude org="net.solarnetwork.external"/>
+		<exclude module="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
 		<exclude org="org.aopalliance"/>
 		<exclude org="org.apache.derby"/>
 		<exclude org="org.apache.felix"/>
-		<exclude org="org.apache.ibatis"/>
+		<exclude org="org.apache.httpcomponents"/>
+		<exclude org="org.apache.servicemix.bundles"/>
 		<exclude org="org.apache.taglibs"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.aspectj"/>
 		<exclude org="org.bouncycastle"/>
 		<exclude org="org.codehaus.jackson"/>
+		<exclude org="org.eclipse.gemini"/>
 		<exclude org="org.joda"/>
 		<exclude org="org.hibernate"/>
-		<exclude org="org.apache.httpcomponents"/>
+		<exclude org="org.mybatis"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
