@@ -17,15 +17,10 @@
 <plugin id="bcprov"/>
 <plugin id="bcprov.source"/>
 <plugin id="classmate"/>
-<plugin id="com.codahale.metrics.core"/>
-<plugin id="com.datastax.driver.core"/>
 <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
 <plugin id="com.fasterxml.jackson.core.jackson-core"/>
 <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
 <plugin id="com.fasterxml.jackson.datatype.jackson-datatype-joda"/>
-<plugin id="com.google.guava"/>
-<plugin id="com.springsource.com.ibatis"/>
-<plugin id="com.springsource.com.ibatis.source"/>
 <plugin id="com.springsource.javax.activation"/>
 <plugin id="com.springsource.net.sf.ehcache"/>
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
@@ -89,10 +84,12 @@
 <plugin id="org.apache.servicemix.bundles.spring-beans.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-context"/>
 <plugin id="org.apache.servicemix.bundles.spring-context-support"/>
+<plugin id="org.apache.servicemix.bundles.spring-context.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-core"/>
 <plugin id="org.apache.servicemix.bundles.spring-core.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-expression"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc"/>
+<plugin id="org.apache.servicemix.bundles.spring-jdbc.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-test"/>
@@ -128,6 +125,7 @@
 <plugin id="org.eclipse.gemini.web.tomcat"/>
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
 <plugin id="org.eclipse.osgi"/>
+<plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
 <plugin id="org.eclipse.virgo.util.common" version="3.6.3.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.io" version="3.6.3.RELEASE"/>
@@ -138,7 +136,10 @@
 <plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
-<plugin id="org.jboss.netty"/>
+<plugin id="org.mybatis.mybatis"/>
+<plugin id="org.mybatis.mybatis-spring"/>
+<plugin id="org.mybatis.mybatis-spring.source"/>
+<plugin id="org.mybatis.mybatis.source"/>
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
 <plugin id="org.slf4j.osgi-over-slf4j"/>

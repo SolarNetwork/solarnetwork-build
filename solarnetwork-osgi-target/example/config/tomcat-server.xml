@@ -16,9 +16,7 @@
 		-->
 		
 		<Engine name="Catalina" defaultHost="localhost">
-			<Host name="localhost" unpackWARs="false" autoDeploy="false"
-				liveDeploy="false" deployOnStartup="false" xmlValidation="false"
-				xmlNamespaceAware="false">
+			<Host name="localhost" unpackWARs="false" autoDeploy="false" deployOnStartup="false">
 				<!--  For SolarDRAS support:
 				<Realm className="net.solarnetwork.common.web.catalina.OsgiDataSourceRealm"
 					dataSourceName="(db=central)" 
