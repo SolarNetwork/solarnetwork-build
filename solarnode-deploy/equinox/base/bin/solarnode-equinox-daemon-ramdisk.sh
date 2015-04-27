@@ -138,11 +138,11 @@ setup_ini () {
 
 # function to start up process
 do_start () {
+	# Verify ram dir exists; create if necessary
+	setup_dir ${RAM_DIR}
+	
 	if ! ${DAEMON_CMD} --running; then
 		echo -n "Starting SolarNode server... "
-		# Verify ram dir exists; create if necessary
-		setup_dir ${RAM_DIR}
-		
 		# Verify tmp dir exists; create if necessary
 		setup_dir ${TMP_DIR}
 		
