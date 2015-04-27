@@ -73,28 +73,34 @@ EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
 APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR}"
 JVM_ARGS="-Xmx64m -Djava.io.tmpdir=${TMP_DIR}"
+LD_PATH=""
+STOP_TRIES=5
 
 # NOTE: for debugging support, add these flags:
 #JVM_ARGS="-Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=n"
-
-# NOTE: this supports Debian JNI, such as RXTX
-if [ -d /usr/lib/jni ]; then
-	JVM_ARGS="${JVM_ARGS} -Djava.library.path=/usr/lib/jni"
-fi
-
-# NOTE: this supports local JNI, such as YASDI
-if [ -d ${SOLARNODE_HOME}/lib ]; then
-	JVM_ARGS="${JVM_ARGS} -Djava.library.path=${SOLARNODE_HOME}/lib"
-fi
-
-JAVA_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
-STOP_TRIES=5
 
 DAEMON_NAME="SolarNode"
 DAEMON_CMD="${DAEMON} --name=${DAEMON_NAME} --pidfile=${PID_FILE} --chdir=${SOLARNODE_HOME} --output=daemon.info --respawn --acceptable=20 --attempts=5 --delay=10"
 if [ -n "${RUNAS}" ]; then
 	DAEMON_CMD="${DAEMON_CMD} --user=${RUNAS}"
 fi
+
+# NOTE: this supports Debian JNI, such as RXTX
+if [ -d /usr/lib/jni ]; then
+	LD_PATH="${LD_PATH}:/usr/lib/jni"
+fi
+
+# NOTE: this supports local JNI, such as YASDI
+if [ -d ${SOLARNODE_HOME}/lib ]; then
+	LD_PATH="${LD_PATH}:${SOLARNODE_HOME}/lib"
+fi
+
+if [ -n "${LD_PATH}" ]; then
+	JVM_ARGS="${JVM_ARGS} -Djava.library.path=${LD_PATH#:}"
+	DAEMON_CMD="${DAEMON_CMD} --inherit --env=\"LD_LIBRARY_PATH=${LD_PATH#:}\""
+fi
+
+JAVA_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
 
 # function to create directory if doesn't already exist
 setup_dir () {
