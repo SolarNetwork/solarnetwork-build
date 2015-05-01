@@ -19,6 +19,8 @@ ExecStart=/usr/bin/java -Xmx64m -Djava.io.tmpdir=${RAM_DIR}/tmp \
 ExecStartPre=/bin/sh /usr/share/solarnode/utilities.sh start
 ExecStopPost=/bin/sh /usr/share/solarnode/utilities.sh stop
 SuccessExitStatus=143
+Restart=always
+RestartSec=1
 
 [Install]
 WantedBy=multi-user.target
