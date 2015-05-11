@@ -77,7 +77,12 @@ case $1 in
 		;;
 
 	stop)
-		do_sync
+		exit_status=`systemctl show solarnode.service --no-pager |grep ExecMainStatus |cut -d= -f2`
+		if [ $exit_status -eq 0 -o $exit_status -eq 143 ]; then
+			do_sync
+		else
+			echo "Database NOT synced to backup dir after error exit status ($exit_status)."
+		fi
 		;;
 
 	*)
