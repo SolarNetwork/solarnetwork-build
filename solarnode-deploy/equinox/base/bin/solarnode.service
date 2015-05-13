@@ -7,11 +7,12 @@ Description=The SolarNode server.
 Type=simple
 Environment=LD_LIBRARY_PATH=/usr/lib/jni:/home/solar/lib
 Environment=SOLAR_HOME=/home/solar
-Environment=RAM_DIR=/run/shm/solar
+Environment=RAM_DIR=/dev/shm/solar
 User=solar
 Group=solar
 WorkingDirectory=/home/solar
-ExecStart=/usr/bin/java -Xmx64m -Djava.io.tmpdir=${RAM_DIR}/tmp \
+ExecStart=/usr/bin/java -Xmx96m -Djava.io.tmpdir=${RAM_DIR}/tmp \
+	-Djava.net.preferIPv4Stack=true \
 	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
 	-Dsn.home=${SOLAR_HOME} -Dderby.system.home=${RAM_DIR}/db \
 	-jar ${SOLAR_HOME}/app/org.eclipse.osgi-3.8.2.v20130124-134944.jar \
