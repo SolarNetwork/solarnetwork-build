@@ -3,7 +3,7 @@
 # Utilities for managing the SolarNode server
 
 SOLARNODE_HOME=/home/solar
-RAM_DIR=/run/shm/solar
+RAM_DIR=/dev/shm/solar
 
 TMP_DIR=${RAM_DIR}/tmp
 LOG_DIR=${RAM_DIR}/log
