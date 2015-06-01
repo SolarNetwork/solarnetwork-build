@@ -61,7 +61,8 @@
 <plugin id="org.apache.catalina.tribes"/>
 <plugin id="org.apache.commons.fileupload"/>
 <plugin id="org.apache.commons.io"/>
-<plugin id="org.apache.commons.lang3"/>
+<plugin id="org.apache.commons.lang3" version="3.4.0"/>
+<plugin id="org.apache.commons.lang3.source"/>
 <plugin id="org.apache.coyote"/>
 <plugin id="org.apache.el"/>
 <plugin id="org.apache.felix.bundlerepository"/>

@@ -236,6 +236,7 @@
 		<include name="css/**"/>
 		<include name="images/**"/>
 		<include name="img/**"/>
+		<include name="fonts/**"/>
 		<include name="js/**"/>
 		<include name="js-lib/**"/>
 		<include name="style/**"/>

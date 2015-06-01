@@ -160,10 +160,8 @@
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
 			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
-		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/server.xml"/>
-		<symlink
-			link="${dir.assemble}/conf/server.xml"
-			resource="../app/core/org.eclipse.gemini.web.tomcat.config/META-INF/tomcat/server.xml" />
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
+		<symlink link="${dir.assemble}/config" resource="conf" />
 	</target>
 	
 	<target name="app-foo" depends="ivy-init,assemble-prepare">
@@ -192,6 +190,7 @@
 			<arg value="app"/>
 			<arg value="bin"/>
 			<arg value="conf"/>
+			<arg value="config"/>
 			<arg value="var"/>
 		</exec>
 	</target>
