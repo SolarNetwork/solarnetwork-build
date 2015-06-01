@@ -23,6 +23,7 @@
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
@@ -63,10 +64,12 @@
 		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.derby"/>
 		<exclude org="org.apache.felix"/>
+		<exclude org="org.apache.servicemix.bundles"/>
 		<exclude org="org.apache.taglibs"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.bouncycastle"/>
 		<exclude org="org.codehaus.jackson"/>
+		<exclude org="org.eclipse.gemini"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
