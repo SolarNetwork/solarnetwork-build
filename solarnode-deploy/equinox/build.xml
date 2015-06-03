@@ -150,12 +150,6 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
-		<copy todir="${dir.assemble}/app/core" filtering="no">
-			<fileset dir="${dir.runtime.lib}/app-core" includes="**/*.jar"/>
-		</copy>
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.runtime.lib}/app-core" includes="**" excludes="**/*.jar"/>
-		</copy>
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
