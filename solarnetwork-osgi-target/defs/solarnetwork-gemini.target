@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="466">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="470">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -39,6 +39,7 @@
 <plugin id="com.springsource.org.junit"/>
 <plugin id="com.springsource.org.quartz"/>
 <plugin id="com.springsource.org.quartz.source"/>
+<plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
 <plugin id="derby"/>
 <plugin id="javax.annotation"/>
 <plugin id="javax.ejb"/>
@@ -94,6 +95,7 @@
 <plugin id="org.apache.juli.extras"/>
 <plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
+<plugin id="org.apache.servicemix.bundles.asm"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
 <plugin id="org.apache.servicemix.bundles.spring-aspects"/>
 <plugin id="org.apache.servicemix.bundles.spring-beans"/>
