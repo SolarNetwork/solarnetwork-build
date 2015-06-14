@@ -150,6 +150,9 @@ org.osgi.framework.system.packages = \
  javax.xml.ws.soap;version="2.1.1",\
  javax.xml.ws.spi,\
  javax.xml.ws.spi;version="2.1.1",\
+ javax.xml.ws.spi.http,\
+ javax.xml.ws.spi.http;version="2.1.1",\
+ javax.xml.ws.wsaddressing,\
  javax.xml.ws.wsaddressing;version="2.1.1",\
  javax.xml.xpath,\
  org.eclipse.virgo.kernel.equinox.extensions,\
