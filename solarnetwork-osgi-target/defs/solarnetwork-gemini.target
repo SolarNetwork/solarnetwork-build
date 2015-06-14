@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="415">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="466">
 <locations>
+<location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
+<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
+<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-blueprint}" type="Directory"/>
+<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web}" type="Directory"/>
+<location path="${workspace_loc:/solarnetwork-osgi-target/spring}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/platform}" type="Directory"/>
+<location path="${workspace_loc:/solarnetwork-osgi-target/cxf}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/source}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/unit-test}" type="Directory"/>
-<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web}" type="Directory"/>
-<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/virgo}" type="Directory"/>
-<location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
-<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-blueprint}" type="Directory"/>
-<location path="${workspace_loc:/solarnetwork-osgi-target/spring}" type="Directory"/>
 </locations>
 <includeBundles>
 <plugin id="bcpkix"/>
@@ -51,6 +52,7 @@
 <plugin id="javax.websocket"/>
 <plugin id="javax.xml.rpc"/>
 <plugin id="javax.xml.soap"/>
+<plugin id="jaxb-api"/>
 <plugin id="jcl.over.slf4j"/>
 <plugin id="joda-time"/>
 <plugin id="log4j"/>
@@ -61,9 +63,21 @@
 <plugin id="org.apache.catalina.tribes"/>
 <plugin id="org.apache.commons.fileupload"/>
 <plugin id="org.apache.commons.io"/>
-<plugin id="org.apache.commons.lang3" version="3.4.0"/>
+<plugin id="org.apache.commons.lang3"/>
 <plugin id="org.apache.commons.lang3.source"/>
 <plugin id="org.apache.coyote"/>
+<plugin id="org.apache.cxf.cxf-core"/>
+<plugin id="org.apache.cxf.cxf-core.sources"/>
+<plugin id="org.apache.cxf.cxf-rt-bindings-soap"/>
+<plugin id="org.apache.cxf.cxf-rt-bindings-xml"/>
+<plugin id="org.apache.cxf.cxf-rt-databinding-jaxb"/>
+<plugin id="org.apache.cxf.cxf-rt-frontend-jaxws"/>
+<plugin id="org.apache.cxf.cxf-rt-frontend-jaxws.sources"/>
+<plugin id="org.apache.cxf.cxf-rt-frontend-simple"/>
+<plugin id="org.apache.cxf.cxf-rt-transports-http"/>
+<plugin id="org.apache.cxf.cxf-rt-ws-addr"/>
+<plugin id="org.apache.cxf.cxf-rt-ws-policy"/>
+<plugin id="org.apache.cxf.cxf-rt-wsdl"/>
 <plugin id="org.apache.el"/>
 <plugin id="org.apache.felix.bundlerepository"/>
 <plugin id="org.apache.felix.bundlerepository.source"/>
@@ -78,6 +92,7 @@
 <plugin id="org.apache.httpcomponents.httpcore"/>
 <plugin id="org.apache.jasper"/>
 <plugin id="org.apache.juli.extras"/>
+<plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
 <plugin id="org.apache.servicemix.bundles.spring-aspects"/>
@@ -99,6 +114,8 @@
 <plugin id="org.apache.servicemix.bundles.spring-web.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc.source"/>
+<plugin id="org.apache.servicemix.bundles.wsdl4j"/>
+<plugin id="org.apache.servicemix.specs.stax-api-1.0"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
 <plugin id="org.apache.taglibs.taglibs-standard-spec"/>
 <plugin id="org.apache.tiles-template"/>
@@ -111,6 +128,7 @@
 <plugin id="org.apache.tomcat.api"/>
 <plugin id="org.apache.tomcat.util"/>
 <plugin id="org.apache.tomcat.websocket"/>
+<plugin id="org.apache.ws.xmlschema.core"/>
 <plugin id="org.easymock"/>
 <plugin id="org.easymock.source"/>
 <plugin id="org.eclipse.equinox.cm"/>
@@ -128,12 +146,12 @@
 <plugin id="org.eclipse.osgi"/>
 <plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
-<plugin id="org.eclipse.virgo.util.common" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.io" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.math" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.osgi" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.6.3.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.parser.manifest" version="3.6.3.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.common"/>
+<plugin id="org.eclipse.virgo.util.io"/>
+<plugin id="org.eclipse.virgo.util.math"/>
+<plugin id="org.eclipse.virgo.util.osgi"/>
+<plugin id="org.eclipse.virgo.util.osgi.manifest"/>
+<plugin id="org.eclipse.virgo.util.parser.manifest"/>
 <plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
@@ -156,6 +174,8 @@
 <plugin id="osgi.enterprise"/>
 <plugin id="slf4j.api"/>
 <plugin id="slf4j.log4j12"/>
+<plugin id="stax2-api"/>
+<plugin id="woodstox-core-asl"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 <launcherArgs>
