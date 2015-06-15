@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+	<!-- CXF -->
+
+	<system
+		systemId="http://cxf.apache.org/schemas/configuration/cxf-beans.xsd"
+		uri="cxf-beans.xsd"/>
+
+	<system
+		systemId="http://cxf.apache.org/schemas/jaxws.xsd"
+		uri="jaxws.xsd"/>
+
+</catalog>
