@@ -2,6 +2,7 @@
 
 	<property file="${basedir}/build.properties"/>
 	
+	<property name="ivy.file" value="${basedir}/ivy.xml"/>
 	<property name="dir.src.base" value="${basedir}/../../.."/>
 	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.build" value="${basedir}/build"/>
@@ -31,7 +32,7 @@
 	
 	<target name="jars" depends="ivy-init,prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="runtime" refresh="${ivy.resolve.refresh}"/>
+		<ivy:resolve file="${ivy.file}" conf="runtime" refresh="${ivy.resolve.refresh}"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.jars}/[artifact]-[revision].[ext]"/>
 	</target>
 	
