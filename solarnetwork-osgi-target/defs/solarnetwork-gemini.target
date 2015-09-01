@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="470">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="474">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -128,6 +128,8 @@
 <plugin id="org.apache.tiles.servlet"/>
 <plugin id="org.apache.tiles.servlet.wildcard"/>
 <plugin id="org.apache.tomcat.api"/>
+<plugin id="org.apache.tomcat.jdbc"/>
+<plugin id="org.apache.tomcat.jdbc.source"/>
 <plugin id="org.apache.tomcat.util"/>
 <plugin id="org.apache.tomcat.websocket"/>
 <plugin id="org.apache.ws.xmlschema.core"/>
