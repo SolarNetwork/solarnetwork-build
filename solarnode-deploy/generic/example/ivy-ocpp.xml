@@ -33,6 +33,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.json" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.obr" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
 		
