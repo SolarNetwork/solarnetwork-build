@@ -67,21 +67,21 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release" conf="core"/>
 	
 		<!-- Gemini Web -->
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
@@ -168,15 +168,15 @@
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="core"/>
 		
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="3.2.11.RELEASE_1" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="3.2.11.RELEASE_1">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="3.2.14.RELEASE_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="3.2.14.RELEASE_1">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -187,7 +187,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="3.2.11.RELEASE_1_SN01">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="3.2.14.RELEASE_1">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>

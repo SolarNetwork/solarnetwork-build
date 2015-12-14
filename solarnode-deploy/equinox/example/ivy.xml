@@ -67,21 +67,21 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release" conf="core"/>
 	
 		<!-- Gemini Web -->
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="2.2.6.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="2.2.7.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
