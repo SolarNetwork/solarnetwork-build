@@ -41,9 +41,17 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
 		
-		<!-- OCPP Support -->
+		<!-- OCPP/Meter Support -->		
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.gnu.trove" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.wimpi.modbus" rev="latest.release"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp.client" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.hc.em5600" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.jf2.lata" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.simple" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.hc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.rfid" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.serial" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp.auth" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp.charge" rev="latest.release"/>
