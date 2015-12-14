@@ -197,7 +197,7 @@ org.osgi.framework.system.packages = \
  org.w3c.dom.ranges,\
  org.w3c.dom.stylesheets,\
  org.w3c.dom.traversal,\
- org.w3c.dom.views ,\
+ org.w3c.dom.views,\
  org.w3c.dom.xpath,\
  org.xml.sax,\
  org.xml.sax.ext,\
@@ -205,6 +205,8 @@ org.osgi.framework.system.packages = \
 org.osgi.framework.bootdelegation = \
  org.eclipse.virgo.nano.authentication,\
  com.sun.*,\
+ javax.crypto,\
+ javax.crypto.*,\
  javax.xml.*,\
  org.apache.xerces.jaxp.*,\
  org.w3c.*,\
