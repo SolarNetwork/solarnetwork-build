@@ -278,21 +278,22 @@
     	</dependency>
 
 		<!-- CXF-->
-		<dependency org="org.apache.cxf" name="cxf-core" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-bindings-soap" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-bindings-xml" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-databinding-jaxb" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-frontend-jaxws" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-frontend-simple" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-transports-http" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-ws-addr" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-ws-policy" rev="3.0.5"/>
-		<dependency org="org.apache.cxf" name="cxf-rt-wsdl" rev="3.0.5"/>
-		<dependency org="javax.xml.bind" name="jaxb-api" rev="2.2.12" />
+		<dependency org="org.apache.cxf" name="cxf-core" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-bindings-soap" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-bindings-xml" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-databinding-jaxb" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-frontend-jaxws" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-frontend-simple" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-transports-http" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-ws-addr" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-ws-policy" rev="3.0.7"/>
+		<dependency org="org.apache.cxf" name="cxf-rt-wsdl" rev="3.0.7"/>
 		<dependency org="org.apache.neethi" name="neethi" rev="3.0.3" />
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.asm" rev="3.3.1_1" />
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.asm" rev="3.3.1_1" />		 
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.jaxb-impl" rev="2.2.11_1" />
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.wsdl4j" rev="1.6.3_1" />
-		<dependency org="org.apache.servicemix.specs" name="org.apache.servicemix.specs.stax-api-1.0" rev="2.4.0" />
+		<dependency org="org.apache.servicemix.specs" name="org.apache.servicemix.specs.jaxb-api-2.2" rev="2.5.0" />
+		<dependency org="org.apache.servicemix.specs" name="org.apache.servicemix.specs.stax-api-1.0" rev="2.5.0" />
 		<dependency org="org.codehaus.woodstox" name="stax2-api" rev="3.1.4" />
 		<dependency org="org.codehaus.woodstox" name="woodstox-core-asl" rev="4.4.1" />
 		<dependency org="org.apache.ws.xmlschema" name="xmlschema-core" rev="2.2.1" />
