@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="474">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="478">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -172,7 +172,8 @@
 <plugin id="org.springframework.security.config"/>
 <plugin id="org.springframework.security.core"/>
 <plugin id="org.springframework.security.taglibs"/>
-<plugin id="org.springframework.security.web"/>
+<plugin id="org.springframework.security.web" version="3.1.4.RELEASE"/>
+<plugin id="org.springframework.security.web.source"/>
 <plugin id="org.springframework.webflow"/>
 <plugin id="osgi.cmpn"/>
 <plugin id="osgi.enterprise"/>
