@@ -14,20 +14,21 @@
 	<artifact type="bundle" name="net.solarnetwork.central.datum.dao.mybatis" version="[2.0,3.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.dao.mybatis" version="[1.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.dao.mybatis" version="[1.0,2.0)"/>
-	
+
 	<!-- Datum -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.aop" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.datum.biz.dao" version="[1.0,2.0)"/>
-
+	
  	<!-- SolarIn -->
 	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.0,2.0)"/>
+	<!--
 	<artifact type="bundle" name="net.solarnetwork.central.in.web" version="[1.0,2.0)"/>
+	-->
 
-	<!-- Scheduler -->
-	<artifact type="bundle" name="net.solarnetwork.central.datum.agg" version="[1.0,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.instructor.jobs" version="[1.0,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.user.alerts" version="[1.0,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.scheduler.quartz" version="[1.0,2.0)"/>
+	<!-- SolarQuery -->
+	<artifact type="bundle" name="net.solarnetwork.central.query.aop" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.query.biz.dao" version="[2.0,3.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.query.web" version="[2.0,3.0)"/>
 
 	<!-- SolarUser -->
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.aop" version="[1.0,2.0)"/>
@@ -35,8 +36,9 @@
 	<artifact type="bundle" name="net.solarnetwork.central.user.aop" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.pki.dogtag" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.0,2.0)"/>
-	<!--
 	<artifact type="bundle" name="net.solarnetwork.central.user.web" version="[1.0,2.0)"/>
-	-->
+
+	<!-- SolarViz -->
+	<artifact type="bundle" name="net.solarnetwork.central.viz.web" version="[1.0,2.0)"/>
 
 </plan>
