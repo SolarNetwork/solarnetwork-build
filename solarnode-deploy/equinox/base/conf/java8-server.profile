@@ -98,17 +98,17 @@ org.osgi.framework.system.packages = \
  javax.xml,\
  javax.xml;version="1.0.1",\
  javax.xml.bind,\
- javax.xml.bind;version="2.0",\
+ javax.xml.bind;version="2.2.8",\
  javax.xml.bind.annotation,\
- javax.xml.bind.annotation;version="2.0",\
+ javax.xml.bind.annotation;version="2.2.8",\
  javax.xml.bind.annotation.adapters,\
- javax.xml.bind.annotation.adapters;version="2.0",\
+ javax.xml.bind.annotation.adapters;version="2.2.8",\
  javax.xml.bind.attachment,\
- javax.xml.bind.attachment;version="2.0",\
+ javax.xml.bind.attachment;version="2.2.8",\
  javax.xml.bind.helpers,\
- javax.xml.bind.helpers;version="2.0",\
+ javax.xml.bind.helpers;version="2.2.8",\
  javax.xml.bind.util,\
- javax.xml.bind.util;version="2.0",\
+ javax.xml.bind.util;version="2.2.8",\
  javax.xml.crypto,\
  javax.xml.crypto;version="1.0",\
  javax.xml.crypto.dom,\
@@ -139,21 +139,21 @@ org.osgi.framework.system.packages = \
  javax.xml.transform.stream,\
  javax.xml.validation,\
  javax.xml.ws,\
- javax.xml.ws;version="2.1.1",\
+ javax.xml.ws;version="2.2.8",\
  javax.xml.ws.handler,\
- javax.xml.ws.handler;version="2.1.1",\
+ javax.xml.ws.handler;version="2.2.8",\
  javax.xml.ws.handler.soap,\
- javax.xml.ws.handler.soap;version="2.1.1",\
+ javax.xml.ws.handler.soap;version="2.2.8",\
  javax.xml.ws.http,\
- javax.xml.ws.http;version="2.1.1",\
+ javax.xml.ws.http;version="2.2.8",\
  javax.xml.ws.soap,\
- javax.xml.ws.soap;version="2.1.1",\
+ javax.xml.ws.soap;version="2.2.8",\
  javax.xml.ws.spi,\
- javax.xml.ws.spi;version="2.1.1",\
+ javax.xml.ws.spi;version="2.2.8",\
  javax.xml.ws.spi.http,\
- javax.xml.ws.spi.http;version="2.1.1",\
+ javax.xml.ws.spi.http;version="2.2.8",\
  javax.xml.ws.wsaddressing,\
- javax.xml.ws.wsaddressing;version="2.1.1",\
+ javax.xml.ws.wsaddressing;version="2.2.8",\
  javax.xml.xpath,\
  org.eclipse.virgo.kernel.equinox.extensions,\
  org.eclipse.virgo.kernel.equinox.extensions;version="3.6.3",\
@@ -215,9 +215,29 @@ org.osgi.framework.bootdelegation = \
 org.osgi.framework.executionenvironment = \
  OSGi/Minimum-1.0,\
  OSGi/Minimum-1.1,\
+ OSGi/Minimum-1.2,\
+ JavaSE/compact1-1.8,\
+ JavaSE/compact2-1.8,\
+ JavaSE/compact3-1.8,\
+ JRE-1.1,\
  J2SE-1.2,\
  J2SE-1.3,\
  J2SE-1.4,\
  J2SE-1.5,\
- JavaSE-1.6
-osgi.java.profile.name = Virgo-Java6
+ JavaSE-1.6,\
+ JavaSE-1.7,\
+ JavaSE-1.8
+org.osgi.framework.system.capabilities = \
+ osgi.ee; osgi.ee="OSGi/Minimum"; version:List<Version>="1.0, 1.1, 1.2",\
+ osgi.ee; osgi.ee="JRE"; version:List<Version>="1.0, 1.1",\
+ osgi.ee; osgi.ee="JavaSE"; version:List<Version>="1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8",\
+ osgi.ee; osgi.ee="JavaSE/compact1"; version:List<Version>="1.8",\
+ osgi.ee; osgi.ee="JavaSE/compact2"; version:List<Version>="1.8",\
+ osgi.ee; osgi.ee="JavaSE/compact3"; version:List<Version>="1.8"
+org.eclipse.jdt.core.compiler.compliance=1.8
+org.eclipse.jdt.core.compiler.source=1.8
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
+osgi.java.profile.name = Virgo-Java8

@@ -16,6 +16,7 @@
 		org.apache.tomcat.websocket
 	</property>
 	
+	<property name="ivy.file" value="${basedir}/ivy.xml"/>
 	<property name="log.file" value="/dev/shm/solar/log/solarnode.log"/>
 	<property name="dir.runtime.lib" value="../lib"/>
 	<property name="dir.base" value="base"/>
@@ -68,7 +69,7 @@
 	
 	<target name="app-boot" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="boot"/>
+		<ivy:resolve file="${ivy.file}" conf="boot"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
@@ -142,19 +143,13 @@
 	
 	<target name="app-core" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="core,gemini"/>
+		<ivy:resolve file="${ivy.file}" conf="core,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
-		</copy>
-		<copy todir="${dir.assemble}/app/core" filtering="no">
-			<fileset dir="${dir.runtime.lib}/app-core" includes="**/*.jar"/>
-		</copy>
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.runtime.lib}/app-core" includes="**" excludes="**/*.jar"/>
 		</copy>
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
@@ -167,7 +162,7 @@
 	<target name="app-foo" depends="ivy-init,assemble-prepare">
 		<mkdir dir="${dir.assemble}/app/foo"/>
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${basedir}/ivy.xml" conf="foo"/>
+		<ivy:resolve file="${ivy.file}" conf="foo"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
