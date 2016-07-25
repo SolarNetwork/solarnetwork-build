@@ -73,7 +73,7 @@ EQUINOX_JAR=org.eclipse.osgi-3.8.2.v20130124-134944.jar
 EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
-APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE}"
+APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE} -Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties"
 JVM_ARGS="-Xmx64m -Djava.io.tmpdir=${TMP_DIR}"
 
 # NOTE: for Java 6, these flags add these flags per https://bugs.eclipse.org/bugs/show_bug.cgi?id=359535

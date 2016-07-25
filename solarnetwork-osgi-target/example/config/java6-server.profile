@@ -150,12 +150,15 @@ org.osgi.framework.system.packages = \
  javax.xml.ws.soap;version="2.1.1",\
  javax.xml.ws.spi,\
  javax.xml.ws.spi;version="2.1.1",\
+ javax.xml.ws.spi.http,\
+ javax.xml.ws.spi.http;version="2.1.1",\
+ javax.xml.ws.wsaddressing,\
  javax.xml.ws.wsaddressing;version="2.1.1",\
  javax.xml.xpath,\
  org.eclipse.virgo.kernel.equinox.extensions,\
- org.eclipse.virgo.kernel.equinox.extensions;version="3.6.0",\
+ org.eclipse.virgo.kernel.equinox.extensions;version="3.6.3",\
  org.eclipse.virgo.kernel.equinox.extensions.hooks,\
- org.eclipse.virgo.kernel.equinox.extensions.hooks;version="3.6.0",\
+ org.eclipse.virgo.kernel.equinox.extensions.hooks;version="3.6.3",\
  org.ietf.jgss,\
  org.omg.CORBA,\
  org.omg.CORBA_2_3,\
@@ -195,6 +198,7 @@ org.osgi.framework.system.packages = \
  org.w3c.dom.stylesheets,\
  org.w3c.dom.traversal,\
  org.w3c.dom.views ,\
+ org.w3c.dom.xpath,\
  org.xml.sax,\
  org.xml.sax.ext,\
  org.xml.sax.helpers
