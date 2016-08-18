@@ -9,7 +9,7 @@
 			 
 		<Connector port="8683" protocol="HTTP/1.1" SSLEnabled="true"
 			maxThreads="25" scheme="https" secure="true" sslProtocol="TLS"
-			keyAlias="central" keystoreType="jks"
+			keyAlias="web" keystoreType="jks"
 			keystoreFile="conf/tls/central.jks" keystorePass="dev123"
 			truststoreFile="conf/tls/central.jks" truststorePass="dev123"
 			clientAuth="want"/>
