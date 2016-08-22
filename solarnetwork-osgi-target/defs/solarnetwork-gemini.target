@@ -34,7 +34,6 @@
 <plugin id="com.springsource.org.apache.xml.resolver"/>
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
-<plugin id="com.springsource.org.junit"/>
 <plugin id="com.springsource.org.quartz"/>
 <plugin id="com.springsource.org.quartz.source"/>
 <plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
@@ -96,6 +95,8 @@
 <plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
 <plugin id="org.apache.servicemix.bundles.asm"/>
+<plugin id="org.apache.servicemix.bundles.hamcrest"/>
+<plugin id="org.apache.servicemix.bundles.junit"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-aspects"/>
