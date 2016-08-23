@@ -93,6 +93,8 @@
 <plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
 <plugin id="org.apache.servicemix.bundles.asm"/>
+<plugin id="org.apache.servicemix.bundles.c3p0"/>
+<plugin id="org.apache.servicemix.bundles.c3p0.source"/>
 <plugin id="org.apache.servicemix.bundles.hamcrest"/>
 <plugin id="org.apache.servicemix.bundles.junit"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
