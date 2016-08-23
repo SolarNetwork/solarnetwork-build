@@ -135,6 +135,10 @@
 <plugin id="org.apache.servicemix.specs.stax-api-1.0"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
 <plugin id="org.apache.taglibs.taglibs-standard-spec"/>
+<plugin id="org.apache.tiles-autotag-core-runtime"/>
+<plugin id="org.apache.tiles-request-api"/>
+<plugin id="org.apache.tiles-request-jsp"/>
+<plugin id="org.apache.tiles-request-servlet"/>
 <plugin id="org.apache.tiles-template"/>
 <plugin id="org.apache.tiles.api"/>
 <plugin id="org.apache.tiles.core"/>
