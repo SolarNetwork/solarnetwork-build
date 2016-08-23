@@ -29,6 +29,9 @@
 	<system systemId="-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" 
 		uri="catalog/tiles-config_2_0.dtd"/>
 	
+	<system systemId="-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		uri="catalog/tiles-config_3_0.dtd"/>
+	
 	<nextCatalog catalog="catalog/jee/catalog.xml"/>
 	<nextCatalog catalog="catalog/spring/catalog.xml"/>
 	<nextCatalog catalog="catalog/gemini/catalog.xml"/>
