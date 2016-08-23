@@ -34,8 +34,6 @@
 <plugin id="com.springsource.org.apache.xml.resolver"/>
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
-<plugin id="com.springsource.org.quartz"/>
-<plugin id="com.springsource.org.quartz.source"/>
 <plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
 <plugin id="derby"/>
 <plugin id="javax.annotation"/>
@@ -182,6 +180,8 @@
 <plugin id="org.mybatis.mybatis.source"/>
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
+<plugin id="org.quartz-scheduler.quartz"/>
+<plugin id="org.quartz-scheduler.quartz.source"/>
 <plugin id="org.slf4j.osgi-over-slf4j"/>
 <plugin id="org.springframework.binding"/>
 <plugin id="org.springframework.js"/>

@@ -260,7 +260,7 @@
 		<dependency org="joda-time" name="joda-time" rev="2.4" conf="core"/>
 		
 		<!-- Quartz scheduler -->
-		<dependency org="com.opensymphony.quartz" name="com.springsource.org.quartz" rev="1.6.2" conf="core">
+		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="core">
 			<exclude name="com.springsource.org.apache.commons.collections"/>
 			<exclude name="com.springsource.org.apache.commons.logging"/>
 		</dependency>
