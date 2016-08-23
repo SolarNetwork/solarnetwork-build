@@ -27,8 +27,6 @@
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
 <plugin id="com.springsource.org.apache.commons.collections"/>
 <plugin id="com.springsource.org.apache.commons.digester"/>
-<plugin id="com.springsource.org.apache.tiles.core.source"/>
-<plugin id="com.springsource.org.apache.tiles.servlet.source"/>
 <plugin id="com.springsource.org.apache.xalan"/>
 <plugin id="com.springsource.org.apache.xerces"/>
 <plugin id="com.springsource.org.apache.xml.resolver"/>
@@ -143,7 +141,6 @@
 <plugin id="org.apache.tiles.el"/>
 <plugin id="org.apache.tiles.jsp"/>
 <plugin id="org.apache.tiles.servlet"/>
-<plugin id="org.apache.tiles.servlet.wildcard"/>
 <plugin id="org.apache.tomcat.api"/>
 <plugin id="org.apache.tomcat.jdbc"/>
 <plugin id="org.apache.tomcat.jdbc.source"/>
