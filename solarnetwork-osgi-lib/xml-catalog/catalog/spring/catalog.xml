@@ -43,6 +43,10 @@
 		systemId="http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 		uri="spring-webflow-2.0.xsd"/>
 
+	<system
+		systemId="http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.0.xsd"
+		uri="spring-webflow-config-2.0.xsd"/>
+
 	<!-- OSGi -->
 
 	<system
@@ -97,6 +101,7 @@
 		systemId="http://www.springframework.org/schema/security/spring-security-3.1.xsd"
 		uri="spring-security-3.1.xsd"/>
 
+	<nextCatalog catalog="catalog-spring2.xml"/>
 	<nextCatalog catalog="catalog-spring4.xml"/>
 
 </catalog>
