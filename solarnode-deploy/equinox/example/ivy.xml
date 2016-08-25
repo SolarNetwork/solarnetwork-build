@@ -200,22 +200,22 @@
 		</dependency>
 		
 		<!-- Spring Security -->
-		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.4.RELEASE" conf="core">
+		<dependency org="org.springframework.security" name="spring-security-config" rev="4.1.0.RELEASE" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.4.RELEASE" conf="core">
+		<dependency org="org.springframework.security" name="spring-security-core" rev="4.1.0.RELEASE" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.4.RELEASE" conf="core">
+		<dependency org="org.springframework.security" name="spring-security-web" rev="4.1.0.RELEASE" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.4.RELEASE" conf="core">
+		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="4.1.0.RELEASE" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
