@@ -23,7 +23,6 @@
 <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
 <plugin id="com.fasterxml.jackson.datatype.jackson-datatype-joda"/>
 <plugin id="com.springsource.javax.activation"/>
-<plugin id="com.springsource.net.sf.ehcache"/>
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
 <plugin id="com.springsource.org.apache.commons.collections"/>
 <plugin id="com.springsource.org.apache.commons.digester"/>
