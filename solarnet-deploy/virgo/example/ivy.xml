@@ -34,15 +34,13 @@
 		<dependency org="org.apache.ibatis" name="com.springsource.com.ibatis" rev="2.3.4.726" conf="runtime"/>
 		
 		<!-- Spring Security -->
-		<dependency org="org.springframework.security" name="spring-security-config" rev="3.1.4.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-core" rev="3.1.4.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-web" rev="3.1.4.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="3.1.4.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-config" rev="4.1.0.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-core" rev="4.1.0.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-web" rev="4.1.0.RELEASE" conf="runtime"/>
+		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="4.1.0.RELEASE" conf="runtime"/>
 		
 		<!--  Spring WebFlow -->
-		<dependency org="org.springframework.webflow" name="spring-binding" rev="2.3.2.RELEASE" conf="runtime"/>
-		<dependency org="net.solarnetwork.external" name="org.springframework.js" rev="2.3.2.RELEASE_SN01" conf="runtime"/>
-		<dependency org="net.solarnetwork.external" name="org.springframework.webflow" rev="2.3.2.RELEASE_SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-webflow" rev="2.4.2.RELEASE" conf="runtime"/>
 		
 		<!--  OSGi -->
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="runtime">
@@ -50,24 +48,29 @@
 		</dependency>
 		
 		<!-- Apache Tiles -->
-		<dependency org="org.apache.tiles" name="tiles-el" rev="2.2.2" conf="runtime">
+		<dependency org="org.apache.tiles" name="tiles-core" rev="3.0.5" conf="runtime">
 			<exclude module="commons-beanutils"/>
 		</dependency>
-		<dependency org="org.apache.tiles" name="tiles-jsp" rev="2.2.2" conf="runtime">
+		<dependency org="org.apache.tiles" name="tiles-el" rev="3.0.5" conf="runtime">
 			<exclude module="commons-beanutils"/>
 		</dependency>
-		<dependency org="org.apache.tiles" name="tiles-servlet" rev="2.2.2" conf="runtime">
+		<dependency org="org.apache.tiles" name="tiles-jsp" rev="3.0.5" conf="runtime">
 			<exclude module="commons-beanutils"/>
 		</dependency>
-		<dependency org="org.apache.tiles" name="tiles-servlet-wildcard" rev="2.2.2" conf="runtime">
+		<dependency org="org.apache.tiles" name="tiles-servlet" rev="3.0.5" conf="runtime">
 			<exclude module="commons-beanutils"/>
 		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-template" rev="3.0.5" conf="runtime">
+			<exclude module="commons-beanutils"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-request-jsp" rev="1.0.6" conf="runtime"/>
+		<dependency org="org.apache.tiles" name="tiles-request-servlet" rev="1.0.6" conf="runtime"/>
 		
 		<!-- JodaTime -->
 		<dependency org="joda-time" name="joda-time" rev="2.4" conf="runtime"/>
 		
 		<!-- Ehcache -->
-		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.0" conf="runtime"/>
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="runtime"/>
 		
 		<!-- Quartz Scheduler -->
 		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="runtime"/>
