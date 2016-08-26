@@ -10,6 +10,7 @@
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="runtime"/>
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="runtime"/>
     	<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="runtime"/>
+    	<dependency org="commons-digester" name="commons-digester" rev="2.0" conf="runtime"/>
 		<dependency org="org.apache.commons" name="commons-lang3" rev="3.4" conf="runtime"/>
 		<dependency org="commons-io" name="commons-io" rev="2.4" conf="runtime"/>
 		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2" conf="runtime">
@@ -31,13 +32,78 @@
 		</dependency>
 		<dependency org="org.apache.juli.springsource" name="com.springsource.org.apache.juli.extras.springsource" rev="6.0.32.S2-r1673" 
 				conf="runtime"/>
-		<dependency org="org.apache.ibatis" name="com.springsource.com.ibatis" rev="2.3.4.726" conf="runtime"/>
+    	<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
+    	<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
+		
+    	<!-- AspectJ -->
+    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.9_1" conf="runtime"/>
+		
+		<!-- Spring -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aspects" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-orm" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.6.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.6.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
 		
 		<!-- Spring Security -->
-		<dependency org="org.springframework.security" name="spring-security-config" rev="4.1.0.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-core" rev="4.1.0.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-web" rev="4.1.0.RELEASE" conf="runtime"/>
-		<dependency org="org.springframework.security" name="spring-security-taglibs" rev="4.1.0.RELEASE" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="4.1.0.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="4.1.0.RELEASE_1" conf="runtime">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.apache.servicemix.bundles"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
 		
 		<!--  Spring WebFlow -->
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-webflow" rev="2.4.2.RELEASE" conf="runtime"/>
