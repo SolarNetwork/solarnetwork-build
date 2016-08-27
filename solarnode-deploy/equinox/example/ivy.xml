@@ -194,6 +194,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
+		<!-- Use Spring Webmvc JAR from platform, because 4.2.6.RELEASE_1 has wrong Tiles 3 Request import range https://issues.apache.org/jira/browse/SM-3078;
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1" conf="boot">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
@@ -205,8 +206,10 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
+		-->
 		
 		<!-- Spring Security -->
+		<!-- Disabled until -taglibs JAR fixed to include taglib.tld and -config to include spring namespace handler configuration
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
@@ -237,7 +240,8 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-
+		-->
+		
 		<!-- Extra Servlet -->
 		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="core"/>
 		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.1" conf="core"/>
@@ -271,8 +275,11 @@
 		<!-- Quartz scheduler -->
 		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="core">
 			<exclude module="c3p0"/>
+			<exclude module="mchange-commons-java"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.c3p0" rev="0.9.5.2_1" conf="core"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.c3p0" rev="0.9.5.2_1" conf="core">
+			<exclude module="mchange-commons-java"/>
+		</dependency>
 
 		<!-- PKI -->
 		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="core"/>
