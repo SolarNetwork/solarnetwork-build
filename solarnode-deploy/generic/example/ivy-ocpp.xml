@@ -41,6 +41,10 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
 		
+		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
+		-->
+		
 		<!-- OCPP/Meter Support -->		
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.gnu.trove" rev="latest.release"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.wimpi.modbus" rev="latest.release"/>
@@ -83,7 +87,9 @@
 		<exclude org="org.bouncycastle"/>
 		<exclude org="org.codehaus.jackson"/>
 		<exclude org="org.eclipse.gemini"/>
+		<exclude org="org.eclipse.gemini.blueprint"/>
 		<exclude org="org.osgi"/>
+		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
