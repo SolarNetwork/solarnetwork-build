@@ -151,6 +151,13 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
+		
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/core">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+		
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
