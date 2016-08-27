@@ -101,7 +101,6 @@
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
-			<exclude org="org.apache.servicemix.bundles"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
 		
