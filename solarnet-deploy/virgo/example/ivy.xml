@@ -139,7 +139,10 @@
 		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="runtime"/>
 		
 		<!-- Quartz Scheduler -->
-		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="runtime"/>
+		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="runtime">
+			<exclude module="c3p0"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.c3p0" rev="0.9.5.2_1" conf="runtime"/>
 		
 		<!-- JSR-303 javax.validation -->
 		<dependency org="javax.validation" name="validation-api" rev="1.1.0.Final" conf="runtime"/>
