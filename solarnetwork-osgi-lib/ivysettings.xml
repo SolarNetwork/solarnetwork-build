@@ -5,7 +5,7 @@
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
-	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/milestone/"/>
+	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
 	<property name="solarnetwork-archive.url" value="${solarnetwork.archive.url}"/>
 	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>

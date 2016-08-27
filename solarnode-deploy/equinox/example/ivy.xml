@@ -97,7 +97,8 @@
 		<dependency org="org.eclipse.virgo.mirrored" name="javax.xml.soap" rev="1.3.0.v201105210645" conf="gemini"/>
 		
 		<!-- Virgo support -->
-		<dependency org="org.eclipse.virgo.web" name="org.eclipse.virgo.web.dm" rev="3.7.0.M01" conf="core">
+		<!-- Disabled until 3.7.0.RELEASE available in repo
+		<dependency org="org.eclipse.virgo.web" name="org.eclipse.virgo.web.dm" rev="3.7.0.RELEASE" conf="core">
 			<exclude org="org.springframework"/>
 			<exclude org="org.eclipse.gemini"/>
 			<exclude org="org.eclipse.virgo.kernel"/>
@@ -107,22 +108,23 @@
 			<exclude org="org.eclipse.osgi"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 		</dependency>
-		<dependency org="org.eclipse.virgo.medic" name="org.eclipse.virgo.medic" rev="3.7.0.M01" conf="core">
+		<dependency org="org.eclipse.virgo.medic" name="org.eclipse.virgo.medic" rev="3.7.0.RELEASE" conf="core">
 			<exclude org="org.eclipse.gemini"/>
 			<exclude org="org.eclipse.virgo.mirrored"/>
 			<exclude org="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.virgo.medic.core"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 		</dependency>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.common" rev="3.7.0.M01" conf="core"/>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.io" rev="3.7.0.M01" conf="core">
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.common" rev="3.7.0RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.io" rev="3.7.0.RELEASE" conf="core">
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.math" rev="3.7.0.M01" conf="core"/>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi" rev="3.7.0.M01" conf="core"/>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi.manifest" rev="3.7.0.M01" conf="core"/>
-		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.parser.manifest" rev="3.7.0.M01" conf="core"/>
-				
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.math" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi.manifest" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.parser.manifest" rev="3.7.0.RELEASE" conf="core"/>
+		-->
+		
     	<!-- AspectJ -->
     	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.9_1" conf="boot"/>
 	
@@ -270,6 +272,7 @@
 		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="core">
 			<exclude module="c3p0"/>
 		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.c3p0" rev="0.9.5.2_1" conf="core"/>
 
 		<!-- PKI -->
 		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="core"/>
