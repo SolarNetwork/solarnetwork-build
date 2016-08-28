@@ -151,6 +151,25 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
+		
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/core">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+		
+		<copy todir="${dir.assemble}/app/core">
+			<fileset dir="${dir.platform}/spring">
+				<!-- Use Spring Security JARs from platform, because 4.1.0.RELEASE_1 -taglibs missing tld and -config missing spring namespace configuration;
+					 When 4.1.0.RELEASE_X is released that fix these issues, this can be removed. -->
+				<include name="*spring-security-*.jar"/>
+
+				<!-- Use Spring Webmvc JAR from platform, because 4.2.6.RELEASE_1 has wrong Tiles 3 Request import range https://issues.apache.org/jira/browse/SM-3078;
+					 When 4.2.6.RELEASE_X is released that fix these issues, this can be removed. -->
+				<include name="*spring-webmvc-*.jar"/>
+			</fileset>
+		</copy>
+		
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
