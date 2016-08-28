@@ -32,7 +32,6 @@
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
 <plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
-<plugin id="derby"/>
 <plugin id="javax.annotation"/>
 <plugin id="javax.ejb"/>
 <plugin id="javax.el"/>
@@ -93,6 +92,7 @@
 <plugin id="org.apache.servicemix.bundles.aspectj.source"/>
 <plugin id="org.apache.servicemix.bundles.c3p0"/>
 <plugin id="org.apache.servicemix.bundles.c3p0.source"/>
+<plugin id="org.apache.servicemix.bundles.derby"/>
 <plugin id="org.apache.servicemix.bundles.hamcrest"/>
 <plugin id="org.apache.servicemix.bundles.junit"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>

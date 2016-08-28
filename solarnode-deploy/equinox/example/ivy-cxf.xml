@@ -20,7 +20,7 @@
 			<exclude org="org.springframework"/>
 		</dependency>
 		
-		<dependency org="org.apache.derby" name="derby" rev="10.8.3.0" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.derby" rev="10.12.1.1_1" conf="boot"/>
 		<dependency org="org.apache.felix" name="org.apache.felix.fileinstall" rev="3.1.10" conf="boot">
     		<exclude org="org.osgi"/>
 		</dependency>
@@ -63,6 +63,7 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release" conf="core">
 			<exclude module="derby"/>
 			<exclude org="org.osgi"/>
+			<exclude org="org.apache.servicemix.bundles"/>
 		</dependency>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release" conf="core"/>
 	
