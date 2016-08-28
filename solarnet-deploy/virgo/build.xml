@@ -13,7 +13,7 @@
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
 	
 	<property name="dir.virgo.repo" value="${dir.assemble}/repository/usr"/>
-	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/ext"/>
+	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/local"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
 
 	<property name="ivy.xml" value="ivy.xml"/>
