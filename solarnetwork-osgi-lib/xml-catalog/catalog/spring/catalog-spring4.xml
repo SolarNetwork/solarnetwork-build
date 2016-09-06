@@ -39,6 +39,10 @@
 		systemId="http://www.springframework.org/schema/util/spring-util-4.2.xsd"
 		uri="spring-util-4.2.xsd"/>
 
+	<system
+		systemId="http://www.springframework.org/schema/websocket/spring-websocket-4.2.xsd"
+		uri="spring-websocket-4.2.xsd"/>
+
 	<!--  Spring Security 4.1 -->
 
 	<system

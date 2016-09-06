@@ -131,6 +131,8 @@
 <plugin id="org.apache.servicemix.bundles.spring-web.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc.source"/>
+<plugin id="org.apache.servicemix.bundles.spring-websocket"/>
+<plugin id="org.apache.servicemix.bundles.spring-websocket.source"/>
 <plugin id="org.apache.servicemix.bundles.wsdl4j"/>
 <plugin id="org.apache.servicemix.specs.stax-api-1.0"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
