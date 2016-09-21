@@ -1,0 +1,5 @@
+Bundle-Name: Gemini Web Extender Source
+Bundle-SymbolicName: org.eclipse.gemini.web.extender.source
+Eclipse-SourceBundle: org.eclipse.gemini.web.extender;version="2.2.7.RELEASE";roots:="."
+Bundle-Version: 2.2.7.RELEASE
+Bundle-ManifestVersion: 2
