@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="482">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="486">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -164,7 +164,9 @@
 <plugin id="org.eclipse.gemini.blueprint.io"/>
 <plugin id="org.eclipse.gemini.blueprint.io.source"/>
 <plugin id="org.eclipse.gemini.web.core"/>
+<plugin id="org.eclipse.gemini.web.core.source"/>
 <plugin id="org.eclipse.gemini.web.extender"/>
+<plugin id="org.eclipse.gemini.web.extender.source"/>
 <plugin id="org.eclipse.gemini.web.tomcat"/>
 <plugin id="org.eclipse.gemini.web.tomcat.source"/>
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
