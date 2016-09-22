@@ -40,7 +40,7 @@
 	<system systemId="http://java.sun.com/xml/ns/javaee/javaee_5.xsd"
 		uri="javaee_5.xsd"/>
 
-	<system systemId="http://java.sun.com/xml/ns/javaee/jsp_2_0.xsd"
+	<system systemId="http://java.sun.com/xml/ns/javaee/jsp_2_1.xsd"
 		uri="jsp_2_1.xsd"/>
 
 	<system systemId="http://java.sun.com/xml/ns/javaee/javaee_web_services_client_1_2.xsd"
@@ -51,6 +51,26 @@
 		
 	<!--uri name="http://java.sun.com/xml/ns/javaee" uri=""/-->
 
+	<!-- J2EE 6 -->
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/web-common_3_0.xsd"
+		uri="web-common_3_0.xsd"/>
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		uri="web-app_3_0.xsd"/>
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+		uri="web-fragment_3_0.xsd"/>
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/javaee_6.xsd"
+		uri="javaee_6.xsd"/>
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/jsp_2_2.xsd"
+		uri="jsp_2_2.xsd"/>
+
+	<system systemId="http://java.sun.com/xml/ns/javaee/javaee_web_services_client_1_3.xsd"
+		uri="javaee_web_services_client_1_3.xsd"/>
+		
 	<!-- Other -->
 
 	<system systemId="http://java.sun.com/dtd/properties.dtd"
