@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="498">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="502">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -111,6 +111,8 @@
 <plugin id="org.apache.servicemix.bundles.spring-expression.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc.source"/>
+<plugin id="org.apache.servicemix.bundles.spring-messaging"/>
+<plugin id="org.apache.servicemix.bundles.spring-messaging.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-security-acl"/>
