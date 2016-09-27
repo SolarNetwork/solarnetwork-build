@@ -246,6 +246,12 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-security-messaging" rev="4.1.0.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
 		<!-- Custom jar to include missing spring namespace handler configuration -->
 		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1_SN01" conf="core">
     		<exclude name="aopalliance"/>
