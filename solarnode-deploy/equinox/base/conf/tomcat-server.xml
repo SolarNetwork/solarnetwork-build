@@ -1,6 +1,6 @@
 <Server port="8005" shutdown="SHUTDOWN">
 	<Service name="Catalina">
-		<Connector port="8080"/>		
+		<Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"/>		
 		<Engine name="Catalina" defaultHost="localhost">
 			<Host name="localhost" appBase="var" createDirs="false" 
 				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
