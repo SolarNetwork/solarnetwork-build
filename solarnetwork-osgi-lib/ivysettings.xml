@@ -39,10 +39,7 @@
 		
 		<ibiblio name="public" m2compatible="true"/>
 		
-		<url name="solarnetwork" m2compatible="true">
-			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-		</url>
+		<ibiblio name="solarnetwork" m2compatible="true" root="${solarnetwork-archive.url}"/>
 		
 		<chain name="main" returnFirst="true">
 			<resolver ref="solarnetwork"/>
