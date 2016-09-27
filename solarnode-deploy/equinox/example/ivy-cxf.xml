@@ -42,7 +42,9 @@
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="boot">
     		<exclude module="org.osgi.core"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini.blueprint" name="gemini-blueprint-core" rev="2.0.0.RELEASE" conf="boot">
+		<!-- NOTE: custom build of gemini-blueprint-core to work around bug
+		           to work around https://bugs.eclipse.org/bugs/show_bug.cgi?id=357903 -->
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="2.0.0.RELEASE_SN01" conf="boot">
 			<exclude org="org.springframework"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 			<exclude org="org.eclipse.osgi"/>
@@ -51,11 +53,13 @@
 			<exclude org="org.springframework"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
 		</dependency>
 		<dependency org="org.eclipse.gemini.blueprint" name="gemini-blueprint-io" rev="2.0.0.RELEASE" conf="boot">
 			<exclude org="org.springframework"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
 		</dependency>
 		
 		<!-- SolarNetwork Core -->
@@ -82,7 +86,9 @@
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="2.2.7.RELEASE" conf="gemini">
+		<!-- NOTE: custom build of org.eclipse.gemini.web.tomcat to work around bug
+		           to work around https://bugs.eclipse.org/bugs/show_bug.cgi?id=501935 -->
+		<dependency org="net.solarnetwork.external" name="org.eclipse.gemini.web.tomcat" rev="2.2.7.RELEASE_SN01" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
@@ -183,6 +189,7 @@
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.6.RELEASE_1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.6.RELEASE_1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.6.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.2.6.RELEASE_1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.6.RELEASE_1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.6.RELEASE_1" conf="boot">
     		<exclude name="aopalliance"/>
@@ -195,8 +202,8 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<!-- Use Spring Webmvc JAR from platform, because 4.2.6.RELEASE_1 has wrong Tiles 3 Request import range https://issues.apache.org/jira/browse/SM-3078;
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1" conf="boot">
+		<!-- Use custom Spring Webmvc JAR from platform, because of bug https://issues.apache.org/jira/browse/SM-3078 -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1_SN01" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -207,17 +214,27 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		-->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.2.6.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
 		
 		<!-- Spring Security -->
-		<!-- Disabled until -taglibs JAR fixed to include taglib.tld and -config to include spring namespace handler configuration
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1" conf="core">
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1_SN01" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
@@ -229,7 +246,8 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1" conf="core">
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1_SN01" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
@@ -241,7 +259,6 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		-->
 		
 		<!-- Extra Servlet -->
 		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="core"/>
