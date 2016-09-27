@@ -23,6 +23,8 @@
 	<property name="compile.deprecation" value="false" />
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
+	<property name="compile.source" value="1.6" />
+	<property name="compile.target" value="1.6" />
 	<property name="solarnetwork.archive.url" 
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="publish.dest" value="solarnetwork"/>
@@ -149,8 +151,8 @@
 			deprecation="${compile.deprecation}" 
 			optimize="${compile.optimize}" 
 			nowarn="${compile.nowarn}"
-			target="1.6"
-			source="1.6">
+			target="${compile.target}"
+			source="${compile.source}">
 			<classpath refid="compile.path.combined" />
 		</javac>
 	</target>
