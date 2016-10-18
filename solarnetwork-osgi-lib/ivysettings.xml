@@ -5,9 +5,8 @@
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
-	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/maven/bundles/release/"/>
-	<property name="virgo-ivy.url" value="http://build.eclipse.org/rt/virgo/ivy"/>
-	<property name="virgo-ivy.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/ivy/bundles/release/"/>
+	<property name="virgo-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="solarnetwork-archive.url" value="${solarnetwork.archive.url}"/>
 	<property name="solarnetwork-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
@@ -37,19 +36,14 @@
 		
 		<ibiblio name="gemini" m2compatible="true" root="${gemini-archive.url}"/>
 		
-		<ibiblio name="virgo" m2compatible="true" root="${virgo-archive.url}"/>
-		
-		<url name="virgo-ivy">
-			<ivy pattern="${virgo-ivy.url}/bundles/release/${virgo-ivy.pattern}" />
-			<artifact pattern="${virgo-ivy.url}/bundles/release/${virgo-ivy.pattern}" />
+		<url name="virgo">
+			<ivy pattern="${virgo-archive.url}/${virgo-archive.pattern}" />
+			<artifact pattern="${virgo-archive.url}/${virgo-archive.pattern}" />
 		</url>
 		
 		<ibiblio name="public" m2compatible="true"/>
 		
-		<url name="solarnetwork" m2compatible="true">
-			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-		</url>
+		<ibiblio name="solarnetwork" m2compatible="true" root="${solarnetwork-archive.url}"/>
 		
 		<chain name="main" returnFirst="true">
 			<resolver ref="solarnetwork"/>
@@ -59,7 +53,6 @@
 			<resolver ref="spring-archive"/>
 			<resolver ref="gemini"/>
 			<resolver ref="virgo"/>
-			<resolver ref="virgo-ivy"/>
 			<resolver ref="public"/>
 		</chain>
 		<chain name="default" returnFirst="true" checkmodified="true">

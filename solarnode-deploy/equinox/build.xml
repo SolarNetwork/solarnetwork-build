@@ -28,19 +28,6 @@
 	
 	<import file="${dir.target}/lib-build.xml"/>
 	
-	<patternset id="base.node.app.core">
-		<include name="*.jar"/>
-		<exclude name="aopalliance*"/>
-		<exclude name="aspectj*"/>
-		<exclude name="com.springsource.org.apache.commons.*"/>
-		<exclude name="com.springsource.org.apache.juli.extras-*"/>
-		<exclude name="commons-logging*"/>
-	</patternset>
-
-	<patternset id="spring.osgi">
-		<include name="spring/org.springframework.osgi.*"/>
-	</patternset>
-	
 	<patternset id="virgo.support">
 		<include name="virgo/*"/>
 		<exclude name="virgo/*-sources-*"/>
@@ -151,6 +138,13 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
+		
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/core">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+		
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
 		<symlink 
 			link="${dir.assemble}/conf/log4j.properties" 
