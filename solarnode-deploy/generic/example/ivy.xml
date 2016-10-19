@@ -77,6 +77,7 @@
 		<exclude org="org.codehaus.jackson"/>
 		<exclude org="org.eclipse.gemini"/>
 		<exclude org="org.eclipse.gemini.blueprint"/>
+		<exclude org="org.eclipse.virgo.web"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
