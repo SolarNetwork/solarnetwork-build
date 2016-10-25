@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="502">
+<?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="506">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -80,7 +80,6 @@
 <plugin id="org.apache.felix.gogo.command"/>
 <plugin id="org.apache.felix.gogo.runtime"/>
 <plugin id="org.apache.felix.gogo.shell"/>
-<plugin id="org.apache.felix.utils"/>
 <plugin id="org.apache.httpcomponents.httpclient"/>
 <plugin id="org.apache.httpcomponents.httpcore"/>
 <plugin id="org.apache.jasper"/>
