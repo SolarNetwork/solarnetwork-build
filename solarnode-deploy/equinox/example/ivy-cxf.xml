@@ -164,6 +164,7 @@
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.21" conf="boot"/>
 		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.21" conf="boot"/>
 		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.21" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="osgi-over-slf4j" rev="1.7.21.SN01" conf="boot"/>
 		
 		<!-- AOP Alliance -->
 		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
