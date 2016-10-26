@@ -45,7 +45,7 @@
 		</dependency>
 		<!-- NOTE: custom build of gemini-blueprint-core to work around bug
 		           to work around https://bugs.eclipse.org/bugs/show_bug.cgi?id=357903 -->
-		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="2.0.0.RELEASE_SN01" conf="boot">
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="2.0.0.RELEASE_SN02" conf="boot">
 			<exclude org="org.springframework"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
 			<exclude org="org.eclipse.osgi"/>
