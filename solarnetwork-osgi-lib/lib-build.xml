@@ -235,9 +235,12 @@
 		description="Clean, then create bundle jar"/>
 
 	<patternset id="web.files">
+		<include name="*.html"/>
 		<include name="css/**"/>
+		<include name="data/**"/>
 		<include name="images/**"/>
 		<include name="img/**"/>
+		<include name="font/**"/>
 		<include name="fonts/**"/>
 		<include name="js/**"/>
 		<include name="js-lib/**"/>
