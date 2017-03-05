@@ -88,8 +88,8 @@
 <plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
 <plugin id="org.apache.servicemix.bundles.asm"/>
-<plugin id="org.apache.servicemix.bundles.aspectj"/>
-<plugin id="org.apache.servicemix.bundles.aspectj.source"/>
+<plugin id="org.apache.servicemix.bundles.aspectj" version="1.8.10.1"/>
+<plugin id="org.apache.servicemix.bundles.aspectj.source" version="1.8.10.1"/>
 <plugin id="org.apache.servicemix.bundles.c3p0"/>
 <plugin id="org.apache.servicemix.bundles.c3p0.source"/>
 <plugin id="org.apache.servicemix.bundles.derby"/>
@@ -153,7 +153,7 @@
 <plugin id="org.apache.tomcat.jdbc"/>
 <plugin id="org.apache.tomcat.jdbc.source"/>
 <plugin id="org.apache.tomcat.jni"/>
-<plugin id="org.apache.tomcat.util"/>
+<plugin id="org.apache.tomcat.util" version="8.5.11"/>
 <plugin id="org.apache.tomcat.util.scan"/>
 <plugin id="org.apache.tomcat.websocket"/>
 <plugin id="org.apache.ws.xmlschema.core"/>
@@ -179,12 +179,12 @@
 <plugin id="org.eclipse.osgi"/>
 <plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
-<plugin id="org.eclipse.virgo.util.common" version="3.7.0.M03"/>
-<plugin id="org.eclipse.virgo.util.io" version="3.7.0.M03"/>
-<plugin id="org.eclipse.virgo.util.math" version="3.7.0.M03"/>
-<plugin id="org.eclipse.virgo.util.osgi" version="3.7.0.M03"/>
-<plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.7.0.M03"/>
-<plugin id="org.eclipse.virgo.util.parser.manifest" version="3.7.0.M03"/>
+<plugin id="org.eclipse.virgo.util.common" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.io" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.math" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.osgi" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.parser.manifest" version="3.7.0.RELEASE"/>
 <plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>

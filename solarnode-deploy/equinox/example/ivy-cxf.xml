@@ -73,23 +73,21 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="latest.release" conf="core"/>
 	
 		<!-- Gemini Web -->
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="2.2.7.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="3.0.0.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="2.2.7.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="3.0.0.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<!-- NOTE: custom build of org.eclipse.gemini.web.tomcat to work around bug
-		           to work around https://bugs.eclipse.org/bugs/show_bug.cgi?id=501935 -->
-		<dependency org="net.solarnetwork.external" name="org.eclipse.gemini.web.tomcat" rev="2.2.7.RELEASE_SN01" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="3.0.0.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
@@ -97,11 +95,11 @@
 			<exclude module="org.slf4j.api"/>
 		</dependency>
 		
-		<!-- The following might not be necessary (ship with Gemini Web distribution) -->
+		<!-- The following ship with the Gemini Web distribution  -->
 		<dependency org="org.eclipse.virgo.mirrored" name="com.springsource.javax.activation" rev="1.1.1" conf="gemini"/>
 		<dependency org="org.eclipse.virgo.mirrored" name="javax.mail" rev="1.4.0.v201005080615" conf="gemini"/>
 		<dependency org="org.eclipse.virgo.mirrored" name="javax.transaction" rev="1.1.0.v201205091237" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.websocket" rev="1.0.0.v201312030745" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.websocket" rev="1.1.0.20170128" conf="gemini"/>
 		<dependency org="org.eclipse.virgo.mirrored" name="javax.xml.soap" rev="1.3.0.v201105210645" conf="gemini"/>
 
 		<!-- Virgo support -->
@@ -134,7 +132,7 @@
 		-->
 		
     	<!-- AspectJ -->
-    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.9_1" conf="boot"/>
+    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="boot"/>
 	
 		<!-- Apache Commons -->
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="boot"/>
@@ -174,16 +172,16 @@
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="core"/>
 		
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.6.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.6.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.9.RELEASE_1" conf="boot">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -195,7 +193,7 @@
 			<exclude name="spring-expression"/>
 		</dependency>
 		<!-- Use custom Spring Webmvc JAR from platform, because of bug https://issues.apache.org/jira/browse/SM-3078 -->
-		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1_SN01" conf="core">
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.9.RELEASE_1_SN01" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -206,7 +204,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.2.6.RELEASE_1" conf="core">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.2.9.RELEASE_1" conf="core">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>

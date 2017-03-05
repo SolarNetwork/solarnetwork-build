@@ -36,7 +36,7 @@
     	<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
 		
     	<!-- AspectJ -->
-    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.9_1" conf="runtime"/>
+    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
 		
 		<!-- Spring -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.6.RELEASE_1" conf="runtime"/>
@@ -166,7 +166,7 @@
     	<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" conf="runtime"/>
 
 		<!-- SN Externals -->
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.8.0.SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.8.0.SN03" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.taglibs.response" rev="1.0.1" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.joda.jsptags" rev="1.1.1" conf="runtime"/>
     	<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="6.1.26.SN01" conf="runtime"/>
