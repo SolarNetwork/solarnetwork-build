@@ -13,7 +13,8 @@
 		org.apache.coyote,
 		org.apache.jasper,
 		org.apache.tomcat.util,
-		org.apache.tomcat.websocket
+		org.apache.tomcat.websocket,
+		org.eclipse.gemini.web.jaspic.fragment
 	</property>
 	
 	<property name="ivy.file" value="${basedir}/ivy.xml"/>
