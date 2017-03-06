@@ -1,6 +1,11 @@
 <Server port="8005" shutdown="SHUTDOWN">
 	<Service name="Catalina">
-		<Connector port="8080"/>
+		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Nio2Protocol"
+			compression="on" 
+        	compressionMinSize="2048"
+        	useSendFile="false"
+        	compressableMimeType="text/html,text/xml,application/xml,text/javascript,text/css,application/json,image/svg+xml"
+		/>		
 		
 		<!-- For SolarIn development, configure SSL with the key/trust stores
 			 properly configured, and make sure the Host/@name value is set
