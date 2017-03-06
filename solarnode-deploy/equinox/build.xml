@@ -2,8 +2,6 @@
 
 	<property file="${basedir}/build.properties"/>
 
-	<property name="bundle.startlevel.1" value="net.solarnetwork.common.pidfile"/>
-	<property name="bundle.startlevel.3" value="net.solarnetwork.common.pidfile"/>
 	<property name="bundle.nostart">
 		com.springsource.org.apache.xerces,
 		slf4j-log4j,
@@ -15,6 +13,28 @@
 		org.apache.tomcat.util,
 		org.apache.tomcat.websocket,
 		org.eclipse.gemini.web.jaspic.fragment
+	</property>
+	<property name="bundle.start">
+		spring-security-config=6,
+		org\.apache\.felix\.fileinstall=8
+	</property>
+	<property name="bundle.order">
+		net.solarnetwork.common.pidfile=-99,
+		org\.osgi\.core\.=-95,
+		org\.osgi\.=-90,
+		javax\.=-80,
+		log4j=-75,
+		slf4j=-75,
+		derby=-70,
+		org\.apache.*-8\.=-50,
+		spring-security-config=90,
+		spring-security-messaging=86,
+		spring-security=85,
+		spring-=70,
+		org\.apache\.felix\.fileinstall=99,
+		org\.apache=-45,
+		jackson=-40,
+		joda=-40
 	</property>
 	
 	<property name="ivy.file" value="${basedir}/ivy.xml"/>
@@ -57,7 +77,7 @@
 	
 	<target name="app-boot" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${ivy.file}" conf="boot"/>
+		<ivy:resolve file="${ivy.file}" conf="boot,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
@@ -82,13 +102,25 @@
 				<exclude name="**/*.properties"/>
 			</fileset>
 		</copy>
+		
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/boot">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+		
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
+		<symlink 
+			link="${dir.assemble}/conf/log4j.properties" 
+			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
+		<symlink link="${dir.assemble}/config" resource="conf" />
 	</target>
 	
 	<target name="equinox-config">
 		<fileset id="app.boot.files" dir="${dir.assemble}/app" includes="boot/*"/>
 		<equinox-config-generate 
 			filesetId="app.boot.files" 
-			bundleStartLevelId="bundle.startlevel.1"
 			defaultStartLevel="2"
 			matchStartLevel="1"
 			property="equinox.bundles.boot"/>
@@ -97,7 +129,6 @@
 		<dirset id="app.boot.dirs" dir="${dir.assemble}/app" includes="boot/*"/>
 		<equinox-config-generate 
 			filesetId="app.boot.dirs" 
-			bundleStartLevelId="bundle.startlevel.1"
 			defaultStartLevel=""
 			matchStartLevel=""
 			property="equinox.bundledirs.boot"/>
@@ -106,7 +137,6 @@
 		<fileset id="app.core.files" dir="${dir.assemble}/app" includes="core/*"/>
 		<equinox-config-generate 
 			filesetId="app.core.files" 
-			bundleStartLevelId="bundle.startlevel.3"
 			defaultStartLevel="4"
 			matchStartLevel="3"
 			property="equinox.bundles.core"/>
@@ -115,7 +145,6 @@
 		<dirset id="app.core.dirs" dir="${dir.assemble}/app" includes="core/*"/>
 		<equinox-config-generate 
 			filesetId="app.core.dirs" 
-			bundleStartLevelId="bundle.startlevel.3"
 			defaultStartLevel=""
 			matchStartLevel=""
 			property="equinox.bundledirs.core"/>
@@ -131,7 +160,7 @@
 	
 	<target name="app-core" depends="ivy-init,assemble-prepare">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${ivy.file}" conf="core,gemini"/>
+		<ivy:resolve file="${ivy.file}" conf="core"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
@@ -139,19 +168,6 @@
 		<copy todir="${dir.assemble}/app/core" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
-		
-		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
-			 When Virgo 3.7.0 is released, this can be removed. -->
-		<copy todir="${dir.assemble}/app/core">
-			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
-		</copy>
-		
-		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
-		<symlink 
-			link="${dir.assemble}/conf/log4j.properties" 
-			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
-		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
-		<symlink link="${dir.assemble}/config" resource="conf" />
 	</target>
 	
 	<target name="app-foo" depends="ivy-init,assemble-prepare">
@@ -203,65 +219,106 @@
 	
 	<macrodef name="equinox-config-generate">
 		<attribute name="filesetId"/>
-		<attribute name="bundleStartLevelId"/>
 		<attribute name="defaultStartLevel"/>
 		<attribute name="matchStartLevel"/>
 		<attribute name="property"/> <!-- the property name to set -->
 		<sequential>
 			<script language="javascript"><![CDATA[
-			// create startLevel1 object from bundle.startlevel.1 property
-			var startLevel1 = {};
-			var i, key, split;
-			if ( "@{bundleStartLevelId}".length > 0 ) {
-				split = String(self.getProject().getProperty("@{bundleStartLevelId}"))
-					.split(/\s*,\s*/);
-				for ( i = 0; i < split.length; i++ ) {
-					key = split[i].replace(/\s+/g, '');
-					startLevel1[key] = 1;
-				}
-			}
-			var noStart = {};
-			split = String(self.getProject().getProperty("bundle.nostart")).split(/\s*,\s*/);
-			for ( i = 0; i < split.length; i++ ) {
-				key = split[i].replace(/\s+/g, '');
-				noStart[key] = 1;
-			}
-			
-			var fileSet = self.getProject().getReference("@{filesetId}");
-			var iterator = fileSet.iterator();
-			var resource, fileName;
-			var config = "";
-			var startLevel, val;
-			while ( iterator.hasNext() ) {
-				resource = iterator.next();
-				fileName = resource.getFile().getName();
-				if ( config.length > 0 ) {
-					config += ",";
-				}
-					
-				startLevel = "@{defaultStartLevel}";
-				for ( val in startLevel1 ) {
-					if ( fileName.indexOf(val) == 0 ) {
-						startLevel = "@{matchStartLevel}";
-						break;
-					}
-				}
-			
-				if ( startLevel.length > 0 ) {
-					for ( val in noStart ) {
-						if ( fileName.indexOf(val) == 0 ) {
-							startLevel = '';
-							break;
+				function commaDelimitedSet(s) {
+					var i, key, split, result = {};
+					if ( s ) {
+						split = (''+s).split(/\s*,\s*/);
+						for ( i = 0; i < split.length; i += 1 ) {
+							key = split[i].replace(/\s+/g, '');
+							result[key] = 1; // just a flag to indicate in set
 						}
 					}
+					return result;
 				}
-				if ( startLevel.length > 0 ) {
-					startLevel = "@" +startLevel +"\\:start";
+				
+				function numberRegexList(s) {
+					var pair,
+						result = [];
+					split = (''+s).split(/\s*,\s*/);
+					for ( i = 0; i < split.length; i += 1 ) {
+						pair = split[i].split(/\s*=\s*/);
+						if ( pair.length > 1 ) {
+							key = pair[0].replace(/\s+/g, '');
+							result.push({
+								regex:new RegExp(key, 'i'), 
+								order:Number(pair[1].replace(/\s+/g, ''))
+							});
+						}
+					}
+					return result;
 				}
-			
-				config += resource.getName() +startLevel;
-			}
-			self.getProject().setProperty("@{property}", config);
+				
+				function regexListLookup(list, key) {
+					var i;
+					for ( i = 0; i < list.length; i += 1 ) {
+						if ( key.search(list[i].regex) !== -1 ) {
+							return list[i].order;
+						}
+					}
+					return 0;
+				}
+				
+				var noStart = commaDelimitedSet(self.getProject().getProperty("bundle.nostart"));				
+				var bOrder = numberRegexList(self.getProject().getProperty("bundle.order"));
+				var bStart = numberRegexList(self.getProject().getProperty("bundle.start"));
+
+				var fileSet = self.getProject().getReference("@{filesetId}");
+				var iterator = fileSet.iterator();
+				var resource, fileName;
+				var config = "";
+				var startLevel, val;
+				var list = [];
+				while ( iterator.hasNext() ) {
+					resource = iterator.next();
+					fileName = resource.getFile().getName();
+						
+					startLevel = "@{defaultStartLevel}";
+					if ( startLevel.length > 0 ) {
+						val = regexListLookup(bStart, fileName);
+						if ( val ) {
+							startLevel = ''+val;
+						} else {
+							for ( val in noStart ) {
+								if ( fileName.indexOf(val) == 0 ) {
+									startLevel = '';
+									break;
+								}
+							}
+						}
+					}
+					if ( startLevel.length > 0 ) {
+						startLevel = "@" +startLevel +"\\:start";
+					}
+				
+					list.push(resource.getName() +startLevel);
+				}
+					
+				list.sort(function(left, right) {
+					var lNum = regexListLookup(bOrder, left);
+					var rNum = regexListLookup(bOrder, right);
+					if ( lNum < rNum ) {
+						return -1;
+					}
+					if ( lNum > rNum ) {
+						return 1;
+					}
+					var l = left.toLowerCase();
+					var r = right.toLowerCase();
+					if ( l < r ) {
+						return -1;
+					}
+					if ( l > r ) {
+						return 1;
+					}
+					return 0;
+				});
+				
+				self.getProject().setProperty("@{property}", list.join(','));
 			]]></script>
 		</sequential>
 	</macrodef>
