@@ -15,11 +15,11 @@ copies (they will be ignored by version control).
 The build script assembles all the various artifacts that make up the SolarNode
 Platform using Apache Ivy. The **ivy.xml** file configures which artifacts to
 include in the build. Typically you might customize this to add additional 
-artifacts not already included in the framework.
+artifacts not already included in the platform.
 
 ## Building
 
-To build the framework, run the **archive** task:
+To build the platform, run the **archive** task:
 
 	ant archive
 	
