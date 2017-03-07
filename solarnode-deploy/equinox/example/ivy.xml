@@ -179,8 +179,9 @@
 		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
 
 		<!-- Jackson JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="boot"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="boot"/>
 		
 		<!-- Spring -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="boot"/>
