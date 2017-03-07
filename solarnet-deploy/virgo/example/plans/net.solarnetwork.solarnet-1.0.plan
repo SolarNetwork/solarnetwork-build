@@ -10,10 +10,13 @@
 	<artifact type="bundle" name="net.solarnetwork.common.pki.bc" version="[1.0,2.0)"/>
 
 	<!-- DAOs -->
-	<artifact type="bundle" name="net.solarnetwork.central.common.dao.mybatis" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.datum.dao.mybatis" version="[2.0,3.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.dao.mybatis" version="[1.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.dao.mybatis" version="[1.0,2.0)"/>
+
+	<!-- Shared -->
+	<artifact type="bundle" name="net.solarnetwork.central.common.aop" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.common.biz.dao" version="[1.0,2.0)"/>
 
 	<!-- Datum -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.aop" version="[1.0,2.0)"/>

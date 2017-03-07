@@ -1,0 +1,5 @@
+Bundle-Version: 3.0.0.RELEASE
+Bundle-Name: Gemini Web Tomcat Source
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.gemini.web.tomcat.source
+Eclipse-SourceBundle: org.eclipse.gemini.web.tomcat.source;version="3.0.0.RELEASE";roots:="."
