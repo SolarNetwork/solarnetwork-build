@@ -35,11 +35,9 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.obr" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
-		
-		<!--Websocket client support>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="latest.release"/>
-		-->
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="latest.release"/>
 		
 		<!-- For standard deployments, include the .setup and .bulkjsonwebpost bundles -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
