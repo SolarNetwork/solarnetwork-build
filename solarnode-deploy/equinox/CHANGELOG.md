@@ -1,4 +1,4 @@
-# SolarNode Framework (Equinox) Changelog
+# SolarNode Platform (Equinox) Changelog
 
 ## v20170306
 
