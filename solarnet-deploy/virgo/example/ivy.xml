@@ -21,9 +21,9 @@
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="runtime"/>
 		
 		<!-- JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.4.3" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.4.3" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.4.3" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="runtime"/>
 		
 		<!-- JDBC -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29" conf="runtime">
@@ -39,17 +39,17 @@
     	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
 		
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aspects" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-orm" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.6.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.6.RELEASE_1" conf="runtime">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aspects" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-orm" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.9.RELEASE_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.9.RELEASE_1" conf="runtime">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -60,7 +60,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.6.RELEASE_1" conf="runtime">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.9.RELEASE_1" conf="runtime">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -132,10 +132,10 @@
 		<dependency org="org.apache.tiles" name="tiles-request-servlet" rev="1.0.6" conf="runtime"/>
 		
 		<!-- JodaTime -->
-		<dependency org="joda-time" name="joda-time" rev="2.4" conf="runtime"/>
+		<dependency org="joda-time" name="joda-time" rev="2.9.7" conf="runtime"/>
 		
 		<!-- Ehcache -->
-		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="runtime"/>
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.10.3" conf="runtime"/>
 		
 		<!-- Quartz Scheduler -->
 		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="runtime">
@@ -186,7 +186,6 @@
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="slf4j-api"/>
-		<exclude module="jcl-over-slf4j"/>
 		
 	</dependencies>
 </ivy-module>
