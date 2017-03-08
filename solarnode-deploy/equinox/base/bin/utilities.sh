@@ -26,7 +26,7 @@ setup_dir () {
 
 #function to copy the conf/config.ini into EQUINOX_CONF
 setup_ini () {
-	if [ ! -e "${EQUINOX_CONF}/config.ini" ]; then
+	if [ ! -e "${EQUINOX_CONF}/config.ini" -a -e "${SOLARNODE_HOME}/conf/config.ini" ]; then
 		if [ -z "${RUNAS}" ]; then
 			cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}
 		else
