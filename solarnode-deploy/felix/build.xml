@@ -48,12 +48,10 @@
 	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
 	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
 	
-	<import file="${dir.target}/lib-build.xml"/>
+	<property name="osgi.jar.pat" value="org.apache.felix.main-*"/>
+	<property name="osgi.jar.link" value="felix"/>
 	
-	<patternset id="virgo.support">
-		<include name="virgo/*"/>
-		<exclude name="virgo/*-sources-*"/>
-	</patternset>
+	<import file="${dir.target}/lib-build.xml"/>
 	
 	<target name="app-clean">
 		<delete dir="${dir.build}" failonerror="no"/>
@@ -85,10 +83,10 @@
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
-			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.apache.felix.main-*"/>
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="${osgi.jar.pat}"/>
 		</copy>
 		<copy todir="${dir.assemble}/app">
-			<fileset dir="${dir.build}/jars" includes="org.apache.felix.main-*"/>
+			<fileset dir="${dir.build}/jars" includes="${osgi.jar.pat}"/>
 		</copy>
 		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
@@ -117,6 +115,13 @@
 			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
 		<symlink link="${dir.assemble}/config" resource="conf" />
+		
+		<fileset dir="${dir.assemble}/app" includes="${osgi.jar.pat}" id="osgi.jar.path"/>
+		<property name="osgi.jar.name" refid="osgi.jar.path"/>
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/${osgi.jar.link}.jar"/>
+		<symlink
+			link="${dir.assemble}/app/${osgi.jar.link}.jar"
+			resource="${osgi.jar.name}"/>
 	</target>
 	
 	<target name="felix-config">
@@ -169,7 +174,7 @@
 	<target name="archive.native" depends="assemble">
 		<exec executable="tar" failonerror="no" resultproperty="archive.native.failed">
 			<arg value="-czf"/>
-			<arg value="${dir.build}/base-felix-node.tgz"/>
+			<arg value="${dir.build}/base-${osgi.jar.link}-node.tgz"/>
 			<arg value="-C"/>
 			<arg value="${dir.assemble}"/>
 			<arg value="app"/>
@@ -182,7 +187,7 @@
 	
 	<!-- Fall back to tar Ant task if native tar failed -->
 	<target name="archive.ant" depends="assemble" if:true="${archive.native.failed}">
-		<tar destfile="${dir.build}/base-felix-node.tgz" compression="gzip" longfile="gnu">
+		<tar destfile="${dir.build}/base-${osgi.jar.link}-node.tgz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${dir.assemble}">
 				<include name="**"/>
 				<exclude name="bin/*.sh"/>
