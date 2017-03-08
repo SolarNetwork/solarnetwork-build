@@ -17,9 +17,10 @@ ExecStart=/usr/bin/java -Xmx96m \
 	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
 	-Djava.net.preferIPv4Stack=true \
 	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
-	-Dsn.home=${SOLAR_HOME} -Dderby.system.home=${RAM_DIR}/db \
-	-jar ${SOLAR_HOME}/app/org.eclipse.osgi-3.9.1.v20140110-1610.jar \
-	-configuration ${RAM_DIR} -console 4202 -clean
+	-Dsn.home=${SOLAR_HOME} \
+	-Dderby.system.home=${RAM_DIR}/db \
+	-Dgosh.args=--nointeractive \
+	-jar app/felix.jar var/felix-cache
 ExecStartPre=/bin/sh /usr/share/solarnode/utilities.sh start
 ExecStopPost=/bin/sh /usr/share/solarnode/utilities.sh stop
 SuccessExitStatus=143
