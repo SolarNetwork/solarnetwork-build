@@ -1,0 +1,330 @@
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
+
+	<property file="${basedir}/build.properties"/>
+
+	<property name="bundle.nostart">
+		com.springsource.org.apache.xerces,
+		slf4j-log4j,
+		net.solarnetwork.external.org.apache.log4j.config,
+		net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config,
+		org.apache.catalina.ha,
+		org.apache.catalina.tribes,
+		org.apache.coyote,
+		org.apache.jasper,
+		org.apache.tomcat.util,
+		org.apache.tomcat.websocket,
+		org.eclipse.gemini.web.jaspic.fragment
+	</property>
+	<property name="bundle.start">
+		spring-security-config=6,
+		org\.apache\.felix\.fileinstall=8
+	</property>
+	<property name="bundle.order">
+		net.solarnetwork.common.pidfile=-99,
+		org\.osgi\.core\.=-95,
+		org\.osgi\.=-90,
+		javax\.=-80,
+		log4j=-75,
+		slf4j=-75,
+		derby=-70,
+		org\.apache.*-8\.=-50,
+		spring-security-config=90,
+		spring-security-messaging=86,
+		spring-security=85,
+		spring-=70,
+		org\.apache\.felix\.fileinstall=99,
+		org\.apache=-45,
+		jackson=-40,
+		joda=-40
+	</property>
+	
+	<property name="ivy.file" value="${basedir}/ivy.xml"/>
+	<property name="log.file" value="/dev/shm/solar/log/solarnode.log"/>
+	<property name="dir.runtime.lib" value="../lib"/>
+	<property name="dir.base" value="base"/>
+	
+	<property name="dir.build" value="build"/>
+	<property name="dir.assemble" value="${dir.build}/assemble"/>
+	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
+	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
+	
+	<import file="${dir.target}/lib-build.xml"/>
+	
+	<patternset id="virgo.support">
+		<include name="virgo/*"/>
+		<exclude name="virgo/*-sources-*"/>
+	</patternset>
+	
+	<target name="app-clean">
+		<delete dir="${dir.build}" failonerror="no"/>
+	</target>
+	
+	<target name="assemble-prepare">
+		<mkdir dir="${dir.assemble}"/>
+		<mkdir dir="${dir.assemble}/app/boot"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
+		<mkdir dir="${dir.assemble}/app/main"/>
+		<mkdir dir="${dir.assemble}/conf"/>
+		<mkdir dir="${dir.assemble}/var"/>
+	</target>
+	
+	<target name="assemble-base" depends="assemble-prepare">
+		<copy todir="${dir.assemble}" flatten="no">
+			<fileset dir="${dir.base}" includes="**">
+				<exclude name="**/README.txt"/>
+			</fileset>
+		</copy>
+		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
+	</target>
+	
+	<target name="app-boot" depends="ivy-init,assemble-prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${ivy.file}" conf="boot,gemini"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/boot"/>
+		<copy todir="${dir.assemble}/app/boot" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.apache.felix.main-*"/>
+		</copy>
+		<copy todir="${dir.assemble}/app">
+			<fileset dir="${dir.build}/jars" includes="org.apache.felix.main-*"/>
+		</copy>
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
+			<fileset dir="${dir.runtime.lib}/app-boot">
+				<include name="**/*.properties"/>
+			</fileset>
+			<filterset>
+				<filter token="LOGFILE" value="${log.file}"/>
+			</filterset>
+		</copy>
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="no">
+			<fileset dir="${dir.runtime.lib}/app-boot">
+				<include name="**"/>
+				<exclude name="**/*.properties"/>
+			</fileset>
+		</copy>
+		
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/boot">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+		
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
+		<symlink 
+			link="${dir.assemble}/conf/log4j.properties" 
+			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
+		<symlink link="${dir.assemble}/config" resource="conf" />
+	</target>
+	
+	<target name="felix-config">
+		<union id="app.boot.files">
+			<fileset dir="${dir.assemble}/app" includes="boot/*"/>
+			<dirset dir="${dir.assemble}/app" includes="boot/*"/>
+		</union>
+		<felix-config-generate 
+			filesetId="app.boot.files" 
+			defaultStartLevel="2"
+			matchStartLevel="1"
+			property="felix.bundles.boot"/>
+		<echo>Got config ${felix.bundles.boot}</echo>
+		
+		<union id="app.core.files">
+			<fileset dir="${dir.assemble}/app" includes="core/*"/>
+			<dirset dir="${dir.assemble}/app" includes="core/*"/>
+		</union>
+		<felix-config-generate 
+			filesetId="app.core.files" 
+			defaultStartLevel="4"
+			matchStartLevel="3"
+			property="felix.bundles.core"/>
+		<echo>Got config ${felix.bundles.core}</echo>
+		
+		<copy todir="${dir.assemble}/conf" filtering="yes" overwrite="yes">
+			<fileset file="${dir.base}/conf/config.properties"/>
+			<filterset>
+				<filter token="OSGI_BUNDLES" value="${felix.bundles.boot}${felix.bundles.core}"/>
+			</filterset>
+		</copy>
+	</target>
+	
+	<target name="app-core" depends="ivy-init,assemble-prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${ivy.file}" conf="core"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
+		<copy todir="${dir.assemble}/app/core" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
+		</copy>
+	</target>
+	
+	<target name="assemble" depends="assemble-base,app-boot,app-core,felix-config"
+		description="Assemble a base node directory structure"/>
+	
+	<!-- Attempt to use native tar, to honor symlinks -->
+	<target name="archive.native" depends="assemble">
+		<exec executable="tar" failonerror="no" resultproperty="archive.native.failed">
+			<arg value="-czf"/>
+			<arg value="${dir.build}/base-felix-node.tgz"/>
+			<arg value="-C"/>
+			<arg value="${dir.assemble}"/>
+			<arg value="app"/>
+			<arg value="bin"/>
+			<arg value="conf"/>
+			<arg value="config"/>
+			<arg value="var"/>
+		</exec>
+	</target>
+	
+	<!-- Fall back to tar Ant task if native tar failed -->
+	<target name="archive.ant" depends="assemble" if:true="${archive.native.failed}">
+		<tar destfile="${dir.build}/base-felix-node.tgz" compression="gzip" longfile="gnu">
+			<tarfileset dir="${dir.assemble}">
+				<include name="**"/>
+				<exclude name="bin/*.sh"/>
+			</tarfileset>
+			<tarfileset dir="${dir.assemble}" mode="755">
+				<include name="bin/*.sh"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<target name="archive" depends="assemble,archive.native,archive.ant"
+		description="Assemble and then package a base node archive"/>
+	
+	<macrodef name="felix-config-generate">
+		<attribute name="filesetId"/>
+		<attribute name="defaultStartLevel"/>
+		<attribute name="matchStartLevel"/>
+		<attribute name="property"/> <!-- the property name to set -->
+		<sequential>
+			<script language="javascript"><![CDATA[
+				function commaDelimitedSet(s) {
+					var i, key, split, result = {};
+					if ( s ) {
+						split = (''+s).split(/\s*,\s*/);
+						for ( i = 0; i < split.length; i += 1 ) {
+							key = split[i].replace(/\s+/g, '');
+							result[key] = 1; // just a flag to indicate in set
+						}
+					}
+					return result;
+				}
+				
+				function numberRegexList(s) {
+					var pair,
+						result = [];
+					split = (''+s).split(/\s*,\s*/);
+					for ( i = 0; i < split.length; i += 1 ) {
+						pair = split[i].split(/\s*=\s*/);
+						if ( pair.length > 1 ) {
+							key = pair[0].replace(/\s+/g, '');
+							result.push({
+								regex:new RegExp(key, 'i'), 
+								order:Number(pair[1].replace(/\s+/g, ''))
+							});
+						}
+					}
+					return result;
+				}
+				
+				function regexListLookup(list, key) {
+					var i;
+					for ( i = 0; i < list.length; i += 1 ) {
+						if ( key.search(list[i].regex) !== -1 ) {
+							return list[i].order;
+						}
+					}
+					return 0;
+				}
+
+				function bundleSorter(mapping) {
+					return function(left, right) {
+						var lNum = regexListLookup(mapping, left);
+						var rNum = regexListLookup(mapping, right);
+						if ( lNum < rNum ) {
+							return -1;
+						}
+						if ( lNum > rNum ) {
+							return 1;
+						}
+						var l = left.toLowerCase();
+						var r = right.toLowerCase();
+						if ( l < r ) {
+							return -1;
+						}
+						if ( l > r ) {
+							return 1;
+						}
+						return 0;
+					}
+				}
+
+				var noStart = commaDelimitedSet(self.getProject().getProperty("bundle.nostart"));				
+				var bOrder = numberRegexList(self.getProject().getProperty("bundle.order"));
+				var bStart = numberRegexList(self.getProject().getProperty("bundle.start"));
+
+				var fileSet = self.getProject().getReference("@{filesetId}");
+				var iterator = fileSet.iterator();
+				var resource, fileName;
+				var config = "";
+				var startLevel, val;
+				var installs = {}; // mapping of start level -> array of bundle names
+				var starts = {};   // mapping of start level -> array of bundle names
+				var list, bSorter = bundleSorter(bOrder);
+				while ( iterator.hasNext() ) {
+					resource = iterator.next();
+					fileName = resource.getFile().getName();
+						
+					startLevel = "@{defaultStartLevel}";
+					if ( startLevel.length > 0 ) {
+						val = regexListLookup(bStart, fileName);
+						if ( val ) {
+							startLevel = ''+val;
+						} else {
+							for ( val in noStart ) {
+								if ( fileName.indexOf(val) == 0 ) {
+									startLevel = '';
+									break;
+								}
+							}
+						}
+					}
+					if ( startLevel.length > 0 ) {
+						list = starts[startLevel];
+						if ( !list ) {
+							list = [];
+							starts[startLevel] = list;
+						}
+					} else {
+						list = installs["@{defaultStartLevel}"];
+						if ( !list ) {
+							list = [];
+							installs["@{defaultStartLevel}"] = list;
+						}
+					}
+					// exploded bundles (directories) require a 'reference:' prefix to work in Felix
+					list.push((resource.isDirectory() ? 'reference:' : '') +'file:app/' +resource.getName());
+				}
+
+				for ( startLevel in installs ) {
+					list = installs[startLevel];
+					list.sort(bSorter);
+					config += 'felix.auto.install.' +startLevel +'=' +list.join(' ') +'\n';
+				}
+				for ( startLevel in starts ) {
+					list = starts[startLevel];
+					list.sort(bSorter);
+					config += 'felix.auto.start.' +startLevel +'=' +list.join(' ') +'\n';
+				}
+				
+				self.getProject().setProperty("@{property}", config);
+			]]></script>
+		</sequential>
+	</macrodef>
+	
+</project>

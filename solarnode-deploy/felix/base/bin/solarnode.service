@@ -1,0 +1,30 @@
+# SolarNode systemd service unit 
+
+[Unit]
+Description=The SolarNode server.
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=/usr/lib/jni:/home/solar/lib
+Environment=SOLAR_HOME=/home/solar
+Environment=RAM_DIR=/run/solar
+User=solar
+Group=solar
+WorkingDirectory=/home/solar
+ExecStart=/usr/bin/java -Xmx96m \
+	-XX:+HeapDumpOnOutOfMemoryError \
+	-Djava.io.tmpdir=${RAM_DIR}/tmp \
+	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
+	-Djava.net.preferIPv4Stack=true \
+	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
+	-Dsn.home=${SOLAR_HOME} -Dderby.system.home=${RAM_DIR}/db \
+	-jar ${SOLAR_HOME}/app/org.eclipse.osgi-3.9.1.v20140110-1610.jar \
+	-configuration ${RAM_DIR} -console 4202 -clean
+ExecStartPre=/bin/sh /usr/share/solarnode/utilities.sh start
+ExecStopPost=/bin/sh /usr/share/solarnode/utilities.sh stop
+SuccessExitStatus=143
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

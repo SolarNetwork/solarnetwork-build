@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="Equinox Base"/>
+	<configurations>
+		<conf name="boot" visibility="public" description="Bootstrap Environment"/>
+		<conf name="gemini" visibility="public" description="Gemini Web Runtime"/>
+		<conf name="core" visibility="public" description="Core Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);foo->default(runtime)"
+		defaultconf="core->default(runtime)">
+	
+		<!-- Core OSGi runtime (Felix Framework)-->
+		<dependency org="org.apache.felix" name="org.apache.felix.main" rev="5.6.2" conf="boot">
+    		<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.command" rev="0.16.0" conf="boot">
+    		<exclude org="org.osgi"/>
+    		<exclude module="felix"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.runtime" rev="0.16.2" conf="boot">
+    		<exclude org="org.osgi"/>
+    		<exclude module="felix"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="0.10.0" conf="boot">
+    		<exclude org="org.osgi"/>
+    		<exclude module="felix"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.shell.remote" rev="1.1.2" conf="boot">
+    		<exclude org="org.osgi"/>
+    		<exclude module="felix"/>
+    		<exclude module="org.apache.felix.shell"/>
+		</dependency>
+		<!-- For now not using jline impl because shell.remote fails via telnet
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.jline" rev="1.0.2" conf="boot">
+    		<exclude org="org.osgi"/>
+    		<exclude module="felix"/>
+		</dependency>
+		<dependency org="org.jline" name="jline" rev="3.0.1" conf="boot"/>
+		<dependency org="org.fusesource.jansi" name="jansi" rev="1.14" conf="boot"/>
+		-->
+
+		<!-- Core OSGi APIs -->
+		<dependency org="org.osgi" name="org.osgi.compendium" rev="4.2.0" conf="boot">
+    		<exclude module="org.osgi.core"/>
+		</dependency>
+		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="boot">
+    		<exclude module="org.osgi.core"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.osgi.service.obr" rev="1.0.2" conf="boot">
+			<exclude name="org.osgi.core"/>
+		</dependency>
+		
+		<!-- Core OSGi services -->
+    	<dependency org="org.apache.felix" name="org.apache.felix.bundlerepository" rev="2.0.8" conf="boot">
+    		<exclude name="org.osgi.core"/>
+    	</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.configadmin" rev="1.8.14" conf="boot">
+    		<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.eventadmin" rev="1.4.8" conf="boot">
+    		<exclude org="org.osgi"/>
+		</dependency>
+		
+		<!-- FileInstall -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN01" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="core">
+    		<exclude org="org.osgi"/>
+		</dependency>
+
+		<!-- SolarNetwork Core -->
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="latest.release" conf="boot">
+			<exclude org="org.osgi"/>
+			<exclude org="org.springframework"/>
+		</dependency>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="latest.release" conf="boot">
+			<exclude org="org.eclipse.gemini"/>
+			<exclude org="org.osgi"/>
+			<exclude org="org.springframework"/>
+		</dependency>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release" conf="boot">
+			<exclude module="derby"/>
+			<exclude org="org.osgi"/>
+			<exclude org="org.apache.servicemix.bundles"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.derby" rev="10.12.1.1_1" conf="boot"/>
+	
+		<!-- Gemini Blueprint -->		
+		<!-- NOTE: custom build of gemini-blueprint-core to work around bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=357903 -->
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="2.0.0.RELEASE_SN02" conf="boot">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+		</dependency>
+		<dependency org="org.eclipse.gemini.blueprint" name="gemini-blueprint-extender" rev="2.0.0.RELEASE" conf="boot">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
+		</dependency>
+		<dependency org="org.eclipse.gemini.blueprint" name="gemini-blueprint-io" rev="2.0.0.RELEASE" conf="boot">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
+		</dependency>
+		
+		<!-- Gemini Web -->
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="3.0.0.RELEASE" conf="gemini">
+			<exclude module="org.eclipse.equinox.event"/>
+			<exclude module="org.eclipse.osgi"/>
+			<exclude module="org.eclipse.osgi.services"/>
+			<exclude org="org.eclipse.virgo.util"/>
+			<exclude module="org.slf4j.api"/>
+		</dependency>
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="3.0.0.RELEASE" conf="gemini">
+			<exclude module="org.eclipse.equinox.event"/>
+			<exclude module="org.eclipse.osgi"/>
+			<exclude module="org.eclipse.osgi.services"/>
+			<exclude org="org.eclipse.virgo.util"/>
+			<exclude module="org.slf4j.api"/>
+		</dependency>
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="3.0.0.RELEASE" conf="gemini">
+			<exclude module="org.eclipse.equinox.event"/>
+			<exclude module="org.eclipse.osgi"/>
+			<exclude module="org.eclipse.osgi.services"/>
+			<exclude org="org.eclipse.virgo.util"/>
+			<exclude module="org.slf4j.api"/>
+		</dependency>
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.0.RELEASE" conf="gemini">
+			<exclude module="org.eclipse.equinox.event"/>
+			<exclude module="org.eclipse.osgi"/>
+			<exclude module="org.eclipse.osgi.services"/>
+			<exclude org="org.eclipse.virgo.util"/>
+			<exclude module="org.slf4j.api"/>
+		</dependency>
+		
+		<!-- The following ship with the Gemini Web distribution  -->
+		<dependency org="org.eclipse.virgo.mirrored" name="com.springsource.javax.activation" rev="1.1.1" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.mail" rev="1.4.0.v201005080615" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.transaction" rev="1.1.0.v201205091237" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.websocket" rev="1.1.0.20170128" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.xml.soap" rev="1.3.0.v201105210645" conf="gemini"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="javax.security.auth.message" rev="1.1.0.20170128" conf="gemini"/>
+
+		<!-- Virgo support -->
+		<!-- Disabled until 3.7.0.RELEASE available in repo
+		<dependency org="org.eclipse.virgo.web" name="org.eclipse.virgo.web.dm" rev="3.7.0.RELEASE" conf="core">
+			<exclude org="org.springframework"/>
+			<exclude org="org.eclipse.gemini"/>
+			<exclude org="org.eclipse.virgo.kernel"/>
+			<exclude org="org.eclipse.virgo.nano"/>
+			<exclude org="org.eclipse.virgo.medic"/>
+			<exclude org="org.eclipse.virgo.mirrored"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+		</dependency>
+		<dependency org="org.eclipse.virgo.medic" name="org.eclipse.virgo.medic" rev="3.7.0.RELEASE" conf="core">
+			<exclude org="org.eclipse.gemini"/>
+			<exclude org="org.eclipse.virgo.mirrored"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="org.eclipse.virgo.medic.core"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+		</dependency>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.common" rev="3.7.0RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.io" rev="3.7.0.RELEASE" conf="core">
+			<exclude module="org.slf4j.api"/>
+		</dependency>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.math" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.osgi.manifest" rev="3.7.0.RELEASE" conf="core"/>
+		<dependency org="org.eclipse.virgo.util" name="org.eclipse.virgo.util.parser.manifest" rev="3.7.0.RELEASE" conf="core"/>
+		-->
+		
+    	<!-- AspectJ -->
+    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="boot"/>
+	
+		<!-- Apache Commons -->
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="boot"/>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="boot"/>
+		<dependency org="org.eclipse.virgo.mirrored" name="org.apache.commons.codec" rev="1.10.0" conf="boot"/>
+		<dependency org="commons-digester" name="commons-digester" rev="2.0" conf="boot">
+			<exclude org="commons-io"/>
+			<exclude org="commons-beanutils"/>
+		</dependency>
+		<dependency org="commons-io" name="commons-io" rev="2.4" conf="boot"/>
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2" conf="boot">
+			<exclude org="commons-io"/>
+		</dependency>
+		
+		<!-- Tyrus Websocket support -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="latest.release" conf="boot"/>	
+		
+		<!-- CSV -->
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0"  conf="core"/>
+		
+		<!-- JDBC connection pool -->
+		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.64" conf="boot">
+    		<exclude module="tomcat-juli"/><!-- Ignore Tomcat version, which isn't OSGi -->
+		</dependency>
+		<dependency org="org.apache.juli.springsource" name="com.springsource.org.apache.juli.extras.springsource" 
+				rev="6.0.32.S2-r1673"  conf="boot"/>
+		
+		<!-- Logging -->
+		<dependency org="log4j" name="log4j" rev="1.2.17" conf="boot"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.24" conf="boot"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.24" conf="boot"/>
+		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.24" conf="boot"/>
+		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.24" conf="boot"/>
+		
+		<!-- AOP Alliance -->
+		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
+
+		<!-- Jackson JSON -->
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="boot"/>
+		
+		<!-- Spring -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.9.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.9.RELEASE_1" conf="boot">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
+		<!-- Use custom Spring Webmvc JAR from platform, because of bug https://issues.apache.org/jira/browse/SM-3078 -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.9.RELEASE_1_SN01" conf="boot">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.2.9.RELEASE_1" conf="boot">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude name="spring-aop"/>
+			<exclude name="spring-aspects"/>
+			<exclude name="spring-beans"/>
+			<exclude name="spring-context"/>
+			<exclude name="spring-context-support"/>
+			<exclude name="spring-core"/>
+			<exclude name="spring-expression"/>
+		</dependency>
+		
+		<!-- Spring Security -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1_SN01" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="4.1.0.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-security-messaging" rev="4.1.0.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1_SN01" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="4.1.0.RELEASE_1" conf="core">
+    		<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		
+		<!-- Extra Servlet -->
+		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="boot"/>
+		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.1" conf="boot"/>
+		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="boot">
+			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
+		</dependency>
+		<!--dependency org="javax.servlet" name="com.springsource.javax.servlet.jsp.jstl" rev="1.2.0.v20110728"  conf="core"/-->
+		
+		<!-- Apache Tiles -->
+		<dependency org="org.apache.tiles" name="tiles-core" rev="3.0.5" conf="core">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-el" rev="3.0.5" conf="core">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-jsp" rev="3.0.5" conf="core">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-servlet" rev="3.0.5" conf="core">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-template" rev="3.0.5" conf="core">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-request-jsp" rev="1.0.6" conf="core">
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-request-servlet" rev="1.0.6" conf="core">
+			<exclude org="org.slf4j"/>
+		</dependency>
+				
+		<!-- JodaTime -->
+		<dependency org="joda-time" name="joda-time" rev="2.9.7" conf="boot"/>
+		
+		<!-- Quartz scheduler -->
+		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="core">
+			<exclude module="c3p0"/>
+			<exclude module="mchange-commons-java"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.c3p0" rev="0.9.5.2_1" conf="core">
+			<exclude module="mchange-commons-java"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+
+		<!-- PKI -->
+		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="boot"/>
+    	<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" conf="boot"/>
+    	
+		<!-- Global excludes -->
+		<exclude org="asm"/>
+		<exclude org="com.sun.xml.bind"/>
+		<exclude org="javax.xml.stream"/>
+		<exclude org="org.easymock"/>
+		<exclude org="wsdl4j"/>
+		<exclude org="xml-resolver"/>
+		<exclude module="aopalliance"/>
+		<exclude module="commons-codec"/>
+		<exclude module="commons-logging"/>
+		<exclude module="com.springsource.org.apache.commons.collections"/>
+		<exclude module="com.springsource.org.apache.commons.logging"/>
+		<exclude module="com.springsource.javax.activation"/>
+		<exclude module="org.apache.felix.framework"/>
+		<exclude module="org.eclipse.osgi"/>
+		<exclude module="javax.inject"/>
+		
+	</dependencies>
+</ivy-module>
