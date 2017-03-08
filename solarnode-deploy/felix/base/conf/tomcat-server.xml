@@ -1,0 +1,14 @@
+<Server port="8005" shutdown="SHUTDOWN">
+	<Service name="Catalina">
+		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Nio2Protocol"
+			compression="on" 
+			compressionMinSize="2048"
+			useSendfile="false"
+			compressableMimeType="text/html,text/xml,application/xml,text/javascript,text/css,application/json,image/svg+xml"
+		/>		
+		<Engine name="Catalina" defaultHost="localhost">
+			<Host name="localhost" appBase="var" createDirs="false" 
+				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
+		</Engine>
+	</Service>
+</Server>
