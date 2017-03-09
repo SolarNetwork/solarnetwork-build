@@ -88,8 +88,8 @@
 <plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
 <plugin id="org.apache.servicemix.bundles.asm"/>
-<plugin id="org.apache.servicemix.bundles.aspectj" version="1.8.10.1"/>
-<plugin id="org.apache.servicemix.bundles.aspectj.source" version="1.8.10.1"/>
+<plugin id="org.apache.servicemix.bundles.aspectj"/>
+<plugin id="org.apache.servicemix.bundles.aspectj.source"/>
 <plugin id="org.apache.servicemix.bundles.c3p0"/>
 <plugin id="org.apache.servicemix.bundles.c3p0.source"/>
 <plugin id="org.apache.servicemix.bundles.derby"/>
@@ -194,6 +194,8 @@
 <plugin id="org.mybatis.mybatis.source"/>
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
+<plugin id="org.postgresql.jdbc42"/>
+<plugin id="org.postgresql.jdbc42.source"/>
 <plugin id="org.quartz-scheduler.quartz"/>
 <plugin id="org.quartz-scheduler.quartz.source"/>
 <plugin id="org.slf4j.osgi-over-slf4j"/>
