@@ -34,6 +34,7 @@
 				conf="runtime"/>
     	<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
     	<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="org.postgresql.jdbc42" rev="42.0.0" conf="runtime"/>
 		
     	<!-- AspectJ -->
     	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
@@ -170,8 +171,6 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.taglibs.response" rev="1.0.1" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.joda.jsptags" rev="1.1.1" conf="runtime"/>
     	<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.mortbay.jetty" rev="6.1.26.SN01" conf="runtime"/>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql" rev="1.1.0" conf="runtime"/>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.postgresql.jdbc4" rev="9.3.1102.SN01" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.tuckey.urlrewritefilter" rev="4.0.4.SN01" conf="runtime"/>
 		
 		<!-- SN Core -->
