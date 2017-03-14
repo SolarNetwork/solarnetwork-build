@@ -48,12 +48,10 @@
 	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
 	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
 	
-	<import file="${dir.target}/lib-build.xml"/>
+	<property name="osgi.jar.pat" value="org.apache.felix.main-*"/>
+	<property name="osgi.jar.link" value="felix"/>
 	
-	<patternset id="virgo.support">
-		<include name="virgo/*"/>
-		<exclude name="virgo/*-sources-*"/>
-	</patternset>
+	<import file="${dir.target}/lib-build.xml"/>
 	
 	<target name="app-clean">
 		<delete dir="${dir.build}" failonerror="no"/>
@@ -62,6 +60,7 @@
 	<target name="assemble-prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
 		<mkdir dir="${dir.assemble}/conf"/>
 		<mkdir dir="${dir.assemble}/var"/>
@@ -84,10 +83,10 @@
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
-			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="${osgi.jar.pat}"/>
 		</copy>
 		<copy todir="${dir.assemble}/app">
-			<fileset dir="${dir.build}/jars" includes="org.eclipse.osgi-*"/>
+			<fileset dir="${dir.build}/jars" includes="${osgi.jar.pat}"/>
 		</copy>
 		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
@@ -116,35 +115,42 @@
 			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
 		<symlink link="${dir.assemble}/config" resource="conf" />
+		
+		<fileset dir="${dir.assemble}/app" includes="${osgi.jar.pat}" id="osgi.jar.path"/>
+		<property name="osgi.jar.name" refid="osgi.jar.path"/>
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/${osgi.jar.link}.jar"/>
+		<symlink
+			link="${dir.assemble}/app/${osgi.jar.link}.jar"
+			resource="${osgi.jar.name}"/>
 	</target>
 	
-	<target name="equinox-config">
+	<target name="felix-config">
 		<union id="app.boot.files">
 			<fileset dir="${dir.assemble}/app" includes="boot/*"/>
 			<dirset dir="${dir.assemble}/app" includes="boot/*"/>
 		</union>
-		<equinox-config-generate 
+		<felix-config-generate 
 			filesetId="app.boot.files" 
 			defaultStartLevel="2"
 			matchStartLevel="1"
-			property="equinox.bundles.boot"/>
-		<echo>Got config ${equinox.bundles.boot}</echo>
+			property="felix.bundles.boot"/>
+		<echo>Got config ${felix.bundles.boot}</echo>
 		
 		<union id="app.core.files">
 			<fileset dir="${dir.assemble}/app" includes="core/*"/>
 			<dirset dir="${dir.assemble}/app" includes="core/*"/>
 		</union>
-		<equinox-config-generate 
+		<felix-config-generate 
 			filesetId="app.core.files" 
 			defaultStartLevel="4"
 			matchStartLevel="3"
-			property="equinox.bundles.core"/>
-		<echo>Got config ${equinox.bundles.core}</echo>
+			property="felix.bundles.core"/>
+		<echo>Got config ${felix.bundles.core}</echo>
 		
 		<copy todir="${dir.assemble}/conf" filtering="yes" overwrite="yes">
-			<fileset file="config.ini"/>
+			<fileset file="${dir.base}/conf/config.properties"/>
 			<filterset>
-				<filter token="OSGI_BUNDLES" value="${equinox.bundles.boot},${equinox.bundles.core}"/>
+				<filter token="OSGI_BUNDLES" value="${felix.bundles.boot}${felix.bundles.core}"/>
 			</filterset>
 		</copy>
 	</target>
@@ -161,27 +167,14 @@
 		</copy>
 	</target>
 	
-	<target name="app-foo" depends="ivy-init,assemble-prepare">
-		<mkdir dir="${dir.assemble}/app/foo"/>
-		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${ivy.file}" conf="foo"/>
-		<delete dir="${dir.build}/jars" failonerror="no"/>
-		<mkdir dir="${dir.build}/jars"/>
-		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
-		<mkdir dir="${dir.assemble}/app/foo"/>
-		<copy todir="${dir.assemble}/app/foo" flatten="yes">
-			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
-		</copy>
-	</target>
-	
-	<target name="assemble" depends="assemble-base,app-boot,app-core,equinox-config"
+	<target name="assemble" depends="assemble-base,app-boot,app-core,felix-config"
 		description="Assemble a base node directory structure"/>
 	
 	<!-- Attempt to use native tar, to honor symlinks -->
 	<target name="archive.native" depends="assemble">
 		<exec executable="tar" failonerror="no" resultproperty="archive.native.failed">
 			<arg value="-czf"/>
-			<arg value="${dir.build}/base-equinox-node.tgz"/>
+			<arg value="${dir.build}/base-${osgi.jar.link}-node.tgz"/>
 			<arg value="-C"/>
 			<arg value="${dir.assemble}"/>
 			<arg value="app"/>
@@ -194,7 +187,7 @@
 	
 	<!-- Fall back to tar Ant task if native tar failed -->
 	<target name="archive.ant" depends="assemble" if:true="${archive.native.failed}">
-		<tar destfile="${dir.build}/base-equinox-node.tgz" compression="gzip" longfile="gnu">
+		<tar destfile="${dir.build}/base-${osgi.jar.link}-node.tgz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${dir.assemble}">
 				<include name="**"/>
 				<exclude name="bin/*.sh"/>
@@ -208,7 +201,7 @@
 	<target name="archive" depends="assemble,archive.native,archive.ant"
 		description="Assemble and then package a base node archive"/>
 	
-	<macrodef name="equinox-config-generate">
+	<macrodef name="felix-config-generate">
 		<attribute name="filesetId"/>
 		<attribute name="defaultStartLevel"/>
 		<attribute name="matchStartLevel"/>
@@ -253,7 +246,7 @@
 					}
 					return 0;
 				}
-				
+
 				function bundleSorter(mapping) {
 					return function(left, right) {
 						var lNum = regexListLookup(mapping, left);
@@ -283,8 +276,11 @@
 				var fileSet = self.getProject().getReference("@{filesetId}");
 				var iterator = fileSet.iterator();
 				var resource, fileName;
+				var config = "";
 				var startLevel, val;
-				var list = [], bSorter = bundleSorter(bOrder);
+				var installs = {}; // mapping of start level -> array of bundle names
+				var starts = {};   // mapping of start level -> array of bundle names
+				var list, bSorter = bundleSorter(bOrder);
 				while ( iterator.hasNext() ) {
 					resource = iterator.next();
 					fileName = resource.getFile().getName();
@@ -304,15 +300,34 @@
 						}
 					}
 					if ( startLevel.length > 0 ) {
-						startLevel = "@" +startLevel +"\\:start";
+						list = starts[startLevel];
+						if ( !list ) {
+							list = [];
+							starts[startLevel] = list;
+						}
+					} else {
+						list = installs["@{defaultStartLevel}"];
+						if ( !list ) {
+							list = [];
+							installs["@{defaultStartLevel}"] = list;
+						}
 					}
-				
-					list.push(resource.getName() +startLevel);
+					// exploded bundles (directories) require a 'reference:' prefix to work in Felix
+					list.push((resource.isDirectory() ? 'reference:' : '') +'file:app/' +resource.getName());
 				}
-					
-				list.sort(bSorter);
+
+				for ( startLevel in installs ) {
+					list = installs[startLevel];
+					list.sort(bSorter);
+					config += 'felix.auto.install.' +startLevel +'=' +list.join(' ') +'\n';
+				}
+				for ( startLevel in starts ) {
+					list = starts[startLevel];
+					list.sort(bSorter);
+					config += 'felix.auto.start.' +startLevel +'=' +list.join(' ') +'\n';
+				}
 				
-				self.getProject().setProperty("@{property}", list.join(','));
+				self.getProject().setProperty("@{property}", config);
 			]]></script>
 		</sequential>
 	</macrodef>
