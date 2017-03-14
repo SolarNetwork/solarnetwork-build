@@ -5,6 +5,7 @@
 	<property name="bundle.nostart">
 		com.springsource.org.apache.xerces,
 		slf4j-log4j,
+		net.solarnetwork.external.org.apache.log4j.config,
 		net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config,
 		org.apache.catalina.ha,
 		org.apache.catalina.tribes,
@@ -118,7 +119,10 @@
 	</target>
 	
 	<target name="equinox-config">
-		<fileset id="app.boot.files" dir="${dir.assemble}/app" includes="boot/*"/>
+		<union id="app.boot.files">
+			<fileset dir="${dir.assemble}/app" includes="boot/*"/>
+			<dirset dir="${dir.assemble}/app" includes="boot/*"/>
+		</union>
 		<equinox-config-generate 
 			filesetId="app.boot.files" 
 			defaultStartLevel="2"
@@ -126,15 +130,10 @@
 			property="equinox.bundles.boot"/>
 		<echo>Got config ${equinox.bundles.boot}</echo>
 		
-		<dirset id="app.boot.dirs" dir="${dir.assemble}/app" includes="boot/*"/>
-		<equinox-config-generate 
-			filesetId="app.boot.dirs" 
-			defaultStartLevel=""
-			matchStartLevel=""
-			property="equinox.bundledirs.boot"/>
-		<echo>Got config ${equinox.bundledirs.boot}</echo>
-		
-		<fileset id="app.core.files" dir="${dir.assemble}/app" includes="core/*"/>
+		<union id="app.core.files">
+			<fileset dir="${dir.assemble}/app" includes="core/*"/>
+			<dirset dir="${dir.assemble}/app" includes="core/*"/>
+		</union>
 		<equinox-config-generate 
 			filesetId="app.core.files" 
 			defaultStartLevel="4"
@@ -142,18 +141,10 @@
 			property="equinox.bundles.core"/>
 		<echo>Got config ${equinox.bundles.core}</echo>
 		
-		<dirset id="app.core.dirs" dir="${dir.assemble}/app" includes="core/*"/>
-		<equinox-config-generate 
-			filesetId="app.core.dirs" 
-			defaultStartLevel=""
-			matchStartLevel=""
-			property="equinox.bundledirs.core"/>
-		<echo>Got config ${equinox.bundledirs.core}</echo>
-		
 		<copy todir="${dir.assemble}/conf" filtering="yes" overwrite="yes">
 			<fileset file="config.ini"/>
 			<filterset>
-				<filter token="OSGI_BUNDLES" value="${equinox.bundles.boot},${equinox.bundledirs.boot},${equinox.bundles.core},${equinox.bundledirs.core}"/>
+				<filter token="OSGI_BUNDLES" value="${equinox.bundles.boot},${equinox.bundles.core}"/>
 			</filterset>
 		</copy>
 	</target>
@@ -263,6 +254,28 @@
 					return 0;
 				}
 				
+				function bundleSorter(mapping) {
+					return function(left, right) {
+						var lNum = regexListLookup(mapping, left);
+						var rNum = regexListLookup(mapping, right);
+						if ( lNum < rNum ) {
+							return -1;
+						}
+						if ( lNum > rNum ) {
+							return 1;
+						}
+						var l = left.toLowerCase();
+						var r = right.toLowerCase();
+						if ( l < r ) {
+							return -1;
+						}
+						if ( l > r ) {
+							return 1;
+						}
+						return 0;
+					}
+				}
+
 				var noStart = commaDelimitedSet(self.getProject().getProperty("bundle.nostart"));				
 				var bOrder = numberRegexList(self.getProject().getProperty("bundle.order"));
 				var bStart = numberRegexList(self.getProject().getProperty("bundle.start"));
@@ -270,9 +283,8 @@
 				var fileSet = self.getProject().getReference("@{filesetId}");
 				var iterator = fileSet.iterator();
 				var resource, fileName;
-				var config = "";
 				var startLevel, val;
-				var list = [];
+				var list = [], bSorter = bundleSorter(bOrder);
 				while ( iterator.hasNext() ) {
 					resource = iterator.next();
 					fileName = resource.getFile().getName();
@@ -298,25 +310,7 @@
 					list.push(resource.getName() +startLevel);
 				}
 					
-				list.sort(function(left, right) {
-					var lNum = regexListLookup(bOrder, left);
-					var rNum = regexListLookup(bOrder, right);
-					if ( lNum < rNum ) {
-						return -1;
-					}
-					if ( lNum > rNum ) {
-						return 1;
-					}
-					var l = left.toLowerCase();
-					var r = right.toLowerCase();
-					if ( l < r ) {
-						return -1;
-					}
-					if ( l > r ) {
-						return 1;
-					}
-					return 0;
-				});
+				list.sort(bSorter);
 				
 				self.getProject().setProperty("@{property}", list.join(','));
 			]]></script>
