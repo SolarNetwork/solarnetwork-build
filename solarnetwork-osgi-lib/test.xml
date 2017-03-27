@@ -1,0 +1,28 @@
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
+
+	<property file="${basedir}/build.properties"/>
+	
+	<import file="lib-build.xml"/>
+
+	<macrodef name="bundle-iterate">
+		<attribute name="target"/>
+		<sequential>
+			<subant target="@{target}">
+				<fileset refid="test.build.files"/>
+				<property name="dir.test.reports" value="${basedir}/reports"/>
+			</subant>
+		</sequential>
+	</macrodef>
+
+	<target name="test-all">
+		<fileset id="test.build.files" dir="${basedir}/../..">
+			<include name="solarnetwork-common/*.test/build.xml"/>
+			<include name="solarnetwork-external/*.test/build.xml"/>
+			<include name="solarnetwork-node/*.test/build.xml"/>
+			<include name="solarnetwork-central/*.test/build.xml"/>
+		</fileset>
+		<echo message="Projects to test:\n${toString:test.build.files}"/>
+		<bundle-iterate target="test"/>
+	</target>
+
+</project>
