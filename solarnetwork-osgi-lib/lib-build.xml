@@ -30,6 +30,9 @@
 	<property name="publish.dest" value="solarnetwork"/>
 	<property name="publish.ivy" value="true"/>
 	
+	<property name="dir.test.target" value="${dir.build}/test-target"/>
+	<property name="dir.test.reports" value="${dir.dist}/reports"/>
+	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
 			<fileset dir="${dir.input}">
@@ -319,6 +322,52 @@
 			</fileset>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
+	</target>
+	
+	<!-- Unit test support -->
+	
+	<target name="test" description="Run unit tests" depends="test.clean,test.resolve,test.run,test.report"/>
+
+	<target name="test.resolve" depends="jar">
+		<delete dir="${dir.test.target}" failonerror="no"/>
+		<mkdir dir="${dir.test.target}"/>
+		
+		<!-- Copy the dependencies to dir.test.target -->
+		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact]-[revision].[ext]" conf="runtime" symlink="yes"/>
+		
+		<copy file="${dir.dist}/${bundle.jar.name}" todir="${dir.test.target}" overwrite="yes"/>
+	</target>
+	
+	<target name="test.clean">
+		<delete dir="${dir.test.target}" failonerror="no"/>
+		<delete dir="${dir.test.reports}" failonerror="no"/>
+	</target>
+	
+	<target name="test.run">
+		<mkdir dir="${dir.test.reports}"/>
+		<junit fork="yes">
+			<classpath>
+				<fileset dir="${dir.test.target}" includes="*.jar"/>
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${dir.test.reports}" skipNonTests="yes">
+				<fileset dir="${dir.source}">
+					<include name="**/*Test.java"/>
+					<include name="**/*Tests.java"/>
+					<exclude name="**/AllTests.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="test.report">
+		<mkdir dir="${dir.test.reports}"/>
+		<junitreport todir="${dir.test.reports}">
+			<fileset dir="${dir.test.reports}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${dir.test.reports}" />
+		</junitreport>
 	</target>
 	
 </project>
