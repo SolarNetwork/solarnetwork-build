@@ -378,7 +378,7 @@
 		</junit>
 	</target>
 	
-	<target name="test.report">
+	<target name="test-report" description="Generate a HTML report from test results">
 		<mkdir dir="${dir.test.reports}"/>
 		<junitreport todir="${dir.test.reports}">
 			<fileset dir="${dir.test.reports}">

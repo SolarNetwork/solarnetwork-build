@@ -24,7 +24,7 @@
 		</fileset>
 		<echo message="Projects to test:\n${toString:test.build.files}"/>
 		<bundle-iterate target="clean-test"/>
-		<antcall target="test.report"/>
+		<antcall target="test-report"/>
 	</target>
 
 </project>
