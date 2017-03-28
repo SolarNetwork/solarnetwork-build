@@ -61,6 +61,23 @@
 		</resourcecount>
 	</condition>
 
+	<patternset id="web.files">
+		<include name="*.html"/>
+		<include name="css/**"/>
+		<include name="data/**"/>
+		<include name="images/**"/>
+		<include name="img/**"/>
+		<include name="font/**"/>
+		<include name="fonts/**"/>
+		<include name="js/**"/>
+		<include name="js-lib/**"/>
+		<include name="style/**"/>
+		<include name="WEB-INF/**"/>
+		<exclude name="WEB-INF/classes/**"/>
+		<exclude name="WEB-INF/packtag.user.properties"/>
+		<exclude name="WEB-INF/jsp/about.jsp"/>
+	</patternset>
+	
 	<tstamp>
 		<format property="bundle.build.time" pattern="yyyy-MM-dd HH:mm" />
 	</tstamp>
@@ -128,6 +145,7 @@
 		<subant target="jar-dep">
 			<property name="dir.deps" value="${dir.build}/deps"/>
 			<property name="dir.provided" value="${dir.build}/provided"/>
+			<property name="unittest" value="${unittest}"/>
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
@@ -239,30 +257,39 @@
 		</copy>
 	</target>
 	
-	<target name="jar" depends="compile,resource-prep,jar.classes,jar.no.classes"
+	<target name="jar" depends="compile,resource-prep,jar.web.check,jar.classes,jar.no.classes,jar.web.classes"
 		description="Create bundle jar"/>
 
 	<target name="clean-jar" depends="clean,jar"
 		description="Clean, then create bundle jar"/>
 
-	<patternset id="web.files">
-		<include name="*.html"/>
-		<include name="css/**"/>
-		<include name="data/**"/>
-		<include name="images/**"/>
-		<include name="img/**"/>
-		<include name="font/**"/>
-		<include name="fonts/**"/>
-		<include name="js/**"/>
-		<include name="js-lib/**"/>
-		<include name="style/**"/>
-		<include name="WEB-INF/**"/>
-		<exclude name="WEB-INF/classes/**"/>
-		<exclude name="WEB-INF/packtag.user.properties"/>
-		<exclude name="WEB-INF/jsp/about.jsp"/>
-	</patternset>
+	<target name="jar.web.check" if="unittest">
+		<condition property="web.classes">
+			<resourcecount when="greater" count="0">
+				<fileset dir="${dir.resources}">
+					<patternset refid="web.files"/>
+				</fileset>
+			</resourcecount>
+		</condition>
+		<!--echo>
+			!!!
+			Checking for: ${dir.resources} files
+			Result: ${web.classes}
+			!!!
+		</echo-->
+	</target>
 	
-	<target name="jar.classes" if="classes">
+	<target name="jar.web.classes" if="web.classes">
+		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building web class JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
+		<jar destfile="${dir.dist}/${bundle.jar.name}">
+			<zipfileset dir="${dir.compile}" includes="**"/>
+			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java" />
+			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
+	<target name="jar.classes" if="classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
@@ -282,7 +309,7 @@
 		</jar>
 	</target>
 	
-	<target name="jar.no.classes" if="no.classes">
+	<target name="jar.no.classes" if="no.classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
