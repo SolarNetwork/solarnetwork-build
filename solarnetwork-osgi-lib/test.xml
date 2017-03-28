@@ -1,6 +1,7 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
 
 	<property file="${basedir}/build.properties"/>
+	<property name="dir.test.reports" value="${basedir}/reports"/>
 	
 	<import file="lib-build.xml"/>
 
@@ -9,7 +10,7 @@
 		<sequential>
 			<subant target="@{target}">
 				<fileset refid="test.build.files"/>
-				<property name="dir.test.reports" value="${basedir}/reports"/>
+				<property name="dir.test.reports" value="${dir.test.reports}"/>
 			</subant>
 		</sequential>
 	</macrodef>
@@ -22,7 +23,8 @@
 			<include name="solarnetwork-central/*.test/build.xml"/>
 		</fileset>
 		<echo message="Projects to test:\n${toString:test.build.files}"/>
-		<bundle-iterate target="test"/>
+		<bundle-iterate target="clean-test"/>
+		<antcall target="test.report"/>
 	</target>
 
 </project>

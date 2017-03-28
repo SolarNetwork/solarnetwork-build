@@ -143,9 +143,8 @@
 			<fileset dir="${dir.provided}" includes="*.jar"/>
 		</path>
 		<!-- For debugging classpath:
-		<property name="path" refid="lib.path"/>
-		<echo>{=== Compile path: ${path} ===}</echo>
-		-->
+		<echo>{=== Compile path: ${toString:compile.path.combined} ===}</echo-->
+
 		<mkdir dir="${dir.compile}"/>
 		<javac srcdir="${dir.source}"
 			includeantruntime="false"
@@ -174,6 +173,13 @@
 		<property name="src.jar.name" value="${bundle.name}-${bundle.version}-sources.jar"/>
 		<property name="ivy.pom.artifactId" value="${bundle.name}"/>
 		<property name="ivy.pom.version" value="${bundle.version}"/>
+
+		<path id="bundle.name.path">
+			<pathelement location="${bundle.name}"/>
+		</path>
+		<pathconvert property="test.bundle.name" refid="bundle.name.path">
+			<mapper type="glob" from="${basedir}/*.test" to="*"/>
+		</pathconvert>
 	</target>
 	
 	<target name="jar.dep.check" depends="read.manifest">
@@ -326,16 +332,28 @@
 	
 	<!-- Unit test support -->
 	
-	<target name="test" description="Run unit tests" depends="test.clean,test.resolve,test.run,test.report"/>
+	<target name="test" description="Run unit tests" depends="test.resolve,test.run"/>
+	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,jar,test"/>
 
-	<target name="test.resolve" depends="jar">
+	<target name="test.resolve">
+		<!-- Use antcall here so that we can run the jar task, followed by this; ivy:retrieve was throwing
+		     java.lang.ClassCastException: org.apache.ivy.core.module.descriptor.DefaultModuleDescriptor cannot be cast to org.apache.ivy.core.module.descriptor.ModuleDescriptor
+		     otherwise -->
+		<antcall target="test.resolve.sub"/>
+	</target>
+	
+	<target name="test.resolve.sub" depends="lib-init,read.manifest">
 		<delete dir="${dir.test.target}" failonerror="no"/>
 		<mkdir dir="${dir.test.target}"/>
 		
+		<echo>Test plugin: ${test.bundle.name}</echo>
+		
 		<!-- Copy the dependencies to dir.test.target -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact]-[revision].[ext]" conf="runtime" symlink="yes"/>
-		
-		<copy file="${dir.dist}/${bundle.jar.name}" todir="${dir.test.target}" overwrite="yes"/>
+		<copy todir="${dir.test.target}" overwrite="yes">
+			<fileset dir="${dir.deps}" includes="*.jar"/>
+			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
+		</copy>
 	</target>
 	
 	<target name="test.clean">
