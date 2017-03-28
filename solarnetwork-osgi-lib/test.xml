@@ -14,8 +14,15 @@
 			</subant>
 		</sequential>
 	</macrodef>
+	
+	<target name="test-all.clean">
+		<delete dir="${dir.test.reports}" failonerror="no"/>
+	</target>
+	
+	<target name="test-all-clean" description="Clean and build all unit tests report from scratch"
+		depends="test-all.clean,test-all"/>
 
-	<target name="test-all">
+	<target name="test-all" description="Build all unit tests report from scratch">
 		<fileset id="test.build.files" dir="${basedir}/../..">
 			<include name="solarnetwork-common/*.test/build.xml"/>
 			<include name="solarnetwork-external/*.test/build.xml"/>
