@@ -1,4 +1,5 @@
-<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if"
+	xmlns:jacoco="antlib:org.jacoco.ant">
 
 	<property file="${basedir}/build.properties"/>
 	<property name="dir.test.reports" value="${basedir}/reports"/>
@@ -15,20 +16,46 @@
 		</sequential>
 	</macrodef>
 	
+	<patternset id="project-buildfiles">
+		<include name="solarnetwork-common/*.test/build.xml"/>
+		<include name="solarnetwork-external/*.test/build.xml"/>
+		<include name="solarnetwork-loxone/*.test/build.xml"/>
+		<include name="solarnetwork-node/*.test/build.xml"/>
+		<include name="solarnetwork-central/*.test/build.xml"/>
+	</patternset>
+	
+	<patternset id="project-sourcedirs">
+		<include name="solarnetwork-common/*/src"/>
+		<include name="solarnetwork-external/*/src"/>
+		<include name="solarnetwork-loxone/*/src"/>
+		<include name="solarnetwork-node/*/src"/>
+		<include name="solarnetwork-central/*/src"/>
+
+		<exclude name="solarnetwork-common/*.test/src"/>
+		<exclude name="solarnetwork-external/*.test/src"/>
+		<exclude name="solarnetwork-loxone/*.test/src"/>
+		<exclude name="solarnetwork-node/*.test/src"/>
+		<exclude name="solarnetwork-central/*.test/src"/>
+	</patternset>
+	
+	<patternset id="project-classfiles">
+		<include name="solarnetwork-common/*.test/build/ant/deps/*.jar"/>
+		<include name="solarnetwork-external/*.test/build/ant/deps/*.jar"/>
+		<include name="solarnetwork-loxone/*.test/build/ant/deps/*.jar"/>
+		<include name="solarnetwork-node/*.test/build/ant/deps/*.jar"/>
+		<include name="solarnetwork-central/*.test/build/ant/deps/*.jar"/>
+	</patternset>
+	
 	<target name="test-all.clean">
 		<delete dir="${dir.test.reports}" failonerror="no"/>
 	</target>
 	
 	<target name="test-all-clean" description="Clean and build all unit tests report from scratch"
-		depends="test-all.clean,test-all"/>
+		depends="test-all.clean,test-all,test-report"/>
 
 	<target name="test-all" description="Build all unit tests report from scratch">
 		<fileset id="test.build.files" dir="${basedir}/../..">
-			<include name="solarnetwork-common/*.test/build.xml"/>
-			<include name="solarnetwork-external/*.test/build.xml"/>
-			<include name="solarnetwork-loxone/*.test/build.xml"/>
-			<include name="solarnetwork-node/*.test/build.xml"/>
-			<include name="solarnetwork-central/*.test/build.xml"/>
+			<patternset refid="project-buildfiles"/>
 		</fileset>
 		<pathconvert property="test.build.bundles" pathsep="${line.separator}&#9;">
 			<fileset refid="test.build.files"/>
@@ -36,7 +63,44 @@
 		</pathconvert>
 		<echo message="Projects to test:${line.separator}&#9;${test.build.bundles}"/>
 		<bundle-iterate target="clean-test"/>
-		<antcall target="test-report"/>
+	</target>
+
+	<target name="coverage-report-all" description="Generate a HTML code coverage report from the test results"
+			depends="jacoco.init">
+		<fileset id="coverage.classfiles" dir="${basedir}/../..">
+			<patternset refid="project-classfiles"/>
+		</fileset>
+		<dirset id="coverage.sourcedirs" dir="${basedir}/../..">
+			<patternset refid="project-sourcedirs"/>
+		</dirset>
+
+		<pathconvert property="coverage.classfiles.path" pathsep="${line.separator}&#9;">
+			<fileset refid="coverage.classfiles"/>
+			<mapper type="regexp" from="^.*/(solarnetwork-.*)/build/.*$$" to="\1"/>
+		</pathconvert>
+		<pathconvert property="coverage.sourcedirs.path" pathsep="${line.separator}&#9;">
+			<dirset refid="coverage.sourcedirs"/>
+			<mapper type="regexp" from="^.*/(solarnetwork-.*)/src$$" to="\1"/>
+		</pathconvert>
+		<echo message="Coverage class files:${line.separator}&#9;${coverage.classfiles.path}"/>
+		<echo message="Coverage source dirs:${line.separator}&#9;${coverage.sourcedirs.path}"/>
+		
+		<jacoco:report>
+			<executiondata>
+				<fileset dir="${dir.test.reports}">
+					<include name="*.exec" />
+				</fileset>
+			</executiondata>		
+			<structure name="SolarNetwork">
+				<classfiles>
+					<fileset refid="coverage.classfiles"/>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<dirset refid="coverage.sourcedirs"/>
+				</sourcefiles>
+			</structure>			
+			<html destdir="${dir.test.reports}/coverage"/>
+		</jacoco:report>
 	</target>
 
 </project>

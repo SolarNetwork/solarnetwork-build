@@ -1,4 +1,6 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:bh="antlib:net.solarnetwork.bh.ant">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" 
+		xmlns:bh="antlib:net.solarnetwork.bh.ant" 
+		xmlns:jacoco="antlib:org.jacoco.ant">
 
 	<path id="compile.path"/>
 	
@@ -362,8 +364,14 @@
 	
 	<!-- Unit test support -->
 	
-	<target name="test" description="Run unit tests" depends="test.resolve,test.run"/>
+	<target name="test" description="Run unit tests" depends="test.resolve,test.run,test.run.coverage"/>
 	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,jar,test"/>
+
+	<target name="jacoco.init">
+		<taskdef resource="org/jacoco/ant/antlib.xml"
+			uri="antlib:org.jacoco.ant" 
+			classpath="${dir.target}/lib/jacocoant.jar"/>
+	</target>	
 
 	<target name="test.resolve">
 		<!-- Use antcall here so that we can run the jar task, followed by this; ivy:retrieve was throwing
@@ -391,7 +399,7 @@
 		<delete dir="${dir.test.reports}" failonerror="no"/>
 	</target>
 	
-	<target name="test.run">
+	<target name="test.run" unless="with-coverage">
 		<mkdir dir="${dir.test.reports}"/>
 		<path id="junit.path">
 			<fileset dir="${dir.test.target}" includes="*.jar"/>
@@ -400,7 +408,7 @@
 			</dirset>
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
-		<junit fork="yes">
+		<junit fork="yes" forkmode="once">
 			<classpath refid="junit.path"/>
 			<formatter type="xml"/>
 			<jvmarg line="${test.jvm.args}"/>
@@ -414,20 +422,45 @@
 		</junit>
 	</target>
 	
+	<target name="test.run.coverage" if="with-coverage" depends="jacoco.init">
+		<mkdir dir="${dir.test.reports}"/>
+		<path id="junit.path">
+			<fileset dir="${dir.test.target}" includes="*.jar"/>
+			<dirset dir="${dir.env.input}">
+				<include name="environment/${env.name}"/>
+			</dirset>
+		</path>
+		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
+		<jacoco:coverage destfile="${dir.test.reports}/${test.bundle.name}.exec">
+			<junit fork="yes" forkmode="once">
+				<classpath refid="junit.path"/>
+				<formatter type="xml"/>
+				<jvmarg line="${test.jvm.args}"/>
+				<batchtest todir="${dir.test.reports}" skipNonTests="yes">
+					<fileset dir="${dir.source}">
+						<include name="**/*Test.java"/>
+						<include name="**/*Tests.java"/>
+						<exclude name="**/AllTests.java"/>
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
+	</target>
+
 	<target name="test-report" description="Generate a HTML report from test results">
 		<mkdir dir="${dir.test.reports}"/>
 		<junitreport todir="${dir.test.reports}">
 			<fileset dir="${dir.test.reports}">
 				<include name="TEST-*.xml" />
 			</fileset>
-			<report todir="${dir.test.reports}" />
+			<report todir="${dir.test.reports}/unittest"/>
 		</junitreport>
 		<antcall target="test.check"/>
 	</target>
 	
 	<target name="test.check">
 		<loadfile property="results.summary"
-		          srcfile="${dir.test.reports}/overview-summary.html">
+		          srcfile="${dir.test.reports}/unittest/overview-summary.html">
 			<filterchain>
 				<headfilter lines="30" />
 				<linecontains>
@@ -440,7 +473,7 @@
 		</condition>
 		
 		<pathconvert property="test.report.name">
-			<fileset dir="${dir.test.reports}">
+			<fileset dir="${dir.test.reports}/unittest">
     			<include name="index.html"/>
 			</fileset>
 			<map from="${basedir}/" to=""/>
@@ -448,6 +481,28 @@
 		<fail message="FAILED - some tests failed - see ${test.report.name} for more details"
 		      unless="tests.passed" />
 		<echo message="SUCCESS - all tests passed - see ${test.report.name} for more details" />
+	</target>
+	
+	<target name="coverage-report" description="Generate a HTML code coverage report from the test results"
+			depends="jacoco.init,read.manifest">
+		<jacoco:report>
+			<executiondata>
+				<fileset dir="${dir.test.reports}">
+					<include name="*.exec" />
+				</fileset>
+			</executiondata>		
+			<structure name="${test.bundle.name}">
+				<classfiles>
+					<fileset dir="${dir.deps}">
+						<include name="*.jar"/>
+					</fileset>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="../${test.bundle.name}/src"/>
+				</sourcefiles>
+			</structure>			
+			<html destdir="${dir.test.reports}/coverage"/>
+		</jacoco:report>
 	</target>
 
 </project>
