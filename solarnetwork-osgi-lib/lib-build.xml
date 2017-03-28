@@ -11,6 +11,7 @@
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
 	<property name="dir.input" value="${basedir}"/>
 	<property name="dir.source" value="${dir.input}/src"/>
+	<property name="dir.env.input" value="${dir.input}"/>
 	<property name="env.name" value="test"/>
 	<property name="dir.resources" value="${dir.input}"/>
 	<property name="dir.build" value="${basedir}/build/ant"/>
@@ -366,7 +367,7 @@
 		<mkdir dir="${dir.test.reports}"/>
 		<path id="junit.path">
 			<fileset dir="${dir.test.target}" includes="*.jar"/>
-			<dirset dir="${dir.input}">
+			<dirset dir="${dir.env.input}">
 				<include name="environment/${env.name}"/>
 			</dirset>
 		</path>
