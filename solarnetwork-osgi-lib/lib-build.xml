@@ -34,6 +34,7 @@
 	
 	<property name="dir.test.target" value="${dir.build}/test-target"/>
 	<property name="dir.test.reports" value="${dir.dist}/reports"/>
+	<property name="test.jvm.args" value=""/>
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
@@ -402,6 +403,7 @@
 		<junit fork="yes">
 			<classpath refid="junit.path"/>
 			<formatter type="xml"/>
+			<jvmarg line="${test.jvm.args}"/>
 			<batchtest todir="${dir.test.reports}" skipNonTests="yes">
 				<fileset dir="${dir.source}">
 					<include name="**/*Test.java"/>
