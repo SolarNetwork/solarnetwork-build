@@ -26,6 +26,7 @@
 		<fileset id="test.build.files" dir="${basedir}/../..">
 			<include name="solarnetwork-common/*.test/build.xml"/>
 			<include name="solarnetwork-external/*.test/build.xml"/>
+			<include name="solarnetwork-loxone/*.test/build.xml"/>
 			<include name="solarnetwork-node/*.test/build.xml"/>
 			<include name="solarnetwork-central/*.test/build.xml"/>
 		</fileset>
