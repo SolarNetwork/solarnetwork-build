@@ -386,6 +386,32 @@
 			</fileset>
 			<report todir="${dir.test.reports}" />
 		</junitreport>
+		<antcall target="test.check"/>
 	</target>
 	
+	<target name="test.check">
+		<loadfile property="results.summary"
+		          srcfile="${dir.test.reports}/overview-summary.html">
+			<filterchain>
+				<headfilter lines="30" />
+				<linecontains>
+					<contains value="href=&quot;all-tests.html&quot;" />
+				</linecontains>
+			</filterchain>
+		</loadfile>
+		<condition property="tests.passed">
+			<contains string="${results.summary}" substring="100.00%" />
+		</condition>
+		
+		<pathconvert property="test.report.name">
+			<fileset dir="${dir.test.reports}">
+    			<include name="index.html"/>
+			</fileset>
+			<map from="${basedir}/" to=""/>
+		</pathconvert>
+		<fail message="FAILED - some tests failed - see ${test.report.name} for more details"
+		      unless="tests.passed" />
+		<echo message="SUCCESS - all tests passed - see ${test.report.name} for more details" />
+	</target>
+
 </project>
