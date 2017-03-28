@@ -12,7 +12,6 @@
 	<property name="dir.input" value="${basedir}"/>
 	<property name="dir.source" value="${dir.input}/src"/>
 	<property name="env.name" value="test"/>
-	<property name="dir.environments" value="${dir.input}/environment"/>
 	<property name="dir.resources" value="${dir.input}"/>
 	<property name="dir.build" value="${basedir}/build/ant"/>
 	<property name="dir.deps" value="${dir.build}/deps"/>
@@ -367,8 +366,8 @@
 		<mkdir dir="${dir.test.reports}"/>
 		<path id="junit.path">
 			<fileset dir="${dir.test.target}" includes="*.jar"/>
-			<dirset dir="${dir.environments}">
-				<include name="${env.name}"/>
+			<dirset dir="${dir.input}">
+				<include name="environment/${env.name}"/>
 			</dirset>
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
