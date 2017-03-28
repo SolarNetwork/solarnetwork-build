@@ -22,7 +22,11 @@
 			<include name="solarnetwork-node/*.test/build.xml"/>
 			<include name="solarnetwork-central/*.test/build.xml"/>
 		</fileset>
-		<echo message="Projects to test:\n${toString:test.build.files}"/>
+		<pathconvert property="test.build.bundles" pathsep="${line.separator}&#9;">
+			<fileset refid="test.build.files"/>
+			<mapper type="regexp" from="^.*/(solarnetwork-.*)/build.xml$$" to="\1"/>
+		</pathconvert>
+		<echo message="Projects to test:${line.separator}&#9;${test.build.bundles}"/>
 		<bundle-iterate target="clean-test"/>
 		<antcall target="test-report"/>
 	</target>
