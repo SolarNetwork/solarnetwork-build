@@ -127,7 +127,7 @@
 			status="release"
 			forcedeliver="false"
 			publishivy="${publish.ivy}"
-			artifactspattern="${dir.dist}/[artifact]-[revision].[ext]"/>
+			artifactspattern="${dir.dist}/[artifact]-[revision](-[classifier]).[ext]"/>
 	</target>
 
 	<target name="clean" description="Remove generated artifacts">
