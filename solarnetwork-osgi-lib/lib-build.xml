@@ -111,11 +111,20 @@
 		<!-- Copy the dependencies to dir.bundles -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
 	</target>
+	
+	<target name="publish.conf.resolve" if="no.classes">
+		<property name="ivy.publish.conf" value="compile,runtime"/>
+	</target>
 
-	<target name="publish" depends="lib-resolve,jar,src-jar" description="Publish to artifact repository">
+	<target name="publish.conf.resolve.classes" unless="no.classes">
+		<property name="ivy.publish.conf" value="compile,runtime,sources"/>
+	</target>
+
+	<target name="publish" depends="lib-resolve,jar,src-jar,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
+		<echo message="[====&gt; Publishing configurations ${ivy.publish.conf} &lt;====]"/>
 		<ivy:makepom ivyfile="${basedir}/ivy.xml" 
 				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom" 
-				conf="compile,runtime,sources"
+				conf="${ivy.publish.conf}"
 				artifactPackaging="bundle">
 			<mapping conf="compile" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
