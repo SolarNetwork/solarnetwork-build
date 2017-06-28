@@ -24,6 +24,7 @@
 TEST=""
 SUSER="solar"
 PUBKEY="$HOME/.ssh/id_ed25519.pub"
+KEYTYPE="ed25519"
 HOST="data.solarnetwork.net"
 PORT="22"
 RPORT="17777"
@@ -144,11 +145,24 @@ del_env() {
 	rm -f ${envFile}
 }
 
+verify_ssh_key() {
+	if [ ! -e "${PUBKEY}" ]; then
+		if [ -n "${VERBOSE}" ]; then
+			echo "Generating new ${KEYTYPE} SSH identity ${PUBKEY%.*}..."
+		fi
+		if [ ! -d "${PUBKEY%/*}" ]; then
+			mkdir ${PUBKEY%/*}
+		fi
+		ssh-keygen -q -t ${KEYTYPE} -C "SolarNode" -f ${PUBKEY%.*} -N ''
+	fi
+}
+
 do_start() {
 	if systemctl -q is-active ${serviceInstanceName}; then
 		echo "SSH connection ${connDescription} is already active." 1>&2
 		exit 2
 	fi
+	verify_ssh_key
 	write_env
 	if [ -n "${VERBOSE}" ]; then
 		echo "Starting SSH connection ${connDescription}..."
