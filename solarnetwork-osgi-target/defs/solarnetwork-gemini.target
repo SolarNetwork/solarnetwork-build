@@ -151,6 +151,7 @@
 <plugin id="org.apache.tiles.servlet"/>
 <plugin id="org.apache.tomcat.api"/>
 <plugin id="org.apache.tomcat.jdbc"/>
+<plugin id="org.apache.tomcat.jdbc.source"/>
 <plugin id="org.apache.tomcat.jni"/>
 <plugin id="org.apache.tomcat.util"/>
 <plugin id="org.apache.tomcat.util.scan"/>
