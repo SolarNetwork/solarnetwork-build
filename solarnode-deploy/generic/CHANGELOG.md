@@ -1,5 +1,14 @@
 # SolarNode Application Changelog
 
+## V20170725
+
+**Note** This release requires a minimum of the **20170628** SolarNode
+Platform.
+
+ * Update to reduce memory use from database driver.
+ * Fix bug in setup that prevented the initial random login password
+   from displaying.
+
 ## V20170628
 
 **Note** This release requires a minimum of the **20170628** SolarNode
