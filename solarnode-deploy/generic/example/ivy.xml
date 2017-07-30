@@ -62,6 +62,7 @@
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.opensymphony.quartz"/>
+		<exclude org="org.glassfish.tyrus.bundles"/>
 		<exclude org="javax.el"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
@@ -75,6 +76,7 @@
 		<exclude org="org.codehaus.jackson"/>
 		<exclude org="org.eclipse.gemini"/>
 		<exclude org="org.eclipse.gemini.blueprint"/>
+		<exclude org="org.eclipse.virgo.mirrored"/>
 		<exclude org="org.eclipse.virgo.web"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
