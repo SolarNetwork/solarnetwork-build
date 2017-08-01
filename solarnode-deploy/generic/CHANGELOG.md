@@ -1,5 +1,15 @@
 # SolarNode Application Changelog
 
+## V20170801
+
+**Note** This release requires a minimum of the **20170628** SolarNode
+Platform.
+
+ * Update to prevent database size from growing uncontrollably over
+   time.
+ * Fix bug in setup rendered "Trying URL /csrf" many times while
+   waiting for service to restart.
+
 ## V20170725
 
 **Note** This release requires a minimum of the **20170628** SolarNode
