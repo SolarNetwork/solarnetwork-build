@@ -38,6 +38,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="latest.release"/>
 		
 		<!-- For standard deployments, include the .setup and .bulkjsonwebpost bundles -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
