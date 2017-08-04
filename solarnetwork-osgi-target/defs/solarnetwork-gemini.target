@@ -96,9 +96,7 @@
 <plugin id="org.apache.servicemix.bundles.hamcrest"/>
 <plugin id="org.apache.servicemix.bundles.junit"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
-<plugin id="org.apache.servicemix.bundles.spring-aop.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-aspects"/>
-<plugin id="org.apache.servicemix.bundles.spring-aspects.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-beans"/>
 <plugin id="org.apache.servicemix.bundles.spring-beans.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-context"/>
@@ -108,13 +106,10 @@
 <plugin id="org.apache.servicemix.bundles.spring-core"/>
 <plugin id="org.apache.servicemix.bundles.spring-core.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-expression"/>
-<plugin id="org.apache.servicemix.bundles.spring-expression.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc"/>
 <plugin id="org.apache.servicemix.bundles.spring-jdbc.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-messaging"/>
-<plugin id="org.apache.servicemix.bundles.spring-messaging.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-orm"/>
-<plugin id="org.apache.servicemix.bundles.spring-orm.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-security-acl"/>
 <plugin id="org.apache.servicemix.bundles.spring-security-acl.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-security-config"/>
@@ -128,13 +123,11 @@
 <plugin id="org.apache.servicemix.bundles.spring-test"/>
 <plugin id="org.apache.servicemix.bundles.spring-test.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-tx"/>
-<plugin id="org.apache.servicemix.bundles.spring-tx.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-web"/>
 <plugin id="org.apache.servicemix.bundles.spring-web.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc.source"/>
 <plugin id="org.apache.servicemix.bundles.spring-websocket"/>
-<plugin id="org.apache.servicemix.bundles.spring-websocket.source"/>
 <plugin id="org.apache.servicemix.bundles.wsdl4j"/>
 <plugin id="org.apache.servicemix.specs.stax-api-1.0"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
