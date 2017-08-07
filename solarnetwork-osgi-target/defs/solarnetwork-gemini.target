@@ -181,6 +181,7 @@
 <plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
+<plugin id="org.json"/>
 <plugin id="org.mybatis.mybatis"/>
 <plugin id="org.mybatis.mybatis-spring"/>
 <plugin id="org.mybatis.mybatis-spring.source"/>
