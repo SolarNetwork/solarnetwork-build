@@ -11,8 +11,9 @@ Environment=RAM_DIR=/run/solar
 User=solar
 Group=solar
 WorkingDirectory=/home/solar
-ExecStart=/usr/bin/java -Xmx96m \
+ExecStart=/usr/bin/java -Xmx128m \
 	-XX:+HeapDumpOnOutOfMemoryError \
+	-XX:MaxMetaspaceSize=64m \
 	-Djava.io.tmpdir=${RAM_DIR}/tmp \
 	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
 	-Djava.net.preferIPv4Stack=true \
