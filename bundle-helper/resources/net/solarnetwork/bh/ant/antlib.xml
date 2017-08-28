@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<antlib>
+	<typedef name="manifestreader" classname="net.solarnetwork.bh.ant.ManifestReader"/>
+</antlib>
