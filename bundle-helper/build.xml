@@ -1,0 +1,44 @@
+<project basedir="." name="SolarNetwork BundleHelper">
+	
+	<property name="app.version" value="1.1"/>
+	<property name="jar.name" value="bh-${app.version}.jar"/>
+	
+	<property name="dir.source" value="${basedir}/src"/>
+	<property name="dir.resource" value="${basedir}/resources"/>
+	<property name="dir.build" value="${basedir}/build/ant"/>
+	<property name="dir.compile" value="${dir.build}/classes"/>
+	<property name="dir.dist" value="${dir.build}/dist"/>
+	<property name="dir.lib" value="${basedir}/lib"/>
+
+	<property name="compile.debug" value="true" />
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.optimize" value="true" />
+	<property name="compile.nowarn" value="true" />
+	
+	<path id="compile.path">
+		<fileset dir="${dir.lib}" includes="*.jar"/>
+	</path>
+	
+	<target name="compile" description="Compile sources">
+		<mkdir dir="${dir.compile}"/>
+		<javac srcdir="${dir.source}"
+			destdir="${dir.compile}"
+			debug="${compile.debug}" 
+			deprecation="${compile.deprecation}" 
+			optimize="${compile.optimize}" 
+			nowarn="${compile.nowarn}"
+			target="1.2"
+			source="1.2">
+			<classpath refid="compile.path" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Create binary JAR">
+		<mkdir dir="${dir.dist}"/>
+		<jar destfile="${dir.dist}/${jar.name}">
+			<fileset dir="${dir.compile}" includes="**"/>
+			<fileset dir="${dir.resource}" includes="**"/>
+		</jar>
+	</target>
+	
+</project>

@@ -1,0 +1,28 @@
+<project basedir="." default="go" name="SolarNetwork BundleHelper"
+	xmlns:bh="antlib:net.solarnetwork.bh.ant">
+	
+	<target name="go" description="Execute test">
+		<ant dir="${basedir}/.." target="jar">
+			<property name="dir.dist" value="${basedir}"/>
+		</ant>
+		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
+			uri="antlib:net.solarnetwork.bh.ant"
+			classpath="bh-1.1.jar"/>
+		<bh:manifestreader manifest="resources/test-manifest-01.mf"/>
+		<fileset dir="." id="bundle.classpath">
+			<patternset refid="Bundle-ClassPath"/>
+		</fileset>
+		<pathconvert pathsep=","             
+		        property="bcp"             
+		        refid="bundle.classpath">
+		</pathconvert>
+		<echo>
+			Name:         ${Bundle-Name}
+			SymbolicName: ${Bundle-SymbolicName}
+			Version:      ${Bundle-Version}
+			Vendor:       ${Bundle-Vendor}
+			ClassPath:    ${bcp}
+		</echo>
+	</target>
+	
+</project>
