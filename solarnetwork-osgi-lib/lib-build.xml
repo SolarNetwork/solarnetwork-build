@@ -101,7 +101,7 @@
 		</ivy:settings>
 	</target>
 	
-	<target name="lib-resolve" depends="lib-init,read.manifest" unless="no.ivy">
+	<target name="lib-resolve" depends="lib-init,read.manifest,set.test.bundle.name" unless="no.ivy">
 		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
 		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle" revision="${bundle.version}"/>
 	</target>
@@ -209,6 +209,9 @@
 		<path id="bundle.name.path">
 			<pathelement location="${bundle.name}"/>
 		</path>
+	</target>
+	
+	<target name="set.test.bundle.name" depends="read.manifest" unless="test.bundle.name">
 		<pathconvert property="test.bundle.name" refid="bundle.name.path">
 			<mapper type="glob" from="${basedir}/*.test" to="*"/>
 		</pathconvert>
@@ -389,7 +392,7 @@
 		<antcall target="test.resolve.sub"/>
 	</target>
 	
-	<target name="test.resolve.sub" depends="lib-init,read.manifest">
+	<target name="test.resolve.sub" depends="lib-init,set.test.bundle.name">
 		<delete dir="${dir.test.target}" failonerror="no"/>
 		<mkdir dir="${dir.test.target}"/>
 		
@@ -493,7 +496,7 @@
 	</target>
 	
 	<target name="coverage-report" description="Generate a HTML code coverage report from the test results"
-			depends="jacoco.init,read.manifest">
+			depends="jacoco.init,set.test.bundle.name">
 		<jacoco:report>
 			<executiondata>
 				<fileset dir="${dir.test.reports}">
