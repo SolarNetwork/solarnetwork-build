@@ -4,3 +4,4 @@ Bundle-Name: BundleHelper Test Manifest
 Bundle-SymbolicName: net.solarnetwork.bh
 Bundle-Version: 1.0.0
 Bundle-Vendor: SolarNetwork
+Bundle-ClassPath: .,bar.txt
