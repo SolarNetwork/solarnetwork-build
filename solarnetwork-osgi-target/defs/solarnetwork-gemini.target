@@ -38,8 +38,6 @@
 <plugin id="javax.ejb"/>
 <plugin id="javax.el"/>
 <plugin id="javax.mail"/>
-<plugin id="javax.money.api"/>
-<plugin id="javax.money.api.source"/>
 <plugin id="javax.persistence"/>
 <plugin id="javax.security.auth.message"/>
 <plugin id="javax.servlet"/>
