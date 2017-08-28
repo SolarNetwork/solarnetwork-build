@@ -1,28 +1,49 @@
 <project basedir="." default="go" name="SolarNetwork BundleHelper"
 	xmlns:bh="antlib:net.solarnetwork.bh.ant">
 	
-	<target name="go" description="Execute test">
+	<target name="go" depends="go.simple,go.bcp"/>
+	
+	<target name="jar" description="Compile helper JAR">
 		<ant dir="${basedir}/.." target="jar">
+			<property name="jar.name" value="bh.jar"/>
 			<property name="dir.dist" value="${basedir}"/>
 		</ant>
+	</target>
+	
+	<target name="init" depends="jar">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 			uri="antlib:net.solarnetwork.bh.ant"
-			classpath="bh-1.1.jar"/>
-		<bh:manifestreader manifest="resources/test-manifest-01.mf"/>
-		<fileset dir="." id="bundle.classpath">
+			classpath="bh.jar"/>
+	</target>
+	
+	<target name="go.simple" depends="init" description="Execute simple test">
+		<bh:manifestreader manifest="resources/test-manifest-02.mf"/>
+		<fileset dir="." id="bcp">
+			<include name="foo.txt"/>
 			<patternset refid="Bundle-ClassPath"/>
 		</fileset>
-		<pathconvert pathsep=","             
-		        property="bcp"             
-		        refid="bundle.classpath">
-		</pathconvert>
 		<echo>
 			Name:         ${Bundle-Name}
 			SymbolicName: ${Bundle-SymbolicName}
 			Version:      ${Bundle-Version}
 			Vendor:       ${Bundle-Vendor}
-			ClassPath:    ${bcp}
+			ClassPath:    ${toString:bcp}
 		</echo>
 	</target>
-	
+
+	<target name="go.bcp" depends="init" description="Execute Bundle-ClassPath test">
+		<bh:manifestreader manifest="resources/test-manifest-01.mf"/>
+		<fileset dir="." id="bcp">
+			<include name="foo.txt"/>
+			<patternset refid="Bundle-ClassPath"/>
+		</fileset>
+		<echo>
+			Name:         ${Bundle-Name}
+			SymbolicName: ${Bundle-SymbolicName}
+			Version:      ${Bundle-Version}
+			Vendor:       ${Bundle-Vendor}
+			ClassPath:    ${toString:bcp}
+		</echo>
+	</target>
+
 </project>

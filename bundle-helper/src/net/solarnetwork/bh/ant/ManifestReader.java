@@ -33,19 +33,40 @@ import java.util.jar.Manifest;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.PatternSet;
+import org.apache.tools.ant.types.PatternSet.NameEntry;
 
 /**
  * Parse a manifest file and expose attributes as properties.
  * 
  * <p>
  * The exposed properties are created exactly from the manifest attribute keys
- * and values.
+ * and values. The <code>Bundle-ClassPath</code> value is handled specially, so
+ * that a {@link PatternSet} is created with that value, excluding the
+ * <code>.</code> value if present. The {@link PatternSet} will always be
+ * created so that it can be referenced in build scripts, but if no class path
+ * is specified in the manifest, a special include will be added with an
+ * <code>if</code> condition set to the property
+ * <code>__INCLUDE_DUMMY_PLACEHOLDER__</code>. That property is expected
+ * <b>not</b> to ever exist. This is used because a {@link PatternSet} without
+ * any includes defined defaults to resolving as a <code>**</code> style
+ * pattern.
  * </p>
  * 
  * @author matt
  * @version 1.1
  */
 public class ManifestReader extends Task {
+
+	/**
+	 * The placeholder include pattern used in <code>Bundle-ClassPath</code>.
+	 */
+	public static final String DUMMY_PLACEHOLDER = "__DUMMY_PLACEHOLDER__";
+
+	/**
+	 * The placeholder property condition name used in
+	 * <code>Bundle-ClassPath</code>.
+	 */
+	public static final String INCLUDE_DUMMY_PLACEHOLDER = "__INCLUDE_DUMMY_PLACEHOLDER__";
 
 	private static final String[] DEFAULT_KEYS = new String[] { "Bundle-Name", "Bundle-SymbolicName",
 			"Bundle-Version", "Bundle-Vendor" };
@@ -84,26 +105,24 @@ public class ManifestReader extends Task {
 
 		// include ClassPath as a FileSet, if available
 		String bcpHeader = main.getValue(BUNDLE_CLASSPATH);
+		PatternSet patSet = new PatternSet();
+		patSet.setProject(getProject());
 		if ( bcpHeader != null ) {
 			String[] bcp = bcpHeader.split(",");
 			if ( bcp != null ) {
-				PatternSet fs = null;
 				for ( int i = 0, len = bcp.length; i < len; i++ ) {
 					String oneEntry = bcp[i];
 					if ( oneEntry.length() > 0 && !".".equals(oneEntry) ) {
-						if ( fs == null ) {
-							fs = new PatternSet();
-							fs.setProject(getProject());
-						}
-						fs.createInclude().setName(oneEntry);
+						patSet.createInclude().setName(oneEntry);
 					}
 				}
-
-				if ( fs != null ) {
-					getProject().addReference(BUNDLE_CLASSPATH, fs);
-				}
 			}
+		} else {
+			NameEntry entry = patSet.createInclude();
+			entry.setName(DUMMY_PLACEHOLDER);
+			entry.setIf(INCLUDE_DUMMY_PLACEHOLDER);
 		}
+		getProject().addReference(BUNDLE_CLASSPATH, patSet);
 	}
 
 	/**
