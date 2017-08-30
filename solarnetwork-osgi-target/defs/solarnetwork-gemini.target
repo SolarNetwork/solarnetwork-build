@@ -96,6 +96,8 @@
 <plugin id="org.apache.servicemix.bundles.c3p0.source"/>
 <plugin id="org.apache.servicemix.bundles.derby"/>
 <plugin id="org.apache.servicemix.bundles.hamcrest"/>
+<plugin id="org.apache.servicemix.bundles.javax-cache-api"/>
+<plugin id="org.apache.servicemix.bundles.javax-cache-api.source"/>
 <plugin id="org.apache.servicemix.bundles.junit"/>
 <plugin id="org.apache.servicemix.bundles.spring-aop"/>
 <plugin id="org.apache.servicemix.bundles.spring-aspects"/>
@@ -181,6 +183,7 @@
 <plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.7.0.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.parser.manifest" version="3.7.0.RELEASE"/>
 <plugin id="org.eclipse.virgo.web.dm"/>
+<plugin id="org.ehcache.ehcache"/>
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
 <plugin id="org.json"/>
