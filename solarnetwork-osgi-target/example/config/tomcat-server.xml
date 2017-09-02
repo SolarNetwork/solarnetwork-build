@@ -30,7 +30,14 @@
 					userNameCol="username"
 					userCredCol="passwd" 
 					userRoleTable="solardras.dras_auth_roles"
-					roleNameCol="rolename" />
+					roleNameCol="rolename">
+					<CredentialHandler className="org.apache.catalina.realm.SecretKeyCredentialHandler"
+						algorithm="PBKDF2WithHmacSHA256"
+						keyLength="256"
+						iterations="131072"
+						saltLength="64"
+					/>
+				</Realm>
 				<Valve className="org.apache.catalina.authenticator.SingleSignOn"/>
 				-->
 			</Host>

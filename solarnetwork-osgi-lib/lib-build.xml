@@ -1,4 +1,6 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:bh="antlib:net.solarnetwork.bh.ant">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" 
+		xmlns:bh="antlib:net.solarnetwork.bh.ant" 
+		xmlns:jacoco="antlib:org.jacoco.ant">
 
 	<path id="compile.path"/>
 	
@@ -11,6 +13,8 @@
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
 	<property name="dir.input" value="${basedir}"/>
 	<property name="dir.source" value="${dir.input}/src"/>
+	<property name="dir.env.input" value="${dir.input}"/>
+	<property name="env.name" value="test"/>
 	<property name="dir.resources" value="${dir.input}"/>
 	<property name="dir.build" value="${basedir}/build/ant"/>
 	<property name="dir.deps" value="${dir.build}/deps"/>
@@ -29,6 +33,10 @@
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="publish.dest" value="solarnetwork"/>
 	<property name="publish.ivy" value="true"/>
+	
+	<property name="dir.test.target" value="${dir.build}/test-target"/>
+	<property name="dir.test.reports" value="${dir.dist}/reports"/>
+	<property name="test.jvm.args" value=""/>
 	
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
@@ -56,6 +64,23 @@
 		</resourcecount>
 	</condition>
 
+	<patternset id="web.files">
+		<include name="*.html"/>
+		<include name="css/**"/>
+		<include name="data/**"/>
+		<include name="images/**"/>
+		<include name="img/**"/>
+		<include name="font/**"/>
+		<include name="fonts/**"/>
+		<include name="js/**"/>
+		<include name="js-lib/**"/>
+		<include name="style/**"/>
+		<include name="WEB-INF/**"/>
+		<exclude name="WEB-INF/classes/**"/>
+		<exclude name="WEB-INF/packtag.user.properties"/>
+		<exclude name="WEB-INF/jsp/about.jsp"/>
+	</patternset>
+	
 	<tstamp>
 		<format property="bundle.build.time" pattern="yyyy-MM-dd HH:mm" />
 	</tstamp>
@@ -76,7 +101,7 @@
 		</ivy:settings>
 	</target>
 	
-	<target name="lib-resolve" depends="lib-init,read.manifest" unless="no.ivy">
+	<target name="lib-resolve" depends="lib-init,read.manifest,set.test.bundle.name" unless="no.ivy">
 		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
 		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle" revision="${bundle.version}"/>
 	</target>
@@ -86,11 +111,20 @@
 		<!-- Copy the dependencies to dir.bundles -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
 	</target>
+	
+	<target name="publish.conf.resolve" if="no.classes">
+		<property name="ivy.publish.conf" value="compile,runtime"/>
+	</target>
 
-	<target name="publish" depends="lib-resolve,jar,src-jar" description="Publish to artifact repository">
+	<target name="publish.conf.resolve.classes" unless="no.classes">
+		<property name="ivy.publish.conf" value="compile,runtime,sources"/>
+	</target>
+
+	<target name="publish" depends="lib-resolve,jar,src-jar,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
+		<echo message="[====&gt; Publishing configurations ${ivy.publish.conf} &lt;====]"/>
 		<ivy:makepom ivyfile="${basedir}/ivy.xml" 
 				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom" 
-				conf="compile,runtime,sources"
+				conf="${ivy.publish.conf}"
 				artifactPackaging="bundle">
 			<mapping conf="compile" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
@@ -102,7 +136,7 @@
 			status="release"
 			forcedeliver="false"
 			publishivy="${publish.ivy}"
-			artifactspattern="${dir.dist}/[artifact]-[revision].[ext]"/>
+			artifactspattern="${dir.dist}/[artifact]-[revision](-[classifier]).[ext]"/>
 	</target>
 
 	<target name="clean" description="Remove generated artifacts">
@@ -123,6 +157,7 @@
 		<subant target="jar-dep">
 			<property name="dir.deps" value="${dir.build}/deps"/>
 			<property name="dir.provided" value="${dir.build}/provided"/>
+			<property name="unittest" value="${unittest}"/>
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
@@ -140,9 +175,8 @@
 			<fileset dir="${dir.provided}" includes="*.jar"/>
 		</path>
 		<!-- For debugging classpath:
-		<property name="path" refid="lib.path"/>
-		<echo>{=== Compile path: ${path} ===}</echo>
-		-->
+		<echo>{=== Compile path: ${toString:compile.path.combined} ===}</echo-->
+
 		<mkdir dir="${dir.compile}"/>
 		<javac srcdir="${dir.source}"
 			includeantruntime="false"
@@ -160,7 +194,7 @@
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
-					classpath="${dir.target}/lib/bh-1.0.jar"/>
+					classpath="${dir.target}/lib/bh-1.1.jar"/>
 	</target>
 	
 	<target name="read.manifest" depends="bh.init">
@@ -171,6 +205,16 @@
 		<property name="src.jar.name" value="${bundle.name}-${bundle.version}-sources.jar"/>
 		<property name="ivy.pom.artifactId" value="${bundle.name}"/>
 		<property name="ivy.pom.version" value="${bundle.version}"/>
+
+		<path id="bundle.name.path">
+			<pathelement location="${bundle.name}"/>
+		</path>
+	</target>
+	
+	<target name="set.test.bundle.name" depends="read.manifest" unless="test.bundle.name">
+		<pathconvert property="test.bundle.name" refid="bundle.name.path">
+			<mapper type="glob" from="${basedir}/*.test" to="*"/>
+		</pathconvert>
 	</target>
 	
 	<target name="jar.dep.check" depends="read.manifest">
@@ -228,30 +272,39 @@
 		</copy>
 	</target>
 	
-	<target name="jar" depends="compile,resource-prep,jar.classes,jar.no.classes"
+	<target name="jar" depends="compile,resource-prep,jar.web.check,jar.classes,jar.no.classes,jar.web.classes"
 		description="Create bundle jar"/>
 
 	<target name="clean-jar" depends="clean,jar"
 		description="Clean, then create bundle jar"/>
 
-	<patternset id="web.files">
-		<include name="*.html"/>
-		<include name="css/**"/>
-		<include name="data/**"/>
-		<include name="images/**"/>
-		<include name="img/**"/>
-		<include name="font/**"/>
-		<include name="fonts/**"/>
-		<include name="js/**"/>
-		<include name="js-lib/**"/>
-		<include name="style/**"/>
-		<include name="WEB-INF/**"/>
-		<exclude name="WEB-INF/classes/**"/>
-		<exclude name="WEB-INF/packtag.user.properties"/>
-		<exclude name="WEB-INF/jsp/about.jsp"/>
-	</patternset>
+	<target name="jar.web.check" if="unittest">
+		<condition property="web.classes">
+			<resourcecount when="greater" count="0">
+				<fileset dir="${dir.resources}">
+					<patternset refid="web.files"/>
+				</fileset>
+			</resourcecount>
+		</condition>
+		<!--echo>
+			!!!
+			Checking for: ${dir.resources} files
+			Result: ${web.classes}
+			!!!
+		</echo-->
+	</target>
 	
-	<target name="jar.classes" if="classes">
+	<target name="jar.web.classes" if="web.classes">
+		<mkdir dir="${dir.dist}"/>
+		<echo message="[====&gt; Building web class JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
+		<jar destfile="${dir.dist}/${bundle.jar.name}">
+			<zipfileset dir="${dir.compile}" includes="**"/>
+			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java" />
+			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
+	<target name="jar.classes" if="classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
@@ -265,30 +318,34 @@
 				<include name="OSGI-INF/**"/>
 				<include name="lib/**"/>
 				<exclude name="META-INF/MANIFEST.MF"/>
+				<patternset refid="Bundle-ClassPath"/>
 				<patternset refid="web.files"/>
 			</fileset>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
 	
-	<target name="jar.no.classes" if="no.classes">
+	<target name="jar.no.classes" if="no.classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
 			manifest="${dir.meta-inf}/MANIFEST.MF">
-			<fileset dir="${basedir}">
-				<include name="*.jar"/>
-				<include name="conf/**"/>
-				<exclude name="*-sources.jar"/>
-				<exclude name="*-src.jar"/>
-			</fileset>
-			<fileset dir="${dir.resources}">
-				<include name="META-INF/**"/>
-				<include name="OSGI-INF/**"/>
-				<include name="lib/**"/>
-				<exclude name="META-INF/MANIFEST.MF"/>
-				<patternset refid="web.files"/>
-			</fileset>
+			<union><!-- to eliminate duplicates, e.g. from Bundle-ClassPath + *.jar -->
+				<fileset dir="${basedir}">
+					<include name="*.jar"/>
+					<include name="conf/**"/>
+					<exclude name="*-sources.jar"/>
+					<exclude name="*-src.jar"/>
+				</fileset>
+				<fileset dir="${dir.resources}">
+					<include name="META-INF/**"/>
+					<include name="OSGI-INF/**"/>
+					<include name="lib/**"/>
+					<exclude name="META-INF/MANIFEST.MF"/>
+					<patternset refid="Bundle-ClassPath"/>
+					<patternset refid="web.files"/>
+				</fileset>
+			</union>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
@@ -321,4 +378,147 @@
 		</jar>
 	</target>
 	
+	<!-- Unit test support -->
+	
+	<target name="test" description="Run unit tests" depends="test.resolve,test.run,test.run.coverage"/>
+	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,jar,test"/>
+
+	<target name="jacoco.init">
+		<taskdef resource="org/jacoco/ant/antlib.xml"
+			uri="antlib:org.jacoco.ant" 
+			classpath="${dir.target}/lib/jacocoant.jar"/>
+	</target>	
+
+	<target name="test.resolve">
+		<!-- Use antcall here so that we can run the jar task, followed by this; ivy:retrieve was throwing
+		     java.lang.ClassCastException: org.apache.ivy.core.module.descriptor.DefaultModuleDescriptor cannot be cast to org.apache.ivy.core.module.descriptor.ModuleDescriptor
+		     otherwise -->
+		<antcall target="test.resolve.sub"/>
+	</target>
+	
+	<target name="test.resolve.sub" depends="lib-init,set.test.bundle.name">
+		<delete dir="${dir.test.target}" failonerror="no"/>
+		<mkdir dir="${dir.test.target}"/>
+		
+		<echo>Test plugin: ${test.bundle.name}</echo>
+		
+		<!-- Copy the dependencies to dir.test.target -->
+		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact]-[revision].[ext]" conf="runtime" symlink="yes"/>
+		<copy todir="${dir.test.target}" overwrite="yes">
+			<fileset dir="${dir.deps}" includes="*.jar"/>
+			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
+		</copy>
+	</target>
+	
+	<target name="test.clean">
+		<delete dir="${dir.test.target}" failonerror="no"/>
+		<delete dir="${dir.test.reports}" failonerror="no"/>
+	</target>
+	
+	<target name="test.run" unless="with-coverage">
+		<mkdir dir="${dir.test.reports}"/>
+		<path id="junit.path">
+			<fileset dir="${dir.test.target}" includes="*.jar"/>
+			<dirset dir="${dir.env.input}">
+				<include name="environment/${env.name}"/>
+			</dirset>
+		</path>
+		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
+		<junit fork="yes" forkmode="once">
+			<classpath refid="junit.path"/>
+			<formatter type="xml"/>
+			<jvmarg line="${test.jvm.args}"/>
+			<batchtest todir="${dir.test.reports}" skipNonTests="yes">
+				<fileset dir="${dir.source}">
+					<include name="**/*Test.java"/>
+					<include name="**/*Tests.java"/>
+					<exclude name="**/AllTests.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="test.run.coverage" if="with-coverage" depends="jacoco.init">
+		<mkdir dir="${dir.test.reports}"/>
+		<path id="junit.path">
+			<fileset dir="${dir.test.target}" includes="*.jar"/>
+			<dirset dir="${dir.env.input}">
+				<include name="environment/${env.name}"/>
+			</dirset>
+		</path>
+		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
+		<jacoco:coverage destfile="${dir.test.reports}/${test.bundle.name}.exec">
+			<junit fork="yes" forkmode="once">
+				<classpath refid="junit.path"/>
+				<formatter type="xml"/>
+				<jvmarg line="${test.jvm.args}"/>
+				<batchtest todir="${dir.test.reports}" skipNonTests="yes">
+					<fileset dir="${dir.source}">
+						<include name="**/*Test.java"/>
+						<include name="**/*Tests.java"/>
+						<exclude name="**/AllTests.java"/>
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
+	</target>
+
+	<target name="test-report" description="Generate a HTML report from test results">
+		<mkdir dir="${dir.test.reports}"/>
+		<junitreport todir="${dir.test.reports}">
+			<fileset dir="${dir.test.reports}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${dir.test.reports}/unittest"/>
+		</junitreport>
+		<antcall target="test.check"/>
+	</target>
+	
+	<target name="test.check">
+		<loadfile property="results.summary"
+		          srcfile="${dir.test.reports}/unittest/overview-summary.html">
+			<filterchain>
+				<headfilter lines="30" />
+				<linecontains>
+					<contains value="href=&quot;all-tests.html&quot;" />
+				</linecontains>
+			</filterchain>
+		</loadfile>
+		<condition property="tests.passed">
+			<contains string="${results.summary}" substring="100.00%" />
+		</condition>
+		
+		<pathconvert property="test.report.name">
+			<fileset dir="${dir.test.reports}/unittest">
+    			<include name="index.html"/>
+			</fileset>
+			<map from="${basedir}/" to=""/>
+		</pathconvert>
+		<fail message="FAILED - some tests failed - see ${test.report.name} for more details"
+		      unless="tests.passed" />
+		<echo message="SUCCESS - all tests passed - see ${test.report.name} for more details" />
+	</target>
+	
+	<target name="coverage-report" description="Generate a HTML code coverage report from the test results"
+			depends="jacoco.init,set.test.bundle.name">
+		<jacoco:report>
+			<executiondata>
+				<fileset dir="${dir.test.reports}">
+					<include name="*.exec" />
+				</fileset>
+			</executiondata>		
+			<structure name="${test.bundle.name}">
+				<classfiles>
+					<fileset dir="${dir.deps}">
+						<include name="*.jar"/>
+					</fileset>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="../${test.bundle.name}/src"/>
+				</sourcefiles>
+			</structure>			
+			<html destdir="${dir.test.reports}/coverage"/>
+		</jacoco:report>
+	</target>
+
 </project>

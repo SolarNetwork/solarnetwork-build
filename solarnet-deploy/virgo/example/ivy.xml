@@ -34,7 +34,7 @@
 				conf="runtime"/>
     	<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
     	<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
-		<dependency org="net.solarnetwork.external" name="org.postgresql.jdbc42" rev="42.0.0" conf="runtime"/>
+		<dependency org="org.postgresql" name="postgresql" rev="42.0.0" conf="runtime"/>
 		
     	<!-- AspectJ -->
     	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>

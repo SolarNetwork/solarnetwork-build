@@ -61,18 +61,18 @@ import org.springframework.stereotype.Service;
  * By default the OBR metadata will be created as a file named
  * {@code metadata.xml} at the root of the Archiva repository. The directory can
  * be changed by adding a {@code $appserver.base/conf/obr.properties} file with
- * a {@bold obr.base} key with an associated absolute file path to the
- * desired directory. Note that {@code $appserver.base} represents the
+ * a {@bold obr.base} key with an associated absolute file path to the desired
+ * directory. Note that {@code $appserver.base} represents the
  * {@code appserver.base} System property, which is normally set by the Archiva
  * start up script.
  * 
  * @author matt
- * @version 0.1
+ * @version 0.2
  */
 @Service("knownRepositoryContentConsumer#create-obr-metadata")
 @Scope("prototype")
-public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer implements
-		KnownRepositoryContentConsumer {
+public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer
+		implements KnownRepositoryContentConsumer {
 
 	private static final Logger log = LoggerFactory.getLogger(OBRMetadataRepositoryConsumer.class);
 
@@ -96,11 +96,6 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 	@Override
 	public String getDescription() {
 		return description;
-	}
-
-	@Override
-	public boolean isPermanent() {
-		return false;
 	}
 
 	@Override
@@ -171,8 +166,8 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 				if ( executeOnEntireRepo == false ) {
 					if ( existingRepo != null ) {
 						obrRepositoryLastModifiedDate = existingRepo.getLastModified();
-						log.info("OBR metadata last generated at {}", new Date(
-								obrRepositoryLastModifiedDate));
+						log.info("OBR metadata last generated at {}",
+								new Date(obrRepositoryLastModifiedDate));
 					}
 					obrRepository = (RepositoryImpl) existingRepo;
 				}
@@ -200,8 +195,8 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer imp
 			File file = new File(archivaRepositoryLocation, path);
 			final long foundLastModified = file.lastModified();
 			if ( foundLastModified > obrRepositoryLastModifiedDate ) {
-				ResourceImpl obrResource = (ResourceImpl) dataModelHelper.createResource(file.toURI()
-						.toURL());
+				ResourceImpl obrResource = (ResourceImpl) dataModelHelper
+						.createResource(file.toURI().toURL());
 				// we want a relative URL, so override the absolute path ResourceImpl generated
 				obrResource.put(Resource.URI, path);
 				obrRepository.addResource(obrResource);

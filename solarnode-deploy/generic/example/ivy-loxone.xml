@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This is an example SolarNode deployment configuration. It defines a basic set of
+	bundles required to run the SolarNode web GUI and allow the node to associate with
+	SolarNetwork. To perform anything useful like collect data from devices, additional
+	dependencies should be added.
+
+	Note: some transitive dependencies might need to be explicitly defined if you
+	require a different (e.g. newer) version than defined.
+
+	Note: when adding additional bundles you'll most likely need to add a
+	net.solarnetwork.node.[datum type].dao.jdbc bundle, where [datum type] is a core
+	supported SolarNode datum type, e.g. "consumption", "power", etc.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- SolarNode basic support (this needed for most any deployment) -->
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby.ext" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.location.ws" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.dao.jdbc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.json" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.obr" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="latest.release"/>
+
+		<!-- For standard deployments, include the .setup and .bulkjsonwebpost bundles -->
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
+
+		<!-- Modbus support -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.gnu.trove" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.wimpi.modbus" rev="latest.release"/>
+
+		<!-- Loxone support -->
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.loxone" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web.loxone" rev="latest.release"/>
+
+		<!--
+		Use OS-provided RXTX. Remove this to include the SolarNetwork RXTX bundle.
+		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
+		-->
+		<exclude artifact="net.solarnetwork.external.org.rxtx"/>
+
+		<!-- Global excludes provided by the base system -->
+		<exclude artifact="net.solarnetwork.external.net.sf.packtag"/>
+		<exclude artifact="net.solarnetwork.external.net.sf.packtag.cachefix"/>
+		<exclude artifact="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
+		<exclude artifact="net.solarnetwork.external.org.mortbay.jetty"/>
+		<exclude artifact="net.solarnetwork.external.spring-security-messaging"/>
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
+		<exclude org="com.fasterxml.jackson.core"/>
+		<exclude org="com.opensymphony.quartz"/>
+		<exclude org="org.glassfish.tyrus.bundles"/>
+		<exclude org="javax.el"/>
+		<exclude org="javax.servlet"/>
+		<exclude org="joda-time"/>
+		<exclude org="net.sf.supercsv"/>
+		<exclude org="org.apache.derby"/>
+		<exclude org="org.apache.felix"/>
+		<exclude org="org.apache.servicemix.bundles"/>
+		<exclude org="org.apache.taglibs"/>
+		<exclude org="org.apache.tomcat"/>
+		<exclude org="org.bouncycastle"/>
+		<exclude org="org.codehaus.jackson"/>
+		<exclude org="org.eclipse.gemini"/>
+		<exclude org="org.eclipse.gemini.blueprint"/>
+		<exclude org="org.eclipse.virgo.mirrored"/>
+		<exclude org="org.eclipse.virgo.web"/>
+		<exclude org="org.osgi"/>
+		<exclude org="org.quartz-scheduler"/>
+		<exclude org="org.slf4j"/>
+		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
+
+	</dependencies>
+</ivy-module>

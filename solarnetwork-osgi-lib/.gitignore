@@ -1,2 +1,6 @@
 /build.properties
 .vagrant
+reports/
+solarnode/
+var/
+derby.log
