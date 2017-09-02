@@ -20,6 +20,15 @@
 	<system systemId="-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" 
 		uri="catalog/sql-map-config-2.dtd"/>
 		
+	<!-- MyBatis support -->
+
+	<rewriteSystem 
+		systemIdStartString="http://mybatis.org/dtd/"
+		rewritePrefix="catalog/"/>
+
+	<system systemId="-//mybatis.org//DTD Mapper 3.0//EN" 
+		uri="catalog/mybatis-3-mapper.dtd"/>
+
 	<!-- Tiles support -->
 	
 	<rewriteSystem 

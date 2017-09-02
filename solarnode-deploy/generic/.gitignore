@@ -1,6 +1,7 @@
 /build.properties
-/ivy.xml
+/ivy*.xml
 /platform
 /target
 /*node-bundles*
 /build
+/tmp/

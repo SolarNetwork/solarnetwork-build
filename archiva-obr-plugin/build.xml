@@ -3,7 +3,7 @@
 	<property file="${basedir}/build.properties"/>
 
 	<property name="app.name" value="archiva-obr-plugin"/>
-	<property name="app.version" value="0.2.0"/>
+	<property name="app.version" value="0.3.0"/>
 	
 	<property name="dir.build" value="${basedir}/build/ant"/>
 	<property name="dir.build.lib" value="${basedir}/../solarnetwork-osgi-lib"/>

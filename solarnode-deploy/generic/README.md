@@ -27,6 +27,12 @@ rebuild always from scratch, add the **clean** task:
 
 	ant clean archive
 
+You can maintain multiple packages by creating other Ivy XML files. For example
+to maintain a package with all the bundles required you could create a 
+**ivy-mycompany.xml** file and then run the build like this:
+
+	ant -Divy.file=ivy-mycompany.xml clean archive
+
 ## Upgrading nodes
 
 To upgrade an existing node with a new application version, [follow the process
