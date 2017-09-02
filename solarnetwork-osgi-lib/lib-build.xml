@@ -330,20 +330,22 @@
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
 		<jar destfile="${dir.dist}/${bundle.jar.name}" 
 			manifest="${dir.meta-inf}/MANIFEST.MF">
-			<fileset dir="${basedir}">
-				<include name="*.jar"/>
-				<include name="conf/**"/>
-				<exclude name="*-sources.jar"/>
-				<exclude name="*-src.jar"/>
-			</fileset>
-			<fileset dir="${dir.resources}">
-				<include name="META-INF/**"/>
-				<include name="OSGI-INF/**"/>
-				<include name="lib/**"/>
-				<exclude name="META-INF/MANIFEST.MF"/>
-				<patternset refid="Bundle-ClassPath"/>
-				<patternset refid="web.files"/>
-			</fileset>
+			<union><!-- to eliminate duplicates, e.g. from Bundle-ClassPath + *.jar -->
+				<fileset dir="${basedir}">
+					<include name="*.jar"/>
+					<include name="conf/**"/>
+					<exclude name="*-sources.jar"/>
+					<exclude name="*-src.jar"/>
+				</fileset>
+				<fileset dir="${dir.resources}">
+					<include name="META-INF/**"/>
+					<include name="OSGI-INF/**"/>
+					<include name="lib/**"/>
+					<exclude name="META-INF/MANIFEST.MF"/>
+					<patternset refid="Bundle-ClassPath"/>
+					<patternset refid="web.files"/>
+				</fileset>
+			</union>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
