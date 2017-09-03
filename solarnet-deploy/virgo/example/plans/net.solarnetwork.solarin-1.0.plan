@@ -30,6 +30,7 @@
 	<artifact type="bundle" name="net.solarnetwork.central.datum.agg" version="[1.4,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.jobs" version="[1.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.alerts" version="[1.4,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.billing.killbill.jobs" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.scheduler.quartz" version="[1.5,2.0)"/>
 
 	<!-- SolarUser -->
