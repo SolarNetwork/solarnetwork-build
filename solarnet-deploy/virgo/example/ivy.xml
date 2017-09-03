@@ -24,6 +24,7 @@
 		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.8.7" conf="runtime" />
 		
 		<!-- JDBC -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29" conf="runtime">
@@ -36,8 +37,8 @@
 		<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
 		<dependency org="org.postgresql" name="postgresql" rev="42.0.0" conf="runtime"/>
 		
-    	<!-- AspectJ -->
-    	<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
+		<!-- AspectJ -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
 		
 		<!-- Spring -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="runtime"/>
@@ -195,7 +196,6 @@
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="log4j"/>
-		<exclude module="org.apache.servicemix.bundles.javax-cache-api"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aop"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aspects"/>
 		<exclude module="org.apache.servicemix.bundles.spring-beans"/>
