@@ -4,3 +4,4 @@ reports/
 solarnode/
 var/
 derby.log
+/ivysettings-local.xml
