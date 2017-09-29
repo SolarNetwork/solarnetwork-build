@@ -1,5 +1,15 @@
 # SolarNode Application Changelog
 
+## V20170928
+
+**Note** This release requires a minimum of the **20170628** SolarNode
+Platform.
+
+ * View captured datum values directly on the node web GUI, in real time.
+ * New "Upgrade All" feature on web GUI Plugin screen.
+ * Better handling of plugin updates by automatically restarting after
+   upgrade.
+
 ## V20170801
 
 **Note** This release requires a minimum of the **20170628** SolarNode
