@@ -10,6 +10,10 @@ The build requires some configuration to run. Copy the `example/build.properties
 and `example/ivy.xml` files into this directory first. Then you can modify the new
 copies (they will be ignored by version control).
 
+If one of the example configurations is all you need, you can use that in the build
+by passing a `-Divy.file` argument to the build, for example 
+`-Divy.file=example/ivy.xml`.
+
 ## Ivy Configuration
 
 The build script assembles all the various artifacts that make up the SolarNode
@@ -30,8 +34,8 @@ rebuild always from scratch, add the **clean** task:
 
 ## Upgrading nodes
 
-To upgrade an existing node with a new platform version, [follow the process
-outlined on the SolarNetwork wiki][upgrade].
+To upgrade an existing node with a new platform version, follow the process
+outlined [on the SolarNetwork wiki][upgrade].
 
  
   [ant]: https://ant.apache.org/

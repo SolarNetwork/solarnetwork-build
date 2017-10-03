@@ -1,4 +1,8 @@
 org.osgi.framework.system.packages = \
+ com.sun.org.apache.bcel.internal,\
+ com.sun.org.apache.bcel.internal.classfile,\
+ com.sun.org.apache.bcel.internal.generic,\
+ com.sun.org.apache.bcel.internal.util,\
  com.sun.org.apache.xalan.internal.res,\
  com.sun.org.apache.xml.internal.utils,\
  com.sun.org.apache.xpath.internal,\
@@ -155,10 +159,6 @@ org.osgi.framework.system.packages = \
  javax.xml.ws.wsaddressing,\
  javax.xml.ws.wsaddressing;version="2.2.8",\
  javax.xml.xpath,\
- org.eclipse.virgo.kernel.equinox.extensions,\
- org.eclipse.virgo.kernel.equinox.extensions;version="3.6.3",\
- org.eclipse.virgo.kernel.equinox.extensions.hooks,\
- org.eclipse.virgo.kernel.equinox.extensions.hooks;version="3.6.3",\
  org.ietf.jgss,\
  org.omg.CORBA,\
  org.omg.CORBA_2_3,\
@@ -203,7 +203,6 @@ org.osgi.framework.system.packages = \
  org.xml.sax.ext,\
  org.xml.sax.helpers
 org.osgi.framework.bootdelegation = \
- org.eclipse.virgo.nano.authentication,\
  com.sun.*,\
  javax.crypto,\
  javax.crypto.*,\
@@ -234,10 +233,10 @@ org.osgi.framework.system.capabilities = \
  osgi.ee; osgi.ee="JavaSE/compact1"; version:List<Version>="1.8",\
  osgi.ee; osgi.ee="JavaSE/compact2"; version:List<Version>="1.8",\
  osgi.ee; osgi.ee="JavaSE/compact3"; version:List<Version>="1.8"
+osgi.java.profile.name = JavaSE-1.8
 org.eclipse.jdt.core.compiler.compliance=1.8
 org.eclipse.jdt.core.compiler.source=1.8
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.8
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
-osgi.java.profile.name = Virgo-Java8
