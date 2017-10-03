@@ -5,6 +5,7 @@
 		<conf name="boot" visibility="public" description="Bootstrap Environment"/>
 		<conf name="gemini" visibility="public" description="Gemini Web Runtime"/>
 		<conf name="core" visibility="public" description="Core Runtime"/>
+		<conf name="foo" visibility="private" description="Internal testing"/>
 	</configurations>
 	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);foo->default(runtime)"
 		defaultconf="core->default(runtime)">
@@ -333,6 +334,29 @@
 			<exclude name="org.osgi.core"/>
 		</dependency>
 
+		<!-- HTTP Client -->
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.3" conf="core">
+			<exclude module="httpclient"/>
+			<exclude module="httpclient-cache"/>
+			<exclude module="fluent-hc"/>
+			<exclude module="httpcore"/>
+			<exclude module="httpmime"/>
+			<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.7" conf="core">
+			<exclude module="httpcore"/>
+			<exclude module="httpcore-nio"/>
+		</dependency>
+
+		<!-- AWS -->
+		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.207" conf="core">
+			<exclude org="com.fasterxml.jackson.core"/>
+			<exclude org="com.fasterxml.jackson.dataformat"/>
+			<exclude org="joda-time"/>
+			<exclude org="org.apache.httpcomponents"/>
+			<exclude org="org.osgi"/>
+		</dependency>
+		
 		<!-- Global excludes -->
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
