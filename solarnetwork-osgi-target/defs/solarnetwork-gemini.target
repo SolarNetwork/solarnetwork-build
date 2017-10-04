@@ -18,11 +18,14 @@
 <plugin id="bcprov"/>
 <plugin id="bcprov.source"/>
 <plugin id="classmate"/>
+<plugin id="com.amazonaws.aws-java-sdk-osgi"/>
+<plugin id="com.amazonaws.aws-java-sdk-osgi.source"/>
 <plugin id="com.fasterxml.jackson.core.jackson-annotations"/>
 <plugin id="com.fasterxml.jackson.core.jackson-core"/>
 <plugin id="com.fasterxml.jackson.core.jackson-core.source"/>
 <plugin id="com.fasterxml.jackson.core.jackson-databind"/>
 <plugin id="com.fasterxml.jackson.core.jackson-databind.source"/>
+<plugin id="com.fasterxml.jackson.dataformat.jackson-dataformat-cbor"/>
 <plugin id="com.fasterxml.jackson.datatype.jackson-datatype-joda"/>
 <plugin id="com.springsource.javax.activation"/>
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
@@ -203,6 +206,7 @@
 <plugin id="osgi.enterprise"/>
 <plugin id="slf4j.api"/>
 <plugin id="slf4j.log4j12"/>
+<plugin id="software.amazon.ion.java"/>
 <plugin id="stax2-api"/>
 <plugin id="woodstox-core-asl"/>
 </includeBundles>

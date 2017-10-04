@@ -37,6 +37,9 @@
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.aop" version="[1.5,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.biz.dao" version="[1.4,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.aop" version="[1.5,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.billing.aop" version="[0.1,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.billing.biz.dao" version="[0.1,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.billing.killbill" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.pki.dogtag" version="[1.3,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.14,2.0)"/>
 

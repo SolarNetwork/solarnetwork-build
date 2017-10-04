@@ -9,10 +9,22 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 org.osgi.framework.system.packages = \
+ com.sun.org.apache.bcel.internal,\
+ com.sun.org.apache.bcel.internal.classfile,\
+ com.sun.org.apache.bcel.internal.generic,\
+ com.sun.org.apache.bcel.internal.util,\
+ com.sun.org.apache.xalan.internal.res,\
+ com.sun.org.apache.xml.internal.utils,\
+ com.sun.org.apache.xpath.internal,\
+ com.sun.org.apache.xpath.internal.jaxp,\
+ com.sun.org.apache.xpath.internal.objects,\
  javax.accessibility,\
  javax.activation,\
+ javax.activation;version="1.1.1",\
  javax.activity,\
  javax.annotation,\
+ javax.annotation;version="1.0.0",\
+ javax.annotation;version="1.1.0",\
  javax.annotation.processing,\
  javax.crypto,\
  javax.crypto.interfaces,\
@@ -25,7 +37,9 @@ org.osgi.framework.system.packages = \
  javax.imageio.spi,\
  javax.imageio.stream,\
  javax.jws,\
+ javax.jws;version="2.0",\
  javax.jws.soap,\
+ javax.jws.soap;version="2.0",\
  javax.lang.model,\
  javax.lang.model.element,\
  javax.lang.model.type,\
@@ -54,6 +68,7 @@ org.osgi.framework.system.packages = \
  javax.rmi.CORBA,\
  javax.rmi.ssl,\
  javax.script,\
+ javax.script;version="1.1",\
  javax.security.auth,\
  javax.security.auth.callback,\
  javax.security.auth.kerberos,\
@@ -79,7 +94,6 @@ org.osgi.framework.system.packages = \
  javax.swing.plaf.basic,\
  javax.swing.plaf.metal,\
  javax.swing.plaf.multi,\
- javax.swing.plaf.nimbus,\
  javax.swing.plaf.synth,\
  javax.swing.table,\
  javax.swing.text,\
@@ -90,27 +104,48 @@ org.osgi.framework.system.packages = \
  javax.swing.undo,\
  javax.tools,\
  javax.transaction,\
+ javax.transaction;version="1.0.1",\
+ javax.transaction;version="1.1.0",\
  javax.transaction.xa,\
+ javax.transaction.xa;version="1.0.1",\
+ javax.transaction.xa;version="1.1.0",\
  javax.xml,\
+ javax.xml;version="1.0.1",\
  javax.xml.bind,\
+ javax.xml.bind;version="2.2.8",\
  javax.xml.bind.annotation,\
+ javax.xml.bind.annotation;version="2.2.8",\
  javax.xml.bind.annotation.adapters,\
+ javax.xml.bind.annotation.adapters;version="2.2.8",\
  javax.xml.bind.attachment,\
+ javax.xml.bind.attachment;version="2.2.8",\
  javax.xml.bind.helpers,\
+ javax.xml.bind.helpers;version="2.2.8",\
  javax.xml.bind.util,\
+ javax.xml.bind.util;version="2.2.8",\
  javax.xml.crypto,\
+ javax.xml.crypto;version="1.0",\
  javax.xml.crypto.dom,\
+ javax.xml.crypto.dom;version="1.0",\
  javax.xml.crypto.dsig,\
+ javax.xml.crypto.dsig;version="1.0",\
  javax.xml.crypto.dsig.dom,\
+ javax.xml.crypto.dsig.dom;version="1.0",\
  javax.xml.crypto.dsig.keyinfo,\
+ javax.xml.crypto.dsig.keyinfo;version="1.0",\
  javax.xml.crypto.dsig.spec,\
+ javax.xml.crypto.dsig.spec;version="1.0",\
  javax.xml.datatype,\
  javax.xml.namespace,\
  javax.xml.parsers,\
  javax.xml.soap,\
+ javax.xml.soap;version="1.3.0",\
  javax.xml.stream,\
+ javax.xml.stream;version="1.0.1",\
  javax.xml.stream.events,\
+ javax.xml.stream.events;version="1.0.1",\
  javax.xml.stream.util,\
+ javax.xml.stream.util;version="1.0.1",\
  javax.xml.transform,\
  javax.xml.transform.dom,\
  javax.xml.transform.sax,\
@@ -118,13 +153,21 @@ org.osgi.framework.system.packages = \
  javax.xml.transform.stream,\
  javax.xml.validation,\
  javax.xml.ws,\
+ javax.xml.ws;version="2.2.8",\
  javax.xml.ws.handler,\
+ javax.xml.ws.handler;version="2.2.8",\
  javax.xml.ws.handler.soap,\
+ javax.xml.ws.handler.soap;version="2.2.8",\
  javax.xml.ws.http,\
+ javax.xml.ws.http;version="2.2.8",\
  javax.xml.ws.soap,\
+ javax.xml.ws.soap;version="2.2.8",\
  javax.xml.ws.spi,\
+ javax.xml.ws.spi;version="2.2.8",\
  javax.xml.ws.spi.http,\
+ javax.xml.ws.spi.http;version="2.2.8",\
  javax.xml.ws.wsaddressing,\
+ javax.xml.ws.wsaddressing;version="2.2.8",\
  javax.xml.xpath,\
  org.ietf.jgss,\
  org.omg.CORBA,\
@@ -170,13 +213,14 @@ org.osgi.framework.system.packages = \
  org.xml.sax.ext,\
  org.xml.sax.helpers
 org.osgi.framework.bootdelegation = \
- javax.*,\
- org.ietf.jgss,\
- org.omg.*,\
+ com.sun.*,\
+ javax.crypto,\
+ javax.crypto.*,\
+ javax.xml.*,\
+ org.apache.xerces.jaxp.*,\
  org.w3c.*,\
  org.xml.*,\
- sun.*,\
- com.sun.*
+ sun.*
 org.osgi.framework.executionenvironment = \
  OSGi/Minimum-1.0,\
  OSGi/Minimum-1.1,\
