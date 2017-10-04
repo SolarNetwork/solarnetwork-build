@@ -1,6 +1,5 @@
 /build
 /build.properties
 /ivy.xml
-/base-equinox-node*
-/*cxf-equinox-node*
+/*equinox-node*
 /tmp/
