@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is an example SolarNode deployment configuration. It defines a basic set of 
+	This is an example SolarNode deployment configuration. It defines a basic set of
 	bundles required to run the SolarNode web GUI and allow the node to associate with
 	SolarNetwork. To perform anything useful like collect data from devices, additional
 	dependencies should be added.
-	
+
 	Note: some transitive dependencies might need to be explicitly defined if you
 	require a different (e.g. newer) version than defined.
-	
-	Note: when adding additional bundles you'll most likely need to add a 
-	net.solarnetwork.node.[datum type].dao.jdbc bundle, where [datum type] is a core 
+
+	Note: when adding additional bundles you'll most likely need to add a
+	net.solarnetwork.node.[datum type].dao.jdbc bundle, where [datum type] is a core
 	supported SolarNode datum type, e.g. "consumption", "power", etc.
 -->
 <ivy-module version="2.0">
@@ -18,7 +18,7 @@
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
-		
+
 		<!-- SolarNode basic support (this needed for most any deployment) -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
@@ -39,16 +39,20 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="latest.release"/>
-		
+
 		<!-- For standard deployments, include the .setup and .bulkjsonwebpost bundles -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
-		
+
+		<!-- Inclue S3 backup support; note this requires AWS support in the base platform -->
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.backup.s3" rev="latest.release"/>
+
+
 		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
 		-->
-		
-		<!-- 
+
+		<!--
 		Use OS-provided RXTX. Remove this to include the SolarNetwork RXTX bundle.
 		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
 		-->
@@ -61,6 +65,7 @@
 		<exclude artifact="net.solarnetwork.external.org.mortbay.jetty"/>
 		<exclude artifact="net.solarnetwork.external.spring-security-messaging"/>
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
+		<exclude org="com.amazonaws"/>
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.opensymphony.quartz"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
@@ -84,6 +89,6 @@
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
-	
+
 	</dependencies>
 </ivy-module>
