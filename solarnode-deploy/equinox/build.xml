@@ -99,6 +99,10 @@
 		<copy todir="${dir.assemble}/app">
 			<fileset dir="${dir.build}/jars" includes="org.eclipse.osgi-*"/>
 		</copy>
+		<fileset id="assemble.equinox.jar" dir="${dir.assemble}/app" includes="org.eclipse.osgi-*.jar"/>
+		<pathconvert pathsep="," property="assemble.equinox.jar" refid="assemble.equinox.jar">
+			<mapper type="flatten"/>
+		</pathconvert>
 		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
 			<fileset dir="${dir.runtime.lib}/app-boot">
 				<include name="**/*.properties"/>
@@ -126,6 +130,7 @@
 			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
 		<symlink link="${dir.assemble}/config" resource="conf" />
+		<symlink link="${dir.assemble}/app/equinox.jar" resource="${assemble.equinox.jar}"/>
 	</target>
 	
 	<target name="equinox-config">
