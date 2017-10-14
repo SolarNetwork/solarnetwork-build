@@ -1,5 +1,10 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if">
 
+	<!-- Properties to define and customize the package contents:
+	
+		pkg.exclude.bin = true : exclude the "bin" dir
+	-->
+	
 	<property file="${basedir}/build.properties"/>
 
 	<property name="bundle.nostart">
@@ -62,6 +67,7 @@
 	<target name="assemble-prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
+		<mkdir dir="${dir.assemble}/app/core"/>
 		<mkdir dir="${dir.assemble}/app/main"/>
 		<mkdir dir="${dir.assemble}/conf"/>
 		<mkdir dir="${dir.assemble}/var"/>
@@ -71,6 +77,7 @@
 		<copy todir="${dir.assemble}" flatten="no">
 			<fileset dir="${dir.base}" includes="**">
 				<exclude name="**/README.txt"/>
+				<exclude name="bin/**" if="pkg.exclude.bin"/>
 			</fileset>
 		</copy>
 		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
