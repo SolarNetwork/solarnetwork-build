@@ -73,6 +73,7 @@
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
 		<mkdir dir="${dir.assemble}/conf"/>
+		<mkdir dir="${dir.assemble}/lib"/>
 		<mkdir dir="${dir.assemble}/var"/>
 	</target>
 	
