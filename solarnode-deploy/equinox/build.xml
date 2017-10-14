@@ -2,7 +2,8 @@
 
 	<!-- Properties to define and customize the package contents:
 	
-		pkg.exclude.bin = true : exclude the "bin" dir
+		pkg.exclude.bin  - exclude the "bin" dir
+		pkg.include.main - resolve the "main" Ivy configuration to the app/main dir
 	-->
 	
 	<property file="${basedir}/build.properties"/>
@@ -68,7 +69,6 @@
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
-		<mkdir dir="${dir.assemble}/app/main"/>
 		<mkdir dir="${dir.assemble}/conf"/>
 		<mkdir dir="${dir.assemble}/var"/>
 	</target>
@@ -168,6 +168,18 @@
 		</copy>
 	</target>
 	
+	<target name="app-main" depends="ivy-init,assemble-prepare" if="pkg.include.main">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${ivy.file}" conf="main"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/main"/>
+		<copy todir="${dir.assemble}/app/main" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar"/>
+		</copy>
+	</target>
+	
 	<target name="app-foo" depends="ivy-init,assemble-prepare">
 		<mkdir dir="${dir.assemble}/app/foo"/>
 		<ivy:settings file="${ivy.settings}"/>
@@ -181,7 +193,7 @@
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="assemble-base,app-boot,app-core,equinox-config"
+	<target name="assemble" depends="assemble-base,app-boot,app-core,app-main,equinox-config"
 		description="Assemble a base node directory structure"/>
 	
 	<!-- Attempt to use native tar, to honor symlinks -->
