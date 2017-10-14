@@ -50,7 +50,7 @@
 	<property name="dir.base" value="base"/>
 	
 	<property name="pkg.tar.compress" value="-z"/>
-	<property name="pkg.tar.ext" value=".tgz"/>
+	<property name="pkg.tar.ext" value="tgz"/>
 	
 	<property name="dir.build" value="build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
