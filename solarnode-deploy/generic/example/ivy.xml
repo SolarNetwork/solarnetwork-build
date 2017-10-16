@@ -44,9 +44,9 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="latest.release"/>
 
-		<!-- Inclue S3 backup support; note this requires AWS support in the base platform -->
+		<!-- Include S3 backup/setup support; note this requires AWS support in the base platform -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.backup.s3" rev="latest.release"/>
-
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.s3" rev="latest.release"/>
 
 		<!-- For development, comment out the "standard" ones above and include .setup.developer instead
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
