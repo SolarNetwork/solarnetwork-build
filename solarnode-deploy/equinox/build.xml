@@ -131,6 +131,7 @@
 			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
 		<symlink link="${dir.assemble}/config" resource="conf" />
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/equinox.jar"/>
 		<symlink link="${dir.assemble}/app/equinox.jar" resource="${assemble.equinox.jar}"/>
 	</target>
 	
