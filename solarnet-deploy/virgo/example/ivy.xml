@@ -24,6 +24,7 @@
 		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.8.7" conf="runtime"/>
 		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.8.7" conf="runtime" />
 		
 		<!-- JDBC -->
@@ -184,6 +185,15 @@
 		
 		<!-- SN Core -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="1.0.0" conf="runtime"/>
+
+		<!-- AWS -->
+		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.207" conf="runtime">
+			<exclude org="com.fasterxml.jackson.core"/>
+			<exclude org="com.fasterxml.jackson.dataformat"/>
+			<exclude org="joda-time"/>
+			<exclude org="org.apache.httpcomponents"/>
+			<exclude org="org.osgi"/>
+		</dependency>
 
 		<!-- Global excludes -->
 		<exclude org="javax.servlet"/>
