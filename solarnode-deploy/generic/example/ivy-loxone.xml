@@ -46,6 +46,7 @@
 
 		<!-- Inclue S3 backup support; note this requires AWS support in the base platform -->
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.backup.s3" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.s3" rev="latest.release"/>
 
 		<!-- Modbus support -->
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.gnu.trove" rev="latest.release"/>
