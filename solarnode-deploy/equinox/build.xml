@@ -84,7 +84,6 @@
 				<exclude name="bin/**" unless="pkg.include.bin"/>
 			</fileset>
 		</copy>
-		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
 	</target>
 	
 	<target name="app-boot" depends="ivy-init,assemble-prepare">
@@ -203,7 +202,12 @@
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="assemble-base,app-boot,app-core,app-main,equinox-config"
+	<target name="assemble-perms" description="Apply permissions to the assembly files">
+		<chmod perm="0400" dir="${dir.assemble}" includes="conf/**"/>
+		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
+	</target>
+	
+	<target name="assemble" depends="assemble-base,app-boot,app-core,app-main,equinox-config,assemble-perms"
 		description="Assemble a base node directory structure"/>
 	
 	<!-- Attempt to use native tar, to honor symlinks -->
@@ -233,6 +237,10 @@
 			<tarfileset dir="${dir.assemble}">
 				<include name="**"/>
 				<exclude name="bin/*.sh"/>
+				<exclude name="conf/**/*.*"/>
+			</tarfileset>
+			<tarfileset dir="${dir.assemble}" mode="400">
+				<include name="conf/**/*.*"/>
 			</tarfileset>
 			<tarfileset dir="${dir.assemble}" mode="755">
 				<include name="bin/*.sh"/>
