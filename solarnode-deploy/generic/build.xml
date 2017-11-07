@@ -47,7 +47,7 @@
 		description="Assemble and then package a node bundle archive">
 		<tar destfile="${dir.build}/node-bundles.tgz" compression="gzip" longfile="gnu">
 			<tarfileset dir="${dir.assemble}">
-				<include name="**"/>
+				<include name="**/*.*"/>
 			</tarfileset>
 		</tar>
 	</target>
