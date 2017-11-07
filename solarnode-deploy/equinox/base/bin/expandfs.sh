@@ -31,8 +31,12 @@ fi
 # get the device and partition number with the SOLARNODE label
 SOLARNODE_DEV=
 SOLARNODE_PART_NUM=
-MMC_REGEX='(.*)p([0-9]+)'
+MMC_REGEX='(.*[0-9]+)p([0-9]+)'
+SD_REGEX='(.*)([0-9]+)'
 if [[ $SOLARNODE_PART =~ $MMC_REGEX ]]; then
+	SOLARNODE_DEV=${BASH_REMATCH[1]}
+	SOLARNODE_PART_NUM=${BASH_REMATCH[2]}
+elif [[ $SOLARNODE_PART =~ $SD_REGEX ]]; then
 	SOLARNODE_DEV=${BASH_REMATCH[1]}
 	SOLARNODE_PART_NUM=${BASH_REMATCH[2]}
 fi
