@@ -48,10 +48,11 @@ fi
 if [ $VERBOSE = 1 ]; then
 	echo "Expanding ${SOLARNODE_DEV} partition ${SOLARNODE_PART_NUM}"
 	echo "Saving recovery output to ${OLD_GEOM_FILE}..."
+fi
+if [ $DRYRUN = 1 ]; then
 	echo ',+' |sfdisk ${SOLARNODE_DEV} -N${SOLARNODE_PART_NUM} --no-reread \
 		-f -uS -q -n 2>/dev/null
-fi
-if [ ! $DRYRUN = 1 ]; then
+else
 	echo ',+' |sfdisk ${SOLARNODE_DEV} -N${SOLARNODE_PART_NUM} --no-reread \
 		-f -uS -q -O "${OLD_GEOM_FILE}" 2>/dev/null
 fi
@@ -59,17 +60,19 @@ fi
 # Inform the kernel of the partition change
 if [ $VERBOSE = 1 ]; then
 	echo -e "\nReloading partition table for ${SOLARNODE_DEV}..."
-	echo "partx -u ${SOLARNODE_DEV}"
 fi
-if [ ! $DRYRUN = 1 ]; then
+if [ $DRYRUN = 1 ]; then
+	echo "partx -u ${SOLARNODE_DEV}"
+else
 	partx -u ${SOLARNODE_DEV}
 fi
 
 # Resize the filesystem to use the entire partition
 if [ $VERBOSE = 1 ]; then
 	echo -e "\nExpanding filesystem on partition ${SOLARNODE_PART}..."
-	echo "resize2fs ${SOLARNODE_PART}"
 fi
-if [ ! $DRYRUN = 1 ]; then
+if [ $DRYRUN = 1 ]; then
+	echo "resize2fs ${SOLARNODE_PART}"
+else
 	resize2fs "${SOLARNODE_PART}"
 fi
