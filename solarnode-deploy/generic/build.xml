@@ -1,18 +1,18 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
 
 	<property file="${basedir}/build.properties"/>
-	
+
 	<property name="ivy.file" value="${basedir}/ivy.xml"/>
 	<property name="dir.src.base" value="${basedir}/../../.."/>
 	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.build" value="${basedir}/build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
 	<property name="dir.jars" value="${dir.build}/jars"/>
-	
+
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings-solarnetwork.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
 	<property name="ivy.cache.ttl.default" value="1d"/>
-	<property name="solarnetwork.archive.url" 
+	<property name="solarnetwork.archive.url"
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 
 	<target name="ivy-init">
@@ -20,22 +20,22 @@
 			uri="antlib:org.apache.ivy.ant"
 			classpath="${dir.build.lib}/lib/ivy-2.3.0.jar"/>
 	</target>
-	
+
 	<target name="clean" description="Remove generated build files">
 		<delete dir="${dir.build}" failonerror="no"/>
 	</target>
-	
+
 	<target name="prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.jars}"/>
 	</target>
-	
+
 	<target name="jars" depends="ivy-init,prepare">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="runtime" refresh="${ivy.resolve.refresh}"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.jars}/[artifact]-[revision].[ext]"/>
 	</target>
-	
+
 	<target name="assemble" depends="jars" description="Assemble jars">
 		<mkdir dir="${dir.assemble}/app/main"/>
 		<move todir="${dir.assemble}/app/main">
@@ -51,5 +51,5 @@
 			</tarfileset>
 		</tar>
 	</target>
-	
+
 </project>
