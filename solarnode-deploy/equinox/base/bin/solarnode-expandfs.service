@@ -1,0 +1,12 @@
+[Unit]
+Description=SolarNode Filesystem Expand
+After=sysinit.target local-fs.target
+ConditionPathExists=/var/local/solarnode-expandfs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/expandfs.sh -v -o /var/local/solarnode-expandfs.saved
+ExecStartPost=/bin/rm -f /var/local/solarnode-expandfs
+
+[Install]
+WantedBy=basic.target
