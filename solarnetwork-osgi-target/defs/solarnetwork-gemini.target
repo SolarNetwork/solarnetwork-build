@@ -190,6 +190,7 @@
 <plugin id="org.hibernate.validator"/>
 <plugin id="org.jboss.logging.jboss-logging"/>
 <plugin id="org.json"/>
+<plugin id="org.jvnet.jaxb2_commons.jaxb2-basics-runtime"/>
 <plugin id="org.mybatis.mybatis"/>
 <plugin id="org.mybatis.mybatis-spring"/>
 <plugin id="org.mybatis.mybatis-spring.source"/>
