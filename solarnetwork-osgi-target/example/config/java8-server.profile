@@ -18,6 +18,8 @@ org.osgi.framework.system.packages = \
  com.sun.org.apache.xpath.internal,\
  com.sun.org.apache.xpath.internal.jaxp,\
  com.sun.org.apache.xpath.internal.objects,\
+ com.sun.xml.bind.api.impl,\
+ com.sun.xml.bind.v2.model.core,\
  javax.accessibility,\
  javax.activation,\
  javax.activation;version="1.1.1",\
