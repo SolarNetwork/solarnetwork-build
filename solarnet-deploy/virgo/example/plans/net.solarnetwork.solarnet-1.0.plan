@@ -28,8 +28,9 @@
 
 	<!-- SolarQuery -->
 	<artifact type="bundle" name="net.solarnetwork.central.query.aop" version="[1.5,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.query.audit.jdbc" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.query.biz.dao" version="[2.2,3.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.query.web" version="[2.2,3.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.query.web" version="[2.8,3.0)"/>
 
 	<!-- SolarUser -->
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.aop" version="[1.5,2.0)"/>
