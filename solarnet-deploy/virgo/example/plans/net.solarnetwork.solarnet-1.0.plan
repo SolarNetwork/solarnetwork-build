@@ -17,6 +17,7 @@
 	<!-- Shared -->
 	<artifact type="bundle" name="net.solarnetwork.central.common.aop" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.common.biz.dao" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.common.cloud.aws" version="[1.0,2.0)"/>
 
 	<!-- Datum -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.aop" version="[1.2,2.0)"/>
@@ -38,6 +39,7 @@
 	<artifact type="bundle" name="net.solarnetwork.central.user.billing.biz.dao" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.billing.killbill" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.14,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.nim.cloud" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.pki.dogtag" version="[1.3,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.web" version="[1.14,2.0)"/>
 
