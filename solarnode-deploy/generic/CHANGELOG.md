@@ -1,5 +1,12 @@
 # SolarNode Application Changelog
 
+## V20180409
+
+**Note** This release requires a minimum of the **20180409** SolarNode
+Platform.
+
+ * Bug fixes, enhancements to core plugins.
+
 ## V20170928
 
 **Note** This release requires a minimum of the **20170628** SolarNode
