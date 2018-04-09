@@ -147,15 +147,15 @@
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="boot"/>
 
 		<!-- Apache Commons -->
-		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="boot"/>
-		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="boot"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="org.apache.commons.codec" rev="1.10.0" conf="boot"/>
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.3" conf="boot"/>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2.2" conf="boot"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.11" conf="boot"/>
 		<dependency org="commons-digester" name="commons-digester" rev="2.0" conf="boot">
 			<exclude org="commons-io"/>
 			<exclude org="commons-beanutils"/>
 		</dependency>
-		<dependency org="commons-io" name="commons-io" rev="2.4" conf="boot"/>
-		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2" conf="boot">
+		<dependency org="commons-io" name="commons-io" rev="2.6" conf="boot"/>
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.3" conf="boot">
 			<exclude org="commons-io"/>
 		</dependency>
 
@@ -171,21 +171,27 @@
 			<exclude module="tomcat-juli"/>
 		</dependency>
 
+		<!-- javax.cache support -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" />
+		<dependency org="org.ehcache" name="ehcache" rev="3.5.2">
+			<exclude module="slf4j-api"/>
+		</dependency>
+		
 		<!-- Logging -->
 		<dependency org="log4j" name="log4j" rev="1.2.17" conf="boot"/>
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.24" conf="boot"/>
-		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.24" conf="boot"/>
-		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.24" conf="boot"/>
-		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.24" conf="boot"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.25" conf="boot"/>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.25" conf="boot"/>
+		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.25" conf="boot"/>
+		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.25" conf="boot"/>
 
 		<!-- AOP Alliance -->
 		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
 
 		<!-- Jackson JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="boot"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="boot"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="boot"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.8.7" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.5" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.5" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.5" conf="boot"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.5" conf="boot"/>
 
 		<!-- Spring -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="boot"/>
@@ -365,7 +371,6 @@
 		<exclude org="wsdl4j"/>
 		<exclude org="xml-resolver"/>
 		<exclude module="aopalliance"/>
-		<exclude module="commons-codec"/>
 		<exclude module="commons-logging"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
