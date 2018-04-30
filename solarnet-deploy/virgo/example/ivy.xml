@@ -18,7 +18,7 @@
 		</dependency>
 		
 		<!-- CSV -->
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="runtime"/>
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="runtime"/>
 		
 		<!-- JSON -->
 		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
