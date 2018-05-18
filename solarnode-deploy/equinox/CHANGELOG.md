@@ -1,5 +1,10 @@
 # SolarNode Platform (Equinox) Changelog
 
+## V20180517
+
+ * Remove duplicate Commons Codec JAR (v1.9)
+ * Update SuperCSV to 2.4
+
 ## V20180409
 
  * Update Jackson JSON

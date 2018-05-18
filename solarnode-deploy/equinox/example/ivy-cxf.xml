@@ -362,6 +362,8 @@
 		<dependency org="com.sun.xml.fastinfoset" name="FastInfoset" rev="1.2.13" conf="core"/>
 
 		<!-- Global excludes -->
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
+
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>

@@ -340,6 +340,8 @@
 		</dependency>
 
 		<!-- Global excludes -->
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
+
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>
