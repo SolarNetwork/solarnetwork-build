@@ -179,6 +179,8 @@
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
 <plugin id="org.eclipse.osgi"/>
 <plugin id="org.eclipse.osgi.source"/>
+<plugin id="org.eclipse.paho.client.mqttv3"/>
+<plugin id="org.eclipse.paho.client.mqttv3.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
 <plugin id="org.eclipse.virgo.util.common" version="3.7.0.RELEASE"/>
 <plugin id="org.eclipse.virgo.util.io" version="3.7.0.RELEASE"/>
