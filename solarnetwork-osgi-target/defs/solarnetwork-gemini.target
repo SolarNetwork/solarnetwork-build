@@ -27,6 +27,7 @@
 <plugin id="com.fasterxml.jackson.core.jackson-databind.source"/>
 <plugin id="com.fasterxml.jackson.dataformat.jackson-dataformat-cbor"/>
 <plugin id="com.fasterxml.jackson.datatype.jackson-datatype-joda"/>
+<plugin id="com.hazelcast"/>
 <plugin id="com.springsource.javax.activation"/>
 <plugin id="com.springsource.org.apache.commons.beanutils"/>
 <plugin id="com.springsource.org.apache.commons.collections"/>
@@ -37,6 +38,13 @@
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
 <plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
+<plugin id="io.netty.buffer"/>
+<plugin id="io.netty.codec"/>
+<plugin id="io.netty.codec-http"/>
+<plugin id="io.netty.codec-mqtt"/>
+<plugin id="io.netty.common"/>
+<plugin id="io.netty.handler"/>
+<plugin id="io.netty.transport"/>
 <plugin id="javax.annotation"/>
 <plugin id="javax.ejb"/>
 <plugin id="javax.el"/>
