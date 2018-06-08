@@ -44,6 +44,7 @@
 <plugin id="io.netty.codec-mqtt"/>
 <plugin id="io.netty.common"/>
 <plugin id="io.netty.handler"/>
+<plugin id="io.netty.resolver"/>
 <plugin id="io.netty.transport"/>
 <plugin id="javax.annotation"/>
 <plugin id="javax.ejb"/>
