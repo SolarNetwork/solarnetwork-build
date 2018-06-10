@@ -45,6 +45,8 @@
 		
 		<ibiblio name="solarnetwork" m2compatible="true" root="${solarnetwork-archive.url}"/>
 		
+		<bintray name="bintray"/>
+		
 		<chain name="main" returnFirst="true">
 			<resolver ref="solarnetwork"/>
 			<resolver ref="jboss"/>
@@ -54,6 +56,7 @@
 			<resolver ref="gemini"/>
 			<resolver ref="virgo"/>
 			<resolver ref="public"/>
+			<resolver ref="bintray"/>
 		</chain>
 		<chain name="default" returnFirst="true" checkmodified="true">
 			<resolver ref="local"/>
