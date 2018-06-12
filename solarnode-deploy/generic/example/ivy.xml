@@ -29,6 +29,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby.ext" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.location.ws" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.metadata.json" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.dao.jdbc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.io.json" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="latest.release"/>
