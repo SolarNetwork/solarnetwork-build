@@ -30,6 +30,7 @@
 
 	<!-- SolarIn -->
 	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.15,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.in.mqtt" version="[0.1,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.in.web" version="[1.19,2.0)"/>
 
 	<!-- Scheduler -->
