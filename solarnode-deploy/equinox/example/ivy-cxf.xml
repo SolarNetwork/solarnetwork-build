@@ -339,6 +339,11 @@
 			<exclude name="org.osgi.core"/>
 		</dependency>
 
+		<!-- MQTT support -->
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.0">
+			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+
 		<!-- CXF -->
 		<dependency org="org.apache.cxf" name="cxf-core" rev="3.0.7" conf="core"/>
 		<dependency org="org.apache.cxf" name="cxf-rt-bindings-soap" rev="3.0.7" conf="core"/>

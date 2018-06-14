@@ -340,6 +340,11 @@
 			<exclude name="org.osgi.core"/>
 		</dependency>
 
+		<!-- MQTT support -->
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.0">
+			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+
 		<!-- HTTP Client -->
 		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.3" conf="core">
 			<exclude module="httpclient"/>
@@ -362,10 +367,10 @@
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>
 		</dependency>
-		
+
 		<!-- Global excludes -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
-		
+
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>

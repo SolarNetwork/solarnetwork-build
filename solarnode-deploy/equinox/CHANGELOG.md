@@ -1,5 +1,9 @@
 # SolarNode Platform (Equinox) Changelog
 
+## V20180613
+
+ * Add Eclipse Paho v1.2 for MQTT support
+
 ## V20180517
 
  * Remove duplicate Commons Codec JAR (v1.9)

@@ -1,5 +1,13 @@
 # SolarNode Application Changelog
 
+## V20180613
+
+**Note** This release requires a minimum of the **20180613** SolarNode
+Platform.
+
+ * Add MQTT SolarIn support
+ * Update to latest core plugins.
+
 ## V20180409
 
 **Note** This release requires a minimum of the **20180409** SolarNode
