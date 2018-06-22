@@ -162,14 +162,14 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="latest.release" conf="boot"/>
 
 		<!-- CSV -->
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="core"/>
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
 		<!-- JDBC connection pool -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="8.5.11" conf="boot">
 			<!-- Ignore Tomcat version, which isn't OSGi; rely on one provided by Gemini Web -->
 			<exclude module="tomcat-juli"/>
 		</dependency>
-		
+
 		<!-- javax.cache support -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" />
 		<dependency org="org.ehcache" name="ehcache" rev="3.5.2">
@@ -339,7 +339,14 @@
 			<exclude name="org.osgi.core"/>
 		</dependency>
 
+		<!-- MQTT support -->
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.0">
+			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+
 		<!-- Global excludes -->
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
+
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>

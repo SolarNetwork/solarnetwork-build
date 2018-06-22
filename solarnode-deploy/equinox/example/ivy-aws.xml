@@ -163,7 +163,7 @@
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="latest.release" conf="boot"/>
 
 		<!-- CSV -->
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.1.0" conf="core"/>
+		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
 		<!-- JDBC connection pool -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="8.5.11" conf="boot">
@@ -340,6 +340,11 @@
 			<exclude name="org.osgi.core"/>
 		</dependency>
 
+		<!-- MQTT support -->
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.0">
+			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+
 		<!-- HTTP Client -->
 		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.3" conf="core">
 			<exclude module="httpclient"/>
@@ -362,8 +367,10 @@
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>
 		</dependency>
-		
+
 		<!-- Global excludes -->
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
+
 		<exclude org="asm"/>
 		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>
