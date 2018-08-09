@@ -19,9 +19,9 @@
 			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
 			<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
 		</filesystem>
-		<chain name="default" returnFirst="true" checkmodified="true">
-			<resolver ref="local"/>
+		<chain name="default" returnFirst="false" checkmodified="true">
 			<resolver ref="solarnetwork"/>
+			<resolver ref="local"/>
 		</chain>
 	</resolvers>
 </ivysettings>
