@@ -18,6 +18,7 @@
 	<artifact type="bundle" name="net.solarnetwork.central.common.aop" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.common.biz.dao" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.common.cloud.aws" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.scheduler.standard" version="[1.0,2.0)"/>
 
 	<!-- Datum -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.aop" version="[1.2,2.0)"/>
@@ -28,6 +29,12 @@
 	<artifact type="bundle" name="net.solarnetwork.central.datum.export.dao.mybatis" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.datum.export.dest.s3" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.datum.export.standard" version="[1.0,2.0)"/>
+
+	<!-- Datum import -->
+	<artifact type="bundle" name="net.solarnetwork.central.datum.imp.aop" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.datum.imp.biz.dao" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.datum.imp.dao.mybatis" version="[1.0,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.datum.imp.standard" version="[1.0,2.0)"/>
 
 	<!-- SolarIn -->
 	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.15,2.0)"/>
