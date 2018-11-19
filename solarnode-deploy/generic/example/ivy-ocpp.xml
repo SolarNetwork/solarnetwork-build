@@ -85,6 +85,7 @@
 		<exclude org="org.glassfish.tyrus.bundles"/>
 		<exclude org="javax.el"/>
 		<exclude org="javax.servlet"/>
+		<exclude org="javax.servlet.jsp"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.derby"/>
