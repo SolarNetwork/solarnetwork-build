@@ -21,6 +21,7 @@
 		
 		<!-- SolarNode basic support (this needed for most any deployment) -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.expr.spel" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release"/>
