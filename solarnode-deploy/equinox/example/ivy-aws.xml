@@ -341,7 +341,7 @@
 		</dependency>
 
 		<!-- MQTT support -->
-		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.0">
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
 		</dependency>
 
