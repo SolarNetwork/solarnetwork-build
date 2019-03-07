@@ -82,6 +82,7 @@
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.supercsv"/>
+		<exclude org="org.apache.commons"/>
 		<exclude org="org.apache.derby"/>
 		<exclude org="org.apache.felix"/>
 		<exclude org="org.apache.servicemix.bundles"/>
