@@ -216,12 +216,14 @@
 		<exclude org="org.easymock"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
 		<exclude module="aopalliance"/>
 		<exclude module="commons-logging"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="log4j"/>
+		<exclude module="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aop"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aspects"/>
 		<exclude module="org.apache.servicemix.bundles.spring-beans"/>
@@ -234,6 +236,7 @@
 		<exclude module="org.apache.servicemix.bundles.spring-tx"/>
 		<exclude module="org.apache.servicemix.bundles.spring-web"/>
 		<exclude module="org.apache.servicemix.bundles.spring-webmvc"/>
+		<exclude module="org.osgi.compendium"/>
 		<exclude module="slf4j-api"/>
 		
 	</dependencies>
