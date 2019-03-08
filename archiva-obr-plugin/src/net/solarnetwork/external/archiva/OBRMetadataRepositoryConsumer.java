@@ -37,6 +37,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 import org.apache.archiva.admin.model.beans.ManagedRepository;
 import org.apache.archiva.consumers.AbstractMonitoredConsumer;
 import org.apache.archiva.consumers.ConsumerException;
@@ -61,13 +62,16 @@ import org.springframework.stereotype.Service;
  * By default the OBR metadata will be created as a file named
  * {@code metadata.xml} at the root of the Archiva repository. The directory can
  * be changed by adding a {@code $appserver.base/conf/obr.properties} file with
- * a {@bold obr.base} key with an associated absolute file path to the desired
+ * a <b>obr.base</b> key with an associated absolute file path to the desired
  * directory. Note that {@code $appserver.base} represents the
  * {@code appserver.base} System property, which is normally set by the Archiva
  * start up script.
  * 
+ * A bundle symbolic name exclusion regex can be configured in
+ * {@code obr.properties} using a <b>obr.bundle.exclude</b> key.
+ * 
  * @author matt
- * @version 0.2
+ * @version 1.0
  */
 @Service("knownRepositoryContentConsumer#create-obr-metadata")
 @Scope("prototype")
@@ -87,6 +91,7 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer
 	private long obrRepositoryLastModifiedDate;
 	private long foundMostRecentModifiedDate;
 	private DataModelHelper dataModelHelper;
+	private Pattern bundleIdExcludePattern;
 
 	@Override
 	public String getId() {
@@ -149,6 +154,13 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer
 		archivaRepositoryLocation = repository.getLocation();
 		basePath = (props.containsKey("obr.base") ? props.getProperty("obr.base")
 				: archivaRepositoryLocation);
+		bundleIdExcludePattern = (props.containsKey("obr.bundle.exclude")
+				? Pattern.compile(props.getProperty("obr.bundle.exclude"))
+				: null);
+		if ( bundleIdExcludePattern != null ) {
+			log.info("Excluding bundles with symbolic IDs that match regex: {}",
+					bundleIdExcludePattern.pattern());
+		}
 		obrRepositoryLastModifiedDate = 0;
 		foundMostRecentModifiedDate = 0;
 		metadataFile = new File(basePath, "metadata.xml");
@@ -197,6 +209,11 @@ public class OBRMetadataRepositoryConsumer extends AbstractMonitoredConsumer
 			if ( foundLastModified > obrRepositoryLastModifiedDate ) {
 				ResourceImpl obrResource = (ResourceImpl) dataModelHelper
 						.createResource(file.toURI().toURL());
+				if ( bundleIdExcludePattern != null && obrResource.getSymbolicName() != null
+						&& bundleIdExcludePattern.matcher(obrResource.getSymbolicName()).find() ) {
+					log.info("Excluding OBR resource {}", path);
+					return;
+				}
 				// we want a relative URL, so override the absolute path ResourceImpl generated
 				obrResource.put(Resource.URI, path);
 				obrRepository.addResource(obrResource);
