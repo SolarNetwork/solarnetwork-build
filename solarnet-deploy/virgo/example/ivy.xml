@@ -206,6 +206,7 @@
 		</dependency>
 		
 		<!-- FileInstall -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN01" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="runtime">
 			<exclude org="org.osgi"/>
 		</dependency>
@@ -214,16 +215,20 @@
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="org.easymock"/>
+		<exclude org="org.eclipse.gemini.blueprint"/>
+		<exclude org="org.eclipse.virgo.web"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
 		<exclude module="aopalliance"/>
 		<exclude module="commons-logging"/>
+		<exclude module="com.springsource.org.aopalliance"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="log4j"/>
 		<exclude module="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
+		<exclude module="org.apache.servicemix.bundles.aspectj"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aop"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aspects"/>
 		<exclude module="org.apache.servicemix.bundles.spring-beans"/>
