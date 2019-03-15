@@ -27,11 +27,11 @@
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="runtime"/>
 		
 		<!-- JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.8.7" conf="runtime" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.9.8" conf="runtime" />
 		
 		<!-- JDBC -->
 		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="[8.5.32,9.0)" conf="runtime">
