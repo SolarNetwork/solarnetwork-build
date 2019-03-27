@@ -284,7 +284,22 @@
 		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="boot">
 			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
 		</dependency>
-		<!--dependency org="javax.servlet" name="com.springsource.javax.servlet.jsp.jstl" rev="1.2.0.v20110728" conf="core"/-->
+		<dependency org="org.mitre.dsmiley.httpproxy" name="smiley-http-proxy-servlet" rev="1.11" conf="core">
+			<exclude org="org.apache.httpcomponents"/>
+		</dependency>
+
+		<!-- HTTP Client -->
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.7" conf="core">
+			<exclude module="httpclient"/>
+			<exclude module="httpclient-cache"/>
+			<exclude module="fluent-hc"/>
+			<exclude module="httpcore"/>
+			<exclude module="httpmime"/>
+		</dependency>
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.11" conf="core">
+			<exclude module="httpcore"/>
+			<exclude module="httpcore-nio"/>
+		</dependency>
 
 		<!-- Apache Tiles -->
 		<dependency org="org.apache.tiles" name="tiles-core" rev="3.0.5" conf="core">
@@ -343,20 +358,6 @@
 		<!-- MQTT support -->
 		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
-		</dependency>
-
-		<!-- HTTP Client -->
-		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.3" conf="core">
-			<exclude module="httpclient"/>
-			<exclude module="httpclient-cache"/>
-			<exclude module="fluent-hc"/>
-			<exclude module="httpcore"/>
-			<exclude module="httpmime"/>
-			<exclude org="org.osgi"/>
-		</dependency>
-		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.7" conf="core">
-			<exclude module="httpcore"/>
-			<exclude module="httpcore-nio"/>
 		</dependency>
 
 		<!-- AWS -->
