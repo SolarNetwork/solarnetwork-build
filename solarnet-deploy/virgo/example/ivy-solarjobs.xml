@@ -19,6 +19,8 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail.javamail" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.security" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
@@ -31,6 +33,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.standard" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.biz.dao" rev="latest.release" conf="runtime"/>

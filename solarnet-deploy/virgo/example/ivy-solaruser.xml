@@ -9,6 +9,7 @@
 		
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release" conf="runtime"/>
 
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common" rev="latest.release" conf="runtime"/>
@@ -21,6 +22,8 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail.javamail" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.mail.mock" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.web" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.security" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release" conf="runtime"/>
@@ -35,6 +38,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.standard" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.aop" rev="latest.release" conf="runtime"/>
@@ -63,6 +67,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.export.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim.cloud" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dev" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release" conf="runtime"/>
 	
