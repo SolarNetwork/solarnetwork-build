@@ -2,4 +2,6 @@
 /build.properties
 /ivy.xml
 /*equinox-node*
+/*equinox-solarnode*
 /tmp/
+/*.tgz
