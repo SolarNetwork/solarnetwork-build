@@ -228,6 +228,8 @@
 	<plugin id="org.apache.servicemix.bundles.spring-expression.source"/>
 	<plugin id="org.mitre.dsmiley.http-proxy-servlet"/>
 	<plugin id="org.mitre.dsmiley.http-proxy-servlet.source"/>
+	<plugin id="org.apache.httpcomponents.httpclient.source"/>
+	<plugin id="org.apache.httpcomponents.httpcore.source"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
