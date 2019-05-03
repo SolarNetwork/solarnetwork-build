@@ -35,6 +35,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.standard" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.mybatis" rev="latest.release" conf="runtime"/>
-	
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dev" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 	</dependencies>
 </ivy-module>
