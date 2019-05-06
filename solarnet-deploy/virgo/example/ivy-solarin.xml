@@ -27,6 +27,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz.dao" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.mqtt" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.aop" rev="latest.release" conf="runtime"/>
@@ -35,7 +36,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.standard" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.mybatis" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dev" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 	</dependencies>
 </ivy-module>

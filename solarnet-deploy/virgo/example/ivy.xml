@@ -182,6 +182,7 @@
 		</dependency>
 		
 		<!-- Global excludes -->
+		<exclude org="javax.mail"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="org.easymock"/>

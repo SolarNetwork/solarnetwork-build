@@ -67,7 +67,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.export.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim.cloud" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dev" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release" conf="runtime"/>
 	
