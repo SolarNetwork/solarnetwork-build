@@ -378,7 +378,6 @@
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/boot"/>
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/core"/>
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/bin"/>
-		<mkdir dir="${dir.deb.assemble}/var/run/solarnode"/>
 		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app"/>
 	</target>
 
