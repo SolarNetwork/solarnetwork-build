@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+# install solarnode-bash-utils support
+if ! grep -q '/usr/share/solarnode/bin/solarnode-bash-utils.sh' /etc/bash.bashrc >/dev/null; then
+	echo 'Integrating SolarNode bash utilities into system bash.bashrc...'
+	cat <<- EOF >> /etc/bash.bashrc
+	if [ -e /usr/share/solarnode/bin/solarnode-bash-utils.sh ]; then
+	    . /usr/share/solarnode/bin/solarnode-bash-utils.sh
+	fi
+	EOF
+fi
+
+# remove "home" structure in /var/lib/solarnode
+USER=solar
+SOLARNODE_HOME=/var/lib/solarnode
+CONF_DIR=/etc/solarnode
+WORK_DIR=/run/solarnode
+
+remove_link () {
+	link="$1"
+	if [ -L "$link" ]; then
+		rm -f "$link" || true
+	fi
+}
+
+#remove_link "${SOLARNODE_HOME}/conf"
+#remove_link "${SOLARNODE_HOME}/config"
+#remove_link "${SOLARNODE_HOME}/app/boot"
+#remove_link "${SOLARNODE_HOME}/app/core"
+#remove_link "${SOLARNODE_HOME}/app/equinox.jar"

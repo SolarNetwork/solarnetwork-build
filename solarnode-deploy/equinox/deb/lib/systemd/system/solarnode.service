@@ -1,0 +1,36 @@
+# SolarNode systemd service unit 
+
+[Unit]
+Description=The SolarNode server.
+
+[Service]
+Type=simple
+Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib
+Environment=SOLAR_HOME=/var/lib/solarnode
+Environment=RAM_DIR=/run/solarnode
+Environment="OSGI_OPTS=-console 4202 -clean"
+Environment="JAVA_OPTS=-Xmx128m \
+	-XX:MaxMetaspaceSize=64m \
+	-Djava.net.preferIPv4Stack=true"
+EnvironmentFile=-/etc/solarnode/env.conf
+User=solar
+Group=solar
+StateDirectory=solarnode/var solarnode/app/main
+WorkingDirectory=/var/lib/solarnode
+ExecStart=/usr/bin/java $JAVA_OPTS \
+	-Djava.io.tmpdir=${RAM_DIR}/tmp \
+	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
+	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
+	-Dsn.home=${SOLAR_HOME} \
+	-Dderby.system.home=${RAM_DIR}/db \
+	-jar ${SOLAR_HOME}/app/equinox.jar \
+	-configuration ${RAM_DIR} \
+	$OSGI_OPTS
+ExecStartPre=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh start
+ExecStopPost=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh stop
+SuccessExitStatus=143
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

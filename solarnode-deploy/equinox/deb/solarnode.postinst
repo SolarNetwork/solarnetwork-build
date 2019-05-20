@@ -1,0 +1,59 @@
+#!/bin/sh -e
+
+# install solarnode-bash-utils support
+if ! grep -q '/usr/share/solarnode/bin/solarnode-bash-utils.sh' /etc/bash.bashrc >/dev/null; then
+	echo 'Integrating SolarNode bash utilities into system bash.bashrc...'
+	cat <<- EOF >> /etc/bash.bashrc
+	if [ -e /usr/share/solarnode/bin/solarnode-bash-utils.sh ]; then
+	    . /usr/share/solarnode/bin/solarnode-bash-utils.sh
+	fi
+	EOF
+fi
+
+# setup "home" structure in /var/lib/solarnode
+USER=solar
+SOLARNODE_HOME=/var/lib/solarnode
+CONF_DIR=/etc/solarnode
+WORK_DIR=/run/solarnode
+
+setup_link () {
+	dest="$1"
+	link="$2"
+	if [ ! -L "$link" ]; then
+		if [ -e "$link" ]; then
+			rm -f "$link" || true
+		fi
+		echo "Linking $link -> $dest"
+		ln -s "$dest" "$link"
+	fi
+}
+
+systemctl daemon-reload
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+#setup_link "/etc/solarnode" "${SOLARNODE_HOME}/conf"
+#setup_link "/etc/solarnode" "${SOLARNODE_HOME}/config"
+#setup_link "/usr/share/solarnode/app/boot" "${SOLARNODE_HOME}/app/boot"
+#setup_link "/usr/share/solarnode/app/core" "${SOLARNODE_HOME}/app/core"
+#setup_link "/usr/share/solarnode/app/equinox.jar" "${SOLARNODE_HOME}/app/equinox.jar"
+
+service_up solarnode.service true
+
+# setup perms on /etc/solarnode to allow writing
+find /etc/solarnode -type d -exec chgrp solar {} \; -exec chmod g+w {} \; \
+	-printf 'Setting directory permissions on %p for solar user access.\n'
