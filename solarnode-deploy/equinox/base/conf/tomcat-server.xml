@@ -7,7 +7,7 @@
 			compressableMimeType="text/html,text/xml,application/xml,text/javascript,text/css,application/json,image/svg+xml"
 		/>		
 		<Engine name="Catalina" defaultHost="localhost">
-			<Host name="localhost" appBase="var" createDirs="false" 
+			<Host name="localhost" appBase="var/webapps" workDir="var/work" createDirs="false" 
 				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
 		</Engine>
 	</Service>
