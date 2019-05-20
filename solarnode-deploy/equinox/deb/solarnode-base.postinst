@@ -47,14 +47,6 @@ service_up () {
 	fi
 }
 
-#setup_link "/etc/solarnode" "${SOLARNODE_HOME}/conf"
-#setup_link "/etc/solarnode" "${SOLARNODE_HOME}/config"
-#setup_link "/usr/share/solarnode/app/boot" "${SOLARNODE_HOME}/app/boot"
-#setup_link "/usr/share/solarnode/app/core" "${SOLARNODE_HOME}/app/core"
-#setup_link "/usr/share/solarnode/app/equinox.jar" "${SOLARNODE_HOME}/app/equinox.jar"
-
-service_up solarnode.service true
-
 setup_write_dir () {
 	local dir="$1"
 	if [ ! -d "$dir" ]; then
@@ -76,3 +68,6 @@ setup_write_dir "${CONF_DIR}"
 setup_write_dir "${CONF_DIR}/tls"
 setup_write_dir "${SOLARNODE_HOME}/var"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
+
+service_up solarnode.service true
+
