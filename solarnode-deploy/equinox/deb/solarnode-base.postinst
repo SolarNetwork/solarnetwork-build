@@ -12,6 +12,7 @@ fi
 
 # setup "home" structure in /var/lib/solarnode
 USER=solar
+USER_ID=$(id -u "$USER" 2>/dev/null || echo 0)
 SOLARNODE_HOME=/var/lib/solarnode
 CONF_DIR=/etc/solarnode
 WORK_DIR=/run/solarnode
@@ -54,6 +55,24 @@ service_up () {
 
 service_up solarnode.service true
 
-# setup perms on /etc/solarnode to allow writing
-find /etc/solarnode -type d -exec chgrp solar {} \; -exec chmod g+w {} \; \
-	-printf 'Setting directory permissions on %p for solar user access.\n'
+setup_write_dir () {
+	local dir="$1"
+	if [ ! -d "$dir" ]; then
+		echo "Creating directory $dir for $USER user write access."
+		mkdir -p "$dir"
+	fi
+	if [ $(stat -c "%G" "$dir") != "$USER" ]; then
+		echo "Changing group to '$USER' for $dir."
+		chgrp "$USER" "$dir"
+	fi
+	if [ $(stat -c "%a" "$dir") != "775" ]; then
+		echo "Setting directory permissions on $dir for $USER user write access."
+		chmod 775 "$dir"
+	fi
+}
+
+# make sure runtime write directories exist and have correct permissions
+setup_write_dir "${CONF_DIR}"
+setup_write_dir "${CONF_DIR}/tls"
+setup_write_dir "${SOLARNODE_HOME}/var"
+setup_write_dir "${SOLARNODE_HOME}/app/main"
