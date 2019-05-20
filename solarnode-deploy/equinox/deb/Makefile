@@ -1,4 +1,4 @@
-NAME = solarnode
+NAME = solarnode-base
 VERSION = 1.0.0-1
 
 deb : 
@@ -15,7 +15,6 @@ deb :
 	-d 'sn-system (>= 1.0.0)' \
 	-d 'java8-runtime-headless' \
 	--after-install $(NAME).postinst \
-	--after-remove $(NAME).postrm \
 	etc lib usr var
 
 clean : 
