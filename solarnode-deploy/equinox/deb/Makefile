@@ -15,6 +15,9 @@ deb :
 	-d 'sn-system (>= 1.0.0)' \
 	-d 'java8-runtime-headless' \
 	--after-install $(NAME).postinst \
+	--before-remove $(NAME).prerm \
+	--after-remove $(NAME).postrm \
+	--deb-no-default-config-files \
 	etc lib usr var
 
 clean : 
