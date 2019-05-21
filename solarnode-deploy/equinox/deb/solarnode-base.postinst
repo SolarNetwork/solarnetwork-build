@@ -49,6 +49,7 @@ service_up () {
 
 setup_write_dir () {
 	local dir="$1"
+	local perm="${2:-770}"
 	if [ ! -d "$dir" ]; then
 		echo "Creating directory $dir for $USER user write access."
 		mkdir -p "$dir"
@@ -57,9 +58,9 @@ setup_write_dir () {
 		echo "Changing group to '$USER' for $dir."
 		chgrp "$USER" "$dir"
 	fi
-	if [ $(stat -c "%a" "$dir") != "775" ]; then
+	if [ $(stat -c "%a" "$dir") != "$perm" ]; then
 		echo "Setting directory permissions on $dir for $USER user write access."
-		chmod 770 "$dir"
+		chmod "$perm" "$dir"
 	fi
 }
 
