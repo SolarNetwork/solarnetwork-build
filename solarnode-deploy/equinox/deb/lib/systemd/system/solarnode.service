@@ -15,8 +15,11 @@ Environment="JAVA_OPTS=-Xmx128m \
 EnvironmentFile=-/etc/solarnode/env.conf
 User=solar
 Group=solar
-StateDirectory=solarnode/var solarnode/app/main
 WorkingDirectory=/var/lib/solarnode
+
+# StateDirectory not supported by systemd 232 (stretch); perhaps in future
+# StateDirectory=solarnode/var solarnode/app/main
+
 ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Djava.io.tmpdir=${RAM_DIR}/tmp \
 	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
