@@ -59,12 +59,13 @@ setup_write_dir () {
 	fi
 	if [ $(stat -c "%a" "$dir") != "775" ]; then
 		echo "Setting directory permissions on $dir for $USER user write access."
-		chmod 775 "$dir"
+		chmod 770 "$dir"
 	fi
 }
 
 # make sure runtime write directories exist and have correct permissions
 setup_write_dir "${CONF_DIR}"
+setup_write_dir "${CONF_DIR}/services"
 setup_write_dir "${CONF_DIR}/tls"
 setup_write_dir "${SOLARNODE_HOME}/var"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
