@@ -29,8 +29,6 @@ setup_link () {
 	fi
 }
 
-systemctl daemon-reload
-
 service_up () {
 	name="$1"
 	start="$2"
@@ -71,5 +69,6 @@ setup_write_dir "${CONF_DIR}/tls"
 setup_write_dir "${SOLARNODE_HOME}/var"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
 
-service_up solarnode.service true
+systemctl daemon-reload
 
+service_up solarnode.service
