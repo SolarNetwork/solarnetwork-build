@@ -404,15 +404,7 @@
 			link="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" 
 			resource="../../../../../../etc/solarnode/log4j.properties" 
 			failonerror="no"/>
-		
-		<!-- Copy shared scripts -->
-		<copy todir="${dir.deb.assemble}/usr/share/solarnode/bin">
-			<fileset dir="${dir.base}/bin">
-				<include name="solarnode-bash-utils.sh"/>
-				<include name="solarnode-utilities.sh"/>
-			</fileset>
-		</copy>
-		
+				
 		<copy todir="${dir.deb.assemble}">
 			<fileset dir="${dir.deb.base}" includes="**"/>
 		</copy>
@@ -427,6 +419,13 @@
 				<exclude name="services/*RemoteSshService.cfg"/>
 			</fileset>
 		</copy>
+
+		<setpermissions mode="755">
+			<fileset dir="${dir.deb.assemble}/usr/share/solarnode/bin">
+				<exclude name="*-bash-utils.sh"/>
+				<include name="*.sh"/>
+			</fileset>
+		</setpermissions>
 		
 		<symlink 
 			link="${dir.deb.assemble}/var/lib/solarnode/app/boot" 
