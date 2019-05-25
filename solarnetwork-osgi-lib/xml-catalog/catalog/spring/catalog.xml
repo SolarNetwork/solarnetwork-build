@@ -103,5 +103,6 @@
 
 	<nextCatalog catalog="catalog-spring2.xml"/>
 	<nextCatalog catalog="catalog-spring4.xml"/>
+	<nextCatalog catalog="catalog-spring4-3.xml"/>
 
 </catalog>

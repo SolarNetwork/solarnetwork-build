@@ -42,5 +42,5 @@ setup_write_dir () {
 # make sure runtime write directories exist and have correct permissions
 setup_write_dir "${SOLARNODE_HOME}/app/main"
 
-service_up solarnode.service true
+service_up solarnode.service
 
