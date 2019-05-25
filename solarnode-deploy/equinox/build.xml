@@ -420,12 +420,8 @@
 			</fileset>
 		</copy>
 
-		<setpermissions mode="755">
-			<fileset dir="${dir.deb.assemble}/usr/share/solarnode/bin">
-				<exclude name="*-bash-utils.sh"/>
-				<include name="*.sh"/>
-			</fileset>
-		</setpermissions>
+		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/bin" perm="755" 
+			includes="*.sh" excludes="*-bash-utils.sh" verbose="yes"/>
 		
 		<symlink 
 			link="${dir.deb.assemble}/var/lib/solarnode/app/boot" 
