@@ -62,6 +62,11 @@ setup_write_dir () {
 	fi
 }
 
+# make sure config.ini refreshed
+if [ -e "$WORK_DIR/config.ini" ]; then
+	rm -f "$WORK_DIR/config.ini"
+fi
+
 # make sure runtime write directories exist and have correct permissions
 setup_write_dir "${CONF_DIR}"
 setup_write_dir "${CONF_DIR}/services"
