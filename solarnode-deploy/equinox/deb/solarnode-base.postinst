@@ -17,18 +17,6 @@ SOLARNODE_HOME=/var/lib/solarnode
 CONF_DIR=/etc/solarnode
 WORK_DIR=/run/solarnode
 
-setup_link () {
-	dest="$1"
-	link="$2"
-	if [ ! -L "$link" ]; then
-		if [ -e "$link" ]; then
-			rm -f "$link" || true
-		fi
-		echo "Linking $link -> $dest"
-		ln -s "$dest" "$link"
-	fi
-}
-
 service_up () {
 	name="$1"
 	start="$2"
