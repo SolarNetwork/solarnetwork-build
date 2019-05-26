@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This is an example SolarNode deployment configuration that extends ivy.xml to add support
+	for a Debian based setup.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Debian">
+		<extends organisation="SolarNetwork" module="SolarNode" revision="[1.0,)" location="./ivy.xml"/>
+	</info>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.deb" rev="latest.release"/>
+
+	</dependencies>
+</ivy-module>
