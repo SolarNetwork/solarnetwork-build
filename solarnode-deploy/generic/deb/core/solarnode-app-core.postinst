@@ -1,0 +1,46 @@
+#!/bin/sh -e
+
+# setup "home" structure in /var/lib/solarnode
+USER=solar
+SOLARNODE_HOME=/var/lib/solarnode
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+setup_write_dir () {
+	local dir="$1"
+	if [ ! -d "$dir" ]; then
+		echo "Creating directory $dir for $USER user write access."
+		mkdir -p "$dir"
+	fi
+	if [ $(stat -c "%G" "$dir") != "$USER" ]; then
+		echo "Changing group to '$USER' for $dir."
+		chgrp "$USER" "$dir"
+	fi
+	if [ $(stat -c "%a" "$dir") != "775" ]; then
+		echo "Setting directory permissions on $dir for $USER user write access."
+		chmod 775 "$dir"
+	fi
+	
+	# make sure files within directory owned by solar user
+	chown "$USER:$USER" "$dir"/*
+}
+
+# make sure runtime write directories exist and have correct permissions
+setup_write_dir "${SOLARNODE_HOME}/app/main"
+
+service_up solarnode.service
+

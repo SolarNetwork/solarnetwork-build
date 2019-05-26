@@ -12,7 +12,11 @@
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
 	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
 	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
+	<property name="m2.local.root" value="${user.home}/.m2/repository/" />
 	<settings defaultResolver="default"/>
+	<caches>
+		<cache name="external" defaultTTL="1d"/>
+	</caches>
 	<resolvers default="default">
 		<filesystem name="local">
 			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
@@ -47,8 +51,12 @@
 		
 		<bintray name="bintray"/>
 		
-		<chain name="main" returnFirst="true">
-			<resolver ref="solarnetwork"/>
+		<filesystem name="local-m2" m2compatible="true">
+            <artifact pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].[ext]" />
+            <ivy pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].pom" />
+        </filesystem>
+		
+		<chain name="main" returnFirst="true" cache="external">
 			<resolver ref="jboss"/>
 			<resolver ref="spring-ebr-release"/>
 			<resolver ref="spring-ebr-external"/>
@@ -58,8 +66,13 @@
 			<resolver ref="public"/>
 			<resolver ref="bintray"/>
 		</chain>
-		<chain name="default" returnFirst="true" checkmodified="true">
+		<chain name="lead" returnFirst="false" checkmodified="true">
+			<resolver ref="solarnetwork"/>
 			<resolver ref="local"/>
+			<resolver ref="local-m2"/>
+		</chain>
+		<chain name="default" returnFirst="true">
+			<resolver ref="lead"/>
 			<resolver ref="main"/>
 		</chain>
 	</resolvers>

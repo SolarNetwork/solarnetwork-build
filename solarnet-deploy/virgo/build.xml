@@ -16,7 +16,7 @@
 	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/local"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
 
-	<property name="ivy.xml" value="ivy.xml"/>
+	<property name="ivy.file" value="${basedir}/ivy.xml"/>
 	<property name="ivy.conf" value="runtime"/>
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
@@ -65,7 +65,7 @@
 	
 	<target name="external-jars" depends="ivy-init">
 		<ivy:settings file="${ivy.settings}"/>
-		<ivy:resolve file="${ivy.xml}" conf="${ivy.conf}"/>
+		<ivy:resolve file="${ivy.file}" conf="${ivy.conf}"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 	</target>

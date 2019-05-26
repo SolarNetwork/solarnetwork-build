@@ -9,26 +9,32 @@
 		<!-- Apache Commons -->
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.1" conf="runtime"/>
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" conf="runtime"/>
-		<dependency org="commons-codec" name="commons-codec" rev="1.9" conf="runtime"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.11" conf="runtime"/>
 		<dependency org="commons-digester" name="commons-digester" rev="2.0" conf="runtime"/>
-		<dependency org="org.apache.commons" name="commons-lang3" rev="3.4" conf="runtime"/>
+<!-- 
 		<dependency org="commons-io" name="commons-io" rev="2.4" conf="runtime"/>
 		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.3.2" conf="runtime">
 			<exclude org="commons-io"/>
 		</dependency>
+ -->
+		<dependency org="org.apache.commons" name="commons-lang3" rev="3.4" conf="runtime"/>
+		<dependency org="org.apache.commons" name="commons-compress" rev="1.18" conf="runtime"/>
+		
+		<!-- Compression -->
+		<dependency org="org.tukaani" name="xz" rev="1.8" conf="runtime"/>
 		
 		<!-- CSV -->
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="runtime"/>
 		
 		<!-- JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.8.7" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.8.7" conf="runtime" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.8" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.9.8" conf="runtime" />
 		
 		<!-- JDBC -->
-		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="7.0.29" conf="runtime">
+		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="[8.5.32,9.0)" conf="runtime">
     		<artifact name="tomcat-jdbc" type="jar" />
     		<exclude module="tomcat-juli"/><!-- Ignore Tomcat version, which isn't OSGi -->
 		</dependency>
@@ -36,45 +42,11 @@
 				conf="runtime"/>
 		<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
 		<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
-		<dependency org="org.postgresql" name="postgresql" rev="42.0.0" conf="runtime"/>
+		<dependency org="org.postgresql" name="postgresql" rev="42.2.2" conf="runtime"/>
 		
 		<!-- AspectJ -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
-		
-		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aspects" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-orm" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.2.9.RELEASE_1" conf="runtime"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.2.9.RELEASE_1" conf="runtime">
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude name="spring-aop"/>
-			<exclude name="spring-aspects"/>
-			<exclude name="spring-beans"/>
-			<exclude name="spring-context"/>
-			<exclude name="spring-context-support"/>
-			<exclude name="spring-core"/>
-			<exclude name="spring-expression"/>
-		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.2.9.RELEASE_1" conf="runtime">
-    		<exclude name="aopalliance"/>
-			<exclude name="commons-logging"/>
-			<exclude name="spring-aop"/>
-			<exclude name="spring-aspects"/>
-			<exclude name="spring-beans"/>
-			<exclude name="spring-context"/>
-			<exclude name="spring-context-support"/>
-			<exclude name="spring-core"/>
-			<exclude name="spring-expression"/>
-		</dependency>
-		
+				
 		<!-- Spring Security -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="runtime">
     		<exclude name="aopalliance"/>
@@ -82,7 +54,8 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1" conf="runtime">
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1_SN01" conf="runtime">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
@@ -94,7 +67,8 @@
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1" conf="runtime">
+		<!-- Custom jar to include missing spring namespace handler configuration -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1_SN01" conf="runtime">
     		<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
@@ -108,7 +82,7 @@
 		</dependency>
 		
 		<!--  Spring WebFlow -->
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-webflow" rev="2.4.2.RELEASE" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-webflow" rev="2.4.8.RELEASE" conf="runtime"/>
 		
 		<!--  OSGi -->
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="4.2.0" conf="runtime">
@@ -171,11 +145,17 @@
 			<exclude module="httpcore-nio"/>
 		</dependency>
 		
+		<!-- MQTT support -->
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
+			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+		
 		<!-- PKI -->
 		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="runtime"/>
 		<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" conf="runtime"/>
 
 		<!-- SN Externals -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.cron-utils" rev="7.0.1" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.moneta" rev="1.1.0" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.taglibs.response" rev="1.0.1" conf="runtime"/>
@@ -194,18 +174,33 @@
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>
 		</dependency>
-
+		
+		<!-- FileInstall -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN01" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="runtime">
+			<exclude org="org.osgi"/>
+		</dependency>
+		
 		<!-- Global excludes -->
+		<exclude org="javax.mail"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="org.easymock"/>
+		<exclude org="org.eclipse.gemini.blueprint"/>
+		<exclude org="org.eclipse.virgo.web"/>
+		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
 		<exclude module="aopalliance"/>
+		<exclude module="aspectjweaver"/>
+		<exclude module="commons-io"/>
 		<exclude module="commons-logging"/>
+		<exclude module="com.springsource.org.aopalliance"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="log4j"/>
+		<exclude module="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aop"/>
 		<exclude module="org.apache.servicemix.bundles.spring-aspects"/>
 		<exclude module="org.apache.servicemix.bundles.spring-beans"/>
@@ -218,6 +213,7 @@
 		<exclude module="org.apache.servicemix.bundles.spring-tx"/>
 		<exclude module="org.apache.servicemix.bundles.spring-web"/>
 		<exclude module="org.apache.servicemix.bundles.spring-webmvc"/>
+		<exclude module="org.osgi.compendium"/>
 		<exclude module="slf4j-api"/>
 		
 	</dependencies>

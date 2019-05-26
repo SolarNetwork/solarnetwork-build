@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+service_down () {
+	name="$1"
+	dostop="$2"
+	if [ -n "$dostop" ]; then
+		if systemctl is-active "$name" >/dev/null; then
+			systemctl stop "$name" || true
+		fi
+	fi
+	if systemctl is-enabled "$name" >/dev/null; then
+		echo "Disabling $name..."
+		systemctl disable "$name" || true
+	fi
+}
+
+if [ "$1" = "remove" ]; then
+	service_down solarnode.service true
+fi

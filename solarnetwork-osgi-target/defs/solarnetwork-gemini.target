@@ -178,24 +178,21 @@
 <plugin id="org.eclipse.gemini.blueprint.io"/>
 <plugin id="org.eclipse.gemini.blueprint.io.source"/>
 <plugin id="org.eclipse.gemini.web.core"/>
-<plugin id="org.eclipse.gemini.web.core.source"/>
 <plugin id="org.eclipse.gemini.web.extender"/>
-<plugin id="org.eclipse.gemini.web.extender.source"/>
 <plugin id="org.eclipse.gemini.web.jaspic.fragment"/>
 <plugin id="org.eclipse.gemini.web.tomcat"/>
-<plugin id="org.eclipse.gemini.web.tomcat.source"/>
 <plugin id="org.eclipse.jdt.core.compiler.batch"/>
 <plugin id="org.eclipse.osgi"/>
 <plugin id="org.eclipse.osgi.source"/>
 <plugin id="org.eclipse.paho.client.mqttv3"/>
 <plugin id="org.eclipse.paho.client.mqttv3.source"/>
 <plugin id="org.eclipse.virgo.medic"/>
-<plugin id="org.eclipse.virgo.util.common" version="3.7.0.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.io" version="3.7.0.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.math" version="3.7.0.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.osgi" version="3.7.0.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.7.0.RELEASE"/>
-<plugin id="org.eclipse.virgo.util.parser.manifest" version="3.7.0.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.common" version="3.7.2.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.io" version="3.7.2.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.math" version="3.7.2.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.osgi" version="3.7.2.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.osgi.manifest" version="3.7.2.RELEASE"/>
+<plugin id="org.eclipse.virgo.util.parser.manifest" version="3.7.2.RELEASE"/>
 <plugin id="org.eclipse.virgo.web.dm"/>
 <plugin id="org.ehcache.ehcache"/>
 <plugin id="org.hibernate.validator"/>
@@ -226,6 +223,10 @@
 	<plugin id="org.apache.servicemix.bundles.spring-tx.source"/>
 	<plugin id="jul.to.slf4j"/>
 	<plugin id="org.apache.servicemix.bundles.spring-expression.source"/>
+	<plugin id="org.mitre.dsmiley.http-proxy-servlet"/>
+	<plugin id="org.mitre.dsmiley.http-proxy-servlet.source"/>
+	<plugin id="org.apache.httpcomponents.httpclient.source"/>
+	<plugin id="org.apache.httpcomponents.httpcore.source"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>

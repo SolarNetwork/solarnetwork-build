@@ -1,0 +1,150 @@
+#!/bin/sh
+
+# Utilities for managing the SolarNode server
+
+SOLARNODE_HOME="/var/lib/solarnode"
+RAM_DIR="/run/solarnode"
+CONF_DIR="/etc/solarnode"
+
+TMP_DIR="${RAM_DIR}/tmp"
+LOG_DIR="${RAM_DIR}/log"
+DB_DIR="${RAM_DIR}/db"
+VAR_DIR="${SOLARNODE_HOME}/var"
+DB_BAK_DIR="${VAR_DIR}/db-bak"
+EQUINOX_CONF="${RAM_DIR}"
+
+
+# function to create directory if doesn't already exist
+setup_dir () {
+	if [ ! -e $1 ]; then
+		if [ -z "${RUNAS}" ]; then
+			mkdir -p $1
+		else
+			su - $RUNAS -c "mkdir -p $1"
+		fi
+	fi
+}
+
+#function to copy the conf/config.ini into EQUINOX_CONF
+setup_ini () {
+	if [ ! -e "${EQUINOX_CONF}/config.ini" -a -e "${SOLARNODE_HOME}/conf/config.ini" ]; then
+		if [ -z "${RUNAS}" ]; then
+			cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}
+		else
+			su - $RUNAS -c "cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}"
+		fi
+	fi
+}
+
+do_setup () {
+	# Verify ram dir exists; create if necessary
+	setup_dir ${RAM_DIR}
+	
+	# Verify tmp dir exists; create if necessary
+	setup_dir ${TMP_DIR}
+	
+	# Verify log dir exists; create if necessary
+	setup_dir ${LOG_DIR}
+	
+	# Verify var dir exists; create if necessary
+	setup_dir ${VAR_DIR}
+	
+	# Copy config.ini into Equinox configuration dir
+	setup_ini
+	
+	# Check to restore backup database
+	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
+		echo -n "restoring database... "
+		cp -a ${DB_BAK_DIR} ${DB_DIR}
+		echo "restored."
+	fi
+}
+
+do_sync () {
+	# Backup DB to persistent storage if daemon stopped
+	if [ -e ${DB_DIR} ]; then
+		echo -n "syncing database to backup dir... "
+		setup_dir ${DB_BAK_DIR}
+		rsync -am --delete ${DB_DIR}/* ${DB_BAK_DIR} 1>/dev/null 2>&1
+		echo "done."
+	fi
+}
+
+# add/update the auto-settings.csv database from another CSV file
+auto_settings_add () {
+	local csv="$1"
+	local auto="${CONF_DIR}/auto-settings.csv"
+	if [ -e "$csv" ];then
+		if [ ! -e "$auto" ]; then
+			# file doesn't exist, so just copy this settings file directly
+			echo "Copying auto settings $auto -> $csv"
+			cp "$csv" "$auto"
+		else
+			# file exists, so either append or replace lines
+			while IFS= read -r line; do
+				local key="${line%,*,*,*}"
+				if [ -n "$key" -a "$key" != 'key,type' ]; then
+					if grep -q "^$key," "$auto"; then
+						local currline="$(grep "^$key," "$auto")"
+						if [ "$currline" != "$line" ]; then
+							echo "Updating auto setting $key in $auto"
+							sed -i -e "/^$key,/c $line" "$auto"
+						fi
+					else
+						echo "Adding auto setting $key to $auto"
+						echo "$line" >> "$auto"
+					fi
+				fi
+			done < "$csv"
+		fi
+	fi
+}
+
+# remove settings from the auto-settings.csv database found in another CSV file
+auto_settings_remove () {
+	local csv="$1"
+	local auto="${CONF_DIR}/auto-settings.csv"
+	if [ -e "$csv" -a -e "$auto" ];then
+		while IFS= read -r line; do
+			local key="${line%,*,*,*}"
+			if [ "$key" != 'key,type' ]; then
+				if grep -q "^$key," "$auto"; then
+					echo "Removing auto setting $key from $auto"
+					sed -i -e "/^$key,/d" "$auto"
+				fi
+			fi
+		done < "$csv"
+	fi
+}
+
+# Parse command line parameters.
+case $1 in
+	auto-settings-add)
+		auto_settings_add "$2"
+		;;
+		
+	auto-settings-remove)
+		auto_settings_remove "$2"
+		;;
+		
+	start)
+		do_setup
+		;;
+
+	stop)
+		exit_status=`systemctl show solarnode.service --no-pager |grep ExecMainStatus |cut -d= -f2`
+		if [ $exit_status -eq 0 -o $exit_status -eq 143 ]; then
+			do_sync
+		else
+			echo "Database NOT synced to backup dir after error exit status ($exit_status)."
+		fi
+		;;
+
+	*)
+		# Print help
+		echo "Usage: $0 {auto-settings-add|auto-settings-remove|start|stop}" 1>&2
+		exit 1
+		;;
+esac
+
+exit 0
