@@ -84,7 +84,6 @@ auto_settings_add () {
 			while IFS= read -r line; do
 				local key="${line%,*,*,*}"
 				if [ -n "$key" -a "$key" != 'key,type' ]; then
-					echo "Inspecting key $key"
 					if grep -q "^$key," "$auto"; then
 						local currline="$(grep "^$key," "$auto")"
 						if [ "$currline" != "$line" ]; then
