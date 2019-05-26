@@ -1,0 +1,67 @@
+#!/bin/sh -e
+
+# install solarnode-bash-utils support
+if ! grep -q '/usr/share/solarnode/bin/solarnode-bash-utils.sh' /etc/bash.bashrc >/dev/null; then
+	echo 'Integrating SolarNode bash utilities into system bash.bashrc...'
+	cat <<- EOF >> /etc/bash.bashrc
+	if [ -e /usr/share/solarnode/bin/solarnode-bash-utils.sh ]; then
+	    . /usr/share/solarnode/bin/solarnode-bash-utils.sh
+	fi
+	EOF
+fi
+
+# setup "home" structure in /var/lib/solarnode
+USER=solar
+USER_ID=$(id -u "$USER" 2>/dev/null || echo 0)
+SOLARNODE_HOME=/var/lib/solarnode
+CONF_DIR=/etc/solarnode
+WORK_DIR=/run/solarnode
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+setup_write_dir () {
+	local dir="$1"
+	local perm="${2:-770}"
+	if [ ! -d "$dir" ]; then
+		echo "Creating directory $dir for $USER user write access."
+		mkdir -p "$dir"
+	fi
+	if [ $(stat -c "%G" "$dir") != "$USER" ]; then
+		echo "Changing group to '$USER' for $dir."
+		chgrp "$USER" "$dir"
+	fi
+	if [ $(stat -c "%a" "$dir") != "$perm" ]; then
+		echo "Setting directory permissions on $dir for $USER user write access."
+		chmod "$perm" "$dir"
+	fi
+}
+
+# make sure config.ini refreshed
+if [ -e "$WORK_DIR/config.ini" ]; then
+	rm -f "$WORK_DIR/config.ini"
+fi
+
+# make sure runtime write directories exist and have correct permissions
+setup_write_dir "${CONF_DIR}"
+setup_write_dir "${CONF_DIR}/services"
+setup_write_dir "${CONF_DIR}/tls"
+setup_write_dir "${SOLARNODE_HOME}/var"
+setup_write_dir "${SOLARNODE_HOME}/app/main"
+
+systemctl daemon-reload
+
+service_up solarnode.service

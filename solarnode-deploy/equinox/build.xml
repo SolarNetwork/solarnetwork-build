@@ -4,6 +4,7 @@
 	
 		pkg.include.bin  - include the "bin" dir
 		pkg.include.main - resolve the "main" Ivy configuration to the app/main dir
+		pkg.exclude.conf = exclude the "conf" dir
 	-->
 	
 	<property file="${basedir}/build.properties"/>
@@ -54,8 +55,14 @@
 	
 	<property name="dir.build" value="build"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
+	<property name="dir.assemble.conf" value="${dir.assemble}/conf"/>
 	<property name="dir.target" value="${basedir}/../../solarnetwork-osgi-lib"/>
 	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
+	
+	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
+	<property name="dir.deb.base" value="deb"/>
+	
+
 	
 	<import file="${dir.target}/lib-build.xml"/>
 	
@@ -72,7 +79,7 @@
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
-		<mkdir dir="${dir.assemble}/conf"/>
+		<mkdir dir="${dir.assemble.conf}"/>
 		<mkdir dir="${dir.assemble}/lib"/>
 		<mkdir dir="${dir.assemble}/var"/>
 	</target>
@@ -86,7 +93,18 @@
 		</copy>
 	</target>
 	
-	<target name="app-boot" depends="ivy-init,assemble-prepare">
+	<target name="app-conf" unless="pkg.exclude.conf">
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
+		<!-- Note not using dir.assemble.conf here because this target not used for deb targets -->
+		<symlink 
+			link="${dir.assemble}/conf/log4j.properties" 
+			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" 
+			failonerror="no"/>
+		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
+		<symlink link="${dir.assemble}/config" resource="conf" />
+	</target>
+
+	<target name="app-boot" depends="ivy-init">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="boot,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
@@ -124,12 +142,6 @@
 			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
 		</copy>
 		
-		<symlink action="delete" failonerror="no" link="${dir.assemble}/conf/log4j.properties"/>
-		<symlink 
-			link="${dir.assemble}/conf/log4j.properties" 
-			resource="../app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" />
-		<symlink action="delete" failonerror="no" link="${dir.assemble}/config"/>
-		<symlink link="${dir.assemble}/config" resource="conf" />
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/equinox.jar"/>
 		<symlink link="${dir.assemble}/app/equinox.jar" resource="${assemble.equinox.jar}"/>
 	</target>
@@ -157,7 +169,7 @@
 			property="equinox.bundles.core"/>
 		<echo>Got config ${equinox.bundles.core}</echo>
 		
-		<copy todir="${dir.assemble}/conf" filtering="yes" overwrite="yes">
+		<copy todir="${dir.assemble.conf}" filtering="yes" overwrite="yes">
 			<fileset file="config.ini"/>
 			<filterset>
 				<filter token="OSGI_BUNDLES" value="${equinox.bundles.boot},${equinox.bundles.core}"/>
@@ -165,7 +177,7 @@
 		</copy>
 	</target>
 	
-	<target name="app-core" depends="ivy-init,assemble-prepare">
+	<target name="app-core" depends="ivy-init">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="core"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
@@ -177,7 +189,7 @@
 		</copy>
 	</target>
 	
-	<target name="app-main" depends="ivy-init,assemble-prepare" if="pkg.include.main">
+	<target name="app-main" depends="ivy-init" if="pkg.include.main">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="main"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
@@ -207,7 +219,7 @@
 		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
 	</target>
 	
-	<target name="assemble" depends="assemble-base,app-boot,app-core,app-main,equinox-config,assemble-perms"
+	<target name="assemble" depends="assemble-base,app-boot,app-core,app-conf,app-main,equinox-config,assemble-perms"
 		description="Assemble a base node directory structure"/>
 	
 	<!-- Attempt to use native tar, to honor symlinks -->
@@ -360,4 +372,78 @@
 		</sequential>
 	</macrodef>
 	
+	<target name="deb-package-assemble-prepare">
+		<mkdir dir="${dir.deb.assemble}"/>
+		<mkdir dir="${dir.deb.assemble}/etc/solarnode"/>
+		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/boot"/>
+		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/core"/>
+		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/bin"/>
+		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app"/>
+	</target>
+
+	<target name="deb-package-assemble" description="Create Debian package structure"
+			depends="deb-package-assemble-prepare">
+		<!-- Create /usr/share/solarnode structure -->
+		<antcall target="app-boot">
+			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+			<param name="pkg.exclude.conf" value="yes"/>
+		</antcall>
+		<antcall target="app-core">
+			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+		</antcall>
+
+		<!-- Create /etc/solarnode/config.ini -->
+		<antcall target="equinox-config">
+			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+			<param name="dir.assemble.conf" value="${dir.deb.assemble}/etc/solarnode"/>
+		</antcall>
+
+		<move file="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
+				todir="${dir.deb.assemble}/etc/solarnode"/>
+		<symlink 
+			link="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties" 
+			resource="../../../../../../etc/solarnode/log4j.properties" 
+			failonerror="no"/>
+				
+		<copy todir="${dir.deb.assemble}">
+			<fileset dir="${dir.deb.base}" includes="**"/>
+		</copy>
+		
+		<copy todir="${dir.deb.assemble}/etc/solarnode">
+			<fileset dir="${dir.base}/conf">
+				<include name="*.*"/>
+				<include name="services/*.cfg"/>
+				<include name="tls/*.jks"/>
+				<exclude name="java6*"/>
+				<exclude name="known_hosts*"/>
+				<exclude name="services/*RemoteSshService.cfg"/>
+			</fileset>
+		</copy>
+
+		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/bin" perm="755" 
+			includes="*.sh" excludes="*-bash-utils.sh" verbose="yes"/>
+		
+		<symlink 
+			link="${dir.deb.assemble}/var/lib/solarnode/app/boot" 
+			resource="../../../../usr/share/solarnode/app/boot" 
+			failonerror="no"/>
+		<symlink 
+			link="${dir.deb.assemble}/var/lib/solarnode/app/core" 
+			resource="../../../../usr/share/solarnode/app/core" 
+			failonerror="no"/>
+		<symlink 
+			link="${dir.deb.assemble}/var/lib/solarnode/app/equinox.jar" 
+			resource="../../../../usr/share/solarnode/app/equinox.jar" 
+			failonerror="no"/>
+		<symlink 
+			link="${dir.deb.assemble}/var/lib/solarnode/conf" 
+			resource="../../../etc/solarnode" 
+			failonerror="no"/>
+		<symlink 
+			link="${dir.deb.assemble}/var/lib/solarnode/config" 
+			resource="../../../etc/solarnode" 
+			failonerror="no"/>
+	</target>
+
+
 </project>

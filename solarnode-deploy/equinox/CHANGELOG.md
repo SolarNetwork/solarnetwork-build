@@ -1,22 +1,22 @@
 # SolarNode Platform (Equinox) Changelog
 
-## V20180613
+## v20180613
 
  * Add Eclipse Paho v1.2 for MQTT support
 
-## V20180517
+## v20180517
 
  * Remove duplicate Commons Codec JAR (v1.9)
  * Update SuperCSV to 2.4
 
-## V20180409
+## v20180409
 
  * Update Jackson JSON
  * Add JCache (javax.cache) support via Ehcache
  * Update slf4j
  * Update Apache Commons BeanUtils, Codec, Collections, and IO
 
-## V20170628
+## v20170628
 
  * Update Tomcat JDBC
  * Configure SolarSSH OS support
