@@ -11,6 +11,7 @@ Environment=RAM_DIR=/run/solarnode
 Environment="OSGI_OPTS=-console 4202 -clean"
 Environment="JAVA_OPTS=-Xmx128m \
 	-XX:MaxMetaspaceSize=64m \
+	-Djava.security.egd=file:/dev/./urandom \
 	-Djava.net.preferIPv4Stack=true"
 EnvironmentFile=-/etc/solarnode/env.conf
 User=solar
