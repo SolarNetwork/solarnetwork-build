@@ -48,34 +48,38 @@
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
 				
 		<!-- Spring Security -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.1.0.RELEASE_1" conf="runtime">
-    		<exclude name="aopalliance"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<!-- Custom jar to include missing spring namespace handler configuration -->
-		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-config" rev="4.1.0.RELEASE_1_SN01" conf="runtime">
-    		<exclude name="aopalliance"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="4.1.0.RELEASE_1" conf="runtime">
-    		<exclude name="aopalliance"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<!-- Custom jar to include missing spring namespace handler configuration -->
-		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.1.0.RELEASE_1_SN01" conf="runtime">
-    		<exclude name="aopalliance"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.spring-security-messaging" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="4.1.0.RELEASE_1" conf="runtime">
-    		<exclude name="aopalliance"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
+			<exclude name="commons-logging"/>
+			<exclude org="org.springframework"/>
+			<exclude org="org.springframework.security"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="4.2.4.RELEASE_1" conf="runtime">
+			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude org="org.springframework"/>
 			<exclude org="org.springframework.security"/>
