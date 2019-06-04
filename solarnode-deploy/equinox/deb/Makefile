@@ -1,5 +1,5 @@
 NAME = solarnode-base
-VERSION = 1.0.2-1
+VERSION = 1.0.2-2
 
 deb : 
 	fpm -s dir -t deb \
@@ -14,6 +14,7 @@ deb :
 	-d 'systemd (>= 232)' \
 	-d 'sn-system (>= 1.0.0)' \
 	-d 'java8-runtime-headless' \
+	--provides 'solarnode-framework' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \
