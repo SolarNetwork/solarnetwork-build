@@ -95,7 +95,7 @@
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.0.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.4.RELEASE" conf="gemini">
 			<exclude module="org.eclipse.equinox.event"/>
 			<exclude module="org.eclipse.osgi"/>
 			<exclude module="org.eclipse.osgi.services"/>
@@ -352,6 +352,15 @@
 		<!-- MQTT support -->
 		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
+		</dependency>
+
+		<!-- AWS -->
+		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.207" conf="core">
+			<exclude org="com.fasterxml.jackson.core"/>
+			<exclude org="com.fasterxml.jackson.dataformat"/>
+			<exclude org="joda-time"/>
+			<exclude org="org.apache.httpcomponents"/>
+			<exclude org="org.osgi"/>
 		</dependency>
 
 		<!-- CXF -->
