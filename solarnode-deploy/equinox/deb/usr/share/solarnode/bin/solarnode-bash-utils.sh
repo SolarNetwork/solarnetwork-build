@@ -1,29 +1,33 @@
 #!/bin/bash
 
-sn-log-path() {
-	echo /run/solarnode/log/solarnode.log
+sn-home () {
+	echo '/var/lib/solarnode'
 }
 
-sn-log-tail() {
-	tail "$@" `sn-log-path`
+sn-log-path () {
+	echo '/run/solarnode/log/solarnode.log'
 }
 
-sn-ctl() {
-	sudo systemctl $1 solarnode
+sn-log-tail () {
+	tail "$@" $(sn-log-path)
 }
 
-sn-stop() {
+sn-ctl () {
+	sudo systemctl "$1" solarnode
+}
+
+sn-stop () {
 	sn-ctl stop
 }
 
-sn-start() {
+sn-start () {
 	sn-ctl start
 }
 
-sn-restart() {
+sn-restart () {
 	sn-ctl restart
 }
 
-sn-status() {
+sn-status () {
 	sn-ctl status
 }

@@ -1,5 +1,5 @@
-NAME = solarnode-app-core
-VERSION = 1.0.2-1
+NAME = solarnode-app-ocpp
+VERSION = 1.0.0-1
 
 deb : 
 	fpm -s dir -t deb \
@@ -11,9 +11,7 @@ deb :
 	--description 'SolarNode application core' \
 	--license 'GPL 2.0' \
 	-f \
-	-d 'solarnode-framework' \
-	-d 'sn-solarssh (>= 1.0.0)' \
-	--after-install $(NAME).postinst \
+	-d 'solarnode-app-core (>= 1.0.0)' \
 	var
 
 clean : 
