@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This is an example SolarNode deployment configuration. It defines a basic set of 
+	bundles required to run the SolarNode web GUI and allow the node to associate with
+	SolarNetwork. To perform anything useful like collect data from devices, additional
+	dependencies should be added.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-OCPP"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+		
+		<!-- OCPP Support -->		
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp.client" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp.auth" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp.charge" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.ocpp.web" rev="latest.release"/>
+		
+		<!-- Global excludes provided by the base system -->
+		<exclude artifact="net.solarnetwork.node"/>
+		<exclude artifact="net.solarnetwork.node.dao.jdbc"/>
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
+		<exclude org="com.fasterxml.jackson.core"/>
+		<exclude org="net.solarnetwork.common"/>
+		<exclude org="javax.servlet"/>
+		<exclude org="joda-time"/>
+		<exclude org="net.sf.supercsv"/>
+		<exclude org="org.apache.tomcat"/>
+		<exclude org="org.eclipse.gemini"/>
+		<exclude org="org.osgi"/>
+		<exclude org="org.quartz-scheduler"/>
+		<exclude org="org.slf4j"/>
+		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
+
+	</dependencies>
+</ivy-module>
