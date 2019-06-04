@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 1.0.0-1
+VERSION = 1.0.0-2
 
 deb : 
 	fpm -s dir -t deb \
@@ -11,7 +11,7 @@ deb :
 	--description 'SolarNode application core' \
 	--license 'GPL 2.0' \
 	-f \
-	-d 'solarnode-base (>= 1.0.0)' \
+	-d 'solarnode-framework' \
 	-d 'sn-solarssh (>= 1.0.0)' \
 	--after-install $(NAME).postinst \
 	var
