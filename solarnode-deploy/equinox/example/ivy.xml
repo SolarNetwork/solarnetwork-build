@@ -25,18 +25,21 @@
 		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="core">
 			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.apache.felix" name="org.apache.felix.eventadmin" rev="1.3.2" conf="boot">
+		<dependency org="org.apache.felix" name="org.apache.felix.eventadmin" rev="1.5.0" conf="boot">
 			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.apache.felix" name="org.apache.felix.gogo.command" rev="0.10.0" conf="boot">
-			<exclude module="org.eclipse.osgi"/>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.runtime" rev="1.1.2" conf="boot">
+			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="0.10.0" conf="boot">
-			<exclude module="org.eclipse.osgi"/>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.command" rev="1.1.0" conf="boot">
+			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.eclipse.virgo.mirrored" name="org.eclipse.equinox.cm" rev="1.0.400.v20130327-1442" conf="boot"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="org.eclipse.equinox.console" rev="1.0.100.v20130429-0953" conf="boot"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="org.eclipse.osgi" rev="3.9.1.v20140110-1610" conf="boot"/>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="1.1.2" conf="boot">
+			<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.cm" rev="1.4.0" conf="boot"/>
+		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.console" rev="1.3.300" conf="boot"/>
+		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.14.0" conf="boot"/>
 		<dependency org="org.osgi" name="org.osgi.compendium" rev="4.2.0" conf="boot">
 			<exclude module="org.osgi.core"/>
 		</dependency>
