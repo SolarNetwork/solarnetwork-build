@@ -38,15 +38,11 @@
 		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="1.1.2" conf="boot">
 			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.cm" rev="1.4.0" conf="boot"/>
+		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.cm" rev="1.3.100" conf="boot"/>
 		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.console" rev="1.3.300" conf="boot"/>
 		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.14.0" conf="boot"/>
-		<dependency org="org.osgi" name="org.osgi.compendium" rev="5.0.0" conf="boot">
-			<exclude module="org.osgi.core"/>
-		</dependency>
-		<dependency org="org.osgi" name="org.osgi.enterprise" rev="5.0.0" conf="boot">
-			<exclude module="org.osgi.core"/>
-		</dependency>
+		<dependency org="org.osgi" name="org.osgi.compendium" rev="5.0.0" conf="boot"/>
+		<dependency org="org.osgi" name="org.osgi.enterprise" rev="5.0.0" conf="boot"/>
 		<dependency org="org.eclipse.gemini.blueprint" name="gemini-blueprint-core" rev="2.1.0.RELEASE" conf="boot">
 			<exclude org="org.springframework"/>
 			<exclude module="com.springsource.org.apache.commons.logging"/>
@@ -382,6 +378,7 @@
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="javax.inject"/>
+		<exclude module="org.osgi.core"/>
 
 	</dependencies>
 </ivy-module>
