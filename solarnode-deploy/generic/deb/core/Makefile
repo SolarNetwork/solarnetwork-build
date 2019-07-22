@@ -1,7 +1,8 @@
 NAME = solarnode-app-core
-VERSION = 1.0.2-1
+VERSION = 1.0.3-1
+PATHS = var
 
-deb : 
+deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
@@ -14,7 +15,10 @@ deb :
 	-d 'solarnode-framework' \
 	-d 'sn-solarssh (>= 1.0.0)' \
 	--after-install $(NAME).postinst \
-	var
+	$(PATHS)
+
+prep : 
+	find $(PATHS) -type f -name .DS_Store -delete
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
