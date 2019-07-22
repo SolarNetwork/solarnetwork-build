@@ -6,6 +6,8 @@
 <ivysettings>
 	<property name="solarnetwork-archive.url" 			value="${solarnetwork.archive.url}"/>
 	<property name="solarnetwork-archive.pattern" 		value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+	<property name="solarnetwork-3rd-party-archive.url" value="${solarnetwork-3rd-party.archive.url}"/>
+	<property name="solarnetwork-3rd-party-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
 	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
 	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
@@ -15,6 +17,7 @@
 			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
 			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
 		</url>
+		<ibiblio name="solarnetwork-3rd-party" m2compatible="true" root="${solarnetwork-3rd-party-archive.url}"/>
 		<filesystem name="local">
 			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
 			<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
