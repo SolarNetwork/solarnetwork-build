@@ -1,5 +1,21 @@
 # SolarNode Platform (Equinox) Changelog
 
+## v20190716
+
+ * Update Equinox to v3.14 for Java 11 support
+ * Update Equinox CM to v1.4
+ * Update Equinox Console to v1.3
+ * Update Felix Event Admin to v1.5
+ * Update Felix Gogo Shell to v1.1
+ 
+## v20190325
+
+ * Update Gemini Blueprint to v2.1.0
+ * Update Gemini Web to v3.0.4 (Tomcat 8.5.35)
+ * Update Spring Framework to v4.3.23
+ * Update Spring Security to v4.2.4
+ * Update Jackson JSON to v2.9.9
+
 ## v20180613
 
  * Add Eclipse Paho v1.2 for MQTT support

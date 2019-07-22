@@ -12,10 +12,6 @@ org.osgi.framework.system.packages = \
  javax.activation,\
  javax.activation;version="1.1.1",\
  javax.activity,\
- javax.annotation,\
- javax.annotation;version="1.0.0",\
- javax.annotation;version="1.1.0",\
- javax.annotation.processing,\
  javax.crypto,\
  javax.crypto.interfaces,\
  javax.crypto.spec,\
@@ -225,15 +221,16 @@ org.osgi.framework.executionenvironment = \
  J2SE-1.5,\
  JavaSE-1.6,\
  JavaSE-1.7,\
- JavaSE-1.8
+ JavaSE-1.8,\
+ JavaSE-11
 org.osgi.framework.system.capabilities = \
  osgi.ee; osgi.ee="OSGi/Minimum"; version:List<Version>="1.0, 1.1, 1.2",\
  osgi.ee; osgi.ee="JRE"; version:List<Version>="1.0, 1.1",\
- osgi.ee; osgi.ee="JavaSE"; version:List<Version>="1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8",\
+ osgi.ee; osgi.ee="JavaSE"; version:List<Version>="1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 11",\
  osgi.ee; osgi.ee="JavaSE/compact1"; version:List<Version>="1.8",\
  osgi.ee; osgi.ee="JavaSE/compact2"; version:List<Version>="1.8",\
  osgi.ee; osgi.ee="JavaSE/compact3"; version:List<Version>="1.8"
-osgi.java.profile.name = JavaSE-1.8
+osgi.java.profile.name = JavaSE-11
 org.eclipse.jdt.core.compiler.compliance=1.8
 org.eclipse.jdt.core.compiler.source=1.8
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
