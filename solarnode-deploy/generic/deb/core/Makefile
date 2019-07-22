@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 1.0.2-1
+VERSION = 1.0.3-1
 
 deb : 
 	fpm -s dir -t deb \
