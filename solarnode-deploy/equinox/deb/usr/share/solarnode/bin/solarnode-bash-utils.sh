@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# provide hook to load in shell utilities from directory files
+if [ -d /usr/share/solarnode/bash-utils.d ]; then
+	for f in $(ls -1 /usr/share/solarnode/bash-utils.d/*.sh 2>/dev/null); do
+		. "$f"
+	done
+fi
+
 sn-home () {
 	echo '/var/lib/solarnode'
 }
