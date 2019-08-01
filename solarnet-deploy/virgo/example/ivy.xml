@@ -34,15 +34,10 @@
 		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.9.8" conf="runtime" />
 		
 		<!-- JDBC -->
-		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="[8.5.32,9.0)" conf="runtime">
-    		<artifact name="tomcat-jdbc" type="jar" />
-    		<exclude module="tomcat-juli"/><!-- Ignore Tomcat version, which isn't OSGi -->
-		</dependency>
-		<dependency org="org.apache.juli.springsource" name="com.springsource.org.apache.juli.extras.springsource" rev="6.0.32.S2-r1673" 
-				conf="runtime"/>
+		<dependency org="com.zaxxer" name="HikariCP" rev="[3.3.1,4.0)" conf="runtime"/>
 		<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
 		<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
-		<dependency org="org.postgresql" name="postgresql" rev="42.2.2" conf="runtime"/>
+		<dependency org="org.postgresql" name="postgresql" rev="42.2.6" conf="runtime"/>
 		
 		<!-- AspectJ -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="runtime"/>
