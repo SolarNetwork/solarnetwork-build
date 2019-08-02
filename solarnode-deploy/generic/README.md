@@ -28,9 +28,7 @@ To build the platform, run the **deb-package-assemble** task:
 
 ```sh
 # prepare debian package
-ant -Divy.file=example/ivy-deb.xml \
-	clean deb-package-assemble
-
+ant -Divy.file=example/ivy-deb.xml clean deb-package-assemble
 ```
 
 This will produce a package filesystem tree with a `Makefile` in `build/deb`.
