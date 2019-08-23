@@ -1,0 +1,2 @@
+Files named *.sh can be placed here to be loaded by bash when it starts. Thus
+any functioned defined will be sourced and made available to the shell.

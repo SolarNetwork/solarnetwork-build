@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><?pde version="3.8"?><target name="SolarNetwork Gemini" sequenceNumber="514">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="SolarNetwork Gemini" sequenceNumber="514">
 <locations>
 <location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 <location path="${workspace_loc:/solarnetwork-osgi-target/gemini-web/dep}" type="Directory"/>
@@ -227,6 +229,10 @@
 	<plugin id="org.mitre.dsmiley.http-proxy-servlet.source"/>
 	<plugin id="org.apache.httpcomponents.httpclient.source"/>
 	<plugin id="org.apache.httpcomponents.httpcore.source"/>
+	<plugin id="com.zaxxer.HikariCP.source"/>
+	<plugin id="com.zaxxer.HikariCP"/>
+	<plugin id="com.google.protobuf.source"/>
+	<plugin id="com.google.protobuf"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>

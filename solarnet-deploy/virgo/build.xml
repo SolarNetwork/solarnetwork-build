@@ -23,6 +23,8 @@
 	<property name="ivy.cache.ttl.default" value="1d"/>
 	<property name="solarnetwork.archive.url" 
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+	<property name="solarnetwork-3rd-party.archive.url" 
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 	
 	<fileset id="plan.set" dir="${dir.src.plans}" includes="*">
 		<scriptselector language="javascript">
