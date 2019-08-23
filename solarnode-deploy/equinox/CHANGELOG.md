@@ -1,6 +1,10 @@
 # SolarNode Platform (Equinox) Changelog
 
-## v20190716
+## v20190723 (1.1.1)
+
+ * Allow bash shell hooks via /usr/share/solarnode/bash-utils.d directory
+
+## v20190716 (1.1.0)
 
  * Update Equinox to v3.14 for Java 11 support
  * Update Equinox CM to v1.4
