@@ -117,6 +117,46 @@ auto_settings_remove () {
 	fi
 }
 
+##############################################################################
+# equinox_config_add_bundles conf add
+#
+# Add bundle start information to the `osgi.bundles` property in the Equinox
+# config.ini file. Pass the path to the file as the first argument, and the
+# literal text to add as the second argument. The text will only be added
+# if it does not already exist.
+#
+equinox_config_add_bundles () {
+	local conf_ini="$1"
+	local ini_add="$2"
+	local sed_esc=""
+	if [ -e "$conf_ini" ]; then
+		if ! grep -qF "$ini_add" "$conf_ini" >/dev/null 2>&1; then
+			sed_esc=$(echo "$ini_add" |sed -e "$SED_ESCAPE")
+			echo "Adding $ini_add to osgi.bundles in $conf_ini"
+			sed -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
+		fi
+	fi
+}
+
+##############################################################################
+# equinox_config_remove_bundles conf remove
+#
+# Remove bundle start information to the `osgi.bundles` property in the
+# Equinox config.ini file. Pass the path to the file as the first argument,
+# and the literal text to remove as the second argument. No change will be
+# made if the text is not found in the configuration file.
+#
+equinox_config_remove_bundles () {
+	local conf_ini="$1"
+	local ini_rm="$2"
+	local sed_esc=""
+	if grep -qF "$ini_rm" "$conf_ini" >/dev/null 2>&1; then
+		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
+		echo "Removing $ini_add from osgi.bundles in $conf_ini"
+		sed -e "s#$sed_esc##g" "$conf_ini"
+	fi
+}
+
 # Parse command line parameters.
 case $1 in
 	auto-settings-add)
@@ -125,6 +165,22 @@ case $1 in
 		
 	auto-settings-remove)
 		auto_settings_remove "$2"
+		;;
+		
+	equinox-bundles-add)
+		if [ -z "$2" ]; then
+			echo "Must provide bundle start configuration to add." 1>&2
+		else
+			equinox_config_add_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
+		fi
+		;;
+		
+	equinox-bundles-remove)
+		if [ -z "$2" ]; then
+			echo "Must provide bundle start configuration to remove." 1>&2
+		else
+			equinox_config_remove_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
+		fi
 		;;
 		
 	start)
@@ -142,7 +198,7 @@ case $1 in
 
 	*)
 		# Print help
-		echo "Usage: $0 {auto-settings-add|auto-settings-remove|start|stop}" 1>&2
+		echo "Usage: $0 {auto-settings-add|auto-settings-remove|equinox-bundles-add|equinox-bundles-remove|start|stop}" 1>&2
 		exit 1
 		;;
 esac
