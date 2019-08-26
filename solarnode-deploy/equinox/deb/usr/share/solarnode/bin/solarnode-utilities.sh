@@ -117,6 +117,12 @@ auto_settings_remove () {
 	fi
 }
 
+equinox_reset_config () {
+	if [ -e ${EQUINOX_CONF}/config.ini ]; then
+		rm ${EQUINOX_CONF}/config.ini
+	fi
+}
+
 ##############################################################################
 # equinox_config_add_bundles conf add
 #
@@ -134,6 +140,7 @@ equinox_config_add_bundles () {
 			sed_esc=$(echo "$ini_add" |sed -e "$SED_ESCAPE")
 			echo "Adding $ini_add to osgi.bundles in $conf_ini"
 			sed -i -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
+			equinox_reset_config
 		fi
 	fi
 }
@@ -154,6 +161,7 @@ equinox_config_remove_bundles () {
 		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
 		echo "Removing $ini_rm from osgi.bundles in $conf_ini"
 		sed -i -e "s#$sed_esc##g" "$conf_ini"
+		equinox_reset_config
 	fi
 }
 
