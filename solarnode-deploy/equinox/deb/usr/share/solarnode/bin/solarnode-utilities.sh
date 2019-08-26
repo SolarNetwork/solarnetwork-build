@@ -133,7 +133,7 @@ equinox_config_add_bundles () {
 		if ! grep -qF "$ini_add" "$conf_ini" >/dev/null 2>&1; then
 			sed_esc=$(echo "$ini_add" |sed -e "$SED_ESCAPE")
 			echo "Adding $ini_add to osgi.bundles in $conf_ini"
-			sed -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
+			sed -i -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
 		fi
 	fi
 }
@@ -153,7 +153,7 @@ equinox_config_remove_bundles () {
 	if grep -qF "$ini_rm" "$conf_ini" >/dev/null 2>&1; then
 		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
 		echo "Removing $ini_add from osgi.bundles in $conf_ini"
-		sed -e "s#$sed_esc##g" "$conf_ini"
+		sed -i -e "s#$sed_esc##g" "$conf_ini"
 	fi
 }
 
