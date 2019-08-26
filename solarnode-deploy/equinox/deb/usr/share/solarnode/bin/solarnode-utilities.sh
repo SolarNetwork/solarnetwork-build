@@ -12,7 +12,7 @@ DB_DIR="${RAM_DIR}/db"
 VAR_DIR="${SOLARNODE_HOME}/var"
 DB_BAK_DIR="${VAR_DIR}/db-bak"
 EQUINOX_CONF="${RAM_DIR}"
-
+SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
 
 # function to create directory if doesn't already exist
 setup_dir () {
@@ -152,7 +152,7 @@ equinox_config_remove_bundles () {
 	local sed_esc=""
 	if grep -qF "$ini_rm" "$conf_ini" >/dev/null 2>&1; then
 		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
-		echo "Removing $ini_add from osgi.bundles in $conf_ini"
+		echo "Removing $ini_rm from osgi.bundles in $conf_ini"
 		sed -i -e "s#$sed_esc##g" "$conf_ini"
 	fi
 }
