@@ -3,6 +3,7 @@
 # Utilities for managing the SolarNode server
 
 SOLARNODE_HOME="/var/lib/solarnode"
+SOLARNODE_SHARE="/usr/share/solarnode"
 RAM_DIR="/run/solarnode"
 CONF_DIR="/etc/solarnode"
 
@@ -84,8 +85,8 @@ setup_ini () {
 		else
 			su - $RUNAS -c "cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}"
 		fi
-		if [ -d ${SOLARNODE_HOME}/conf/config.ini.d ]; then
-			for f in ${SOLARNODE_HOME}/conf/config.ini.d/*.bundles; do
+		if [ -d ${SOLARNODE_SHARE}/conf/config.ini.d ]; then
+			for f in ${SOLARNODE_SHARE}/conf/config.ini.d/*.bundles; do
 				# double-check in case there were NO .bundles files
 				if [ -e "$f" ]; then
 					b=$(cat "$f")
