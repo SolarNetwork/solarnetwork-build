@@ -233,6 +233,12 @@
 	<plugin id="com.zaxxer.HikariCP"/>
 	<plugin id="com.google.protobuf.source"/>
 	<plugin id="com.google.protobuf"/>
+	<plugin id="tech.units.indriya.source"/>
+	<plugin id="tech.units.indriya"/>
+	<plugin id="javax.measure.unit-api.source"/>
+	<plugin id="javax.measure.unit-api"/>
+	<plugin id="org.apache.servicemix.bundles.javax-inject.source"/>
+	<plugin id="org.apache.servicemix.bundles.javax-inject"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
