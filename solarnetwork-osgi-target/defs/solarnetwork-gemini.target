@@ -241,6 +241,8 @@
 	<plugin id="org.apache.servicemix.bundles.javax-inject"/>
 	<plugin id="tech.uom.lib.uom-lib-common.source"/>
 	<plugin id="tech.uom.lib.uom-lib-common"/>
+	<plugin id="org.apache.servicemix.specs.jaxb-api-2.2"/>
+	<plugin id="org.apache.servicemix.bundles.jaxb-impl"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
