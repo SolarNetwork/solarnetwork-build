@@ -218,14 +218,8 @@
 	<plugin id="com.zaxxer.HikariCP"/>
 	<plugin id="com.google.protobuf.source"/>
 	<plugin id="com.google.protobuf"/>
-	<plugin id="tech.units.indriya.source"/>
-	<plugin id="tech.units.indriya"/>
-	<plugin id="javax.measure.unit-api.source"/>
-	<plugin id="javax.measure.unit-api"/>
 	<plugin id="org.apache.servicemix.bundles.javax-inject.source"/>
 	<plugin id="org.apache.servicemix.bundles.javax-inject"/>
-	<plugin id="tech.uom.lib.uom-lib-common.source"/>
-	<plugin id="tech.uom.lib.uom-lib-common"/>
 	<plugin id="org.apache.servicemix.specs.jaxb-api-2.2"/>
 	<plugin id="org.apache.servicemix.bundles.jaxb-impl"/>
 	<plugin id="jakarta.annotation-api"/>
