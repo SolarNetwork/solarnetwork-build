@@ -195,16 +195,16 @@
 		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.9" conf="boot"/>
 
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -215,7 +215,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -226,7 +226,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
