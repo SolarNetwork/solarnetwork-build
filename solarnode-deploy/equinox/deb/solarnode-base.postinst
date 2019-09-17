@@ -50,6 +50,14 @@ setup_write_dir () {
 	fi
 }
 
+setup_user_bin () {
+	local user_home=$(eval echo "~${USER}")
+	if [ ! -e "${user_home}/bin" ]; then
+		echo "Linking ~${USER}/bin -> ${SOLARNODE_HOME}/bin."
+		ln -s "${SOLARNODE_HOME}/bin" "${user_home}/bin"
+	fi
+}
+
 # make sure config.ini refreshed
 if [ -e "$WORK_DIR/config.ini" ]; then
 	rm -f "$WORK_DIR/config.ini"
@@ -61,6 +69,9 @@ setup_write_dir "${CONF_DIR}/services"
 setup_write_dir "${CONF_DIR}/tls"
 setup_write_dir "${SOLARNODE_HOME}/var"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
+
+# add link ~/bin so utilities added to PATH on login
+setup_user_bin
 
 systemctl daemon-reload
 
