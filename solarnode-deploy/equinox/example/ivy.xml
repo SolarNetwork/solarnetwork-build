@@ -37,7 +37,7 @@
 		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="1.1.2" conf="boot">
 			<exclude org="org.osgi"/>
 		</dependency>
-		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.cm" rev="1.4.0" conf="boot"/>
+		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.cm" rev="1.3.100" conf="boot"/>
 		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.console" rev="1.3.300" conf="boot"/>
 		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.14.0" conf="boot"/>
 		<dependency org="org.osgi" name="org.osgi.compendium" rev="5.0.0" conf="boot"/>
@@ -194,16 +194,16 @@
 		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.9" conf="boot"/>
 
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -214,7 +214,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -225,7 +225,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -286,14 +286,14 @@
 		</dependency>
 
 		<!-- HTTP Client -->
-		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.7" conf="core">
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.10" conf="core">
 			<exclude module="httpclient"/>
 			<exclude module="httpclient-cache"/>
 			<exclude module="fluent-hc"/>
 			<exclude module="httpcore"/>
 			<exclude module="httpmime"/>
 		</dependency>
-		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.11" conf="core">
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.12" conf="core">
 			<exclude module="httpcore"/>
 			<exclude module="httpcore-nio"/>
 		</dependency>
@@ -353,7 +353,7 @@
 		</dependency>
 
 		<!-- MQTT support -->
-		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.2" conf="core">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
 		</dependency>
 
