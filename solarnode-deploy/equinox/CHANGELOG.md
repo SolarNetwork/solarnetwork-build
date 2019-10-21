@@ -1,10 +1,31 @@
 # SolarNode Platform (Equinox) Changelog
 
-## v20190723 (1.1.1)
+## 1.3.0 - 2019-10-21
 
- * Allow bash shell hooks via /usr/share/solarnode/bash-utils.d directory
+ * Update Apache HTTP client to v4.5.10.
+ * Update AWS SDK to v1.11.651 for Java 11 fixes.
+ * Update Ecipse Paho to v1.2.2.
 
-## v20190716 (1.1.0)
+## 1.2.2 - 2019-09-18
+
+ * Make link from ~solar/bin to /var/lib/solarnode/bin.
+ * Update to Spring 4.3.25 for bug fixes in working with Java 11.
+
+## 1.2.1 - 2019-09-06
+
+ * Fix SolarNode startup script to look for bundle hooks in proper directory.
+
+## 1.2.0 - 2019-08-26
+
+ * Add utility functions to add/remove bundles from Equinox's config.init
+   osgi.bundles property, to allow other packages to easily maintain custom
+   additions to startup. 
+
+## 1.1.1 - 2019-07-23
+
+ * Allow bash shell hooks via /usr/share/solarnode/bash-utils.d directory.
+
+## 1.1.0 - 2019-07-16
 
  * Update Equinox to v3.14 for Java 11 support
  * Update Equinox CM to v1.4
