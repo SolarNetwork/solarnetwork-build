@@ -3,6 +3,7 @@
 # Utilities for managing the SolarNode server
 
 SOLARNODE_HOME="/var/lib/solarnode"
+SOLARNODE_SHARE="/usr/share/solarnode"
 RAM_DIR="/run/solarnode"
 CONF_DIR="/etc/solarnode"
 
@@ -12,7 +13,58 @@ DB_DIR="${RAM_DIR}/db"
 VAR_DIR="${SOLARNODE_HOME}/var"
 DB_BAK_DIR="${VAR_DIR}/db-bak"
 EQUINOX_CONF="${RAM_DIR}"
+SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
 
+##############################################################################
+# equinox_reset_config
+# 
+# Clear the Equinox runtime config.ini
+#
+equinox_reset_config () {
+	if [ -e ${EQUINOX_CONF}/config.ini ]; then
+		rm ${EQUINOX_CONF}/config.ini
+	fi
+}
+
+##############################################################################
+# equinox_config_add_bundles conf add
+#
+# Add bundle start information to the `osgi.bundles` property in the Equinox
+# config.ini file. Pass the path to the file as the first argument, and the
+# literal text to add as the second argument. The text will only be added
+# if it does not already exist.
+#
+equinox_config_add_bundles () {
+	local conf_ini="$1"
+	local ini_add="$2"
+	local sed_esc=""
+	if [ -e "$conf_ini" ]; then
+		if ! grep -qF "$ini_add" "$conf_ini" >/dev/null 2>&1; then
+			sed_esc=$(echo "$ini_add" |sed -e "$SED_ESCAPE")
+			echo "Adding $ini_add to osgi.bundles in $conf_ini"
+			sed -i -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
+		fi
+	fi
+}
+
+##############################################################################
+# equinox_config_remove_bundles conf remove
+#
+# Remove bundle start information to the `osgi.bundles` property in the
+# Equinox config.ini file. Pass the path to the file as the first argument,
+# and the literal text to remove as the second argument. No change will be
+# made if the text is not found in the configuration file.
+#
+equinox_config_remove_bundles () {
+	local conf_ini="$1"
+	local ini_rm="$2"
+	local sed_esc=""
+	if grep -qF "$ini_rm" "$conf_ini" >/dev/null 2>&1; then
+		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
+		echo "Removing $ini_rm from osgi.bundles in $conf_ini"
+		sed -i -e "s#$sed_esc##g" "$conf_ini"
+	fi
+}
 
 # function to create directory if doesn't already exist
 setup_dir () {
@@ -32,6 +84,15 @@ setup_ini () {
 			cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}
 		else
 			su - $RUNAS -c "cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}"
+		fi
+		if [ -d ${SOLARNODE_SHARE}/conf/config.ini.d ]; then
+			for f in ${SOLARNODE_SHARE}/conf/config.ini.d/*.bundles; do
+				# double-check in case there were NO .bundles files
+				if [ -e "$f" ]; then
+					b=$(cat "$f")
+					equinox_config_add_bundles "${EQUINOX_CONF}/config.ini" "$b"
+				fi
+			done
 		fi
 	fi
 }
@@ -127,6 +188,30 @@ case $1 in
 		auto_settings_remove "$2"
 		;;
 		
+	equinox-bundles-add)
+		if [ -z "$2" ]; then
+			echo "Must provide bundle start configuration to add." 1>&2
+		else
+			equinox_config_add_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
+		fi
+		;;
+		
+	equinox-bundles-remove)
+		if [ -z "$2" ]; then
+			echo "Must provide bundle start configuration to remove." 1>&2
+		else
+			equinox_config_remove_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
+		fi
+		;;
+	
+	reset)
+		equinox_reset_config
+		;;
+		
+	setup)
+		do_setup
+		;;
+		
 	start)
 		do_setup
 		;;
@@ -142,7 +227,7 @@ case $1 in
 
 	*)
 		# Print help
-		echo "Usage: $0 {auto-settings-add|auto-settings-remove|start|stop}" 1>&2
+		echo "Usage: $0 {auto-settings-add|auto-settings-remove|equinox-bundles-add|equinox-bundles-remove|reset|setup|start|stop}" 1>&2
 		exit 1
 		;;
 esac

@@ -5,7 +5,6 @@
 		<conf name="boot" visibility="public" description="Bootstrap Environment"/>
 		<conf name="gemini" visibility="public" description="Gemini Web Runtime"/>
 		<conf name="core" visibility="public" description="Core Runtime"/>
-		<conf name="foo" visibility="private" description="Internal testing"/>
 	</configurations>
 	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);foo->default(runtime)"
 		defaultconf="core->default(runtime)">
@@ -195,16 +194,16 @@
 		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.9" conf="boot"/>
 
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.23.RELEASE_1" conf="boot"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.25.RELEASE_1" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -215,7 +214,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -226,7 +225,7 @@
 			<exclude name="spring-core"/>
 			<exclude name="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.23.RELEASE_1" conf="boot">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.25.RELEASE_1" conf="boot">
 			<exclude name="aopalliance"/>
 			<exclude name="commons-logging"/>
 			<exclude name="spring-aop"/>
@@ -287,14 +286,14 @@
 		</dependency>
 
 		<!-- HTTP Client -->
-		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.7" conf="core">
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.10" conf="core">
 			<exclude module="httpclient"/>
 			<exclude module="httpclient-cache"/>
 			<exclude module="fluent-hc"/>
 			<exclude module="httpcore"/>
 			<exclude module="httpmime"/>
 		</dependency>
-		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.11" conf="core">
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.12" conf="core">
 			<exclude module="httpcore"/>
 			<exclude module="httpcore-nio"/>
 		</dependency>
@@ -354,14 +353,24 @@
 		</dependency>
 
 		<!-- MQTT support -->
-		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.2" conf="core">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
 		</dependency>
+		
+		<!-- Netty (required by AWS) -->
+		<dependency org="io.netty" name="netty-buffer" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec-http" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-common" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-handler" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-resolver" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-transport" rev="4.1.42.Final" conf="core"/>
 
 		<!-- AWS -->
-		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.207" conf="core">
+		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.651" conf="core">
 			<exclude org="com.fasterxml.jackson.core"/>
 			<exclude org="com.fasterxml.jackson.dataformat"/>
+			<exclude org="io.netty"/>
 			<exclude org="joda-time"/>
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>

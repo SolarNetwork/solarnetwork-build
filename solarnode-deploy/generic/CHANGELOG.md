@@ -1,5 +1,18 @@
 # SolarNode Application Changelog
 
+## 1.2.0 - 2019-10-21
+
+ * Update Core SolarNetwork Support to **1.54.0**
+ * Add Common AWS S3 Support **1.0.0**
+ * Update SolarNetwork Common Web to **1.16.2**
+ * Update Core SolarNode Framework to **1.70.0**
+ * Update S3 Backup to **1.0.0**
+ * Update Core Database Storage Support to **1.26.0**
+ * Update JSON Metadata Service to **1.1.0**
+ * Update Core Settings Support to **1.11.0**
+ * Update S3 Setup to **1.2.0**
+ * Update Core Setup Web App to **1.40.0**
+
 ## V20180613
 
 **Note** This release requires a minimum of the **20180613** SolarNode

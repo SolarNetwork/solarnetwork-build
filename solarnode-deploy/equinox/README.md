@@ -67,6 +67,19 @@ make -C build/deb -f Makefile-cxf
 
 This will build the `build/deb/solarnode-cxf-X.deb` package.
 
+### Building specialized platform apps
+
+Use the `build-deb-app.xml` script to build specialized apps, for example:
+
+```sh
+ant -Divy.file=example/ivy-protobuf.xml \
+	-Ddir.deb.base=deb-app/protobuf \
+	-f build-deb-app.xml \
+	clean deb-package-assemble
+
+make -C build/deb
+```
+
 ### Building legacy archive
 
 To build the legacy style platform archive, use the **archive** task:

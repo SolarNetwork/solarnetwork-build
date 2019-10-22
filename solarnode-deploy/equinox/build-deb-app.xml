@@ -1,0 +1,67 @@
+<project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
+
+	<property file="${basedir}/build.properties"/>
+
+	<property name="ivy.file" value="${basedir}/ivy.xml"/>
+	<property name="dir.src.base" value="${basedir}/../../.."/>
+	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
+	<property name="dir.build" value="${basedir}/build"/>
+	<property name="dir.assemble" value="${dir.build}/assemble"/>
+	<property name="dir.jars" value="${dir.build}/jars"/>
+
+	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
+	<property name="app.dirname" value="core"/>
+	<property name="dir.deb.base" value="deb-app/APPNAME"/>
+
+	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
+	<property name="ivy.resolve.refresh" value="false"/>
+	<property name="ivy.cache.ttl.default" value="1d"/>
+	<property name="solarnetwork.archive.url"
+		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+
+	<target name="ivy-init">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+			uri="antlib:org.apache.ivy.ant"
+			classpath="${dir.build.lib}/lib/ivy-2.4.0.jar"/>
+	</target>
+
+	<target name="clean" description="Remove generated build files">
+		<delete dir="${dir.build}" failonerror="no"/>
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="${dir.assemble}"/>
+		<mkdir dir="${dir.jars}"/>
+	</target>
+
+	<target name="jars" depends="ivy-init,prepare">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${ivy.file}" conf="runtime" refresh="${ivy.resolve.refresh}"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.jars}/[artifact]-[revision].[ext]"/>
+	</target>
+
+	<target name="assemble" depends="jars" description="Assemble jars">
+		<mkdir dir="${dir.assemble}/app/${app.dirname}"/>
+		<move todir="${dir.assemble}/app/${app.dirname}">
+			<fileset dir="${dir.jars}" includes="*.jar"/>
+		</move>
+	</target>
+
+	<target name="deb-package-assemble-prepare">
+		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app/${app.dirname}"/>
+	</target>
+
+	<target name="deb-package-assemble" description="Create Debian package structure"
+			depends="deb-package-assemble-prepare">
+
+		<antcall target="assemble">
+			<param name="dir.assemble" value="${dir.deb.assemble}/var/lib/solarnode"/>
+		</antcall>
+
+		<copy todir="${dir.deb.assemble}">
+			<fileset dir="${dir.deb.base}" includes="**"/>
+		</copy>
+		
+	</target>
+
+</project>

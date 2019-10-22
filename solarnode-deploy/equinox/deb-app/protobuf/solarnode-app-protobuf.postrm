@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+UTIL=/usr/share/solarnode/bin/solarnode-utilities.sh
+
+if [ ! -x "$UTIL" ]; then
+	exit 0
+fi
+
+$UTIL reset
