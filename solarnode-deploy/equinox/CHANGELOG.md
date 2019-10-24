@@ -1,5 +1,10 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.3.1 - 2019-10-21
+
+ * Add support for /usr/share/solarnode/app/ext directory to replace the
+   jre/lib/ext directory removed in Java 11.
+
 ## 1.3.0 - 2019-10-21
 
  * Update Apache HTTP client to v4.5.10.
