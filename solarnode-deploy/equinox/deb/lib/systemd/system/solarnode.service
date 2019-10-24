@@ -5,6 +5,7 @@ Description=The SolarNode server.
 
 [Service]
 Type=simple
+Environment=CLASSPATH=/usr/share/solarnode/app/ext/*
 Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib
 Environment=SOLAR_HOME=/var/lib/solarnode
 Environment=RAM_DIR=/run/solarnode
