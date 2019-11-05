@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarUser">
+	<info organisation="SolarNetwork" module="SolarIn">
     	<extends organisation="SolarNetwork" module="SolarNet" revision="[1.0,)" location="./ivy.xml"/>
 	</info>
 	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
