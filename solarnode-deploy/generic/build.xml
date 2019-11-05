@@ -19,9 +19,11 @@
 		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
 
 	<target name="ivy-init">
-		<taskdef resource="org/apache/ivy/ant/antlib.xml"
-			uri="antlib:org.apache.ivy.ant"
-			classpath="${dir.build.lib}/lib/ivy-2.4.0.jar"/>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
+			<classpath>
+				<fileset dir="${dir.build.lib}/lib/ivy" includes="*.jar"/>
+			</classpath>
+		</taskdef>
 	</target>
 
 	<target name="clean" description="Remove generated build files">
