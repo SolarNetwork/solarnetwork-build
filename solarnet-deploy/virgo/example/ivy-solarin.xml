@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarUser">
+	<info organisation="SolarNetwork" module="SolarIn">
     	<extends organisation="SolarNetwork" module="SolarNet" revision="[1.0,)" location="./ivy.xml"/>
 	</info>
 	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
@@ -9,6 +9,7 @@
 		
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release" conf="runtime"/>

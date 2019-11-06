@@ -27,7 +27,8 @@ ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
 	-Dsn.home=${SOLAR_HOME} \
 	-Dderby.system.home=${RAM_DIR}/db \
-	-jar ${SOLAR_HOME}/app/equinox.jar \
+	-cp ${SOLAR_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
+	org.eclipse.core.runtime.adaptor.EclipseStarter \
 	-configuration ${RAM_DIR} \
 	$OSGI_OPTS
 ExecStartPre=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh start
