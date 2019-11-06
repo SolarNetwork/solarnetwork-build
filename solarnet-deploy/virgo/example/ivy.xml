@@ -145,7 +145,7 @@
 		</dependency>
 		
 		<!-- MQTT support -->
-		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.1">
+		<dependency org="org.eclipse.paho" name="org.eclipse.paho.client.mqttv3" rev="1.2.2">
 			<artifact name="org.eclipse.paho.client.mqttv3" type="jar"/>
 		</dependency>
 		
@@ -192,6 +192,7 @@
 		<exclude org="org.springframework.security"/>
 		<exclude module="aopalliance"/>
 		<exclude module="aspectjweaver"/>
+		<exclude module="cache-api"/>
 		<exclude module="commons-io"/>
 		<exclude module="commons-logging"/>
 		<exclude module="com.springsource.org.aopalliance"/>
@@ -213,7 +214,10 @@
 		<exclude module="org.apache.servicemix.bundles.spring-web"/>
 		<exclude module="org.apache.servicemix.bundles.spring-webmvc"/>
 		<exclude module="org.osgi.compendium"/>
+		<exclude module="org.osgi.enterprise"/>
 		<exclude module="slf4j-api"/>
+		<exclude module="tomcat-jdbc"/>
+		<exclude module="tomcat-juli"/>
 		
 	</dependencies>
 </ivy-module>
