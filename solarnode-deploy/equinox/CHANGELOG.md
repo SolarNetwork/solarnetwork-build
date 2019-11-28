@@ -1,5 +1,10 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.4.0 - 2019-11-29
+
+ * Replace Eclipse Paho with Netty MQTT for better connection resiliency.
+ * Update to Netty 4.1.43.Final.
+
 ## 1.3.1 - 2019-10-21
 
  * Add support for /usr/share/solarnode/app/ext directory to replace the
@@ -10,7 +15,7 @@
 
  * Update Apache HTTP client to v4.5.10.
  * Update AWS SDK to v1.11.651 for Java 11 fixes.
- * Update Ecipse Paho to v1.2.2.
+ * Update Eclipse Paho to v1.2.2.
 
 ## 1.2.2 - 2019-09-18
 
