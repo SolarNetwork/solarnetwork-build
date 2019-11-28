@@ -353,14 +353,14 @@
 		</dependency>
 
 		<!-- Netty -->
-		<dependency org="io.netty" name="netty-buffer" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-codec" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-codec-http" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-codec-mqtt" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-common" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-handler" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-resolver" rev="4.1.42.Final" conf="core"/>
-		<dependency org="io.netty" name="netty-transport" rev="4.1.42.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-buffer" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec-http" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec-mqtt" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-common" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-handler" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-resolver" rev="4.1.43.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-transport" rev="4.1.43.Final" conf="core"/>
 
 		<!-- AWS -->
 		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.651" conf="core">
