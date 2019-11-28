@@ -1,6 +1,7 @@
 <Server port="8005" shutdown="SHUTDOWN">
 	<Service name="Catalina">
 		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Nio2Protocol"
+			minSpareThreads="1"
 			compression="on" 
 			compressionMinSize="2048"
 			useSendfile="false"
