@@ -8,6 +8,7 @@
 
 	<!-- General -->
 	<artifact type="bundle" name="net.solarnetwork.common.pki.bc" version="[1.2,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.common.mqtt.netty" version="[1.0,2.0)"/>
 
 	<!-- DAOs -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.dao.mybatis" version="[2.3,3.0)"/>
@@ -38,7 +39,7 @@
 
 	<!-- SolarIn -->
 	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.15,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.in.mqtt" version="[0.3,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.in.mqtt" version="[1.2,2.0)"/>
 
 	<!-- SolarQuery -->
 	<artifact type="bundle" name="net.solarnetwork.central.query.aop" version="[1.5,2.0)"/>
