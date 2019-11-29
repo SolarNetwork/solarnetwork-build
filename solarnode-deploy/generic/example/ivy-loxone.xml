@@ -23,6 +23,7 @@
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.expr.spel" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release"/>
@@ -30,7 +31,6 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.derby.ext" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.mqtt" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.location.ws" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.metadata.json" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.dao.jdbc" rev="latest.release"/>
@@ -79,6 +79,7 @@
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.opensymphony.quartz"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
+		<exclude org="io.netty"/>
 		<exclude org="javax.el"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>

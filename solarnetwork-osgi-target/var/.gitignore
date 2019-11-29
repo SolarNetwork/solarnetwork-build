@@ -4,6 +4,7 @@
 /yasdi.ini
 /backups
 /DeveloperCA/
+/log/
 /mqtt*/
 /flux/
 /upload/

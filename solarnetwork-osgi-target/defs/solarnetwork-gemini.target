@@ -227,6 +227,13 @@
 	<plugin id="jakarta.xml.bind-api"/>
 	<plugin id="jakarta.xml.soap-api"/>
 	<plugin id="jakarta.xml.ws-api"/>
+	<plugin id="io.netty.netty-transport.source"/>
+	<plugin id="io.netty.netty-handler.source"/>
+	<plugin id="io.netty.netty-common.source"/>
+	<plugin id="io.netty.netty-codec.source"/>
+	<plugin id="io.netty.netty-codec-mqtt.source"/>
+	<plugin id="io.netty.netty-codec-http.source"/>
+	<plugin id="io.netty.netty-buffer.source"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
