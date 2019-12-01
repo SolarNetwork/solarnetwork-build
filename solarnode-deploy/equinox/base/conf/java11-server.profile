@@ -97,18 +97,6 @@ org.osgi.framework.system.packages = \
  javax.transaction.xa;version="1.1.0",\
  javax.xml,\
  javax.xml;version="1.0.1",\
- javax.xml.bind,\
- javax.xml.bind;version="2.2.8",\
- javax.xml.bind.annotation,\
- javax.xml.bind.annotation;version="2.2.8",\
- javax.xml.bind.annotation.adapters,\
- javax.xml.bind.annotation.adapters;version="2.2.8",\
- javax.xml.bind.attachment,\
- javax.xml.bind.attachment;version="2.2.8",\
- javax.xml.bind.helpers,\
- javax.xml.bind.helpers;version="2.2.8",\
- javax.xml.bind.util,\
- javax.xml.bind.util;version="2.2.8",\
  javax.xml.crypto,\
  javax.xml.crypto;version="1.0",\
  javax.xml.crypto.dom,\
