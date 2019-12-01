@@ -371,6 +371,10 @@
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>
 		</dependency>
+		
+		<!-- JAXB -->
+		<dependency org="jakarta.xml.bind" name="jakarta.xml.bind-api" rev="2.3.2" conf="boot"/>
+		<dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.3.2" conf="boot"/>
 
 		<!-- Other support -->
 		<dependency org="javax.annotation" name="javax.annotation-api" rev="1.3.2" conf="boot"/>
@@ -380,7 +384,6 @@
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
 
 		<exclude org="asm"/>
-		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>
 		<exclude org="org.easymock"/>
 		<exclude org="wsdl4j"/>
