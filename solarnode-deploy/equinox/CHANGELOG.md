@@ -3,7 +3,8 @@
 ## 1.4.0 - 2019-11-29
 
  * Replace Eclipse Paho with Netty MQTT for better connection resiliency.
- * Update to Netty 4.1.43.Final.
+ * Update to Netty v4.1.43.
+ * Add javax.inject v1.3.
 
 ## 1.3.1 - 2019-10-21
 
