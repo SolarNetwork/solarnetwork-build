@@ -9,8 +9,6 @@ org.osgi.framework.system.packages = \
  com.sun.org.apache.xpath.internal.jaxp,\
  com.sun.org.apache.xpath.internal.objects,\
  javax.accessibility,\
- javax.activation,\
- javax.activation;version="1.1.1",\
  javax.activity,\
  javax.crypto,\
  javax.crypto.interfaces,\

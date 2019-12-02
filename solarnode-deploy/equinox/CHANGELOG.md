@@ -5,6 +5,8 @@
  * Replace Eclipse Paho with Netty MQTT for better connection resiliency.
  * Update to Netty v4.1.43.
  * Add javax.inject v1.3.
+ * Add JAXB 2.3.2 runtime to work with Java 11.
+ * Add javax.activation 1.2.1 to work with Java 11.
 
 ## 1.3.1 - 2019-10-21
 

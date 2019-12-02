@@ -12,6 +12,7 @@
 	<property name="bundle.nostart">
 		com.springsource.org.apache.xerces,
 		slf4j-log4j,
+		net.solarnetwork.external.jakarta-xml-bind-api-default-runtime,
 		net.solarnetwork.external.org.apache.log4j.config,
 		net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config,
 		org.apache.catalina.ha,
