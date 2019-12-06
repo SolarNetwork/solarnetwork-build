@@ -363,7 +363,7 @@
 		<dependency org="io.netty" name="netty-transport" rev="4.1.43.Final" conf="core"/>
 
 		<!-- AWS -->
-		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.651" conf="core">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.aws-sdk-mini" rev="1.11.688.SN20191206A" conf="core">
 			<exclude org="com.fasterxml.jackson.core"/>
 			<exclude org="com.fasterxml.jackson.dataformat"/>
 			<exclude org="io.netty"/>
