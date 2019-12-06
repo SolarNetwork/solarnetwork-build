@@ -8,7 +8,7 @@
  * Update SolarNetwork Common Web to **1.16.3**
  * Update Core SolarNode Framework to **1.73.0**
  * Remove obsolete plugin MQTT Communication Support
- * Update Auto Setup to **1.3.0**
+ * Update Auto Setup to **1.3.1**
  * Update Core Setup Web App to **1.42.2**
  * Update MQTT integration to **1.4.0**
 
