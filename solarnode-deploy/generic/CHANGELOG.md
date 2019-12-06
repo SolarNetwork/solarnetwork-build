@@ -1,12 +1,23 @@
 # SolarNode Application Changelog
 
+## 1.4.0 - 2019-12-05
+
+ * Update Core SolarNetwork Support to **1.57.0**
+ * Update SolarNetwork Common MQTT Support to **2.0.0**
+ * Add MQTT client - Netty **1.0.0**
+ * Update SolarNetwork Common Web to **1.16.3**
+ * Update Core SolarNode Framework to **1.73.0**
+ * Remove obsolete plugin MQTT Communication Support
+ * Update Auto Setup to **1.3.0**
+ * Update Core Setup Web App to **1.42.2**
+ * Update MQTT integration to **1.4.0**
+
 ## 1.3.0 - 2019-11-07
 
  * Update Core SolarNetwork Support to **1.55.0**
  * Update SolarNetwork Common MQTT Support to **1.1.0**
  * Update Core SolarNode Framework to **1.71.0**
  * Update MQTT Communication Support to **1.1.0**
- * Update Core Setup Web App to **1.42.0**
  * Update Core Setup Web App to **1.42.0**
  * Update MQTT integration to **1.3.0**
 

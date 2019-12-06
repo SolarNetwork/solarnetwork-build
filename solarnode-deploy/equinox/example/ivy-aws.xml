@@ -363,7 +363,7 @@
 		<dependency org="io.netty" name="netty-transport" rev="4.1.43.Final" conf="core"/>
 
 		<!-- AWS -->
-		<dependency org="com.amazonaws" name="aws-java-sdk-osgi" rev="1.11.651" conf="core">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.aws-sdk-mini" rev="1.11.688.SN20191206A" conf="core">
 			<exclude org="com.fasterxml.jackson.core"/>
 			<exclude org="com.fasterxml.jackson.dataformat"/>
 			<exclude org="io.netty"/>
@@ -371,15 +371,24 @@
 			<exclude org="org.apache.httpcomponents"/>
 			<exclude org="org.osgi"/>
 		</dependency>
+		
+		<!-- JAXB -->
+		<dependency org="jakarta.xml.bind" name="jakarta.xml.bind-api" rev="2.3.2" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.jaxb-runtime" rev="2.3.2_1" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.jakarta-xml-bind-api-default-runtime" rev="2.3.2" conf="boot"/>
+		<dependency org="org.jvnet.staxex" name="stax-ex" rev="1.8.2" conf="boot"/>
+		<dependency org="com.sun.xml.fastinfoset" name="FastInfoset" rev="1.2.17" conf="boot"/>
 
 		<!-- Other support -->
+		<dependency org="jakarta.activation" name="jakarta.activation-api" rev="1.2.1" conf="boot"/>
+		<dependency org="com.sun.activation" name="jakarta.activation" rev="1.2.1" conf="boot"/>
 		<dependency org="javax.annotation" name="javax.annotation-api" rev="1.3.2" conf="boot"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>
 
 		<!-- Global excludes -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
 
 		<exclude org="asm"/>
-		<exclude org="com.sun.xml.bind"/>
 		<exclude org="javax.xml.stream"/>
 		<exclude org="org.easymock"/>
 		<exclude org="wsdl4j"/>
@@ -388,7 +397,6 @@
 		<exclude module="commons-logging"/>
 		<exclude module="com.springsource.org.apache.commons.collections"/>
 		<exclude module="com.springsource.org.apache.commons.logging"/>
-		<exclude module="com.springsource.javax.activation"/>
 		<exclude module="javax.inject"/>
 		<exclude module="org.osgi.core"/>
 
