@@ -9,8 +9,8 @@ Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib
 Environment=SOLAR_HOME=/var/lib/solarnode
 Environment=RAM_DIR=/run/solarnode
 Environment="OSGI_OPTS=-console 4202 -clean"
-Environment="JAVA_OPTS=-Xmx128m \
-	-XX:MaxMetaspaceSize=64m \
+Environment="JAVA_OPTS=-Xmx192m \
+	-XX:MaxMetaspaceSize=96m \
 	-Djava.security.egd=file:/dev/./urandom \
 	-Djavax.xml.bind.JAXBContextFactory=com.sun.xml.bind.v2.ContextFactory \
 	-Djava.net.preferIPv4Stack=true"
