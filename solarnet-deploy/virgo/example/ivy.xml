@@ -27,11 +27,12 @@
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="runtime"/>
 		
 		<!-- JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.9.8" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.9.8" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.9.8" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.9.8" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.9.8" conf="runtime" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.10.1" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.10.1" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.10.1" conf="runtime"/>
+		<!--  TODO: after it is safe to assume all SolarNodes have updated > v2.10 then can switch to standard release of CBOR. -->
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.10.1-SNF20191217A" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.10.1" conf="runtime" />
 		
 		<!-- JDBC -->
 		<dependency org="com.zaxxer" name="HikariCP" rev="[3.3.1,4.0)" conf="runtime"/>
