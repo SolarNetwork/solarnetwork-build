@@ -1,5 +1,5 @@
 NAME = solarnode-base
-VERSION = 1.5.0-2
+VERSION = 1.5.1-1
 
 deb : 
 	fpm -s dir -t deb \
