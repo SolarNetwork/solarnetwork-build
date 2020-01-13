@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 1.4.0-1
+VERSION = 1.4.1-1
 PATHS = var
 
 deb : prep
