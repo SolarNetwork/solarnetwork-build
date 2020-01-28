@@ -121,7 +121,7 @@
 	</target>
 
 	<target name="publish.conf.resolve.classes" unless="no.classes">
-		<property name="ivy.publish.conf" value="compile,runtime,sources"/>
+		<property name="ivy.publish.conf" value="compile,runtime,sources,javadoc"/>
 	</target>
 
 	<target name="publish" depends="lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
@@ -401,6 +401,7 @@
 		<!-- For debugging classpath:
 		<echo>{=== Javadoc path: ${javadoc.path.combined} ===}</echo-->
 
+		<delete dir="${dir.build}/javadoc" failonerror="no"/>
 		<mkdir dir="${dir.build}/javadoc"/>
 		<javadoc 
 				sourcepath="${dir.source}"
