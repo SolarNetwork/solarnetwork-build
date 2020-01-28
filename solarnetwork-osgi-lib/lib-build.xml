@@ -121,10 +121,10 @@
 	</target>
 
 	<target name="publish.conf.resolve.classes" unless="no.classes">
-		<property name="ivy.publish.conf" value="compile,runtime,sources"/>
+		<property name="ivy.publish.conf" value="compile,runtime,sources,javadoc"/>
 	</target>
 
-	<target name="publish" depends="lib-resolve,jar,src-jar,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
+	<target name="publish" depends="lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
 		<echo message="[====&gt; Publishing configurations ${ivy.publish.conf} &lt;====]"/>
 		<ivy:makepom ivyfile="${basedir}/ivy.xml" 
 				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom" 
@@ -207,6 +207,7 @@
 		<property name="bundle.version" value="${Bundle-Version}"/>
 		<property name="bundle.jar.name" value="${bundle.name}-${bundle.version}.jar"/>
 		<property name="src.jar.name" value="${bundle.name}-${bundle.version}-sources.jar"/>
+		<property name="javadoc.jar.name" value="${bundle.name}-${bundle.version}-javadoc.jar"/>
 		<property name="ivy.pom.artifactId" value="${bundle.name}"/>
 		<property name="ivy.pom.version" value="${bundle.version}"/>
 
@@ -379,6 +380,37 @@
 				<patternset refid="web.files"/>
 			</fileset>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
+		</jar>
+	</target>
+	
+	<!-- Javadoc support -->
+	
+	<target name="javadoc" if="classes" depends="read.manifest,compile.deps,lib-resolve" description="Generate Javadoc documentation.">
+		<echo message="[====&gt; Generating JavaDoc ${bundle.name} &lt;====]"/>
+		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
+		<mkdir dir="${dir.deps}"/>
+		<mkdir dir="${dir.provided}"/>
+		<path id="javadoc.path.combined">
+			<!-- Bundle script provides compile.path path -->
+			<path refid="compile.path"/>
+			<path refid="lib.path"/>
+			<fileset dir="${dir.deps}" includes="*.jar"/>
+			<fileset dir="${dir.provided}" includes="*.jar"/>
+		</path>
+		
+		<!-- For debugging classpath:
+		<echo>{=== Javadoc path: ${javadoc.path.combined} ===}</echo-->
+
+		<delete dir="${dir.build}/javadoc" failonerror="no"/>
+		<mkdir dir="${dir.build}/javadoc"/>
+		<javadoc 
+				sourcepath="${dir.source}"
+				destdir="${dir.build}/javadoc" 
+				classpathref="javadoc.path.combined">
+			<arg value="--no-module-directories"/>
+		</javadoc>
+		<jar destfile="${dir.dist}/${javadoc.jar.name}">
+			<fileset dir="${dir.build}/javadoc"/>
 		</jar>
 	</target>
 	

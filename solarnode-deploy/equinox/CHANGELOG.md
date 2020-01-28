@@ -1,5 +1,19 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.5.2 - 2020-01-24
+
+ * Remove net.solarnetwork.node.core.cfg from base package, so that 
+   customer-specific packages can provide instead.
+
+## 1.5.1 - 2019-12-19
+
+ * Add /usr/lib to SolarNode lib path, to be able to pick up libraries
+   like yasdi via yasdi4j.
+
+## 1.5.0 - 2019-12-17
+
+ * Update Jackson JSON to 2.10.1 to pick up CBOR bug fix.
+
 ## 1.4.0 - 2019-12-06
 
  * Replace Eclipse Paho with Netty MQTT for better connection resiliency.

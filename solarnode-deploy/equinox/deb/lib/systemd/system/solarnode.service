@@ -5,12 +5,12 @@ Description=The SolarNode server.
 
 [Service]
 Type=simple
-Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib
+Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib:/usr/lib
 Environment=SOLAR_HOME=/var/lib/solarnode
 Environment=RAM_DIR=/run/solarnode
 Environment="OSGI_OPTS=-console 4202 -clean"
-Environment="JAVA_OPTS=-Xmx128m \
-	-XX:MaxMetaspaceSize=64m \
+Environment="JAVA_OPTS=-Xmx192m \
+	-XX:MaxMetaspaceSize=96m \
 	-Djava.security.egd=file:/dev/./urandom \
 	-Djavax.xml.bind.JAXBContextFactory=com.sun.xml.bind.v2.ContextFactory \
 	-Djava.net.preferIPv4Stack=true"
@@ -25,7 +25,7 @@ WorkingDirectory=/var/lib/solarnode
 ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Djava.io.tmpdir=${RAM_DIR}/tmp \
 	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
-	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib \
+	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib:/usr/lib \
 	-Dsn.home=${SOLAR_HOME} \
 	-Dderby.system.home=${RAM_DIR}/db \
 	-cp ${SOLAR_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \

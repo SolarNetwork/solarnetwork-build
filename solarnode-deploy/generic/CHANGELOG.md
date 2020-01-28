@@ -1,5 +1,18 @@
 # SolarNode Application Changelog
 
+## 1.5.0 - 2020-01-27
+
+ * Update Core SolarNetwork Support to **1.58.0**
+
+## 1.4.2 - 2020-01-24
+
+ * Update Core SolarNode Framework to **1.73.1**
+
+## 1.4.1 - 2020-01-14
+
+ * Add MQTT client - Netty **1.0.2**
+ * Update MQTT integration to **1.5.0**
+
 ## 1.4.0 - 2019-12-05
 
  * Update Core SolarNetwork Support to **1.57.0**
