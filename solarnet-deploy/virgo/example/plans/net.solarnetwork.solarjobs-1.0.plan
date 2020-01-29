@@ -11,9 +11,9 @@
 	<artifact type="bundle" name="net.solarnetwork.common.mqtt.netty" version="[1.0,2.0)"/>
 
 	<!-- DAOs -->
-	<artifact type="bundle" name="net.solarnetwork.central.datum.dao.mybatis" version="[2.3,3.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.datum.dao.mybatis" version="[3.0,4.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.dao.mybatis" version="[1.2,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.user.dao.mybatis" version="[1.5,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.dao.mybatis" version="[2.0,3.0)"/>
 
 	<!-- Shared -->
 	<artifact type="bundle" name="net.solarnetwork.central.common.biz.dao" version="[1.0,2.0)"/>
@@ -35,11 +35,11 @@
 	<artifact type="bundle" name="net.solarnetwork.central.datum.imp.standard" version="[1.0,2.0)"/>
 
 	<!-- SolarIn -->
-	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[1.15,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.in.biz.dao" version="[2.0,3.0)"/>
 
 	<!-- SolarQuery -->
 	<artifact type="bundle" name="net.solarnetwork.central.query.audit.jdbc" version="[0.1,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.query.biz.dao" version="[2.2,3.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.query.biz.dao" version="[3.0,4.0)"/>
 
 	<!-- SolarUser -->
 	<artifact type="bundle" name="net.solarnetwork.central.instructor.biz.dao" version="[1.4,2.0)"/>
@@ -50,8 +50,8 @@
 	<artifact type="bundle" name="net.solarnetwork.central.user.export.biz.dao" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.export.dao.mybatis" version="[1.0,2.0)"/>
 	<artifact type="bundle" name="net.solarnetwork.central.user.nim.cloud" version="[1.0,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.user.pki.dogtag" version="[1.3,2.0)"/>
-	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[1.14,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.pki.dogtag" version="[1.5,2.0)"/>
+	<artifact type="bundle" name="net.solarnetwork.central.user.biz.dao" version="[2.0,3.0)"/>
 
 	<!-- Jobs -->
 	<artifact type="bundle" name="net.solarnetwork.central.datum.agg" version="[1.8,2.0)"/>
