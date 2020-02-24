@@ -36,8 +36,10 @@
 		
 		<!-- JDBC -->
 		<dependency org="com.zaxxer" name="HikariCP" rev="[3.3.1,4.0)" conf="runtime"/>
-		<dependency org="org.mybatis" name="mybatis" rev="3.2.8" conf="runtime"/>
-		<dependency org="org.mybatis" name="mybatis-spring" rev="1.2.2" conf="runtime"/>
+		<dependency org="org.mybatis" name="mybatis" rev="3.5.4" conf="runtime"/>
+		<dependency org="org.mybatis" name="mybatis-spring" rev="1.3.3" conf="runtime"/>
+		<dependency org="org.javassist" name="javassist" rev="3.26.0-GA" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.ognl" rev="3.2.12_1" conf="runtime"/>
 		<dependency org="org.postgresql" name="postgresql" rev="42.2.6" conf="runtime"/>
 		
 		<!-- AspectJ -->
