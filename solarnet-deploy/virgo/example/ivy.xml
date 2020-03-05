@@ -32,8 +32,10 @@
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.10.1" conf="runtime"/>
 		<!--  TODO: after it is safe to assume all SolarNodes have updated > v2.10 then can switch to standard release of CBOR. -->
 		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.10.1-SNF20191217A" conf="runtime"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.10.1" conf="runtime" />
-		
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-joda" rev="2.10.1" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.10.1" conf="runtime"/>
+		<dependency org="com.fasterxml.jackson.module" name="jackson-module-jaxb-annotations" rev="2.10.1" conf="runtime"/>
+				
 		<!-- JDBC -->
 		<dependency org="com.zaxxer" name="HikariCP" rev="[3.3.1,4.0)" conf="runtime"/>
 		<dependency org="org.mybatis" name="mybatis" rev="3.5.4" conf="runtime"/>
@@ -194,6 +196,11 @@
 		</dependency>
 		
 		<!-- Global excludes -->
+		<exclude org="com.sun.xml.fastinfoset"/>
+		<exclude org="jakarta.activation"/>
+		<exclude org="jakarta.jws"/>
+		<exclude org="jakarta.xml.bind"/>
+		<exclude org="jakarta.xml.ws"/>
 		<exclude org="javax.mail"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
