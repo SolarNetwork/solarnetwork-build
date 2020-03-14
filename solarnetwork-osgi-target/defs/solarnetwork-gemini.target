@@ -38,7 +38,7 @@
 <plugin id="com.springsource.org.apache.xml.resolver"/>
 <plugin id="com.springsource.org.apache.xml.serializer"/>
 <plugin id="com.springsource.org.apache.xmlcommons"/>
-<plugin id="com.sun.xml.fastinfoset.FastInfoset"/>
+<plugin id="com.sun.xml.fastinfoset.FastInfoset" version="1.2.17"/>
 <plugin id="io.netty.buffer"/>
 <plugin id="io.netty.codec"/>
 <plugin id="io.netty.codec-http"/>
@@ -60,7 +60,6 @@
 <plugin id="javax.websocket"/>
 <plugin id="javax.xml.rpc"/>
 <plugin id="javax.xml.soap"/>
-<plugin id="jaxb-api"/>
 <plugin id="jcl.over.slf4j"/>
 <plugin id="joda-time"/>
 <plugin id="log4j"/>
@@ -205,7 +204,7 @@
 <plugin id="slf4j.api"/>
 <plugin id="slf4j.log4j12"/>
 <plugin id="software.amazon.ion.java"/>
-<plugin id="stax2-api"/>
+<plugin id="stax2-api" version="4.2.0"/>
 <plugin id="woodstox-core-asl"/>
 	<plugin id="org.apache.commons.commons-compress"/>
 	<plugin id="org.tukaani.xz"/>
@@ -220,8 +219,6 @@
 	<plugin id="com.google.protobuf"/>
 	<plugin id="org.apache.servicemix.bundles.javax-inject.source"/>
 	<plugin id="org.apache.servicemix.bundles.javax-inject"/>
-	<plugin id="org.apache.servicemix.specs.jaxb-api-2.2"/>
-	<plugin id="org.apache.servicemix.bundles.jaxb-impl"/>
 	<plugin id="jakarta.annotation-api"/>
 	<plugin id="jakarta.jws-api"/>
 	<plugin id="jakarta.xml.bind-api"/>
@@ -234,9 +231,21 @@
 	<plugin id="io.netty.netty-codec-mqtt.source"/>
 	<plugin id="io.netty.netty-codec-http.source"/>
 	<plugin id="io.netty.netty-buffer.source"/>
+	<plugin id="com.fasterxml.jackson.dataformat.jackson-dataformat-xml"/>
+	<plugin id="com.fasterxml.woodstox.woodstox-core"/>
+	<plugin id="stax2-api" version="3.1.4"/>
+	<plugin id="com.fasterxml.jackson.module.jackson-module-jaxb-annotations"/>
+	<plugin id="net.solarnetwork.external.jakarta-xml-bind-api-default-runtime"/>
+	<plugin id="org.apache.servicemix.bundles.jaxb-runtime"/>
+	<plugin id="org.jvnet.staxex.stax-ex"/>
+	<plugin id="javassist"/>
+	<plugin id="org.apache.servicemix.bundles.ognl"/>
+	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310.source"/>
+	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
+	<plugin id="jakarta.activation-api"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
-<vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dsn.home=${workspace_loc:solarnetwork-osgi-target} -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml -Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Djava.util.logging.config.file=config/jre-logging.properties -Dosgi.java.profile=file:config/java8-server.profile -Dorg.apache.felix.eventadmin.ThreadPoolSize=4 -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true</vmArgs>
+<vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dsn.home=${workspace_loc:solarnetwork-osgi-target} -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml -Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Djava.util.logging.config.file=config/jre-logging.properties -Dosgi.java.profile=file:config/java8-server.profile -Dorg.apache.felix.eventadmin.ThreadPoolSize=4 -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true -Djavax.xml.bind.JAXBContextFactory=com.sun.xml.bind.v2.ContextFactory</vmArgs>
 </launcherArgs>
 </target>

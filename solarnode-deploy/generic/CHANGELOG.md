@@ -1,5 +1,29 @@
 # SolarNode Application Changelog
 
+The **ID** values listed here refer to plugin symbolic names, defined in the
+`Bundle-SymbolicName` entry of each plugin's `META-INF/MANIFEST.MF` file. They
+are abbreviated to make them shorter, using the following conventions:
+
+| ID abbreviation | Full value |
+|:----------------|:-----------|
+| `n.s.common`    | `net.solarnetwork.common` |
+| `n.s.n`         | `net.solarnetwork.node` |
+
+## 1.5.1 - 2020-01-30
+
+Updates the following plugins:
+
+| Name | ID | Version |
+|:-----|:---|:--------|
+| SolarNetwork Common MQTT Support | `n.s.common.mqtt` | 2.0.1 |
+| SolarNet Location Service | `n.s.n.location.ws` | 2.3.0 |
+| JSON Metadata Service | `n.s.n.metadata.json` | 1.2.0 |
+| Core Setup Support | `n.s.n.setup` | 1.22.0 |
+| Core Setup Web App | `n.s.n.setup.web` | 1.43.0 |
+| SolarNet Bulk JSON Web Uploader | `n.s.n.upload.bulkjsonwebpost` | 1.11.0 |
+| SolarNet MQTT integration | `n.s.n.upload.mqtt` | 1.5.1 |
+
+
 ## 1.5.0 - 2020-01-27
 
  * Update Core SolarNetwork Support to **1.58.0**
