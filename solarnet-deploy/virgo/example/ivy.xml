@@ -137,14 +137,14 @@
 		<dependency org="com.fasterxml" name="classmate" rev="1.0.0" conf="runtime"/>
 		
 		<!-- HTTP Client -->
-		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.2" conf="runtime">
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.12" conf="runtime">
 			<exclude module="httpclient"/>
 			<exclude module="httpclient-cache"/>
 			<exclude module="fluent-hc"/>
 			<exclude module="httpcore"/>
 			<exclude module="httpmime"/>
 		</dependency>
-		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.4" conf="runtime">
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.13" conf="runtime">
 			<exclude module="httpcore"/>
 			<exclude module="httpcore-nio"/>
 		</dependency>
