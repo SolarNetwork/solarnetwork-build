@@ -13,9 +13,9 @@
 	<property name="ivy.resolve.refresh" value="false"/>
 	<property name="ivy.cache.ttl.default" value="1d"/>
 	<property name="solarnetwork.archive.url" 
-		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="solarnetwork-3rd-party.archive.url" 
-		value="https://data.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
+		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 
 	<target name="ivy-init">
 		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">

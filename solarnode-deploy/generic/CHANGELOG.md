@@ -9,6 +9,19 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node` |
 
+## 1.6.0 - 2020-03-15
+
+Updates to the following plugins:
+
+| Name | ID | Version |
+|:-----|:---|:--------|
+| Core Database Storage Support | `n.s.n.dao.jdbc` | 1.27.0 |
+| Core Setup Web App | `n.s.n.setup.web` | 1.43.1 |
+| Core SolarNetwork Support | `n.s.common` | 1.59.0 |
+| Core SolarNode Framework | `n.s.node` | 1.74.0 |
+| SolarNetwork Common Web | `n.s.common.web` | 1.17.0 |
+
+
 ## 1.5.1 - 2020-01-30
 
 Updates the following plugins:
