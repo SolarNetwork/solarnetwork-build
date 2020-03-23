@@ -34,7 +34,11 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.biz.dao" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.mqtt" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.mqtt" rev="latest.release" conf="runtime">
+			<!-- To make sure jackson-dataformat-cbor 2.10.1-SNF20191217A jar used -->
+			<exclude org="com.fasterxml.jackson.core"/>
+			<exclude org="com.fasterxml.jackson.dataformat"/>
+		</dependency>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.ocpp.json" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release" conf="runtime"/>
