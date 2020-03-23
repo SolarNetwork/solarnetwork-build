@@ -30,9 +30,9 @@
 	<property name="compile.source" value="1.6" />
 	<property name="compile.target" value="1.6" />
 	<property name="solarnetwork.archive.url" 
-		value="https://data.solarnetwork.net/archive/repository/solarnetwork"/>
+		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="solarnetwork-3rd-party.archive.url" 
-		value="https://data.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
+		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 	<property name="publish.dest" value="solarnetwork"/>
 	<property name="publish.ivy" value="true"/>
 	
