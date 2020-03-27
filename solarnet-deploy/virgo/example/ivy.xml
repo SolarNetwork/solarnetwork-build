@@ -118,7 +118,7 @@
 		<!-- Ehcache -->
 		<dependency org="net.sf.ehcache" name="ehcache" rev="2.10.3" conf="runtime"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="runtime"/>
-		<dependency org="org.ehcache" name="ehcache" rev="3.4.0" conf="runtime"/>
+		<dependency org="org.ehcache" name="ehcache" rev="3.5.3" conf="runtime"/>
 		
 		<!-- Quartz Scheduler -->
 		<dependency org="org.quartz-scheduler" name="quartz" rev="2.2.3" conf="runtime">
