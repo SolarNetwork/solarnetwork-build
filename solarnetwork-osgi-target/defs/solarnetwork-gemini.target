@@ -243,6 +243,7 @@
 	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310.source"/>
 	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
 	<plugin id="jakarta.activation-api"/>
+	<plugin id="org.ehcache.ehcache.source"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
