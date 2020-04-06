@@ -1,10 +1,11 @@
-/db*
-/settings-bak
-/devices
-/yasdi.ini
 /backups
 /DeveloperCA/
+/devices
+/db*
+/flux/
 /log/
 /mqtt*/
-/flux/
+/net.solarnetwork.central.in.biz.dao/
+/settings-bak
 /upload/
+/yasdi.ini

@@ -2,6 +2,7 @@
 /bin
 /conf
 /config
+/file:
 /solarnode
 /tmp
 /webapps
