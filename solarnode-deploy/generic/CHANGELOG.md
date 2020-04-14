@@ -9,6 +9,21 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node` |
 
+
+## 1.7.0 - 2020-04-14
+
+Updates to the following plugins:
+
+| Name | ID | Version |
+|:-----|:---|:--------|
+| SolarNetwork Common MQTT Support | `n.s.common.mqtt` | 2.1.0 |
+| MQTT client - Netty | `n.s.common.mqtt.netty` | 1.1.0 |
+| Core SolarNetwork Support | `n.s.common` | 1.60.0 |
+| Common AWS S3 Support | `n.s.common.s3` | 1.0.1 |
+| Plugin Repository | `n.s.n.setup.obr` | 1.5.2 |
+| SolarNet MQTT integration | `n.s.n.upload.mqtt` | 1.6.0 |
+
+
 ## 1.6.0 - 2020-03-15
 
 Updates to the following plugins:
