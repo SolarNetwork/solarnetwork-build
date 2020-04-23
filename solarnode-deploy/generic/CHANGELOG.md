@@ -10,6 +10,16 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.n`         | `net.solarnetwork.node` |
 
 
+## 1.8.0 - 2020-04-23
+
+Updates to the following plugins:
+
+| Name | ID | Version |
+|:-----|:---|:--------|
+| Core SolarNetwork Support | `n.s.common` | 1.61.0 |
+| Core SolarNode Framework | `n.s.node` | 1.74.1 |
+
+
 ## 1.7.0 - 2020-04-14
 
 Updates to the following plugins:
