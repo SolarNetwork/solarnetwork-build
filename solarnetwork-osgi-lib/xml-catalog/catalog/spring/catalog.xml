@@ -104,5 +104,16 @@
 	<nextCatalog catalog="catalog-spring2.xml"/>
 	<nextCatalog catalog="catalog-spring4.xml"/>
 	<nextCatalog catalog="catalog-spring4-3.xml"/>
+	
+	<!-- Map unversioned URIs to Spring 4.3 -->
+	<uri name="http://www.springframework.org/schema/aop" uri="spring-aop-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/beans" uri="spring-beans-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/context" uri="spring-context-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/jee" uri="spring-jee-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/lang" uri="spring-lang-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/mvc" uri="spring-mvc-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/tool" uri="spring-tool-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/tx" uri="spring-tx-4.3.xsd"/>
+	<uri name="http://www.springframework.org/schema/util" uri="spring-util-4.3.xsd"/>
 
 </catalog>
