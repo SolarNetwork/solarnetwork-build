@@ -202,11 +202,13 @@
 		<exclude org="jakarta.xml.bind"/>
 		<exclude org="jakarta.xml.ws"/>
 		<exclude org="javax.mail"/>
+		<exclude org="javax.money"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="org.easymock"/>
 		<exclude org="org.eclipse.gemini.blueprint"/>
 		<exclude org="org.eclipse.virgo.web"/>
+		<exclude org="org.javamoney"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
