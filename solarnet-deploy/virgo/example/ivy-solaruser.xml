@@ -32,6 +32,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.web" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common.security" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.agg.event" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
