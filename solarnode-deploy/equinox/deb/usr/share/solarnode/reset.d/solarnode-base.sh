@@ -5,15 +5,17 @@
 # stop SolarNode
 systemctl stop solarnode
 
+echo 'Removing SolarNode configuration and data...'
+
 # remove transient data
-rm -rf /run/solarnode/*
+rm -vrf /run/solarnode/*
 
 # remove persisted data
-rm -rf /var/lib/solarnode/var
+rm -vrf /var/lib/solarnode/var
 
 # remove identity
-rm -rf /etc/solarnode/identity.json
-rm -rf /etc/solarnode/tls/node.jks
+rm -vf /etc/solarnode/identity.json
+rm -vf /etc/solarnode/tls/node.jks
 
 # start SolarNode again
 systemctl start solarnode
