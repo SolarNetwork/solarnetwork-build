@@ -1,5 +1,9 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.6.0 - 2020-06-24
+
+ * Add support for factory reset to remove SolarNode configuration and data.
+
 ## 1.5.2 - 2020-01-24
 
  * Remove net.solarnetwork.node.core.cfg from base package, so that 
