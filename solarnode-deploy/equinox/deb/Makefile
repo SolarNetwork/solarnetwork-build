@@ -1,5 +1,5 @@
 NAME = solarnode-base
-VERSION = 1.5.2-1
+VERSION = 1.6.0-1
 
 deb : 
 	fpm -s dir -t deb \
@@ -12,7 +12,7 @@ deb :
 	--license 'GPL 2.0' \
 	-f \
 	-d 'systemd (>= 215)' \
-	-d 'sn-system (>= 1.0.0)' \
+	-d 'sn-system (>= 1.2.0)' \
 	-d 'java8-runtime-headless' \
 	--provides 'solarnode-framework' \
 	--after-install $(NAME).postinst \
