@@ -424,6 +424,9 @@
 		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/bin" perm="755" 
 			includes="*.sh" excludes="*-bash-utils.sh" verbose="yes"/>
 		
+		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/reset.d" perm="755" 
+			includes="*.sh" verbose="yes"/>
+		
 		<symlink 
 			link="${dir.deb.assemble}/var/lib/solarnode/app/boot" 
 			resource="../../../../usr/share/solarnode/app/boot" 
