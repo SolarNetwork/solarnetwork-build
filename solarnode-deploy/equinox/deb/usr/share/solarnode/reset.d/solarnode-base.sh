@@ -11,7 +11,7 @@ rm -rf /run/solarnode/*
 
 # remove persisted data
 echo 'Removing SolarNode persistent data...'
-rm -rf /var/lib/solarnode/var
+rm -rf /var/lib/solarnode/var/*
 
 # remove identity
 echo 'Removing SolarNode identity...'
