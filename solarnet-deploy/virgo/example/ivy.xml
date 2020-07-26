@@ -195,6 +195,12 @@
 			<exclude org="org.osgi"/>
 		</dependency>
 		
+		<!-- Stringtemplate -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.antlr-runtime" rev="3.5.2_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.stringtemplate" rev="4.3.1_1" conf="runtime">
+			<exclude org="org.antlr"/>
+		</dependency>
+		
 		<!-- Global excludes -->
 		<exclude org="com.sun.xml.fastinfoset"/>
 		<exclude org="jakarta.activation"/>
