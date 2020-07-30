@@ -12,6 +12,7 @@
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.tmpl.st4" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="latest.release" conf="runtime"/>
 
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.common" rev="latest.release" conf="runtime"/>
@@ -51,7 +52,10 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.biz.dao" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.killbill" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf.dao.mybatis" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf.mail" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf.st4" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.event" rev="latest.release" conf="runtime"/>
@@ -75,7 +79,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.alerts" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.killbill.jobs" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.event.dao.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.expire.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.export.jobs" rev="latest.release" conf="runtime"/>
