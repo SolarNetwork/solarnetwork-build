@@ -195,6 +195,10 @@
 			<exclude org="org.osgi"/>
 		</dependency>
 		
+		<!-- Stringtemplate -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.antlr-runtime" rev="3.5.2_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.stringtemplate" rev="4.3.1_1" conf="runtime"/>
+		
 		<!-- Global excludes -->
 		<exclude org="com.sun.xml.fastinfoset"/>
 		<exclude org="jakarta.activation"/>
@@ -205,6 +209,7 @@
 		<exclude org="javax.money"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
+		<exclude org="org.antlr"/>
 		<exclude org="org.easymock"/>
 		<exclude org="org.eclipse.gemini.blueprint"/>
 		<exclude org="org.eclipse.virgo.web"/>
