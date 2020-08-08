@@ -256,7 +256,6 @@
 	<plugin id="org.apache.pdfbox.xmpbox"/>
 	<plugin id="org.apache.pdfbox.fontbox"/>
 	<plugin id="org.apache.servicemix.bundles.batik"/>
-	<plugin id="org.apache.servicemix.bundles.commons-io"/>
 	<plugin id="org.apache.servicemix.bundles.xmlgraphics-commons"/>
 	<plugin id="org.lucee.xml.apisext"/>
 	<plugin id="org.jsoup"/>
