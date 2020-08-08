@@ -5,7 +5,18 @@
 	</info>
 	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
 
-		<!-- Support bundles -->
+		<!-- PDF support -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.batik" rev="1.13_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.xmlgraphics-commons" rev="2.4_1" conf="runtime"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.xalan" rev="2.7.2_3" conf="runtime"/>
+		<dependency org="org.lucee" name="xml-apis-ext" rev="1.3.04" conf="runtime"/>
+		<dependency org="org.jsoup" name="jsoup" rev="1.13.1" conf="runtime"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.pdfbox-graphics2d" rev="latest.release" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-pdfbox" rev="1.0.4" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-slf4j" rev="1.0.4" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.4" conf="runtime"/>
+		
+		<!-- App -->
 		
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
