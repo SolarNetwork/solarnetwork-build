@@ -210,6 +210,7 @@
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="org.antlr"/>
+		<exclude org="org.apache.xmlgraphics"/>
 		<exclude org="org.easymock"/>
 		<exclude org="org.eclipse.gemini.blueprint"/>
 		<exclude org="org.eclipse.virgo.web"/>
@@ -217,6 +218,8 @@
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
+		<exclude org="xalan"/>
+		<exclude org="xml-apis"/>
 		<exclude module="aopalliance"/>
 		<exclude module="aspectjweaver"/>
 		<exclude module="cache-api"/>

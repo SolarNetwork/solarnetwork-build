@@ -248,9 +248,20 @@
 	<plugin id="org.apache.servicemix.bundles.stringtemplate.source"/>
 	<plugin id="org.apache.servicemix.bundles.antlr-runtime"/>
 	<plugin id="org.apache.servicemix.bundles.antlr-runtime.source"/>
+	<plugin id="com.openhtmltopdf.core"/>
+	<plugin id="com.openhtmltopdf.pdfbox"/>
+	<plugin id="com.openhtmltopdf.slf4j"/>
+	<plugin id="com.openhtmltopdf.svg-support"/>
+	<plugin id="org.apache.pdfbox"/>
+	<plugin id="org.apache.pdfbox.xmpbox"/>
+	<plugin id="org.apache.pdfbox.fontbox"/>
+	<plugin id="org.apache.servicemix.bundles.batik"/>
+	<plugin id="org.apache.servicemix.bundles.xmlgraphics-commons"/>
+	<plugin id="org.lucee.xml.apisext"/>
+	<plugin id="org.jsoup"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
-<vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dsn.home=${workspace_loc:solarnetwork-osgi-target} -Dsolarnetwork.vardir=${workspace_loc:solarnetwork-osgi-target/var} -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml -Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Djava.util.logging.config.file=config/jre-logging.properties -Dosgi.java.profile=file:config/java8-server.profile -Dorg.apache.felix.eventadmin.ThreadPoolSize=4 -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true</vmArgs>
+<vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dsn.home=${workspace_loc:solarnetwork-osgi-target} -Dsolarnetwork.vardir=${workspace_loc:solarnetwork-osgi-target/var} -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml -Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Djava.util.logging.config.file=config/jre-logging.properties -Dosgi.java.profile=file:config/java8-server.profile -Dorg.apache.felix.eventadmin.ThreadPoolSize=4 -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true -Djava.awt.headless=true</vmArgs>
 </launcherArgs>
 </target>
