@@ -12,6 +12,13 @@ fi
 
 # setup "home" structure in /var/lib/solarnode
 USER=solar
+
+if ! id -u "$USER" 2>/dev/null; then
+	# Create user now
+	echo "Creating user $USER for SolarNode service. You must configure a password manually."
+	useradd -m -U -G dialout,sudo -s /bin/bash "$USER"
+fi
+
 USER_ID=$(id -u "$USER" 2>/dev/null || echo 0)
 SOLARNODE_HOME=/var/lib/solarnode
 CONF_DIR=/etc/solarnode
