@@ -16,11 +16,11 @@ Updates to the following plugins:
 
 | Name | ID | Version |
 |:-----|:---|:--------|
-| Command Line System Service | `n.s.node.system.cmdline` | 1.2.0 |
-| Core Setup Web App | `n.s.node.setup.web` | 1.44.0 |
+| Command Line System Service | `n.s.n.system.cmdline` | 1.2.0 |
+| Core Setup Web App | `n.s.n.setup.web` | 1.44.0 |
 | Core SolarNetwork Support | `n.s.common` | 1.63.0 |
-| Core SolarNode Framework | `n.s.node` | 1.75.0 |
-| SolarNode External Filesystem Backup | `n.s.node.backup.ext` | 1.0.0 |
+| Core SolarNode Framework | `n.s.n` | 1.75.0 |
+| SolarNode External Filesystem Backup | `n.s.n.backup.ext` | 1.0.0 |
 
 
 ## 1.8.0 - 2020-04-23
@@ -30,7 +30,7 @@ Updates to the following plugins:
 | Name | ID | Version |
 |:-----|:---|:--------|
 | Core SolarNetwork Support | `n.s.common` | 1.61.0 |
-| Core SolarNode Framework | `n.s.node` | 1.74.1 |
+| Core SolarNode Framework | `n.s.n` | 1.74.1 |
 
 
 ## 1.7.0 - 2020-04-14
