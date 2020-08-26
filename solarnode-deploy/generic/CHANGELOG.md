@@ -4,10 +4,24 @@ The **ID** values listed here refer to plugin symbolic names, defined in the
 `Bundle-SymbolicName` entry of each plugin's `META-INF/MANIFEST.MF` file. They
 are abbreviated to make them shorter, using the following conventions:
 
-| ID abbreviation | Full value |
-|:----------------|:-----------|
+| ID abbreviation | Full value                |
+|:----------------|:--------------------------|
 | `n.s.common`    | `net.solarnetwork.common` |
-| `n.s.n`         | `net.solarnetwork.node` |
+| `n.s.n`         | `net.solarnetwork.node`   |
+
+
+## 1.10.0 - 2020-08-26
+
+Updates to the following plugins:
+
+| Name                          | ID                    | Vers   |
+|:------------------------------|:----------------------|:-------|
+| Core Database Storage Support | `n.s.n.dao.jdbc`      | 1.28.0 |
+| Core Settings Support         | `n.s.n.settings.ca`   | 1.11.1 |
+| Core SolarNetwork Support     | `n.s.common`          | 1.64.0 |
+| Core SolarNode Framework      | `n.s.n`               | 1.76.0 |
+| JSON Metadata Service         | `n.s.n.metadata.json` | 1.3.0  |
+| SolarNet Location Service     | `n.s.n.location.ws`   | 2.4.0  |
 
 
 ## 1.9.0 - 2020-06-26
