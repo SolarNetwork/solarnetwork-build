@@ -18,7 +18,7 @@ Updates to the following plugins:
 |:------------------------------|:----------------------|:-------|
 | Core Database Storage Support | `n.s.n.dao.jdbc`      | 1.28.0 |
 | Core Settings Support         | `n.s.n.settings.ca`   | 1.11.1 |
-| Core SolarNetwork Support     | `n.s.common`          | 1.64.0 |
+| Core SolarNetwork Support     | `n.s.common`          | 1.65.0 |
 | Core SolarNode Framework      | `n.s.n`               | 1.76.0 |
 | JSON Metadata Service         | `n.s.n.metadata.json` | 1.3.0  |
 | SolarNet Location Service     | `n.s.n.location.ws`   | 2.4.0  |
