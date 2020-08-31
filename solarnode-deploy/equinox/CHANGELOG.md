@@ -1,5 +1,9 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.7.0 - 2020-08-31
+
+ * Add JNA support to support easier direct hardware access.
+
 ## 1.6.0 - 2020-06-24
 
  * Add support for factory reset to remove SolarNode configuration and data.

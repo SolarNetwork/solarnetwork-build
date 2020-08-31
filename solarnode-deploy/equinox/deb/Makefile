@@ -1,11 +1,12 @@
+ARCH = all
 NAME = solarnode-base
-VERSION = 1.6.0-2
+VERSION = 1.7.0-1
 
 deb : 
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
-	-a all \
+	-a $(ARCH) \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \
 	--description 'SolarNode application' \
@@ -22,4 +23,4 @@ deb :
 	etc lib usr var
 
 clean : 
-	rm $(NAME)_$(VERSION)_all.deb
+	rm $(NAME)_$(VERSION)_$(ARCH).deb
