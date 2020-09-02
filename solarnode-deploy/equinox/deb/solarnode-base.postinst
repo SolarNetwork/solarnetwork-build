@@ -80,6 +80,6 @@ setup_write_dir "${SOLARNODE_HOME}/app/main"
 # add link ~/bin so utilities added to PATH on login
 setup_user_bin
 
-systemctl daemon-reload
+systemctl daemon-reload || true
 
 service_up solarnode.service

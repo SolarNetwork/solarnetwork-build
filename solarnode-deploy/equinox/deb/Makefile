@@ -1,6 +1,6 @@
 ARCH = all
 NAME = solarnode-base
-VERSION = 1.7.0-1
+VERSION = 1.7.0-2
 
 deb : 
 	fpm -s dir -t deb \
