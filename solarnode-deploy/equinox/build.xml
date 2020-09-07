@@ -80,6 +80,7 @@
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.assemble}/app/boot"/>
 		<mkdir dir="${dir.assemble}/app/core"/>
+		<mkdir dir="${dir.assemble}/app/ext"/>
 		<mkdir dir="${dir.assemble.conf}"/>
 		<mkdir dir="${dir.assemble}/lib"/>
 		<mkdir dir="${dir.assemble}/var"/>
@@ -145,6 +146,18 @@
 		
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/equinox.jar"/>
 		<symlink link="${dir.assemble}/app/equinox.jar" resource="${assemble.equinox.jar}"/>
+	</target>
+
+	<target name="app-ext" depends="ivy-init">
+		<ivy:settings file="${ivy.settings}"/>
+		<ivy:resolve file="${ivy.file}" conf="ext"/>
+		<delete dir="${dir.build}/jars" failonerror="no"/>
+		<mkdir dir="${dir.build}/jars"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
+		<mkdir dir="${dir.assemble}/app/ext"/>
+		<copy todir="${dir.assemble}/app/ext" flatten="yes">
+			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
+		</copy>
 	</target>
 	
 	<target name="equinox-config">
@@ -220,7 +233,7 @@
 		<chmod perm="0755" dir="${dir.assemble}" includes="bin/*"/>
 	</target>
 	
-	<target name="assemble" depends="assemble-base,app-boot,app-core,app-conf,app-main,equinox-config,assemble-perms"
+	<target name="assemble" depends="assemble-base,app-boot,app-core,app-conf,app-ext,app-main,equinox-config,assemble-perms"
 		description="Assemble a base node directory structure"/>
 	
 	<!-- Attempt to use native tar, to honor symlinks -->
@@ -378,6 +391,7 @@
 		<mkdir dir="${dir.deb.assemble}/etc/solarnode"/>
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/boot"/>
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/core"/>
+		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/ext"/>
 		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/bin"/>
 		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app"/>
 	</target>
@@ -390,6 +404,9 @@
 			<param name="pkg.exclude.conf" value="yes"/>
 		</antcall>
 		<antcall target="app-core">
+			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+		</antcall>
+		<antcall target="app-ext">
 			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
 		</antcall>
 

@@ -13,7 +13,7 @@ fi
 # setup "home" structure in /var/lib/solarnode
 USER=solar
 
-if ! id -u "$USER" 2>/dev/null; then
+if ! id -u "$USER" >/dev/null 2>/dev/null; then
 	# Create user now
 	echo "Creating user $USER for SolarNode service. You must configure a password manually."
 	useradd -m -U -G dialout,sudo -s /bin/bash "$USER"
@@ -80,6 +80,6 @@ setup_write_dir "${SOLARNODE_HOME}/app/main"
 # add link ~/bin so utilities added to PATH on login
 setup_user_bin
 
-systemctl daemon-reload
+systemctl daemon-reload || true
 
 service_up solarnode.service

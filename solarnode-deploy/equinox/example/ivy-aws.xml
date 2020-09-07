@@ -5,8 +5,9 @@
 		<conf name="boot" visibility="public" description="Bootstrap Environment"/>
 		<conf name="gemini" visibility="public" description="Gemini Web Runtime"/>
 		<conf name="core" visibility="public" description="Core Runtime"/>
+		<conf name="ext" visibility="public" description="System extensions"/>
 	</configurations>
-	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);foo->default(runtime)"
+	<dependencies defaultconfmapping="boot->default(runtime);gemini->default(runtime);core->default(runtime);ext->default(runtime);foo->default(runtime)"
 		defaultconf="core->default(runtime)">
 
 		<!-- Bootstrap -->
@@ -384,6 +385,9 @@
 		<dependency org="com.sun.activation" name="jakarta.activation" rev="1.2.1" conf="boot"/>
 		<dependency org="javax.annotation" name="javax.annotation-api" rev="1.3.2" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>
+
+		<!-- JNA -->
+		<dependency org="net.java.dev.jna" name="jna" rev="5.6.0" conf="core"/>
 
 		<!-- Global excludes -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp" conf="core"/>
