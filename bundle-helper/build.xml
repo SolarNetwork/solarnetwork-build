@@ -1,6 +1,6 @@
 <project basedir="." name="SolarNetwork BundleHelper">
 	
-	<property name="app.version" value="1.1"/>
+	<property name="app.version" value="1.2"/>
 	<property name="jar.name" value="bh-${app.version}.jar"/>
 	
 	<property name="dir.source" value="${basedir}/src"/>
@@ -27,8 +27,8 @@
 			deprecation="${compile.deprecation}" 
 			optimize="${compile.optimize}" 
 			nowarn="${compile.nowarn}"
-			target="1.2"
-			source="1.2">
+			target="1.8"
+			source="1.8">
 			<classpath refid="compile.path" />
 		</javac>
 	</target>
@@ -38,6 +38,9 @@
 		<jar destfile="${dir.dist}/${jar.name}">
 			<fileset dir="${dir.compile}" includes="**"/>
 			<fileset dir="${dir.resource}" includes="**"/>
+			<manifest>
+				<attribute name="Main-Class" value="net.solarnetwork.bh.TableGenerator"/>
+			</manifest>
 		</jar>
 	</target>
 	
