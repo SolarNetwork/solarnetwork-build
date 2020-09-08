@@ -45,11 +45,11 @@ import java.util.jar.Manifest;
  * 
  * <pre>
  * <code>
- * | Name                                                     | ID                            | Vers  |
- * |:---------------------------------------------------------|:------------------------------|:------|
- * | Advanced Energy 250TX Inverter Data Source               | n.s.n.datum.ae.ae250tx        | 3.1.0 |
- * | Advanced Energy 500NX Inverter Data Source               | n.s.n.datum.ae.ae500nx        | 1.1.0 |
- * | Advanced Energy Hardware Support                         | n.s.n.hw.ae                   | 3.0.0 |
+ * | Name                                       | ID                       | Vers  |
+ * |:-------------------------------------------|:-------------------------|:------|
+ * | Advanced Energy 250TX Inverter Data Source | `n.s.n.datum.ae.ae250tx` | 3.1.0 |
+ * | Advanced Energy 500NX Inverter Data Source | `n.s.n.datum.ae.ae500nx` | 1.1.0 |
+ * | Advanced Energy Hardware Support           | `n.s.n.hw.ae`            | 3.0.0 |
  * </code>
  * </pre>
  * 
@@ -90,17 +90,21 @@ public class TableGenerator {
 				extractManifestInfo(path);
 			}
 		}
-		String fmt = "| %-" + widths[0] + "s | %-" + widths[1] + "s | %-" + widths[2] + "s |";
+		String fmt = "| %-" + widths[0] + "s | %-" + (widths[1] + 2) + "s | %-" + widths[2] + "s |";
 		out.println(String.format(fmt, "Name", "ID", "Vers"));
 		for ( int i = 0; i < widths.length; i++ ) {
 			out.print("|:");
-			for ( int j = 0, len = widths[i] + 1; j < len; j++ ) {
+			int len = widths[i] + 1;
+			if ( i == 1 ) {
+				len += 2; // for ``
+			}
+			for ( int j = 0; j < len; j++ ) {
 				out.print('-');
 			}
 		}
 		out.println('|');
 		for ( BundleInfo info : bundles.values() ) {
-			out.println(String.format(fmt, info.name, info.bundleId, info.version));
+			out.println(String.format(fmt, info.name, '`' + info.bundleId + '`', info.version));
 		}
 	}
 
