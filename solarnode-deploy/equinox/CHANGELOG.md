@@ -1,5 +1,9 @@
 # SolarNode Platform (Equinox) Changelog
 
+## 1.8.0 - 2020-09-08
+
+ * Update to Gemini Web 3.0.6 (Apache Tomcat 8.5.56)
+
 ## 1.7.0 - 2020-08-31
 
  * Add JNA support to support easier direct hardware access.
