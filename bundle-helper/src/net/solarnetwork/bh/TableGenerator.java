@@ -136,7 +136,7 @@ public class TableGenerator {
 			info.bundleId = compressedBundleId(main.getValue(BUNDLE_ID));
 			info.version = compressedBundleVersion(main.getValue(BUNDLE_VERS));
 			if ( info.isValid() ) {
-				bundles.put(info.name, info);
+				bundles.put(info.name.toLowerCase(), info);
 				if ( info.name.length() > widths[0] ) {
 					widths[0] = info.name.length();
 				}
