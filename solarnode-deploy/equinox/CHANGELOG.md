@@ -11,7 +11,7 @@ Includes the following bundles:
 | %Bundle-Name.0                                          | `javax.xml.soap`                                            | 1.3.0    |
 | %bundleName                                             | `org.eclipse.equinox.console`                               | 1.3.300  |
 | %pluginName                                             | `javax.transaction`                                         | 1.1.0    |
-| %systemBundle                                           | `org.eclipse.osgi; singleton:=true`                         | 3.14.0   |
+| %systemBundle                                           | `org.eclipse.osgi`                                          | 3.14.0   |
 | AOP Alliance API                                        | `com.springsource.org.aopalliance`                          | 1.0.0    |
 | Apache Apache HttpClient OSGi bundle                    | `org.apache.httpcomponents.httpclient`                      | 4.5.10   |
 | Apache Apache HttpCore OSGi bundle                      | `org.apache.httpcomponents.httpcore`                        | 4.4.12   |
@@ -56,7 +56,7 @@ Includes the following bundles:
 | Apache ServiceMix :: Bundles :: spring-webmvc           | `org.apache.servicemix.bundles.spring-webmvc`               | 4.3.25   |
 | Apache ServiceMix :: Bundles :: spring-websocket        | `org.apache.servicemix.bundles.spring-websocket`            | 4.3.25   |
 | Apache Standard Taglib Implementation                   | `org.apache.taglibs.standard-impl`                          | 1.2.1    |
-| Apache Standard Taglib Specification API                | `org.apache.taglibs.taglibs-standard-spec;singleton=true`   | 1.2.1    |
+| Apache Standard Taglib Specification API                | `org.apache.taglibs.taglibs-standard-spec`                  | 1.2.1    |
 | Apache Tomcat API                                       | `org.apache.tomcat.api`                                     | 8.5.56   |
 | Apache Tomcat Catalina                                  | `org.apache.catalina`                                       | 8.5.56   |
 | Apache Tomcat Catalina HA                               | `org.apache.catalina.ha`                                    | 8.5.56   |

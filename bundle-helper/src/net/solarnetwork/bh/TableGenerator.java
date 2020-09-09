@@ -112,6 +112,10 @@ public class TableGenerator {
 	private static String SN_PREFIX = "net.solarnetwork.";
 
 	private static String compressedBundleId(String id) {
+		int idx = id.indexOf(';');
+		if ( idx > 0 ) {
+			id = id.substring(0, idx);
+		}
 		if ( id.startsWith(NODE_PREFIX) ) {
 			return "n.s.n." + id.substring(NODE_PREFIX.length());
 		} else if ( id.startsWith(SN_PREFIX) ) {
