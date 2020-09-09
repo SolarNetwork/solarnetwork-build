@@ -71,7 +71,10 @@
 		<copy todir="${dir.deb.assemble}">
 			<fileset dir="${dir.deb.base}" includes="**"/>
 		</copy>
-		
+
+		<java jar="${dir.build.lib}/lib/bh.jar" fork="true">
+			<arg path="${dir.deb.assemble}"/>
+		</java>
 	</target>
 
 </project>
