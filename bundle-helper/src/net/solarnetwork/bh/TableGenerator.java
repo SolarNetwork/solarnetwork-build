@@ -134,7 +134,13 @@ public class TableGenerator {
 	private void extractManifestInfo(Path resource) {
 		try (JarInputStream in = new JarInputStream(Files.newInputStream(resource))) {
 			Manifest mf = in.getManifest();
+			if ( mf == null ) {
+				return;
+			}
 			Attributes main = mf.getMainAttributes();
+			if ( main == null ) {
+				return;
+			}
 			BundleInfo info = new BundleInfo();
 			info.name = main.getValue(BUNDLE_NAME);
 			info.bundleId = compressedBundleId(main.getValue(BUNDLE_ID));
