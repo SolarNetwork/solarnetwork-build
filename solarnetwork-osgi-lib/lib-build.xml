@@ -29,6 +29,7 @@
 	<property name="compile.nowarn" value="true" />
 	<property name="compile.source" value="1.6" />
 	<property name="compile.target" value="1.6" />
+	<property name="javadoc.package.excludes" value=""/>
 	<property name="solarnetwork.archive.url" 
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="solarnetwork-3rd-party.archive.url" 
@@ -405,6 +406,7 @@
 		<mkdir dir="${dir.build}/javadoc"/>
 		<javadoc 
 				sourcepath="${dir.source}"
+				excludepackagenames="${javadoc.package.excludes}"
 				destdir="${dir.build}/javadoc" 
 				classpathref="javadoc.path.combined">
 			<arg value="--no-module-directories"/>
