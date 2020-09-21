@@ -462,7 +462,7 @@
 			</dirset>
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
-		<junit fork="yes" forkmode="once">
+		<junit fork="yes" forkmode="once" dir="${dir.input}">
 			<classpath refid="junit.path"/>
 			<formatter type="xml"/>
 			<jvmarg line="${test.jvm.args}"/>
@@ -486,7 +486,7 @@
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
 		<jacoco:coverage destfile="${dir.test.reports}/${test.bundle.name}.exec">
-			<junit fork="yes" forkmode="once">
+			<junit fork="yes" forkmode="once" dir="${dir.input}">
 				<classpath refid="junit.path"/>
 				<formatter type="xml"/>
 				<jvmarg line="${test.jvm.args}"/>
