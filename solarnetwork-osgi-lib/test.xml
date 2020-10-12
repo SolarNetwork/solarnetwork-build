@@ -1,3 +1,22 @@
+<!--
+	Ant build script for running tests for all SolarNetwork projects in one go.
+	
+	To run all tests and produce an HTML report on the results:
+	
+		ant -f test.xml test-all-clean
+	
+	Customize what projects are tested by providing a test.buildfiles property with
+	the specific pattern to use. The pattern must resolve build.xml files in 
+	test projects, relative to the ../.. directory. For example, to run only Central
+	tests:
+	
+		ant -f test.xml -Dtest.buildfiles=solarnetwork-central/\*.test/build.xml test-all-clean
+	
+	To include a test coverage report, run with with-coverage=true:
+	
+		ant -f test.xml -Dwith-coverage=1 test-all-clean
+	
+-->
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:if="ant:if"
 	xmlns:jacoco="antlib:org.jacoco.ant">
 
@@ -46,6 +65,20 @@
 		<include name="solarnetwork-central/*.test/build/ant/deps/*.jar"/>
 	</patternset>
 	
+	<target name="test-all.buildfiles.some" if="test.buildfiles">
+		<patternset id="test-all.project-buildfiles">
+			<include name="${test.buildfiles}"/>
+		</patternset>
+	</target>
+	
+	<target name="test-all.buildfiles.all" unless="test.buildfiles">
+		<patternset id="test-all.project-buildfiles">
+			<include name="${test.buildfiles}"/>
+		</patternset>
+	</target>
+	
+	<target name="test-all.buildfiles" depends="test-all.buildfiles.all,test-all.buildfiles.some"/>
+
 	<target name="test-all.clean">
 		<delete dir="${dir.test.reports}" failonerror="no"/>
 	</target>
@@ -53,9 +86,9 @@
 	<target name="test-all-clean" description="Clean and build all unit tests report from scratch"
 		depends="test-all.clean,test-all,test-report"/>
 
-	<target name="test-all" description="Build all unit tests report from scratch">
+	<target name="test-all" description="Build all unit tests report from scratch" depends="test-all.buildfiles">
 		<fileset id="test.build.files" dir="${basedir}/../..">
-			<patternset refid="project-buildfiles"/>
+			<patternset refid="test-all.project-buildfiles"/>
 		</fileset>
 		<pathconvert property="test.build.bundles" pathsep="${line.separator}&#9;">
 			<fileset refid="test.build.files"/>
