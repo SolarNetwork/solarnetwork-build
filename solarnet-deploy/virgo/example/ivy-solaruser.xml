@@ -18,9 +18,9 @@
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-pdfbox" rev="1.0.4" conf="runtime"/>
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-slf4j" rev="1.0.4" conf="runtime"/>
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.4" conf="runtime"/>
-		
+
 		<!-- App -->
-		
+
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="latest.release" conf="runtime"/>
@@ -79,6 +79,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.dao.mybatis" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.v16.controller" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.audit.jdbc" rev="latest.release" conf="runtime"/>
@@ -116,6 +117,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.ocpp.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release" conf="runtime"/>
-	
+
 	</dependencies>
 </ivy-module>
