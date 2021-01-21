@@ -6,8 +6,11 @@
 	<dependencies defaultconfmapping="runtime->default(runtime);foo->default(runtime)">
 
 		<!-- Support bundles -->
-		
+
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp" rev="latest.release" conf="runtime"/>
+
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
+
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release" conf="runtime"/>
@@ -60,7 +63,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.session" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.v16.controller" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.standard" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
