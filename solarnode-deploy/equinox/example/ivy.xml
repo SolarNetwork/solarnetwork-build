@@ -74,7 +74,7 @@
 		</dependency>
 
 		<!-- Gemini Web -->
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="3.0.4.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="3.0.6.RELEASE" conf="gemini">
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="javax.annotation"/>
 			<exclude module="org.eclipse.equinox.event"/>
@@ -82,7 +82,7 @@
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="3.0.4.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="3.0.6.RELEASE" conf="gemini">
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="javax.annotation"/>
 			<exclude module="org.eclipse.equinox.event"/>
@@ -90,7 +90,7 @@
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="3.0.4.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="3.0.6.RELEASE" conf="gemini">
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="javax.annotation"/>
 			<exclude module="org.eclipse.equinox.event"/>
@@ -98,7 +98,7 @@
 			<exclude module="org.eclipse.osgi.services"/>
 			<exclude module="org.slf4j.api"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.4.RELEASE" conf="gemini">
+		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.6.RELEASE" conf="gemini">
 			<exclude org="org.eclipse.virgo.util"/>
 			<exclude module="javax.annotation"/>
 			<exclude module="org.eclipse.equinox.event"/>

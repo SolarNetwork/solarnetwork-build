@@ -18,10 +18,13 @@
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-pdfbox" rev="1.0.4" conf="runtime"/>
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-slf4j" rev="1.0.4" conf="runtime"/>
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.4" conf="runtime"/>
-		
+
 		<!-- App -->
-		
+
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.ocpp" rev="latest.release" conf="runtime"/>
+
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
+
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release" conf="runtime"/>
@@ -50,7 +53,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.agg.event" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.jdbc" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export.dao.mybatis" rev="latest.release" conf="runtime"/>
@@ -68,23 +71,24 @@
 			<exclude org="com.fasterxml.jackson.core"/>
 			<exclude org="com.fasterxml.jackson.dataformat"/>
 		</dependency>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.ocpp.mqtt" rev="latest.release" conf="runtime">
-			<!-- To make sure jackson-dataformat-cbor 2.10.1-SNF20191217A jar used -->
-			<exclude org="com.fasterxml.jackson.core"/>
-			<exclude org="com.fasterxml.jackson.dataformat"/>
-		</dependency>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.instructor.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.dao.mybatis" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.ocpp.v16.controller" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.ocpp.json" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.in.ocpp.mqtt" rev="latest.release" conf="runtime">
+			<!-- To make sure jackson-dataformat-cbor 2.10.1-SNF20191217A jar used -->
+			<exclude org="com.fasterxml.jackson.core"/>
+			<exclude org="com.fasterxml.jackson.dataformat"/>
+		</dependency>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.audit.jdbc" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.standard" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.aop" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.aop" rev="latest.release" conf="runtime"/>
@@ -116,6 +120,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.ocpp.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release" conf="runtime"/>
-	
+
 	</dependencies>
 </ivy-module>

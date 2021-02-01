@@ -29,6 +29,7 @@
 	<property name="compile.nowarn" value="true" />
 	<property name="compile.source" value="1.6" />
 	<property name="compile.target" value="1.6" />
+	<property name="javadoc.package.excludes" value=""/>
 	<property name="solarnetwork.archive.url" 
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
 	<property name="solarnetwork-3rd-party.archive.url" 
@@ -198,7 +199,7 @@
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
-					classpath="${dir.target}/lib/bh-1.1.jar"/>
+					classpath="${dir.target}/lib/bh-1.2.jar"/>
 	</target>
 	
 	<target name="read.manifest" depends="bh.init">
@@ -405,6 +406,7 @@
 		<mkdir dir="${dir.build}/javadoc"/>
 		<javadoc 
 				sourcepath="${dir.source}"
+				excludepackagenames="${javadoc.package.excludes}"
 				destdir="${dir.build}/javadoc" 
 				classpathref="javadoc.path.combined">
 			<arg value="--no-module-directories"/>
@@ -460,7 +462,7 @@
 			</dirset>
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
-		<junit fork="yes" forkmode="once">
+		<junit fork="yes" forkmode="once" dir="${dir.input}">
 			<classpath refid="junit.path"/>
 			<formatter type="xml"/>
 			<jvmarg line="${test.jvm.args}"/>
@@ -484,7 +486,7 @@
 		</path>
 		<!--echo level="info">JUnit classpath: ${toString:junit.path}</echo-->
 		<jacoco:coverage destfile="${dir.test.reports}/${test.bundle.name}.exec">
-			<junit fork="yes" forkmode="once">
+			<junit fork="yes" forkmode="once" dir="${dir.input}">
 				<classpath refid="junit.path"/>
 				<formatter type="xml"/>
 				<jvmarg line="${test.jvm.args}"/>

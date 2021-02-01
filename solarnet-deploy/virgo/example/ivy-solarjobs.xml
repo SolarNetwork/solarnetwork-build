@@ -20,7 +20,8 @@
 		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.4" conf="runtime"/>
 
 		<!-- App -->
-		
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
+
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release" conf="runtime"/>
@@ -42,7 +43,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.agg.event" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.biz.dao" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.mybatis" rev="latest.release" conf="runtime"/>
+		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.dao.jdbc" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export.dao.mybatis" rev="latest.release" conf="runtime"/>
@@ -63,7 +64,6 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.query.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.quartz" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.scheduler.standard" rev="latest.release" conf="runtime"/>
-		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.billing.snf" rev="latest.release" conf="runtime"/>
@@ -86,9 +86,9 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.export.dao.mybatis" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim.cloud" rev="latest.release" conf="runtime"/>
-	
+
 		<!-- Job bundles -->
-		
+
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.agg" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.export.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.datum.imp.jobs" rev="latest.release" conf="runtime"/>
@@ -99,7 +99,7 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.expire.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.export.jobs" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.nim.jobs" rev="latest.release" conf="runtime"/>
-		
+
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.jobs.web" rev="latest.release" conf="runtime"/>
 
 	</dependencies>

@@ -244,6 +244,10 @@
 	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
 	<plugin id="jakarta.activation-api"/>
 	<plugin id="org.ehcache.ehcache.source"/>
+	<plugin id="org.openmuc.jmbus.source"/>
+	<plugin id="org.openmuc.jmbus"/>
+	<plugin id="org.openmuc.jrxtx"/>
+	<plugin id="org.openmuc.jrxtx.source"/>
 	<plugin id="org.apache.servicemix.bundles.stringtemplate"/>
 	<plugin id="org.apache.servicemix.bundles.stringtemplate.source"/>
 	<plugin id="org.apache.servicemix.bundles.antlr-runtime"/>
