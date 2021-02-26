@@ -9,7 +9,7 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.11.0 - 2020-09-16
+## 1.11.0 - 2021-02-26
 
 Includes the following plugins:
 
@@ -23,9 +23,9 @@ Includes the following plugins:
 | Core Reactor Service                 | `n.s.n.reactor.simple`         | 1.5.1  |
 | Core Settings Support                | `n.s.n.settings.ca`            | 1.11.1 |
 | Core Setup Support                   | `n.s.n.setup`                  | 1.22.0 |
-| Core Setup Web App                   | `n.s.n.setup.web`              | 1.44.0 |
-| Core SolarNetwork Support            | `n.s.common`                   | 1.66.0 |
-| Core SolarNode Framework             | `n.s.node`                     | 1.77.0 |
+| Core Setup Web App                   | `n.s.n.setup.web`              | 1.44.1 |
+| Core SolarNetwork Support            | `n.s.common`                   | 1.68.0 |
+| Core SolarNode Framework             | `n.s.node`                     | 1.79.0 |
 | Debian Setup Support                 | `n.s.n.setup.deb`              | 1.0.0  |
 | Derby Database Extensions            | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
 | Derby Database Storage Support       | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
