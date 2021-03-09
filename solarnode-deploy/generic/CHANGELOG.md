@@ -9,6 +9,43 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.12.0 - 2021-02-26
+
+| Name                                 | ID                             | Vers   |
+|:-------------------------------------|:-------------------------------|:-------|
+| Auto Setup                           | `n.s.n.setup.auto`             | 1.3.1  |
+| Bouncy Castle PKI                    | `n.s.common.pki.bc`            | 1.3.0  |
+| Command Line System Service          | `n.s.n.system.cmdline`         | 1.2.0  |
+| Common AWS S3 Support                | `n.s.common.s3`                | 1.0.1  |
+| Core Database Storage Support        | `n.s.n.dao.jdbc`               | 1.28.1 |
+| Core Reactor Service                 | `n.s.n.reactor.simple`         | 1.5.1  |
+| Core Settings Support                | `n.s.n.settings.ca`            | 1.11.1 |
+| Core Setup Support                   | `n.s.n.setup`                  | 1.22.0 |
+| Core Setup Web App                   | `n.s.n.setup.web`              | 1.44.1 |
+| Core SolarNetwork Support            | `n.s.common`                   | 1.68.0 |
+| Core SolarNode Framework             | `n.s.node`                     | 1.79.0 |
+| Debian Setup Support                 | `n.s.n.setup.deb`              | 1.0.0  |
+| Derby Database Extensions            | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
+| Derby Database Storage Support       | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
+| Eclipse Gemini Web Support           | `n.s.common.web.gemini`        | 2.1.0  |
+| JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.0  |
+| MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.1.0  |
+| Plugin Repository                    | `n.s.n.setup.obr`              | 1.5.2  |
+| Reactor Database Storage             | `n.s.n.reactor.dao.jdbc`       | 1.4.0  |
+| Reactor JSON Support                 | `n.s.n.reactor.io.json`        | 1.2.1  |
+| S3 Backup                            | `n.s.n.backup.s3`              | 1.0.0  |
+| S3 Setup                             | `n.s.n.setup.s3`               | 1.2.0  |
+| SolarNet Bulk JSON Web Uploader      | `n.s.n.upload.bulkjsonwebpost` | 1.11.0 |
+| SolarNet Location Service            | `n.s.n.location.ws`            | 2.4.0  |
+| SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.1  |
+| SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.1.0  |
+| SolarNetwork Common Web              | `n.s.common.web`               | 1.17.0 |
+| SolarNode External Filesystem Backup | `n.s.n.backup.ext`             | 1.0.0  |
+| SolarNode Security                   | `n.s.n.setup.security`         | 1.0.0  |
+| Spring Expression Service            | `n.s.common.expr.spel`         | 1.0.1  |
+| System SSH Support                   | `n.s.n.system.ssh`             | 1.1.0  |
+
+
 ## 1.11.0 - 2021-02-26
 
 Includes the following plugins:
