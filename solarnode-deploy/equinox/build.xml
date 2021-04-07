@@ -397,7 +397,7 @@
 	</target>
 
 	<target name="deb-package-assemble" description="Create Debian package structure"
-			depends="deb-package-assemble-prepare">
+			depends="deb-package-assemble-prepare,deb-package-assemble-copy">
 		<!-- Create /usr/share/solarnode structure -->
 		<antcall target="app-boot">
 			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
@@ -422,10 +422,6 @@
 			link="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
 			resource="../../../../../../etc/solarnode/log4j.properties"
 			failonerror="no"/>
-
-		<copy todir="${dir.deb.assemble}">
-			<fileset dir="${dir.deb.base}" includes="**"/>
-		</copy>
 
 		<copy todir="${dir.deb.assemble}/etc/solarnode">
 			<fileset dir="${dir.base}/conf">
@@ -470,5 +466,10 @@
 		</java>
 	</target>
 
+	<target name="deb-package-assemble-copy" unless="deb.nocopy">
+		<copy todir="${dir.deb.assemble}">
+			<fileset dir="${dir.deb.base}" includes="**"/>
+		</copy>
+	</target>
 
 </project>
