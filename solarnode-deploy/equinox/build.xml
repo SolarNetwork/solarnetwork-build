@@ -425,7 +425,7 @@
 		<move file="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
 				todir="${dir.deb.assemble}/${dir.deb.conf.path}"/>
 		<symlink
-			link="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
+			link="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
 			resource="/${dir.deb.conf.path}/log4j.properties"
 			failonerror="no"/>
 
