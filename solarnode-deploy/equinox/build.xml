@@ -66,9 +66,6 @@
 	<property name="dir.deb.conf.path" value="etc/solarnode"/>
 	<property name="dir.deb.share.path" value="usr/share/solarnode"/>
 	<property name="dir.deb.share.relroot" value="../../.."/>
-	<property name="dir.deb.base" value="deb"/>
-
-
 
 	<import file="${dir.target}/lib-build.xml"/>
 
@@ -405,7 +402,7 @@
 			depends="deb-package-assemble-main,deb-package-assemble-symlinks">
 	</target>
 
-	<target name="deb-package-assemble-main" depends="deb-package-assemble-prepare,deb-package-assemble-copy">
+	<target name="deb-package-assemble-main" depends="deb-package-assemble-prepare">
 		<!-- Create /usr/share/solarnode structure -->
 		<antcall target="app-boot">
 			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
@@ -476,12 +473,4 @@
 			failonerror="no"/>
 	</target>
 
-
-	<target name="deb-package-assemble-copy" unless="deb.nocopy">
-		<copy todir="${dir.deb.assemble}">
-			<fileset dir="${dir.deb.base}" includes="**"/>
-		</copy>
-	</target>
-
 </project>
-

@@ -10,7 +10,6 @@
 	<property name="dir.jars" value="${dir.build}/jars"/>
 
 	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
-	<property name="dir.deb.base" value="deb/core"/>
 	<property name="dir.deb.app.path" value="var/lib/solarnode"/>
 
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings-solarnetwork.xml"/>
@@ -63,7 +62,7 @@
 	</target>
 
 	<target name="deb-package-assemble" description="Create Debian package structure"
-			depends="deb-package-assemble-prepare,deb-package-assemble-copy">
+			depends="deb-package-assemble-prepare">
 
 		<antcall target="assemble">
 			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.app.path}"/>
@@ -72,12 +71,6 @@
 		<java jar="${dir.build.lib}/lib/bh.jar" fork="true">
 			<arg path="${dir.deb.assemble}"/>
 		</java>
-	</target>
-	
-	<target name="deb-package-assemble-copy" unless="deb.nocopy">
-		<copy todir="${dir.deb.assemble}">
-			<fileset dir="${dir.deb.base}" includes="**"/>
-		</copy>
 	</target>
 
 </project>
