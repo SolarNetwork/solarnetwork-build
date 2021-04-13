@@ -403,6 +403,7 @@
 		<exclude module="com.springsource.org.apache.commons.logging"/>
 		<exclude module="javax.inject"/>
 		<exclude module="org.osgi.core"/>
+		<exclude module="org.slf4j.nop"/>
 
 	</dependencies>
 </ivy-module>
