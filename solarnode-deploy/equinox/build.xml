@@ -61,9 +61,11 @@
 	<property name="dir.platform" value="${basedir}/../../solarnetwork-osgi-target"/>
 
 	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
-	<property name="dir.deb.base" value="deb"/>
-
-
+	<property name="dir.deb.app.path" value="var/lib/solarnode"/>
+	<property name="dir.deb.app.relroot" value="../../.."/>
+	<property name="dir.deb.conf.path" value="etc/solarnode"/>
+	<property name="dir.deb.share.path" value="usr/share/solarnode"/>
+	<property name="dir.deb.share.relroot" value="../../.."/>
 
 	<import file="${dir.target}/lib-build.xml"/>
 
@@ -388,46 +390,45 @@
 
 	<target name="deb-package-assemble-prepare">
 		<mkdir dir="${dir.deb.assemble}"/>
-		<mkdir dir="${dir.deb.assemble}/etc/solarnode"/>
-		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/boot"/>
-		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/core"/>
-		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/app/ext"/>
-		<mkdir dir="${dir.deb.assemble}/usr/share/solarnode/bin"/>
-		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.conf.path}"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.share.path}/app/boot"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.share.path}/app/core"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.share.path}/app/ext"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.share.path}/bin"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.app.path}/app"/>
+	</target>
+	
+	<target name="deb-package-assemble" description="Create Debian package structure" 
+			depends="deb-package-assemble-main,deb-package-assemble-symlinks">
 	</target>
 
-	<target name="deb-package-assemble" description="Create Debian package structure"
-			depends="deb-package-assemble-prepare">
+	<target name="deb-package-assemble-main" depends="deb-package-assemble-prepare">
 		<!-- Create /usr/share/solarnode structure -->
 		<antcall target="app-boot">
-			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
 			<param name="pkg.exclude.conf" value="yes"/>
 		</antcall>
 		<antcall target="app-core">
-			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
 		</antcall>
 		<antcall target="app-ext">
-			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
+			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
 		</antcall>
 
 		<!-- Create /etc/solarnode/config.ini -->
 		<antcall target="equinox-config">
-			<param name="dir.assemble" value="${dir.deb.assemble}/usr/share/solarnode"/>
-			<param name="dir.assemble.conf" value="${dir.deb.assemble}/etc/solarnode"/>
+			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
+			<param name="dir.assemble.conf" value="${dir.deb.assemble}/${dir.deb.conf.path}"/>
 		</antcall>
 
-		<move file="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
-				todir="${dir.deb.assemble}/etc/solarnode"/>
+		<move file="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
+				todir="${dir.deb.assemble}/${dir.deb.conf.path}"/>
 		<symlink
-			link="${dir.deb.assemble}/usr/share/solarnode/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
-			resource="../../../../../../etc/solarnode/log4j.properties"
+			link="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
+			resource="${dir.deb.share.relroot}/../../../${dir.deb.conf.path}/log4j.properties"
 			failonerror="no"/>
 
-		<copy todir="${dir.deb.assemble}">
-			<fileset dir="${dir.deb.base}" includes="**"/>
-		</copy>
-
-		<copy todir="${dir.deb.assemble}/etc/solarnode">
+		<copy todir="${dir.deb.assemble}/${dir.deb.conf.path}">
 			<fileset dir="${dir.base}/conf">
 				<include name="*.*"/>
 				<include name="services/*.cfg"/>
@@ -438,37 +439,38 @@
 			</fileset>
 		</copy>
 
-		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/bin" perm="755"
+		<chmod dir="${dir.deb.assemble}/${dir.deb.share.path}/bin" perm="755"
 			includes="*.sh" excludes="*-bash-utils.sh" verbose="yes"/>
 
-		<chmod dir="${dir.deb.assemble}/usr/share/solarnode/reset.d" perm="755"
+		<chmod dir="${dir.deb.assemble}/${dir.deb.share.path}/reset.d" perm="755"
 			includes="*.sh" verbose="yes"/>
 
-		<symlink
-			link="${dir.deb.assemble}/var/lib/solarnode/app/boot"
-			resource="../../../../usr/share/solarnode/app/boot"
-			failonerror="no"/>
-		<symlink
-			link="${dir.deb.assemble}/var/lib/solarnode/app/core"
-			resource="../../../../usr/share/solarnode/app/core"
-			failonerror="no"/>
-		<symlink
-			link="${dir.deb.assemble}/var/lib/solarnode/app/equinox.jar"
-			resource="../../../../usr/share/solarnode/app/equinox.jar"
-			failonerror="no"/>
-		<symlink
-			link="${dir.deb.assemble}/var/lib/solarnode/conf"
-			resource="../../../etc/solarnode"
-			failonerror="no"/>
-		<symlink
-			link="${dir.deb.assemble}/var/lib/solarnode/config"
-			resource="../../../etc/solarnode"
-			failonerror="no"/>
-
 		<java jar="${dir.target}/lib/bh.jar" fork="true">
-			<arg path="${dir.deb.assemble}/usr/share/solarnode/app"/>
+			<arg path="${dir.deb.assemble}/${dir.deb.share.path}/app"/>
 		</java>
 	</target>
 
+	<target name="deb-package-assemble-symlinks" unless="deb.nosymlinks">
+		<symlink
+			link="${dir.deb.assemble}/${dir.deb.app.path}/app/boot"
+			resource="../../../../${dir.deb.share.path}/app/boot"
+			failonerror="no"/>
+		<symlink
+			link="${dir.deb.assemble}/${dir.deb.app.path}/app/core"
+			resource="../../../../${dir.deb.share.path}/app/core"
+			failonerror="no"/>
+		<symlink
+			link="${dir.deb.assemble}/${dir.deb.app.path}/app/equinox.jar"
+			resource="../../../../${dir.deb.share.path}/app/equinox.jar"
+			failonerror="no"/>
+		<symlink
+			link="${dir.deb.assemble}/${dir.deb.app.path}/conf"
+			resource="../../../${dir.deb.conf.path}"
+			failonerror="no"/>
+		<symlink
+			link="${dir.deb.assemble}/var/lib/solarnode/config"
+			resource="../../../${dir.deb.conf.path}"
+			failonerror="no"/>
+	</target>
 
 </project>

@@ -1,4 +1,0 @@
-solar ALL = (root) NOPASSWD: /bin/systemctl start solarnode, \
-	/bin/systemctl restart solarnode, \
-	/bin/systemctl status solarnode
-

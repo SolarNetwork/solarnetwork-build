@@ -10,7 +10,7 @@
 	<property name="dir.jars" value="${dir.build}/jars"/>
 
 	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
-	<property name="dir.deb.base" value="deb/core"/>
+	<property name="dir.deb.app.path" value="var/lib/solarnode"/>
 
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings-solarnetwork.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
@@ -58,19 +58,15 @@
 	</target>
 
 	<target name="deb-package-assemble-prepare">
-		<mkdir dir="${dir.deb.assemble}/var/lib/solarnode/app/main"/>
+		<mkdir dir="${dir.deb.assemble}/${dir.deb.app.path}/app/main"/>
 	</target>
 
 	<target name="deb-package-assemble" description="Create Debian package structure"
 			depends="deb-package-assemble-prepare">
 
 		<antcall target="assemble">
-			<param name="dir.assemble" value="${dir.deb.assemble}/var/lib/solarnode"/>
+			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.app.path}"/>
 		</antcall>
-
-		<copy todir="${dir.deb.assemble}">
-			<fileset dir="${dir.deb.base}" includes="**"/>
-		</copy>
 
 		<java jar="${dir.build.lib}/lib/bh.jar" fork="true">
 			<arg path="${dir.deb.assemble}"/>
