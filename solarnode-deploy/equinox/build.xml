@@ -62,8 +62,10 @@
 
 	<property name="dir.deb.assemble" value="${dir.build}/deb"/>
 	<property name="dir.deb.app.path" value="var/lib/solarnode"/>
+	<property name="dir.deb.app.relroot" value="../../.."/>
 	<property name="dir.deb.conf.path" value="etc/solarnode"/>
 	<property name="dir.deb.share.path" value="usr/share/solarnode"/>
+	<property name="dir.deb.share.relroot" value="../../.."/>
 	<property name="dir.deb.base" value="deb"/>
 
 
@@ -426,7 +428,7 @@
 				todir="${dir.deb.assemble}/${dir.deb.conf.path}"/>
 		<symlink
 			link="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
-			resource="/${dir.deb.conf.path}/log4j.properties"
+			resource="${dir.deb.share.relroot}/../../../${dir.deb.conf.path}/log4j.properties"
 			failonerror="no"/>
 
 		<copy todir="${dir.deb.assemble}/${dir.deb.conf.path}">
@@ -482,3 +484,4 @@
 	</target>
 
 </project>
+
