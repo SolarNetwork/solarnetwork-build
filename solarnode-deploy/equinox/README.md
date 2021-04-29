@@ -1,17 +1,9 @@
 # SolarNode Platform (Equinox)
 
-This directory contains the build script for generating the base SolarNode
-Platform using the Equinox OSGi runtime. The build requires [Apache Ant][ant]
-with JavaScript language [script][ant-script] support. To build Debian packages
-with the provided make files, `make` and [fpm][fpm] are required. To install 
-`fpm` on a Debian based system:
-
-```sh
-apt-get install ruby ruby-dev build-essential
-gem install --no-ri --no-rdoc fpm
-```
-
-You might need to be `root` to do this.
+This directory contains the build script for generating the base SolarNode Platform using the
+Equinox OSGi runtime. The build requires [Apache Ant][ant] with JavaScript language
+[script][ant-script] support. The Ant build assembles the resources needed for the platform, but
+does not package them. For that, see the [solarnode-os-packages][package] repository.
 
 ## Configuration Setup
 
@@ -43,13 +35,6 @@ ant -Divy.file=example/ivy-aws.xml \
 ```
 
 This will produce a package filesystem tree with a `Makefile` in `build/deb`.
-To build the package, run `make`:
-
-```sh
-make -C build/deb
-```
-
-This will build the `build/deb/solarnode-base-X.deb` package.
 
 ### Building specialized platforms
 
@@ -61,11 +46,7 @@ For example, to build a platform package with Apache CXF support, run:
 ant -Divy.file=example/ivy-cxf.xml \
 	-Dlog.file=/run/solarnode/log/solarnode.log \
 	clean deb-package-assemble
-
-make -C build/deb -f Makefile-cxf
 ```
-
-This will build the `build/deb/solarnode-cxf-X.deb` package.
 
 ### Building specialized platform apps
 
@@ -73,11 +54,9 @@ Use the `build-deb-app.xml` script to build specialized apps, for example:
 
 ```sh
 ant -Divy.file=example/ivy-protobuf.xml \
-	-Ddir.deb.base=deb-app/protobuf \
+	-Dapp.dirname=protobuf \
 	-f build-deb-app.xml \
 	clean deb-package-assemble
-
-make -C build/deb
 ```
 
 ### Building legacy archive
@@ -101,6 +80,6 @@ outlined [on the SolarNetwork wiki][upgrade].
  
 [ant]: https://ant.apache.org/
 [ant-script]: https://ant.apache.org/manual/Tasks/script.html
-[fpm]: https://github.com/jordansissel/fpm
+[package]: https://github.com/SolarNetwork/solarnode-os-packages/tree/master/solarnode-base/debian
 [upgrade]: https://github.com/SolarNetwork/solarnetwork/wiki/SolarNode-Manual-Platform-Update
  
