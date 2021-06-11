@@ -199,7 +199,7 @@
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
-					classpath="${dir.target}/lib/bh-1.2.jar"/>
+					classpath="${dir.target}/lib/bh-1.3.jar"/>
 	</target>
 	
 	<target name="read.manifest" depends="bh.init">

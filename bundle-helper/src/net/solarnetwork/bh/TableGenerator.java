@@ -54,7 +54,7 @@ import java.util.jar.Manifest;
  * </pre>
  * 
  * @author matt
- * @version 1.0
+ * @version 1.1
  */
 public class TableGenerator {
 
@@ -112,6 +112,9 @@ public class TableGenerator {
 	private static String SN_PREFIX = "net.solarnetwork.";
 
 	private static String compressedBundleId(String id) {
+		if ( id == null ) {
+			return id;
+		}
 		int idx = id.indexOf(';');
 		if ( idx > 0 ) {
 			id = id.substring(0, idx);
@@ -125,6 +128,9 @@ public class TableGenerator {
 	}
 
 	private static String compressedBundleVersion(String vers) {
+		if ( vers == null ) {
+			return null;
+		}
 		int count = 0, idx = -1;
 		while ( (idx = vers.indexOf('.', idx + 1)) >= 0 ) {
 			count++;
