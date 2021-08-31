@@ -2,6 +2,7 @@
 /DeveloperCA/
 /devices
 /db*
+/ffmpeg-images/
 /flux/
 /log/
 /mqtt*/
