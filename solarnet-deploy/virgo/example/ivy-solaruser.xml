@@ -15,9 +15,9 @@
 		<dependency org="org.lucee" name="xml-resolver" rev="1.2.0" conf="runtime"/>
 		<dependency org="org.jsoup" name="jsoup" rev="1.13.1" conf="runtime"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.pdfbox-graphics2d" rev="latest.release" conf="runtime"/>
-		<dependency org="com.openhtmltopdf" name="openhtmltopdf-pdfbox" rev="1.0.4" conf="runtime"/>
-		<dependency org="com.openhtmltopdf" name="openhtmltopdf-slf4j" rev="1.0.4" conf="runtime"/>
-		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.4" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-pdfbox" rev="1.0.8" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-slf4j" rev="1.0.8" conf="runtime"/>
+		<dependency org="com.openhtmltopdf" name="openhtmltopdf-svg-support" rev="1.0.8" conf="runtime"/>
 
 		<!-- App -->
 
@@ -120,6 +120,8 @@
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.ocpp.biz.dao" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.pki.dogtag" rev="latest.release" conf="runtime"/>
 		<dependency org="net.solarnetwork.central" name="net.solarnetwork.central.user.web" rev="latest.release" conf="runtime"/>
+		
+		<exclude module="graphics2d"/><!-- Provided by net.solarnetwork.external.pdfbox-graphics2d -->
 
 	</dependencies>
 </ivy-module>

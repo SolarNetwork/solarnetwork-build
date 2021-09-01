@@ -2,11 +2,13 @@
 /DeveloperCA/
 /devices
 /db*
+/ffmpeg-images/
 /flux/
 /log/
 /mqtt*/
 /net.solarnetwork.*/
 /settings-bak
+/solarnode-data/
 /upload/
 /yasdi.ini
 cache
