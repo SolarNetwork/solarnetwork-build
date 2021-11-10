@@ -27,8 +27,8 @@
 	<property name="compile.deprecation" value="false" />
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
-	<property name="compile.source" value="1.6" />
-	<property name="compile.target" value="1.6" />
+	<property name="compile.source" value="1.8" />
+	<property name="compile.target" value="1.8" />
 	<property name="javadoc.package.excludes" value=""/>
 	<property name="solarnetwork.archive.url" 
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
