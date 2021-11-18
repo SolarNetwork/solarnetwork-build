@@ -21,9 +21,9 @@
 	<property name="ivy.settings" value="${dir.build.lib}/ivysettings.xml"/>
 	<property name="ivy.resolve.refresh" value="false"/>
 	<property name="ivy.cache.ttl.default" value="1d"/>
-	<property name="solarnetwork.archive.url" 
-		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
-	<property name="solarnetwork-3rd-party.archive.url" 
+	<property name="solarnetwork.archive.url"
+		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-one-oh"/>
+	<property name="solarnetwork-3rd-party.archive.url"
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 	
 	<fileset id="plan.set" dir="${dir.src.plans}" includes="*">
