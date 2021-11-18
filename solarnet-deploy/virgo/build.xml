@@ -1,17 +1,17 @@
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
 
 	<property file="${basedir}/build.properties"/>
-	
+
 	<!-- Use build.properties to define the following comma-delimited lists: -->
 	<property name="plans" value=""/>
-	
+
 	<property name="dir.src.base" value="${basedir}/../../.."/>
 	<property name="dir.src.plans" value="${basedir}/plans"/>
 
 	<property name="dir.build" value="${basedir}/build"/>
 	<property name="dir.build.lib" value="${dir.src.base}/solarnetwork-build/solarnetwork-osgi-lib"/>
 	<property name="dir.assemble" value="${dir.build}/assemble"/>
-	
+
 	<property name="dir.virgo.repo" value="${dir.assemble}/repository/usr"/>
 	<property name="dir.virgo.repo.plans" value="${dir.assemble}/repository/local"/>
 	<property name="dir.virgo.pickup" value="${dir.assemble}/pickup"/>
@@ -25,7 +25,7 @@
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-one-oh"/>
 	<property name="solarnetwork-3rd-party.archive.url"
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
-	
+
 	<fileset id="plan.set" dir="${dir.src.plans}" includes="*">
 		<scriptselector language="javascript">
 			var regexp = "\\b" +file.getName().replace(".","\\.") +"\\b";
@@ -36,7 +36,7 @@
 			self.setSelected(result);
 		</scriptselector>
 	</fileset>
-	
+
 	<fileset id="plan.pickup.set" dir="${dir.src.plans}" includes="*">
 		<scriptselector language="javascript">
 			var regexp = "\\b" +file.getName().replace(".","\\.") +"\\b";
@@ -47,7 +47,7 @@
 			self.setSelected(result);
 		</scriptselector>
 	</fileset>
-	
+
 	<target name="ivy-init">
 		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
 			<classpath>
@@ -55,43 +55,43 @@
 			</classpath>
 		</taskdef>
 	</target>
-	
+
 	<target name="clean" description="Remove generated build files">
 		<delete dir="${dir.build}" failonerror="no"/>
 	</target>
-	
+
 	<target name="prepare">
 		<mkdir dir="${dir.assemble}"/>
 		<mkdir dir="${dir.virgo.repo}"/>
 		<mkdir dir="${dir.virgo.repo.plans}"/>
 		<mkdir dir="${dir.virgo.pickup}"/>
 	</target>
-	
+
 	<target name="external-jars" depends="ivy-init">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="${ivy.conf}"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
 	</target>
-	
+
 	<target name="plans" if="plans" depends="prepare">
 		<copy todir="${dir.virgo.repo.plans}">
 			<fileset refid="plan.set"/>
 		</copy>
 	</target>
-	
+
 	<target name="plans-pickup" if="plans-pickup" depends="prepare">
 		<copy todir="${dir.virgo.pickup}">
 			<fileset refid="plan.pickup.set"/>
 		</copy>
 	</target>
-	
+
 	<target name="assemble" depends="external-jars,plans,plans-pickup" description="Assemble jars">
 		<!-- Also copy all dependent SolarNetwork JARs into assembly dir -->
 		<copy todir="${dir.virgo.repo}">
 			<fileset dir="${dir.build}/jars" includes="*.jar"/>
 		</copy>
-		
+
 	</target>
 
 	<target name="archive" depends="assemble"
@@ -102,5 +102,5 @@
 			</tarfileset>
 		</tar>
 	</target>
-	
+
 </project>
