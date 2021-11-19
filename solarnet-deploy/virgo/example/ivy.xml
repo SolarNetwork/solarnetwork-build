@@ -116,7 +116,7 @@
 		<dependency org="joda-time" name="joda-time" rev="2.9.7" conf="runtime"/>
 		
 		<!-- Ehcache -->
-		<dependency org="net.sf.ehcache" name="ehcache" rev="2.10.3" conf="runtime"/>
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.10.4" conf="runtime"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="runtime"/>
 		<dependency org="org.ehcache" name="ehcache" rev="3.5.3" conf="runtime"/>
 		
