@@ -65,7 +65,7 @@
 			<resolver ref="spring-ebr-external"/>
 			<resolver ref="spring-archive"/>
 			<resolver ref="gemini"/>
-			<resolver ref="virgo"/>
+			<!-- Offline as of 2021-11-ish resolver ref="virgo"/-->
 			<resolver ref="public"/>
 			<resolver ref="bintray"/>
 		</chain>
