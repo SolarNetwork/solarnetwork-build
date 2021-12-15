@@ -209,6 +209,7 @@
 		<exclude org="javax.money"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
+		<exclude org="javax.websocket"/>
 		<exclude org="org.antlr"/>
 		<exclude org="org.apache.xmlgraphics"/>
 		<exclude org="org.easymock"/>
