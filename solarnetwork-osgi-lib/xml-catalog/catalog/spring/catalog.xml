@@ -38,6 +38,8 @@
 	<system
 		systemId="http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 		uri="spring-util-3.0.xsd"/>
+		
+	<!-- WebFlow 2.0 -->
 
 	<system
 		systemId="http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
