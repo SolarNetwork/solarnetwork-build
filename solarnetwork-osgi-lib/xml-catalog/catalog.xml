@@ -7,6 +7,16 @@
 
 	<system systemId="-//OASIS/DTD Entity Resolution XML Catalog V1.0//EN" 
 		uri="catalog/catalog.dtd"/>
+		
+	<!--  Ehcache support -->
+
+	<system
+		systemId="http://www.ehcache.org/schema/ehcache-core-3.0.xsd"
+		uri="catalog/ehcache-core-3.0.xsd"/>
+	
+	<system
+		systemId="https://www.ehcache.org/schema/ehcache-core-3.0.xsd"
+		uri="catalog/ehcache-core-3.0.xsd"/>
 
 	<!-- Ibatis SqlMap support -->
 
