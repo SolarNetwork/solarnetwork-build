@@ -409,7 +409,7 @@
 				excludepackagenames="${javadoc.package.excludes}"
 				destdir="${dir.build}/javadoc" 
 				classpathref="javadoc.path.combined">
-			<arg value="--no-module-directories"/>
+			<arg value="-quiet"/>
 		</javadoc>
 		<jar destfile="${dir.dist}/${javadoc.jar.name}">
 			<fileset dir="${dir.build}/javadoc"/>
