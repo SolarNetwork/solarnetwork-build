@@ -125,7 +125,7 @@
 		<pathconvert pathsep="," property="assemble.equinox.jar" refid="assemble.equinox.jar">
 			<mapper type="flatten"/>
 		</pathconvert>
-		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes">
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="yes" failonerror="false">
 			<fileset dir="${dir.runtime.lib}/app-boot">
 				<include name="**/*.properties"/>
 			</fileset>
@@ -133,7 +133,7 @@
 				<filter token="LOGFILE" value="${log.file}"/>
 			</filterset>
 		</copy>
-		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="no">
+		<copy todir="${dir.assemble}/app/boot" flatten="no" filtering="no" failonerror="false">
 			<fileset dir="${dir.runtime.lib}/app-boot">
 				<include name="**"/>
 				<exclude name="**/*.properties"/>
@@ -397,8 +397,8 @@
 		<mkdir dir="${dir.deb.assemble}/${dir.deb.share.path}/bin"/>
 		<mkdir dir="${dir.deb.assemble}/${dir.deb.app.path}/app"/>
 	</target>
-	
-	<target name="deb-package-assemble" description="Create Debian package structure" 
+
+	<target name="deb-package-assemble" description="Create Debian package structure"
 			depends="deb-package-assemble-main,deb-package-assemble-symlinks">
 	</target>
 
@@ -420,13 +420,6 @@
 			<param name="dir.assemble" value="${dir.deb.assemble}/${dir.deb.share.path}"/>
 			<param name="dir.assemble.conf" value="${dir.deb.assemble}/${dir.deb.conf.path}"/>
 		</antcall>
-
-		<move file="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
-				todir="${dir.deb.assemble}/${dir.deb.conf.path}"/>
-		<symlink
-			link="${dir.deb.assemble}/${dir.deb.share.path}/app/boot/net.solarnetwork.external.org.apache.log4j.config/log4j.properties"
-			resource="${dir.deb.share.relroot}/../../../${dir.deb.conf.path}/log4j.properties"
-			failonerror="no"/>
 
 		<copy todir="${dir.deb.assemble}/${dir.deb.conf.path}">
 			<fileset dir="${dir.base}/conf">
