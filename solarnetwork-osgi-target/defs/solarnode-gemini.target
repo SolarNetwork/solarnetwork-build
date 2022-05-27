@@ -62,7 +62,6 @@
 <plugin id="javax.xml.soap"/>
 <plugin id="jcl.over.slf4j"/>
 <plugin id="joda-time"/>
-<plugin id="log4j"/>
 <plugin id="net.sf.ehcache"/>
 <plugin id="net.sf.supercsv.super-csv"/>
 <plugin id="net.sf.supercsv.super-csv.source"/>
@@ -155,7 +154,7 @@
 <plugin id="org.apache.tomcat.websocket"/>
 <plugin id="org.apache.ws.xmlschema.core"/>
 <plugin id="org.easymock" version="3.6.0"/>
-<plugin id="org.easymock.source" version="4.3.0"/>
+<plugin id="org.easymock.source" version="3.6.0"/>
 <plugin id="org.eclipse.equinox.cm"/>
 <plugin id="org.eclipse.equinox.cm.source"/>
 <plugin id="org.eclipse.equinox.console"/>
@@ -200,9 +199,8 @@
 <plugin id="osgi.cmpn"/>
 <plugin id="osgi.enterprise"/>
 <plugin id="slf4j.api"/>
-<plugin id="slf4j.log4j12"/>
 <plugin id="software.amazon.ion.java"/>
-<plugin id="stax2-api" version="3.1.4"/>
+<plugin id="stax2-api" version="4.2.0"/>
 <plugin id="woodstox-core-asl"/>
 	<plugin id="org.apache.commons.commons-compress"/>
 	<plugin id="org.tukaani.xz"/>
@@ -231,7 +229,7 @@
 	<plugin id="io.netty.netty-buffer.source"/>
 	<plugin id="com.fasterxml.jackson.dataformat.jackson-dataformat-xml"/>
 	<plugin id="com.fasterxml.woodstox.woodstox-core"/>
-	<plugin id="stax2-api" version="4.2.0"/>
+	<plugin id="stax2-api" version="3.1.4"/>
 	<plugin id="com.fasterxml.jackson.module.jackson-module-jaxb-annotations"/>
 	<plugin id="net.solarnetwork.external.jakarta-xml-bind-api-default-runtime"/>
 	<plugin id="org.apache.servicemix.bundles.jaxb-runtime"/>
@@ -267,10 +265,16 @@
 	<plugin id="org.apache.felix.eventadmin.source"/>
 	<plugin id="io.netty.netty-codec-stomp.source"/>
 	<plugin id="io.netty.codec-stomp"/>
-	<plugin id="org.easymock.source" version="3.6.0"/>
+	<plugin id="org.easymock.source" version="4.3.0"/>
 	<plugin id="org.easymock" version="4.3.0"/>
 	<plugin id="com.h2database"/>
 	<plugin id="com.h2database.source"/>
+	<plugin id="org.apache.logging.log4j.api-source"/>
+	<plugin id="org.apache.logging.log4j.api"/>
+	<plugin id="org.apache.logging.log4j.core.sources"/>
+	<plugin id="org.apache.logging.log4j.core"/>
+	<plugin id="org.apache.logging.log4j.slf4j-impl.sources"/>
+	<plugin id="org.apache.logging.log4j.slf4j-impl"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>

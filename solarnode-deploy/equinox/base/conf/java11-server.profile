@@ -10,6 +10,7 @@ org.osgi.framework.system.packages = \
  com.sun.org.apache.xpath.internal.objects,\
  javax.accessibility,\
  javax.activity,\
+ javax.annotation.processing,\
  javax.crypto,\
  javax.crypto.interfaces,\
  javax.crypto.spec,\
