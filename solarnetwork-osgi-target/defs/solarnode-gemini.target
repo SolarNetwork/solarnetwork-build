@@ -74,18 +74,6 @@
 <plugin id="org.apache.commons.lang3"/>
 <plugin id="org.apache.commons.lang3.source"/>
 <plugin id="org.apache.coyote"/>
-<plugin id="org.apache.cxf.cxf-core"/>
-<plugin id="org.apache.cxf.cxf-core.sources"/>
-<plugin id="org.apache.cxf.cxf-rt-bindings-soap"/>
-<plugin id="org.apache.cxf.cxf-rt-bindings-xml"/>
-<plugin id="org.apache.cxf.cxf-rt-databinding-jaxb"/>
-<plugin id="org.apache.cxf.cxf-rt-frontend-jaxws"/>
-<plugin id="org.apache.cxf.cxf-rt-frontend-jaxws.sources"/>
-<plugin id="org.apache.cxf.cxf-rt-frontend-simple"/>
-<plugin id="org.apache.cxf.cxf-rt-transports-http"/>
-<plugin id="org.apache.cxf.cxf-rt-ws-addr"/>
-<plugin id="org.apache.cxf.cxf-rt-ws-policy"/>
-<plugin id="org.apache.cxf.cxf-rt-wsdl"/>
 <plugin id="org.apache.el"/>
 <plugin id="org.apache.felix.bundlerepository"/>
 <plugin id="org.apache.felix.bundlerepository.source"/>
@@ -99,9 +87,7 @@
 <plugin id="org.apache.httpcomponents.httpcore"/>
 <plugin id="org.apache.jasper"/>
 <plugin id="org.apache.juli"/>
-<plugin id="org.apache.neethi"/>
 <plugin id="org.apache.servicemix.bundles.aopalliance"/>
-<plugin id="org.apache.servicemix.bundles.asm"/>
 <plugin id="org.apache.servicemix.bundles.aspectj"/>
 <plugin id="org.apache.servicemix.bundles.aspectj.source"/>
 <plugin id="org.apache.servicemix.bundles.c3p0"/>
@@ -131,8 +117,6 @@
 <plugin id="org.apache.servicemix.bundles.spring-web"/>
 <plugin id="org.apache.servicemix.bundles.spring-webmvc"/>
 <plugin id="org.apache.servicemix.bundles.spring-websocket"/>
-<plugin id="org.apache.servicemix.bundles.wsdl4j"/>
-<plugin id="org.apache.servicemix.specs.stax-api-1.0"/>
 <plugin id="org.apache.taglibs.standard-impl"/>
 <plugin id="org.apache.taglibs.taglibs-standard-spec"/>
 <plugin id="org.apache.tiles-autotag-core-runtime"/>
@@ -152,7 +136,6 @@
 <plugin id="org.apache.tomcat.util"/>
 <plugin id="org.apache.tomcat.util.scan"/>
 <plugin id="org.apache.tomcat.websocket"/>
-<plugin id="org.apache.ws.xmlschema.core"/>
 <plugin id="org.easymock" version="3.6.0"/>
 <plugin id="org.easymock.source" version="3.6.0"/>
 <plugin id="org.eclipse.equinox.cm"/>
@@ -186,10 +169,6 @@
 <plugin id="org.jboss.logging.jboss-logging"/>
 <plugin id="org.json"/>
 <plugin id="org.jvnet.jaxb2_commons.jaxb2-basics-runtime"/>
-<plugin id="org.mybatis.mybatis"/>
-<plugin id="org.mybatis.mybatis-spring"/>
-<plugin id="org.mybatis.mybatis-spring.source"/>
-<plugin id="org.mybatis.mybatis.source"/>
 <plugin id="org.osgi.service.obr"/>
 <plugin id="org.osgi.service.obr.source"/>
 <plugin id="org.postgresql.jdbc42"/>
@@ -201,7 +180,6 @@
 <plugin id="slf4j.api"/>
 <plugin id="software.amazon.ion.java"/>
 <plugin id="stax2-api" version="4.2.0"/>
-<plugin id="woodstox-core-asl"/>
 	<plugin id="org.apache.commons.commons-compress"/>
 	<plugin id="org.tukaani.xz"/>
 	<plugin id="jul.to.slf4j"/>
@@ -229,13 +207,10 @@
 	<plugin id="io.netty.netty-buffer.source"/>
 	<plugin id="com.fasterxml.jackson.dataformat.jackson-dataformat-xml"/>
 	<plugin id="com.fasterxml.woodstox.woodstox-core"/>
-	<plugin id="stax2-api" version="3.1.4"/>
 	<plugin id="com.fasterxml.jackson.module.jackson-module-jaxb-annotations"/>
 	<plugin id="net.solarnetwork.external.jakarta-xml-bind-api-default-runtime"/>
 	<plugin id="org.apache.servicemix.bundles.jaxb-runtime"/>
 	<plugin id="org.jvnet.staxex.stax-ex"/>
-	<plugin id="javassist"/>
-	<plugin id="org.apache.servicemix.bundles.ognl"/>
 	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310.source"/>
 	<plugin id="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
 	<plugin id="jakarta.activation-api"/>
@@ -244,21 +219,7 @@
 	<plugin id="org.openmuc.jmbus"/>
 	<plugin id="org.openmuc.jrxtx"/>
 	<plugin id="org.openmuc.jrxtx.source"/>
-	<plugin id="org.apache.servicemix.bundles.stringtemplate"/>
-	<plugin id="org.apache.servicemix.bundles.stringtemplate.source"/>
-	<plugin id="org.apache.servicemix.bundles.antlr-runtime"/>
-	<plugin id="org.apache.servicemix.bundles.antlr-runtime.source"/>
-	<plugin id="com.openhtmltopdf.core"/>
-	<plugin id="com.openhtmltopdf.pdfbox"/>
-	<plugin id="com.openhtmltopdf.slf4j"/>
-	<plugin id="com.openhtmltopdf.svg-support"/>
-	<plugin id="org.apache.pdfbox"/>
-	<plugin id="org.apache.pdfbox.xmpbox"/>
-	<plugin id="org.apache.pdfbox.fontbox"/>
-	<plugin id="org.apache.servicemix.bundles.batik"/>
-	<plugin id="org.apache.servicemix.bundles.xmlgraphics-commons"/>
 	<plugin id="org.lucee.xml.apisext"/>
-	<plugin id="org.jsoup"/>
 	<plugin id="com.sun.jna.source"/>
 	<plugin id="com.sun.jna"/>
 	<plugin id="org.eclipse.jdt.core.compiler.batch.source"/>
@@ -275,6 +236,10 @@
 	<plugin id="org.apache.logging.log4j.core"/>
 	<plugin id="org.apache.logging.log4j.slf4j-impl.sources"/>
 	<plugin id="org.apache.logging.log4j.slf4j-impl"/>
+	<plugin id="org.apache.servicemix.bundles.stringtemplate"/>
+	<plugin id="org.apache.servicemix.bundles.antlr-runtime"/>
+	<plugin id="org.apache.servicemix.bundles.antlr-runtime.source"/>
+	<plugin id="org.apache.servicemix.bundles.stringtemplate.source"/>
 </includeBundles>
 <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 <launcherArgs>
