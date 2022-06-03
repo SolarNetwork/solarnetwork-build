@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  	<Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss} %-5p %c{1} - %m%n%throwable{8}"/>
+    </Console>
+    <RollingFile name="File"
+        immediateFlush="true"
+        fileName="/var/tmp/solarnetwork.log"
+        filePattern="/var/tmp/solarnetwork-%i.log">
+      <PatternLayout pattern="%d{DEFAULT} %-5p %40.40c; %msg%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="9"/>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.eclipse.gemini.blueprint.blueprint.container.support"	level="warn"/>
+    <Logger name="org.eclipse.gemini.blueprint.context.support" 			level="warn"/>
+    <Logger name="org.eclipse.gemini.blueprint.service.importer.support" 	level="warn"/>
+    
+    <Logger name="net.solarnetwork.http"									level="trace"/>
+    <Logger name="net.solarnetwork.spring" 									level="warn"/>
+    <Logger name="net.solarnetwork.web.gemini" 								level="warn"/>
+    <Logger name="net.solarnetwork.web.security" 							level="trace"/>
+    
+    <Logger name="net.solarnetwork.central.mail" 							level="debug"/>
+    
+    <Logger name="net.solarnetwork.mqtt.queue"								level="trace"/>
+    <Logger name="net.solarnetwork.mqtt.influx"								level="trace"/>
+    
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+</Configuration>
