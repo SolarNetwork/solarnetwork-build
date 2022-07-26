@@ -38,7 +38,7 @@
 	<property name="solarnetwork-3rd-party.archive.url"
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 	<property name="publish.dest" value="solarnetwork"/>
-	<property name="publish.ivy" value="true"/>
+	<property name="publish.ivy" value="false"/>
 
 	<property name="ossrh-server-id" value="ossrh"/>
 	<property name="ossrh-staging-repository-url" value="https://oss.sonatype.org/service/local/staging/deploy/maven2" />
@@ -189,8 +189,11 @@
 					classpath="${dir.target}/lib/maven-ant-tasks-2.1.3.jar"/>
 	</target>
 
-	<target name="stage" depends="mvn.init,lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes,generate.pom" description="Publish to artifact repository">
+	<target name="stage.start">
 		<echo message="[====&gt; Staging publications to ${ossrh-staging-repository-url} &lt;====]"/>
+	</target>
+
+	<target name="stage.jar" depends="mvn.init,lib-resolve,jar,publish.conf.resolve,publish.conf.resolve.classes,generate.pom,stage.start">
 		<artifact:mvn>
 			<arg value="org.apache.maven.plugins:maven-gpg-plugin:1.3:sign-and-deploy-file" />
 			<arg value="-Durl=${ossrh-staging-repository-url}" />
@@ -199,6 +202,9 @@
 			<arg value="-Dfile=${dir.dist}/${bundle.jar.name}" />
 			<arg value="-Pgpg" />
 		</artifact:mvn>
+	</target>
+
+	<target name="stage.sources" if="classes" depends="mvn.init,lib-resolve,src-jar,javadoc,publish.conf.resolve,generate.pom,stage.start">
 		<artifact:mvn>
 			<arg value="org.apache.maven.plugins:maven-gpg-plugin:1.3:sign-and-deploy-file" />
 			<arg value="-Durl=${ossrh-staging-repository-url}" />
@@ -218,6 +224,8 @@
 			<arg value="-Pgpg" />
 		</artifact:mvn>
 	</target>
+
+	<target name="stage" depends="generate.pom,stage.jar,stage.sources" description="Publish to staging OSSRH repository"/>
 
 	<target name="clean" description="Remove generated artifacts">
 		<delete dir="${dir.build}"/>
