@@ -3,6 +3,8 @@
 		xmlns:bh="antlib:net.solarnetwork.bh.ant"
 		xmlns:jacoco="antlib:org.jacoco.ant">
 
+	<basename property="dir.project" file="${basedir}"/>
+
 	<path id="compile.path"/>
 
 	<property name="dir.osgi.base" value="${basedir}/../solarnetwork-osgi-lib"/>
@@ -289,6 +291,7 @@
 		<property name="ivy.pom.version" value="${bundle.version}"/>
 		<property name="ivy.pom.name" value="${bundle.title}"/>
 		<property name="ivy.pom.description" value="${bundle.description}"/>
+		<property name="ivy.pom.url.path" value="${dir.project}"/>
 
 		<path id="bundle.name.path">
 			<pathelement location="${bundle.name}"/>
