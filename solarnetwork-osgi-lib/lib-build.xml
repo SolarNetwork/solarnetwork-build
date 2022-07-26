@@ -136,10 +136,11 @@
 	</target>
 
 	<target name="generate.pom" depends="lib-resolve,publish.conf.resolve,publish.conf.resolve.classes">
-		<ivy:makepom ivyfile="${basedir}/ivy.xml"
+		<ivy:makepom templatefile="${basedir}/../template.pom"
+				ivyfile="${basedir}/ivy.xml"
 				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom"
 				conf="${ivy.publish.conf}"
-				artifactPackaging="bundle">
+				artifactPackaging="jar">
 			<mapping conf="compile" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>
@@ -194,7 +195,6 @@
 			<arg value="-DrepositoryId=${ossrh-server-id}" />
 			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
 			<arg value="-Dfile=${dir.dist}/${bundle.jar.name}" />
-			<arg value="-Dpackaging=jar" />
 			<arg value="-Pgpg" />
 		</artifact:mvn>
 		<artifact:mvn>
@@ -203,7 +203,6 @@
 			<arg value="-DrepositoryId=${ossrh-server-id}" />
 			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
 			<arg value="-Dfile=${dir.dist}/${src.jar.name}" />
-			<arg value="-Dpackaging=jar" />
 			<arg value="-Dclassifier=sources" />
 			<arg value="-Pgpg" />
 		</artifact:mvn>
@@ -213,7 +212,6 @@
 			<arg value="-DrepositoryId=${ossrh-server-id}" />
 			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
 			<arg value="-Dfile=${dir.dist}/${javadoc.jar.name}" />
-			<arg value="-Dpackaging=jar" />
 			<arg value="-Dclassifier=javadoc" />
 			<arg value="-Pgpg" />
 		</artifact:mvn>
