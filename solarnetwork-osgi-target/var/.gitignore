@@ -9,6 +9,7 @@
 /net.solarnetwork.*/
 /settings-bak
 /solarnode-data/
+/solarnode*.db
 /upload/
 /yasdi.ini
 cache

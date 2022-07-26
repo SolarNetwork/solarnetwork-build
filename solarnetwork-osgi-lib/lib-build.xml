@@ -1,13 +1,16 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" 
-		xmlns:bh="antlib:net.solarnetwork.bh.ant" 
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+		xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+		xmlns:bh="antlib:net.solarnetwork.bh.ant"
 		xmlns:jacoco="antlib:org.jacoco.ant">
 
+	<basename property="dir.project" file="${basedir}"/>
+
 	<path id="compile.path"/>
-	
+
 	<property name="dir.osgi.base" value="${basedir}/../solarnetwork-osgi-lib"/>
 
 	<property file="${dir.osgi.base}/build.properties"/>
-	
+
 	<property name="dir.target" value="${dir.osgi.base}"/>
 	<property name="dir.bundles" value="${dir.osgi.base}/bundles"/>
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
@@ -30,17 +33,20 @@
 	<property name="compile.source" value="1.8" />
 	<property name="compile.target" value="1.8" />
 	<property name="javadoc.package.excludes" value=""/>
-	<property name="solarnetwork.archive.url" 
+	<property name="solarnetwork.archive.url"
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork"/>
-	<property name="solarnetwork-3rd-party.archive.url" 
+	<property name="solarnetwork-3rd-party.archive.url"
 		value="https://dev.solarnetwork.net/archive/repository/solarnetwork-3rd-party"/>
 	<property name="publish.dest" value="solarnetwork"/>
 	<property name="publish.ivy" value="true"/>
-	
+
+	<property name="ossrh-server-id" value="ossrh"/>
+	<property name="ossrh-staging-repository-url" value="https://oss.sonatype.org/service/local/staging/deploy/maven2" />
+
 	<property name="dir.test.target" value="${dir.build}/test-target"/>
 	<property name="dir.test.reports" value="${dir.dist}/reports"/>
 	<property name="test.jvm.args" value=""/>
-	
+
 	<condition property="no.classes">
 		<resourcecount when="equal" count="0">
 			<fileset dir="${dir.input}">
@@ -83,11 +89,17 @@
 		<exclude name="WEB-INF/packtag.user.properties"/>
 		<exclude name="WEB-INF/jsp/about.jsp"/>
 	</patternset>
-	
+
+	<patternset id="pub.files">
+		<include name="*.jar"/>
+		<include name="*.pom"/>
+		<include name="*.xml"/>
+	</patternset>
+
 	<tstamp>
 		<format property="bundle.build.time" pattern="yyyy-MM-dd HH:mm" />
 	</tstamp>
-	
+
 	<target name="ivy-init">
 		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
 			<classpath>
@@ -95,17 +107,17 @@
 			</classpath>
 		</taskdef>
 	</target>
-	
+
 	<target name="lib-init" depends="ivy-init" unless="no.ivy">
 		<ivy:settings file="${ivy.settings}">
 			<credentials
-				host="${publish.host}" 
+				host="${publish.host}"
 				realm="${publish.realm}"
           		username="${publish.username}"
           		passwd="${publish.password}" />
 		</ivy:settings>
 	</target>
-	
+
 	<target name="lib-resolve" depends="lib-init,read.manifest,set.test.bundle.name" unless="no.ivy">
 		<echo message="[====&gt; Resolving dependencies ${bundle.name} &lt;====]"/>
 		<ivy:resolve file="${basedir}/ivy.xml" type="jar,bundle" revision="${bundle.version}"/>
@@ -116,7 +128,7 @@
 		<!-- Copy the dependencies to dir.bundles -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.bundles}/[artifact]-[revision].[ext]"/>
 	</target>
-	
+
 	<target name="publish.conf.resolve" if="no.classes">
 		<property name="ivy.publish.conf" value="compile,runtime"/>
 	</target>
@@ -125,16 +137,43 @@
 		<property name="ivy.publish.conf" value="compile,runtime,sources,javadoc"/>
 	</target>
 
-	<target name="publish" depends="lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes" description="Publish to artifact repository">
-		<echo message="[====&gt; Publishing configurations ${ivy.publish.conf} &lt;====]"/>
-		<ivy:makepom ivyfile="${basedir}/ivy.xml" 
-				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom" 
+	<target name="generate.pom" depends="lib-resolve,publish.conf.resolve,publish.conf.resolve.classes">
+		<ivy:makepom templatefile="${basedir}/../template.pom"
+				ivyfile="${basedir}/ivy.xml"
+				pomfile="${dir.dist}/${bundle.name}-${bundle.version}.pom"
 				conf="${ivy.publish.conf}"
-				artifactPackaging="bundle">
+				artifactPackaging="jar">
 			<mapping conf="compile" scope="compile"/>
 			<mapping conf="runtime" scope="runtime"/>
 		</ivy:makepom>
-		<ivy:publish resolver="${publish.dest}" 
+	</target>
+
+	<target name="checksum" depends="generate.pom,jar,src-jar,javadoc">
+		<checksum forceoverwrite="yes" algorithm="MD5" fileext=".md5" format="CHECKSUM" todir="${dir.dist}">
+			<fileset dir="${dir.dist}">
+				<patternset refid="pub.files"/>
+			</fileset>
+		</checksum>
+		<checksum forceoverwrite="yes" algorithm="SHA" fileext=".sha1" format="CHECKSUM" todir="${dir.dist}">
+			<fileset dir="${dir.dist}">
+				<patternset refid="pub.files"/>
+			</fileset>
+		</checksum>
+		<checksum forceoverwrite="yes" algorithm="SHA-256" fileext=".sha256" format="CHECKSUM" todir="${dir.dist}">
+			<fileset dir="${dir.dist}">
+				<patternset refid="pub.files"/>
+			</fileset>
+		</checksum>
+		<checksum forceoverwrite="yes" algorithm="SHA-512" fileext=".sha512" format="CHECKSUM" todir="${dir.dist}">
+			<fileset dir="${dir.dist}">
+				<patternset refid="pub.files"/>
+			</fileset>
+		</checksum>
+	</target>
+
+	<target name="publish" depends="lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes,generate.pom,checksum" description="Publish to artifact repository">
+		<echo message="[====&gt; Publishing configurations ${ivy.publish.conf} &lt;====]"/>
+		<ivy:publish resolver="${publish.dest}"
 			module="${bundle.name}"
 			revision="${bundle.version}"
 			overwrite="true"
@@ -144,20 +183,56 @@
 			artifactspattern="${dir.dist}/[artifact]-[revision](-[classifier]).[ext]"/>
 	</target>
 
+	<target name="mvn.init">
+		<taskdef resource="org/apache/maven/artifact/ant/antlib.xml"
+					uri="antlib:org.apache.maven.artifact.ant"
+					classpath="${dir.target}/lib/maven-ant-tasks-2.1.3.jar"/>
+	</target>
+
+	<target name="stage" depends="mvn.init,lib-resolve,jar,src-jar,javadoc,publish.conf.resolve,publish.conf.resolve.classes,generate.pom" description="Publish to artifact repository">
+		<echo message="[====&gt; Staging publications to ${ossrh-staging-repository-url} &lt;====]"/>
+		<artifact:mvn>
+			<arg value="org.apache.maven.plugins:maven-gpg-plugin:1.3:sign-and-deploy-file" />
+			<arg value="-Durl=${ossrh-staging-repository-url}" />
+			<arg value="-DrepositoryId=${ossrh-server-id}" />
+			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
+			<arg value="-Dfile=${dir.dist}/${bundle.jar.name}" />
+			<arg value="-Pgpg" />
+		</artifact:mvn>
+		<artifact:mvn>
+			<arg value="org.apache.maven.plugins:maven-gpg-plugin:1.3:sign-and-deploy-file" />
+			<arg value="-Durl=${ossrh-staging-repository-url}" />
+			<arg value="-DrepositoryId=${ossrh-server-id}" />
+			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
+			<arg value="-Dfile=${dir.dist}/${src.jar.name}" />
+			<arg value="-Dclassifier=sources" />
+			<arg value="-Pgpg" />
+		</artifact:mvn>
+		<artifact:mvn>
+			<arg value="org.apache.maven.plugins:maven-gpg-plugin:1.3:sign-and-deploy-file" />
+			<arg value="-Durl=${ossrh-staging-repository-url}" />
+			<arg value="-DrepositoryId=${ossrh-server-id}" />
+			<arg value="-DpomFile=${dir.dist}/${pom.name}" />
+			<arg value="-Dfile=${dir.dist}/${javadoc.jar.name}" />
+			<arg value="-Dclassifier=javadoc" />
+			<arg value="-Pgpg" />
+		</artifact:mvn>
+	</target>
+
 	<target name="clean" description="Remove generated artifacts">
 		<delete dir="${dir.build}"/>
 		<delete dir="${dir.dist}"/>
 	</target>
-	
+
 	<target name="clean.deps" if="bundle.deps">
 		<subant target="clean">
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
-	
+
 	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
 		depends="clean,clean.deps"/>
-	
+
 	<target name="compile.deps" if="bundle.deps">
 		<subant target="jar-dep">
 			<property name="dir.deps" value="${dir.build}/deps"/>
@@ -166,7 +241,7 @@
 			<dirset refid="bundle.deps"/>
 		</subant>
 	</target>
-	
+
 	<target name="compile" depends="read.manifest,compile.deps,lib-resolve" if="classes">
 		<echo message="[====&gt; Compiling ${bundle.name} &lt;====]"/>
 		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
@@ -186,43 +261,49 @@
 		<javac srcdir="${dir.source}"
 			includeantruntime="false"
 			destdir="${dir.compile}"
-			debug="${compile.debug}" 
-			deprecation="${compile.deprecation}" 
-			optimize="${compile.optimize}" 
+			debug="${compile.debug}"
+			deprecation="${compile.deprecation}"
+			optimize="${compile.optimize}"
 			nowarn="${compile.nowarn}"
 			target="${compile.target}"
 			source="${compile.source}">
 			<classpath refid="compile.path.combined" />
 		</javac>
 	</target>
-	
+
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
-					classpath="${dir.target}/lib/bh-1.3.jar"/>
+					classpath="${dir.target}/lib/bh-1.4.jar"/>
 	</target>
-	
+
 	<target name="read.manifest" depends="bh.init">
 		<bh:manifestreader manifest="${dir.meta-inf}/MANIFEST.MF"/>
 		<property name="bundle.name" value="${Bundle-SymbolicName}"/>
 		<property name="bundle.version" value="${Bundle-Version}"/>
+		<property name="bundle.title" value="${Bundle-Name}"/>
+		<property name="bundle.description" value="${Bundle-Description}"/>
 		<property name="bundle.jar.name" value="${bundle.name}-${bundle.version}.jar"/>
 		<property name="src.jar.name" value="${bundle.name}-${bundle.version}-sources.jar"/>
 		<property name="javadoc.jar.name" value="${bundle.name}-${bundle.version}-javadoc.jar"/>
+		<property name="pom.name" value="${bundle.name}-${bundle.version}.pom"/>
 		<property name="ivy.pom.artifactId" value="${bundle.name}"/>
 		<property name="ivy.pom.version" value="${bundle.version}"/>
+		<property name="ivy.pom.name" value="${bundle.title}"/>
+		<property name="ivy.pom.description" value="${bundle.description}"/>
+		<property name="ivy.pom.url.path" value="${dir.project}"/>
 
 		<path id="bundle.name.path">
 			<pathelement location="${bundle.name}"/>
 		</path>
 	</target>
-	
+
 	<target name="set.test.bundle.name" depends="read.manifest" unless="test.bundle.name">
 		<pathconvert property="test.bundle.name" refid="bundle.name.path">
 			<mapper type="glob" from="${basedir}/*.test" to="*"/>
 		</pathconvert>
 	</target>
-	
+
 	<target name="jar.dep.check" depends="read.manifest">
 		<condition property="dep-exists">
 			<resourceexists>
@@ -236,9 +317,9 @@
 			!!!
 		</echo-->
 	</target>
-	
+
 	<target name="jar.dep.prepare" depends="clean,jar,jar.dep"/>
-	
+
 	<target name="jar.dep.conditionally" unless="dep-exists">
 		<antcall target="jar.dep.prepare"/>
 		<!--echo>
@@ -254,7 +335,7 @@
 	</target>
 
 	<target name="jar-dep" depends="jar.dep.check,jar.dep.conditionally"/>
-		
+
 	<!-- Copy internal JAR resource to dest dir, for compiling dependant projects -->
 	<target name="jar.dep">
 		<mkdir dir="${dir.provided}"/>
@@ -262,7 +343,7 @@
 			<fileset dir="${basedir}" includes="*.jar"/>
 		</copy>
 	</target>
-	
+
 	<target name="resource-prep" description="Prepare WAB files">
 		<!-- copy and filter about.jsp file -->
 		<mkdir dir="${dir.build}/rsrs"/>
@@ -277,7 +358,7 @@
 			</filterset>
 		</copy>
 	</target>
-	
+
 	<target name="jar" depends="compile,resource-prep,jar.web.check,jar.classes,jar.no.classes,jar.web.classes"
 		description="Create bundle jar"/>
 
@@ -299,7 +380,7 @@
 			!!!
 		</echo-->
 	</target>
-	
+
 	<target name="jar.web.classes" if="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building web class JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
@@ -309,15 +390,15 @@
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
-	
+
 	<target name="jar.classes" if="classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
-		<jar destfile="${dir.dist}/${bundle.jar.name}" 
+		<jar destfile="${dir.dist}/${bundle.jar.name}"
 			manifest="${dir.meta-inf}/MANIFEST.MF">
-			<zipfileset dir="${dir.compile}" includes="**" 
+			<zipfileset dir="${dir.compile}" includes="**"
 				prefix="${dir.jar.classes.dest}"/>
-			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java" 
+			<zipfileset dir="${dir.source}" includes="**" excludes="**/*.java"
 				prefix="${dir.jar.classes.dest}"/>
 			<fileset dir="${dir.resources}">
 				<include name="META-INF/**"/>
@@ -330,11 +411,11 @@
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
-	
+
 	<target name="jar.no.classes" if="no.classes" unless="web.classes">
 		<mkdir dir="${dir.dist}"/>
 		<echo message="[====&gt; Building JAR ${dir.dist}/${bundle.jar.name} &lt;====]"/>
-		<jar destfile="${dir.dist}/${bundle.jar.name}" 
+		<jar destfile="${dir.dist}/${bundle.jar.name}"
 			manifest="${dir.meta-inf}/MANIFEST.MF">
 			<union><!-- to eliminate duplicates, e.g. from Bundle-ClassPath + *.jar -->
 				<fileset dir="${basedir}">
@@ -355,7 +436,7 @@
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
-	
+
 	<target name="src-jar" depends="src-jar.classes"
 		description="Create source bundle jar"/>
 
@@ -369,9 +450,9 @@
 			<attribute name="Bundle-Version" value="${bundle.version}"/>
 			<attribute name="Bundle-Name" value="${bundle.name} Source"/>
 		</manifest>
-		<jar destfile="${dir.dist}/${src.jar.name}" 
+		<jar destfile="${dir.dist}/${src.jar.name}"
 			manifest="${dir.build}/src-manifest.mf">
-			<zipfileset dir="${dir.source}" includes="**" 
+			<zipfileset dir="${dir.source}" includes="**"
 				prefix="${dir.jar.classes.dest}"/>
 			<fileset dir="${dir.resources}">
 				<include name="META-INF/**"/>
@@ -383,9 +464,9 @@
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
-	
+
 	<!-- Javadoc support -->
-	
+
 	<target name="javadoc" if="classes" depends="read.manifest,compile.deps,lib-resolve" description="Generate Javadoc documentation.">
 		<echo message="[====&gt; Generating JavaDoc ${bundle.name} &lt;====]"/>
 		<ivy:cachepath pathid="lib.path" conf="compile" type="jar,bundle"/>
@@ -398,34 +479,34 @@
 			<fileset dir="${dir.deps}" includes="*.jar"/>
 			<fileset dir="${dir.provided}" includes="*.jar"/>
 		</path>
-		
+
 		<!-- For debugging classpath:
 		<echo>{=== Javadoc path: ${javadoc.path.combined} ===}</echo-->
 
 		<delete dir="${dir.build}/javadoc" failonerror="no"/>
 		<mkdir dir="${dir.build}/javadoc"/>
-		<javadoc 
+		<javadoc
 				sourcepath="${dir.source}"
 				excludepackagenames="${javadoc.package.excludes}"
-				destdir="${dir.build}/javadoc" 
+				destdir="${dir.build}/javadoc"
 				classpathref="javadoc.path.combined">
-			<arg value="--no-module-directories"/>
+			<arg value="-quiet"/>
 		</javadoc>
 		<jar destfile="${dir.dist}/${javadoc.jar.name}">
 			<fileset dir="${dir.build}/javadoc"/>
 		</jar>
 	</target>
-	
+
 	<!-- Unit test support -->
-	
+
 	<target name="test" description="Run unit tests" depends="test.resolve,test.run,test.run.coverage"/>
 	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,jar,test"/>
 
 	<target name="jacoco.init">
 		<taskdef resource="org/jacoco/ant/antlib.xml"
-			uri="antlib:org.jacoco.ant" 
+			uri="antlib:org.jacoco.ant"
 			classpath="${dir.target}/lib/jacocoant.jar"/>
-	</target>	
+	</target>
 
 	<target name="test.resolve">
 		<!-- Use antcall here so that we can run the jar task, followed by this; ivy:retrieve was throwing
@@ -433,13 +514,13 @@
 		     otherwise -->
 		<antcall target="test.resolve.sub"/>
 	</target>
-	
+
 	<target name="test.resolve.sub" depends="lib-init,set.test.bundle.name">
 		<delete dir="${dir.test.target}" failonerror="no"/>
 		<mkdir dir="${dir.test.target}"/>
-		
+
 		<echo>Test plugin: ${test.bundle.name}</echo>
-		
+
 		<!-- Copy the dependencies to dir.test.target -->
 		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact]-[revision].[ext]" conf="runtime" symlink="yes"/>
 		<copy todir="${dir.test.target}" overwrite="yes">
@@ -447,12 +528,12 @@
 			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
 		</copy>
 	</target>
-	
+
 	<target name="test.clean">
 		<delete dir="${dir.test.target}" failonerror="no"/>
 		<delete dir="${dir.test.reports}" failonerror="no"/>
 	</target>
-	
+
 	<target name="test.run" unless="with-coverage">
 		<mkdir dir="${dir.test.reports}"/>
 		<path id="junit.path">
@@ -475,7 +556,7 @@
 			</batchtest>
 		</junit>
 	</target>
-	
+
 	<target name="test.run.coverage" if="with-coverage" depends="jacoco.init">
 		<mkdir dir="${dir.test.reports}"/>
 		<path id="junit.path">
@@ -511,7 +592,7 @@
 		</junitreport>
 		<antcall target="test.check"/>
 	</target>
-	
+
 	<target name="test.check">
 		<loadfile property="results.summary"
 		          srcfile="${dir.test.reports}/unittest/overview-summary.html">
@@ -525,7 +606,7 @@
 		<condition property="tests.passed">
 			<contains string="${results.summary}" substring="100.00%" />
 		</condition>
-		
+
 		<pathconvert property="test.report.name">
 			<fileset dir="${dir.test.reports}/unittest">
     			<include name="index.html"/>
@@ -536,7 +617,7 @@
 		      unless="tests.passed" />
 		<echo message="SUCCESS - all tests passed - see ${test.report.name} for more details" />
 	</target>
-	
+
 	<target name="coverage-report" description="Generate a HTML code coverage report from the test results"
 			depends="jacoco.init,set.test.bundle.name">
 		<jacoco:report>
@@ -544,7 +625,7 @@
 				<fileset dir="${dir.test.reports}">
 					<include name="*.exec" />
 				</fileset>
-			</executiondata>		
+			</executiondata>
 			<structure name="${test.bundle.name}">
 				<classfiles>
 					<fileset dir="${dir.deps}">
@@ -554,7 +635,7 @@
 				<sourcefiles encoding="UTF-8">
 					<fileset dir="../${test.bundle.name}/src"/>
 				</sourcefiles>
-			</structure>			
+			</structure>
 			<html destdir="${dir.test.reports}/coverage"/>
 		</jacoco:report>
 	</target>
