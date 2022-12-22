@@ -10,6 +10,8 @@
 /settings-bak
 /solarnode-data/
 /solarnode*.db
+/*-backup
+/*-reset.*
 /upload/
 /yasdi.ini
 cache
