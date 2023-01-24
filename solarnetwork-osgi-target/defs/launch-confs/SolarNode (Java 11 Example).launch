@@ -202,9 +202,9 @@
         <setEntry value="org.apache.httpcomponents.httpcore@default:default"/>
         <setEntry value="org.apache.jasper@default:false"/>
         <setEntry value="org.apache.juli@default:default"/>
-        <setEntry value="org.apache.logging.log4j.api@default:default"/>
-        <setEntry value="org.apache.logging.log4j.core@default:default"/>
-        <setEntry value="org.apache.logging.log4j.slf4j-impl@default:default"/>
+        <setEntry value="org.apache.logging.log4j.api@1:default"/>
+        <setEntry value="org.apache.logging.log4j.core@1:default"/>
+        <setEntry value="org.apache.logging.log4j.slf4j-impl@2:default"/>
         <setEntry value="org.apache.servicemix.bundles.antlr-runtime@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.aopalliance@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.aspectj.source"/>
