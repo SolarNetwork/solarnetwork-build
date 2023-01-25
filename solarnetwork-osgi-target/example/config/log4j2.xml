@@ -22,6 +22,8 @@
     <Logger name="net.solarnetwork.spring" 									level="warn"/>
     <Logger name="net.solarnetwork.web.gemini" 								level="warn"/>
     
+    <Logger name="net.solarnetwork.node" 									level="debug"/>
+    
     <Root level="info">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="File"/>
