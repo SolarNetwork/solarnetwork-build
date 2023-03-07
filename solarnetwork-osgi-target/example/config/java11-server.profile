@@ -184,7 +184,8 @@ org.osgi.framework.system.packages = \
  org.w3c.dom.xpath,\
  org.xml.sax,\
  org.xml.sax.ext,\
- org.xml.sax.helpers
+ org.xml.sax.helpers,\
+ sun.misc
 org.osgi.framework.bootdelegation = \
  com.sun.*,\
  javax.crypto,\
