@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+	<!-- Spring 5.3 -->
+
+
+	<!--  Spring Security 5.8 -->
+
+	<system
+		systemId="http://www.springframework.org/schema/security/spring-security-5.8.xsd"
+		uri="spring-security-5.8.xsd"/>
+
+</catalog>
