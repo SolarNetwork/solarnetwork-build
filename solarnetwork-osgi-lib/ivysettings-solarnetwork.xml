@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-	This settings file limits to resolving just from a local Ivy cache or the SolarNetwork repo,
+<!--
+	This settings file limits to resolving just from the SolarNetwork repo,
 	for better performance when resolving SolarNetwork artifact version ranges.
 -->
 <ivysettings>
-	<property name="solarnetwork-archive.url" 			value="${solarnetwork.archive.url}"/>
-	<property name="solarnetwork-archive.pattern" 		value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
-	<property name="solarnetwork-3rd-party-archive.url" value="${solarnetwork-3rd-party.archive.url}"/>
-	<property name="solarnetwork-3rd-party-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
-	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
-	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
-	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
+	<property name="solarnetwork-archive.url" 			 value="${solarnetwork.archive.url}"/>
+	<property name="solarnetwork-3rd-party-archive.url"  value="${solarnetwork-3rd-party.archive.url}"/>
 	<settings defaultResolver="default"/>
 	<resolvers default="default">
-		<url name="solarnetwork" m2compatible="true">
-			<ivy pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-			<artifact pattern="${solarnetwork-archive.url}/${solarnetwork-archive.pattern}"/>
-		</url>
+		<ibiblio name="solarnetwork" m2compatible="true" root="${solarnetwork-archive.url}"/>
 		<ibiblio name="solarnetwork-3rd-party" m2compatible="true" root="${solarnetwork-3rd-party-archive.url}"/>
-		<filesystem name="local">
-			<ivy pattern="${ivy.local.default.root}/${ivy.local.default.ivy.pattern}" />
-			<artifact pattern="${ivy.local.default.root}/${ivy.local.default.artifact.pattern}" />
-		</filesystem>
 		<chain name="default" returnFirst="false" checkmodified="true">
 			<resolver ref="solarnetwork"/>
-			<resolver ref="local"/>
 		</chain>
 	</resolvers>
 </ivysettings>
