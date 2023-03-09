@@ -146,6 +146,7 @@
         <setEntry value="io.netty.netty-transport.source"/>
         <setEntry value="io.netty.resolver@default:default"/>
         <setEntry value="io.netty.transport@default:default"/>
+        <setEntry value="io.projectreactor.reactor-core@default:default"/>
         <setEntry value="jakarta.activation-api@default:default"/>
         <setEntry value="jakarta.annotation-api@default:default"/>
         <setEntry value="jakarta.jws-api@default:default"/>
@@ -232,6 +233,7 @@
         <setEntry value="org.apache.servicemix.bundles.spring-security-acl@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.spring-security-config@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.spring-security-core@default:default"/>
+        <setEntry value="org.apache.servicemix.bundles.spring-security-messaging@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.spring-security-taglibs@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.spring-security-web@default:default"/>
         <setEntry value="org.apache.servicemix.bundles.spring-test@default:default"/>
@@ -310,6 +312,7 @@
         <setEntry value="org.tukaani.xz@default:default"/>
         <setEntry value="osgi.cmpn@default:default"/>
         <setEntry value="osgi.enterprise@default:default"/>
+        <setEntry value="reactive-streams@default:default"/>
         <setEntry value="slf4j.api@default:default"/>
         <setEntry value="software.amazon.ion.java@default:default"/>
         <setEntry value="stax2-api@default:default"/>
@@ -359,7 +362,6 @@
         <setEntry value="net.solarnetwork.external.org.tuckey.urlrewritefilter@default:default"/>
         <setEntry value="net.solarnetwork.external.oscp@default:default"/>
         <setEntry value="net.solarnetwork.external.pjc@default:default"/>
-        <setEntry value="net.solarnetwork.external.spring-security-messaging@default:default"/>
         <setEntry value="net.solarnetwork.external.spring-webflow@default:default"/>
         <setEntry value="net.solarnetwork.external.tyrus-standalone-client-jdk@default:default"/>
         <setEntry value="net.solarnetwork.external.yasdi4j@default:default"/>
