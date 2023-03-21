@@ -84,6 +84,7 @@
 		<include name="js/**"/>
 		<include name="js-lib/**"/>
 		<include name="style/**"/>
+		<include name="webfonts/**"/>
 		<include name="WEB-INF/**"/>
 		<exclude name="WEB-INF/classes/**"/>
 		<exclude name="WEB-INF/packtag.user.properties"/>
