@@ -531,7 +531,7 @@
 		<echo>Test plugin: ${test.bundle.name}</echo>
 
 		<!-- Copy the dependencies to dir.test.target -->
-		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact]-[revision].[ext]" conf="runtime" symlink="yes"/>
+		<ivy:retrieve type="jar,bundle" pattern="${dir.test.target}/[artifact].[ext]" conf="runtime" symlink="yes"/>
 		<copy todir="${dir.test.target}" overwrite="yes">
 			<fileset dir="${dir.deps}" includes="*.jar"/>
 			<fileset dir="${dir.dist}" includes="${bundle.jar.name}"/>
