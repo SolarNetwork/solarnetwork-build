@@ -108,13 +108,24 @@
 		<symlink link="${dir.assemble}/config" resource="conf" />
 	</target>
 
-	<target name="app-boot" depends="ivy-init">
+	<target name="app-boot.prep">
+		<mkdir dir="${dir.assemble}/app/boot"/>
+	</target>
+
+	<target name="app-boot.virgo" depends="app-boot.prep" unless="novirgo">
+		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
+			 When Virgo 3.7.0 is released, this can be removed. -->
+		<copy todir="${dir.assemble}/app/boot">
+			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
+		</copy>
+	</target>
+
+	<target name="app-boot" depends="ivy-init,app-boot.prep,app-boot.virgo">
 		<ivy:settings file="${ivy.settings}"/>
 		<ivy:resolve file="${ivy.file}" conf="boot,gemini"/>
 		<delete dir="${dir.build}/jars" failonerror="no"/>
 		<mkdir dir="${dir.build}/jars"/>
 		<ivy:retrieve type="jar,bundle" pattern="${dir.build}/jars/[artifact]-[revision].[ext]"/>
-		<mkdir dir="${dir.assemble}/app/boot"/>
 		<copy todir="${dir.assemble}/app/boot" flatten="yes">
 			<fileset dir="${dir.build}/jars" includes="*.jar" excludes="org.eclipse.osgi-*"/>
 		</copy>
@@ -138,12 +149,6 @@
 				<include name="**"/>
 				<exclude name="**/*.properties"/>
 			</fileset>
-		</copy>
-
-		<!-- Use Virgo JARs from platform, because 3.7.0.M03 not published;
-			 When Virgo 3.7.0 is released, this can be removed. -->
-		<copy todir="${dir.assemble}/app/boot">
-			<fileset dir="${dir.platform}/virgo" includes="*.jar"/>
 		</copy>
 
 		<symlink action="delete" failonerror="no" link="${dir.assemble}/app/equinox.jar"/>
