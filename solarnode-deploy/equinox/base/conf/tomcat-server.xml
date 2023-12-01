@@ -2,14 +2,19 @@
 	<Service name="Catalina">
 		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Nio2Protocol"
 			minSpareThreads="1"
-			compression="on" 
+			compression="on"
 			compressionMinSize="2048"
 			useSendfile="false"
 			compressableMimeType="text/html,text/xml,application/xml,text/javascript,text/css,application/json,image/svg+xml"
-		/>		
+		/>
 		<Engine name="Catalina" defaultHost="localhost">
-			<Host name="localhost" appBase="var/webapps" workDir="var/work" createDirs="false" 
-				unpackWARs="false" autoDeploy="false" deployOnStartup="false"/>
+			<Host name="localhost" appBase="var/webapps" workDir="var/work" createDirs="false"
+				unpackWARs="false" autoDeploy="false" deployOnStartup="false">
+				<Valve className="org.apache.catalina.valves.ErrorReportValve"
+					showReport="false" showServerInfo="false"
+					errorCode.404="var/weberrors/404.html"
+				    />
+			</Host>
 		</Engine>
 	</Service>
 </Server>
