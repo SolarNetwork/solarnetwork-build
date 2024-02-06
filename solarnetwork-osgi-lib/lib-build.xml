@@ -90,7 +90,7 @@
 		<exclude name="WEB-INF/packtag.user.properties"/>
 		<exclude name="WEB-INF/jsp/about.jsp"/>
 	</patternset>
-
+	
 	<patternset id="pub.files">
 		<include name="*.jar"/>
 		<include name="*.pom"/>
@@ -417,6 +417,7 @@
 				<patternset refid="Bundle-ClassPath"/>
 				<patternset refid="web.files"/>
 			</fileset>
+			<fileset dir="${dir.resources}/binsrc" includes="**"/>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
 	</target>
@@ -441,6 +442,7 @@
 					<patternset refid="Bundle-ClassPath"/>
 					<patternset refid="web.files"/>
 				</fileset>
+				<fileset dir="${dir.resources}/binsrc" includes="**"/>
 			</union>
 			<fileset dir="${dir.build}/rsrs" includes="**"/>
 		</jar>
