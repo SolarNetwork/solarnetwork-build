@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="SolarNode Jakarta" sequenceNumber="514">
+<locations>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-blueprint}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/jee}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/spring}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/spring6}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/platform}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/source}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/unit-test}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/virgo}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/pax-web}" type="Directory"/>
+	<location path="${workspace_loc:/solarnetwork-osgi-target/pax-web/dep}" type="Directory"/>
+</locations>
+<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<launcherArgs>
+<vmArgs>-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dsn.home=${workspace_loc:solarnetwork-osgi-target} -Dsolarnetwork.vardir=${workspace_loc:solarnetwork-osgi-target/var} -Dxml.catalog.files=${workspace_loc:solarnetwork-osgi-lib}/xml-catalog/catalog.xml -Dderby.system.home=${workspace_loc:solarnetwork-osgi-target}/var/db -Dlog4j.configurationFile=config/log4j2.xml -Djava.util.logging.config.file=config/jre-logging.properties -Dosgi.java.profile=file:config/java11-server.profile -Dorg.apache.felix.eventadmin.ThreadPoolSize=4 -Dorg.apache.felix.eventadmin.Timeout=120000 -Dfelix.fileinstall.dir=configurations/services -Dfelix.fileinstall.filter=.*\.cfg -Dfelix.fileinstall.noInitialDelay=true -Djavax.xml.bind.JAXBContextFactory=com.sun.xml.bind.v2.ContextFactory-Djava.awt.headless=true</vmArgs>
+</launcherArgs>
+</target>
