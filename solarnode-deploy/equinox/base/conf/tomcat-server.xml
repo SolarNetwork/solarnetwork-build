@@ -12,7 +12,7 @@
 				unpackWARs="false" autoDeploy="false" deployOnStartup="false">
 				<Valve className="org.apache.catalina.valves.ErrorReportValve"
 					showReport="false" showServerInfo="false"
-					errorCode.404="var/weberrors/404.html"
+					errorCode.404="weberrors/404.html"
 				    />
 			</Host>
 		</Engine>
