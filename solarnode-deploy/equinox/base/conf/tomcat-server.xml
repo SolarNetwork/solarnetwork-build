@@ -13,6 +13,7 @@
 				<Valve className="org.apache.catalina.valves.ErrorReportValve"
 					showReport="false" showServerInfo="false"
 					errorCode.404="weberrors/404.html"
+					errorCode.500="weberrors/500.html"
 				    />
 			</Host>
 		</Engine>
