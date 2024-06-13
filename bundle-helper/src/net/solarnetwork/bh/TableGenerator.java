@@ -27,8 +27,8 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
@@ -62,10 +62,10 @@ public class TableGenerator {
 	public static final String BUNDLE_ID = "Bundle-SymbolicName";
 	public static final String BUNDLE_VERS = "Bundle-Version";
 
-	private final SortedMap<String, BundleInfo> bundles = new TreeMap<>();
+	private final SortedSet<BundleInfo> bundles = new TreeSet<>();
 	private final int[] widths = new int[] { 0, 0, 0 };
 
-	private static class BundleInfo {
+	private static class BundleInfo implements Comparable<BundleInfo> {
 
 		private String name;
 		private String bundleId;
@@ -75,6 +75,16 @@ public class TableGenerator {
 			return (name != null && !name.isEmpty() && bundleId != null && !bundleId.isEmpty()
 					&& version != null && !version.isEmpty());
 		}
+
+		@Override
+		public int compareTo(BundleInfo o) {
+			int result = name.compareToIgnoreCase(o.name);
+			if ( result == 0 ) {
+				result = bundleId.compareToIgnoreCase(o.bundleId);
+			}
+			return result;
+		}
+
 	}
 
 	private void printTable(PrintStream out, String... resources) throws IOException {
@@ -103,7 +113,7 @@ public class TableGenerator {
 			}
 		}
 		out.println('|');
-		for ( BundleInfo info : bundles.values() ) {
+		for ( BundleInfo info : bundles ) {
 			out.println(String.format(fmt, info.name, '`' + info.bundleId + '`', info.version));
 		}
 	}
@@ -156,7 +166,7 @@ public class TableGenerator {
 			info.bundleId = compressedBundleId(main.getValue(BUNDLE_ID));
 			info.version = compressedBundleVersion(main.getValue(BUNDLE_VERS));
 			if ( info.isValid() ) {
-				bundles.put(info.name.toLowerCase() + '|' + info.bundleId, info);
+				bundles.add(info);
 				if ( info.name.length() > widths[0] ) {
 					widths[0] = info.name.length();
 				}
