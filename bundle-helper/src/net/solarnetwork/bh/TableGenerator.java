@@ -1,21 +1,21 @@
 /* ==================================================================
  * TableGenerator.java - 9/09/2020 7:22:49 AM
- * 
+ *
  * Copyright 2020 SolarNetwork.net Dev Team
- * 
- * This program is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 2 of 
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
  * 02111-1307 USA
  * ==================================================================
  */
@@ -27,22 +27,22 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
 /**
  * Generate a list of bundle names as a Markdown table.
- * 
+ *
  * <p>
  * This tool is designed to help generate a table of bundle information, for use
  * in README or CHANGELOG style documentation. Pass a list of directories and/or
  * JAR files on the command line and it will print out a table of all bundles,
  * sorted by name, like this:
  * </p>
- * 
+ *
  * <pre>
  * <code>
  * | Name                                       | ID                       | Vers  |
@@ -52,9 +52,9 @@ import java.util.jar.Manifest;
  * | Advanced Energy Hardware Support           | `n.s.n.hw.ae`            | 3.0.0 |
  * </code>
  * </pre>
- * 
+ *
  * @author matt
- * @version 1.1
+ * @version 1.2
  */
 public class TableGenerator {
 
@@ -62,10 +62,10 @@ public class TableGenerator {
 	public static final String BUNDLE_ID = "Bundle-SymbolicName";
 	public static final String BUNDLE_VERS = "Bundle-Version";
 
-	private final SortedMap<String, BundleInfo> bundles = new TreeMap<>();
+	private final SortedSet<BundleInfo> bundles = new TreeSet<>();
 	private final int[] widths = new int[] { 0, 0, 0 };
 
-	private static class BundleInfo {
+	private static class BundleInfo implements Comparable<BundleInfo> {
 
 		private String name;
 		private String bundleId;
@@ -75,6 +75,16 @@ public class TableGenerator {
 			return (name != null && !name.isEmpty() && bundleId != null && !bundleId.isEmpty()
 					&& version != null && !version.isEmpty());
 		}
+
+		@Override
+		public int compareTo(BundleInfo o) {
+			int result = name.compareToIgnoreCase(o.name);
+			if ( result == 0 ) {
+				result = bundleId.compareToIgnoreCase(o.bundleId);
+			}
+			return result;
+		}
+
 	}
 
 	private void printTable(PrintStream out, String... resources) throws IOException {
@@ -103,7 +113,7 @@ public class TableGenerator {
 			}
 		}
 		out.println('|');
-		for ( BundleInfo info : bundles.values() ) {
+		for ( BundleInfo info : bundles ) {
 			out.println(String.format(fmt, info.name, '`' + info.bundleId + '`', info.version));
 		}
 	}
@@ -156,7 +166,7 @@ public class TableGenerator {
 			info.bundleId = compressedBundleId(main.getValue(BUNDLE_ID));
 			info.version = compressedBundleVersion(main.getValue(BUNDLE_VERS));
 			if ( info.isValid() ) {
-				bundles.put(info.name.toLowerCase(), info);
+				bundles.add(info);
 				if ( info.name.length() > widths[0] ) {
 					widths[0] = info.name.length();
 				}
@@ -174,7 +184,7 @@ public class TableGenerator {
 
 	/**
 	 * Main entry point.
-	 * 
+	 *
 	 * @param args
 	 *        the resources to process
 	 */

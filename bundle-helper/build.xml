@@ -1,8 +1,8 @@
 <project basedir="." name="SolarNetwork BundleHelper">
-	
-	<property name="app.version" value="1.4"/>
+
+	<property name="app.version" value="1.5"/>
 	<property name="jar.name" value="bh-${app.version}.jar"/>
-	
+
 	<property name="dir.source" value="${basedir}/src"/>
 	<property name="dir.resource" value="${basedir}/resources"/>
 	<property name="dir.build" value="${basedir}/build/ant"/>
@@ -14,18 +14,18 @@
 	<property name="compile.deprecation" value="false" />
 	<property name="compile.optimize" value="true" />
 	<property name="compile.nowarn" value="true" />
-	
+
 	<path id="compile.path">
 		<fileset dir="${dir.lib}" includes="*.jar"/>
 	</path>
-	
+
 	<target name="compile" description="Compile sources">
 		<mkdir dir="${dir.compile}"/>
 		<javac srcdir="${dir.source}"
 			destdir="${dir.compile}"
-			debug="${compile.debug}" 
-			deprecation="${compile.deprecation}" 
-			optimize="${compile.optimize}" 
+			debug="${compile.debug}"
+			deprecation="${compile.deprecation}"
+			optimize="${compile.optimize}"
 			nowarn="${compile.nowarn}"
 			target="1.8"
 			source="1.8">
@@ -43,5 +43,5 @@
 			</manifest>
 		</jar>
 	</target>
-	
+
 </project>
