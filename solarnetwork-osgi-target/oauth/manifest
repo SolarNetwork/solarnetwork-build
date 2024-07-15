@@ -1,0 +1,5 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: OAuth 2.0 SDK with OpenID Connect extensions Source
+Bundle-SymbolicName: oauth2-oidc-sdk.source
+Bundle-Version: 9.43.4
+Eclipse-SourceBundle: oauth2-oidc-sdk;version="9.43.4";roots:="."
