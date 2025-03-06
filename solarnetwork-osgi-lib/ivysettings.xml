@@ -47,7 +47,7 @@
 		
 		<ibiblio name="public" m2compatible="true"/>
 		
-		<ibiblio name="solarnetwork-3rd-party" m2compatible="true" root="${solarnetwork-3rd-party-archive.url}"/>
+		<!--ibiblio name="solarnetwork-3rd-party" m2compatible="true" root="${solarnetwork-3rd-party-archive.url}"/-->
 		
 		<bintray name="bintray"/>
 		
@@ -67,7 +67,7 @@
 			<resolver ref="bintray"/>
 		</chain>
 		<chain name="lead" returnFirst="false" checkmodified="true">
-			<resolver ref="solarnetwork-3rd-party"/>
+			<!--resolver ref="solarnetwork-3rd-party"/-->
 			<resolver ref="local"/>
 			<resolver ref="local-m2"/>
 		</chain>
