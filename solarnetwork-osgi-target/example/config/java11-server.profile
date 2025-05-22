@@ -1,4 +1,5 @@
 org.osgi.framework.system.packages = \
+ com.oracle.svm.core.annotate,\
  com.sun.org.apache.bcel.internal,\
  com.sun.org.apache.bcel.internal.classfile,\
  com.sun.org.apache.bcel.internal.generic,\
