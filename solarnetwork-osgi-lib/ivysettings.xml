@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivysettings>
-	<property name="spring-repo.url" value="http://repository.springsource.com/ivy/bundles"/>
-	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
@@ -26,16 +24,6 @@
 		<ibiblio name="jboss" m2compatible="true" root="${jboss-archive.url}"
     		pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
 		
-		<url name="spring-ebr-release">
-			<ivy pattern="${spring-repo.url}/release/${spring-repo.pattern}" />
-			<artifact pattern="${spring-repo.url}/release/${spring-repo.pattern}" />
-		</url>
-		
-		<url name="spring-ebr-external">
-			<ivy pattern="${spring-repo.url}/external/${spring-repo.pattern}" />
-			<artifact pattern="${spring-repo.url}/external/${spring-repo.pattern}" />
-		</url>
-		
 		<ibiblio name="spring-archive" m2compatible="true" root="${spring-archive.url}"/>
 		
 		<ibiblio name="gemini" m2compatible="true" root="${gemini-archive.url}"/>
@@ -58,8 +46,6 @@
 		
 		<chain name="main" returnFirst="true" cache="external">
 			<resolver ref="jboss"/>
-			<resolver ref="spring-ebr-release"/>
-			<resolver ref="spring-ebr-external"/>
 			<resolver ref="spring-archive"/>
 			<resolver ref="gemini"/>
 			<!-- Offline as of 2021-11-ish resolver ref="virgo"/-->
