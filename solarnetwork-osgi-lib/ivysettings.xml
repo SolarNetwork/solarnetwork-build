@@ -10,7 +10,6 @@
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
 	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
 	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
-	<property name="m2.local.root" value="${user.home}/.m2/repository/" />
 	<settings defaultResolver="default"/>
 	<caches>
 		<cache name="external" defaultTTL="1d"/>
@@ -39,11 +38,6 @@
 		
 		<bintray name="bintray"/>
 		
-		<filesystem name="local-m2" m2compatible="true">
-            <artifact pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].[ext]" />
-            <ivy pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].pom" />
-        </filesystem>
-		
 		<chain name="main" returnFirst="true" cache="external">
 			<resolver ref="jboss"/>
 			<resolver ref="spring-archive"/>
@@ -55,7 +49,6 @@
 		<chain name="lead" returnFirst="false" checkmodified="true">
 			<!--resolver ref="solarnetwork-3rd-party"/-->
 			<resolver ref="local"/>
-			<resolver ref="local-m2"/>
 		</chain>
 		<chain name="default" returnFirst="true">
 			<resolver ref="lead"/>
