@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivysettings>
-	<property name="spring-repo.url" value="http://repository.springsource.com/ivy/bundles"/>
-	<property name="spring-repo.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
@@ -12,7 +10,6 @@
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
 	<property name="ivy.local.default.ivy.pattern"       value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
 	<property name="ivy.local.default.artifact.pattern"  value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" override="false"/>
-	<property name="m2.local.root" value="${user.home}/.m2/repository/" />
 	<settings defaultResolver="default"/>
 	<caches>
 		<cache name="external" defaultTTL="1d"/>
@@ -25,16 +22,6 @@
 
 		<ibiblio name="jboss" m2compatible="true" root="${jboss-archive.url}"
     		pattern="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
-		
-		<url name="spring-ebr-release">
-			<ivy pattern="${spring-repo.url}/release/${spring-repo.pattern}" />
-			<artifact pattern="${spring-repo.url}/release/${spring-repo.pattern}" />
-		</url>
-		
-		<url name="spring-ebr-external">
-			<ivy pattern="${spring-repo.url}/external/${spring-repo.pattern}" />
-			<artifact pattern="${spring-repo.url}/external/${spring-repo.pattern}" />
-		</url>
 		
 		<ibiblio name="spring-archive" m2compatible="true" root="${spring-archive.url}"/>
 		
@@ -51,15 +38,8 @@
 		
 		<bintray name="bintray"/>
 		
-		<filesystem name="local-m2" m2compatible="true">
-            <artifact pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].[ext]" />
-            <ivy pattern="${m2.local.root}/[organisation]/[module]/[revision]/[module]-[revision].pom" />
-        </filesystem>
-		
 		<chain name="main" returnFirst="true" cache="external">
 			<resolver ref="jboss"/>
-			<resolver ref="spring-ebr-release"/>
-			<resolver ref="spring-ebr-external"/>
 			<resolver ref="spring-archive"/>
 			<resolver ref="gemini"/>
 			<!-- Offline as of 2021-11-ish resolver ref="virgo"/-->
@@ -69,7 +49,6 @@
 		<chain name="lead" returnFirst="false" checkmodified="true">
 			<!--resolver ref="solarnetwork-3rd-party"/-->
 			<resolver ref="local"/>
-			<resolver ref="local-m2"/>
 		</chain>
 		<chain name="default" returnFirst="true">
 			<resolver ref="lead"/>
