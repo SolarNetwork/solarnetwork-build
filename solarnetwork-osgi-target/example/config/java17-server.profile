@@ -9,6 +9,68 @@ org.osgi.framework.system.packages = \
  com.sun.org.apache.xpath.internal,\
  com.sun.org.apache.xpath.internal.jaxp,\
  com.sun.org.apache.xpath.internal.objects,\
+ java.awt,\
+ java.awt.color,\
+ java.awt.datatransfer,\
+ java.awt.dnd,\
+ java.awt.dnd.peer,\
+ java.awt.event,\
+ java.awt.font,\
+ java.awt.geom,\
+ java.awt.im,\
+ java.awt.im.spi,\
+ java.awt.image,\
+ java.awt.image.renderable,\
+ java.awt.peer,\
+ java.awt.print,\
+ java.beans,\
+ java.beans.beancontext,\
+ java.io,\
+ java.lang,\
+ java.lang.annotation,\
+ java.lang.constant,\
+ java.lang.invoke,\
+ java.lang.module,\
+ java.lang.ref,\
+ java.lang.reflect,\
+ java.lang.runtime,\
+ java.math,\
+ java.net,\
+ java.nio,\
+ java.nio.channels,\
+ java.nio.channels.spi,\
+ java.nio.charset,\
+ java.nio.file,\
+ java.nio.file.attribute,\
+ java.nio.file.spi,\
+ java.security,\
+ java.security.auth,\
+ java.security.auth.callback,\
+ java.security.auth.login,\
+ java.security.auth.spi,\
+ java.security.auth.x500,\
+ java.security.cert,\
+ java.security.interfaces,\
+ java.security.spec,\
+ java.sql,\
+ java.text,\
+ java.text.spi,\
+ java.time,\
+ java.time.chrono,\
+ java.time.format,\
+ java.time.temporal,\
+ java.time.zone,\
+ java.util,\
+ java.util.concurrent,\
+ java.util.concurrent.atomic,\
+ java.util.concurrent.locks,\
+ java.util.function,\
+ java.util.logging,\
+ java.util.jar,\
+ java.uti.random,\
+ java.util.regex,\
+ java.util.stream,\
+ java.util.zip,\
  javax.accessibility,\
  javax.activity,\
  javax.annotation.processing,\
@@ -50,9 +112,6 @@ org.osgi.framework.system.packages = \
  javax.print.attribute,\
  javax.print.attribute.standard,\
  javax.print.event,\
- javax.rmi,\
- javax.rmi.CORBA,\
- javax.rmi.ssl,\
  javax.script,\
  javax.script;version="1.1",\
  javax.security.auth,\
