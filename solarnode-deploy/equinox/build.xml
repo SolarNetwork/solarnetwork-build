@@ -174,8 +174,8 @@
 		</union>
 		<equinox-config-generate
 			filesetId="app.boot.files"
-			defaultStartLevel="2"
-			matchStartLevel="1"
+			defaultStartLevel="3"
+			matchStartLevel="2"
 			property="equinox.bundles.boot"/>
 		<echo>Got config ${equinox.bundles.boot}</echo>
 
