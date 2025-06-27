@@ -107,6 +107,7 @@
 	<nextCatalog catalog="catalog-spring4.xml"/>
 	<nextCatalog catalog="catalog-spring4-3.xml"/>
 	<nextCatalog catalog="catalog-spring5-3.xml"/>
+	<nextCatalog catalog="catalog-spring6.xml"/>
 	
 	<!-- Map unversioned URIs to Spring 4.3 -->
 	<uri name="http://www.springframework.org/schema/aop" uri="spring-aop-4.3.xsd"/>
