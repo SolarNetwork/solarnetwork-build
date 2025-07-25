@@ -5,7 +5,6 @@
 	<location path="${workspace_loc:/solarnetwork-osgi-target/support}" type="Directory"/>
 	<location path="${workspace_loc:/solarnetwork-osgi-target/gemini-blueprint}" type="Directory"/>
 	<location path="${workspace_loc:/solarnetwork-osgi-target/jee}" type="Directory"/>
-	<location path="${workspace_loc:/solarnetwork-osgi-target/spring}" type="Directory"/>
 	<location path="${workspace_loc:/solarnetwork-osgi-target/spring6}" type="Directory"/>
 	<location path="${workspace_loc:/solarnetwork-osgi-target/platform}" type="Directory"/>
 	<location path="${workspace_loc:/solarnetwork-osgi-target/source}" type="Directory"/>
