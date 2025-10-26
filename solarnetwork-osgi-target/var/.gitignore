@@ -4,6 +4,7 @@
 /db*
 /ffmpeg-images/
 /flux/
+/localstate-bak
 /log/
 /mqtt*/
 /net.solarnetwork.*/
