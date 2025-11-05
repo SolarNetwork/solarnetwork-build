@@ -6,6 +6,7 @@
 /flux/
 /localstate-bak
 /log/
+/modbus-server-bak
 /mqtt*/
 /net.solarnetwork.*/
 /settings-bak
