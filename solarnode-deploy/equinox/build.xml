@@ -167,7 +167,7 @@
 		</copy>
 	</target>
 
-	<target name="equinox-config">
+	<target name="equinox-config" depends="nashorn.deps">
 		<union id="app.boot.files">
 			<fileset dir="${dir.assemble}/app" includes="boot/*"/>
 			<dirset dir="${dir.assemble}/app" includes="boot/*"/>
@@ -283,6 +283,16 @@
 
 	<target name="archive" depends="assemble,archive.native,archive.ant"
 		description="Assemble and then package a base node archive"/>
+	
+	<target name="nashorn.deps" depends="ivy-init">
+		<ivy:resolve>
+			<dependency org="org.openjdk.nashorn" name="nashorn-core" rev="15.7"/>
+		</ivy:resolve>
+		<ivy:retrieve type="jar" pattern="${dir.build}/nashorn/[artifact]-[revision].[ext]"/>
+		<path id="nashorn.classpath">
+			<fileset dir="${dir.build}/nashorn" includes="*.jar"/>
+		</path>
+	</target>
 
 	<macrodef name="equinox-config-generate">
 		<attribute name="filesetId"/>
@@ -290,7 +300,7 @@
 		<attribute name="matchStartLevel"/>
 		<attribute name="property"/> <!-- the property name to set -->
 		<sequential>
-			<script language="javascript"><![CDATA[
+			<script language="javascript" classpathref="nashorn.classpath"><![CDATA[
 				function commaDelimitedSet(s) {
 					var i, key, split, result = {};
 					if ( s ) {
