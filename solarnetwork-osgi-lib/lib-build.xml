@@ -96,6 +96,10 @@
 		<include name="*.pom"/>
 		<include name="*.xml"/>
 	</patternset>
+	
+	<path id="errorprone.path">
+		<fileset dir="${dir.target}/lib/errorprone" includes="*.jar"/>
+	</path>
 
 	<tstamp>
 		<format property="bundle.build.time" pattern="yyyy-MM-dd HH:mm" />
@@ -275,8 +279,24 @@
 			optimize="${compile.optimize}"
 			nowarn="${compile.nowarn}"
 			target="${compile.target}"
-			source="${compile.source}">
+			source="${compile.source}"
+			fork="yes">
 			<classpath refid="compile.path.combined" />
+			<compilerarg value="-XDcompilePolicy=simple"/>
+			<compilerarg value="--should-stop=ifError=FLOW"/>
+			<compilerarg value="-processorpath"/>
+			<compilerarg pathref="errorprone.path"/>
+			<compilerarg value="-Xplugin:ErrorProne -Xep:DeadException:ERROR" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED" />
+			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED" />
+			<compilerarg value="-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED" />
+			<compilerarg value="-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED" />
 		</javac>
 	</target>
 
