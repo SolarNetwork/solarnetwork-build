@@ -300,6 +300,9 @@
 		</javac>
 	</target>
 
+	<target name="clean-compile" depends="clean,compile"
+		description="Clean, then compile"/>
+
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
