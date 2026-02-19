@@ -533,8 +533,8 @@
 
 	<!-- Unit test support -->
 
-	<target name="test" description="Run unit tests" depends="test.resolve,test.run,test.run.coverage"/>
-	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,jar,test"/>
+	<target name="test" description="Run unit tests" depends="jar,test.resolve,test.run,test.run.coverage"/>
+	<target name="clean-test" description="Build and run unit tests from scratch" depends="clean,test"/>
 
 	<target name="jacoco.init">
 		<taskdef resource="org/jacoco/ant/antlib.xml"
