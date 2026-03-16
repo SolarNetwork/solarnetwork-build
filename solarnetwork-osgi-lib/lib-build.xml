@@ -289,7 +289,7 @@
 			<compilerarg value="--should-stop=ifError=FLOW"/>
 			<compilerarg value="-processorpath"/>
 			<compilerarg pathref="errorprone.path"/>
-			<compilerarg value="-Xplugin:ErrorProne -Xep:DeadException:ERROR -Xep:NullAway:ERROR -XepOpt:NullAway:OnlyNullMarked=true" />
+			<compilerarg value="-Xplugin:ErrorProne -Xep:DeadException:ERROR -Xep:NullAway:ERROR -XepOpt:NullAway:OnlyNullMarked=true -XepOpt:NullAway:JSpecifyMode=true" />
 			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED" />
 			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED" />
 			<compilerarg value="-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED" />
