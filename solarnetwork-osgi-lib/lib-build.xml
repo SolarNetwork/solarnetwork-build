@@ -12,6 +12,7 @@
 	<property file="${dir.osgi.base}/build.properties"/>
 
 	<property name="dir.target" value="${dir.osgi.base}"/>
+	<property name="dir.platform" value="${dir.osgi.base}/../solarnetwork-osgi-target"/>
 	<property name="dir.bundles" value="${dir.osgi.base}/bundles"/>
 	<property name="ivy.settings" value="${dir.target}/ivysettings.xml"/>
 	<property name="dir.input" value="${basedir}"/>
@@ -96,7 +97,7 @@
 		<include name="*.pom"/>
 		<include name="*.xml"/>
 	</patternset>
-	
+
 	<path id="errorprone.path">
 		<fileset dir="${dir.target}/lib/errorprone" includes="*.jar"/>
 	</path>
@@ -246,6 +247,15 @@
 	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
 		depends="clean,clean.deps"/>
 
+	<target name="format" depends="read.manifest" if="classes">
+		<echo message="[====&gt; Formatting ${bundle.name} Java source &lt;====]"/>
+		<java jar="${dir.target}/lib/eclipse-format.jar" fork="yes">
+			<arg value="--config=${dir.platform}/defs/solarnetwork-codeformat.xml"/>
+			<arg value="--recursive"/>
+			<arg value="${dir.source}"/>
+		</java>
+	</target>
+
 	<target name="compile.deps" if="bundle.deps">
 		<subant target="jar-dep">
 			<property name="dir.deps" value="${dir.build}/deps"/>
@@ -309,7 +319,7 @@
 	<target name="bh.init">
 		<taskdef resource="net/solarnetwork/bh/ant/antlib.xml"
 					uri="antlib:net.solarnetwork.bh.ant"
-					classpath="${dir.target}/lib/bh-1.4.jar"/>
+					classpath="${dir.target}/lib/bh.jar"/>
 	</target>
 
 	<target name="read.manifest" depends="bh.init">
