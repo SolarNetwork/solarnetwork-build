@@ -247,7 +247,7 @@
 	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
 		depends="clean,clean.deps"/>
 
-	<target name="format" depends="read.manifest" if="classes">
+	<target name="format" depends="read.manifest" if="classes" description="Format Java sources for SolarNetwork style">
 		<echo message="[====&gt; Formatting ${bundle.name} Java source &lt;====]"/>
 		<java jar="${dir.target}/lib/eclipse-format.jar" fork="yes">
 			<arg value="--config=${dir.platform}/defs/solarnetwork-codeformat.xml"/>
