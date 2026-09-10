@@ -3,8 +3,6 @@
 	<property name="spring-archive.url" value="https://maven.atlassian.com/repository/public"/>
 	<property name="jboss-archive.url" value="https://repository.jboss.org/nexus/content/repositories/releases/"/>
 	<property name="gemini-archive.url" value="http://download.eclipse.org/gemini/mvn/"/>
-	<property name="virgo-archive.url" value="http://build.eclipse.org/rt/virgo/ivy/bundles/release/"/>
-	<property name="virgo-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="solarnetwork-3rd-party-archive.url" value="${solarnetwork-3rd-party.archive.url}"/>
 	<property name="solarnetwork-3rd-party-archive.pattern" value="[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
 	<property name="ivy.local.default.root"              value="${ivy.default.ivy.user.dir}/local" override="false"/>
@@ -27,27 +25,15 @@
 		
 		<ibiblio name="gemini" m2compatible="true" root="${gemini-archive.url}"/>
 		
-		<url name="virgo">
-			<ivy pattern="${virgo-archive.url}/${virgo-archive.pattern}" />
-			<artifact pattern="${virgo-archive.url}/${virgo-archive.pattern}" />
-		</url>
-		
 		<ibiblio name="public" m2compatible="true"/>
-		
-		<!--ibiblio name="solarnetwork-3rd-party" m2compatible="true" root="${solarnetwork-3rd-party-archive.url}"/-->
-		
-		<bintray name="bintray"/>
 		
 		<chain name="main" returnFirst="true" cache="external">
 			<resolver ref="jboss"/>
-			<resolver ref="spring-archive"/>
 			<resolver ref="gemini"/>
-			<!-- Offline as of 2021-11-ish resolver ref="virgo"/-->
 			<resolver ref="public"/>
-			<resolver ref="bintray"/>
+			<resolver ref="spring-archive"/>
 		</chain>
 		<chain name="lead" returnFirst="false" checkmodified="true">
-			<!--resolver ref="solarnetwork-3rd-party"/-->
 			<resolver ref="local"/>
 		</chain>
 		<chain name="default" returnFirst="true">
