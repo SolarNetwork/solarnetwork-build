@@ -249,7 +249,11 @@
 
 	<target name="format" depends="read.manifest" if="classes" description="Format Java sources for SolarNetwork style">
 		<echo message="[====&gt; Formatting ${bundle.name} Java source &lt;====]"/>
-		<java jar="${dir.target}/lib/eclipse-format.jar" fork="yes">
+		<!-- EclipseFormat.java uses the formatter in eclipse-format.jar, but also formats comments -->
+		<java sourcefile="${dir.target}/lib/EclipseFormat.java" fork="yes">
+			<classpath>
+				<pathelement location="${dir.target}/lib/eclipse-format.jar"/>
+			</classpath>
 			<arg value="--config=${dir.platform}/defs/solarnetwork-codeformat.xml"/>
 			<arg value="--recursive"/>
 			<arg value="${dir.source}"/>
