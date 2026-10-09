@@ -247,7 +247,26 @@
 	<target name="clean-full" description="Remove generated artifacts and in dependent projects"
 		depends="clean,clean.deps"/>
 
-	<target name="format" depends="read.manifest" if="classes" description="Format Java sources for SolarNetwork style">
+	<target name="format" depends="format.java,format.markdown"
+		description="Format Java sources and the README for SolarNetwork style"/>
+
+	<target name="format.markdown.init">
+		<available file="${dir.input}/README.md" property="readme.present"/>
+	</target>
+
+	<target name="format.markdown" depends="format.markdown.init" if="readme.present"
+			description="Format the README.md file for SolarNetwork style">
+		<echo message="[====&gt; Formatting ${dir.project} README.md &lt;====]"/>
+		<!-- MarkdownFormat.java uses the GFM formatter in flexmark-all-lib.jar -->
+		<java sourcefile="${dir.target}/lib/MarkdownFormat.java" fork="yes">
+			<classpath>
+				<pathelement location="${dir.target}/lib/flexmark-all-lib.jar"/>
+			</classpath>
+			<arg value="${dir.input}/README.md"/>
+		</java>
+	</target>
+
+	<target name="format.java" depends="read.manifest" if="classes" description="Format Java sources for SolarNetwork style">
 		<echo message="[====&gt; Formatting ${bundle.name} Java source &lt;====]"/>
 		<!-- EclipseFormat.java uses the formatter in eclipse-format.jar, but also formats comments -->
 		<java sourcefile="${dir.target}/lib/EclipseFormat.java" fork="yes">
